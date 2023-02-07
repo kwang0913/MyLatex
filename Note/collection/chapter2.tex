@@ -1,0 +1,27 @@
+\section*{Chapter 2: Sequential Experiments}
+\begin{enumerate}
+    \item Tree Diagrams
+    \item Counting Methods
+    \begin{enumerate}
+        \item Multiplication:~$k\times n$
+        \item Sampling without Replacement
+        \begin{enumerate}
+            \item Permutation:~$\frac{n!}{(n-k)!}$
+            \item Combination:~$\binom{n}{k}=\frac{n!}{k!(n-k)!}$
+            \item Combination is Permutation without order. Combination is also called n choose k.
+        \end{enumerate}
+        \item Sampling with Replacement:~$n^k$
+        \item Multiple Combination:~$\binom{n}{k_1,k_2,\ldots,k_m}=\frac{n!}{k_1!k_2!\ldots k_m!}$ if $n=\sum_{i=1}^{m}k_i$
+        \item Multiple Permutation?
+    \end{enumerate}
+    \item Independent Trails
+    \begin{enumerate}
+        \item \textit{Theorem 2.8:} The Probability of $n_0$ failures and $n_1$ successes in $n=n_0+n_1$ Independent Trails with success rate p is \[\mathbb{P}(n_0, n_1)=\binom{n}{n_1}(1-p)^{n0}p^{n_1}=\binom{n}{n_0}(1-p)^{n0}p^{n_1}\]
+        \item \textit{Theorem 2.9:} $n=n_0+n_1+\ldots$ and success rates are $p_0, p_1,\ldots$
+    \end{enumerate}
+    \item Reliability Analysis
+    \begin{enumerate}
+        \item Components in series
+        \item Components in parallel
+    \end{enumerate}
+\end{enumerate}
