@@ -1,0 +1,98 @@
+%%%% Page Margin %%%%
+\usepackage[
+    top=1in,
+    bottom=1in,
+    inner=0.75in,
+    outer=0.75in
+]{geometry}
+%\pagestyle{plain}
+
+%%%% Page Header and Foot %%%%
+\usepackage{fancyhdr}
+\pagestyle{fancyplain}
+\headheight 0.5in
+\lhead{\lefthead}
+\chead{\textbf{\centerhead}}
+\rhead{\righthead}
+\lfoot{\leftbottom}
+\cfoot{}
+\rfoot{\thepage}
+% \headsep 1.5em
+
+% \usepackage{fancyhdr}
+% \fancypagestyle{plain}{%  the preset of fancyhdr 
+%     \fancyhf{} % clear all header and footer fields
+%     % \headheight 0.25in
+%     \fancyhead[L]{\course}
+%     \fancyhead[C]{Recitation Week \wk}
+%     \fancyhead[R]{\semester}
+%     \fancyfoot[L]{TA: \TA}
+%     \fancyfoot[C]{}
+%     \fancyfoot[R]{\thepage}
+% }
+% % \headsep 1.5em
+
+%%%% Additional Commands to Load %%%%
+%%%% Main Font
+\usepackage[utf8]{inputenc} %enable utf8 encoding
+\usepackage{libertinus} %Very popular math font
+\usepackage[T1]{fontenc} %I don't know what this is but it is used everywhere
+
+%%%% Math Font
+\usepackage{amsfonts,amsmath,amssymb, amsthm}
+\usepackage{mathtools} 
+\usepackage{mleftright}  % fixes some annoying spacing issues
+\usepackage{bm} % boldface math
+
+%%%% Others
+\usepackage[breakable]{tcolorbox} %Customized Box
+\tcbuselibrary{skins}
+\usepackage{tabularx} %Better Table
+\usepackage{hyperref, cleveref} %Fantastic crossrefer
+
+%%%% Commands to Define Homework Boxes %%%%
+%%%% A box fill the rest of the page
+\newtcolorbox{stretchbox}[1][]{
+    height fill,
+    sharp corners,
+    colback=white,
+    % colframe=yellow!50!black,
+    #1
+    }
+
+%%%% Problem Box Definition
+\newtcolorbox{prob}[1]{
+% Set box style
+    sidebyside,
+    sidebyside align=top,
+% Dimensions and layout
+    width=\textwidth,
+    toptitle=2.5pt,
+    bottomtitle=2.5pt,
+    righthand width=0.20\textwidth,
+% Coloring
+    colbacktitle=white,
+    coltitle=black,
+    colback=white,
+    colframe=black,
+% Title formatting
+    title={
+        #1 \hfill Grade:\hspace*{0.15\textwidth}
+    },
+    fonttitle=\large\bfseries
+}
+
+%%%% Environment Definition 
+\newenvironment{problem}[1]{
+    \begin{prob}{#1}
+}
+{
+    \tcblower
+    \centering
+    \textit{\scriptsize\bfseries Faculty Comments}
+    \end{prob}
+}
+
+%%%% New Command %%%%
+%%%% Draw a line
+\newcommand{\myrule}{\rule{1.5in}{0.1mm}}
