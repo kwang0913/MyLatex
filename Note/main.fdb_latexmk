@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1676329934 "c:/Users/wkl36/Dropbox/Rutgers/PhD/TA/2023.1 Spring/Note/main.tex" "main.pdf" "main" 1676329935 0
+["pdflatex"] 1676355310 "c:/Users/wkl36/Dropbox/Rutgers/PhD/TA/2023.1 Spring/Note/main.tex" "main.pdf" "main" 1676355312 0
   "../Format.tex" 1675792501 2326 156e9f14bdc1d640dd38caf16f56758b ""
   "C:/Users/wkl36/scoop/apps/miktex/current/texmfs/data/fonts/map/pdftex/pdftex.map" 1676130874 201026 422d3d21f84f35f9d6b1b49fafae2ff3 ""
   "C:/Users/wkl36/scoop/apps/miktex/current/texmfs/data/miktex/data/le/pdftex/pdflatex.fmt" 1675393111 23179083 19a586ac04c92537bd5a23b54b907932 ""
@@ -216,11 +216,11 @@
   "C:/Users/wkl36/scoop/apps/miktex/current/texmfs/install/tex/latex/xcolor/xcolor.sty" 1656233290 56148 51a9a8571c07b9921892ae11063ae853 ""
   "C:/Users/wkl36/scoop/apps/miktex/current/texmfs/install/tex/latex/xkeyval/xkeyval.sty" 1656233319 4937 4ce600ce9bd4ec84d0250eb6892fcf4f ""
   "c:/Users/wkl36/Dropbox/Rutgers/PhD/TA/2023.1 Spring/Note/main.tex" 1676329897 621 1fbb751cbf7b8bbd0915a17d347b367e ""
-  "collection/chapter1.tex" 1676329395 2657 0304f46b45f0cb2a2680acfd24db7975 ""
+  "collection/chapter1.tex" 1676355309 2657 0304f46b45f0cb2a2680acfd24db7975 ""
   "collection/chapter2.tex" 1676002872 1330 f5944d10ad4189a62148d9fb0c58e2e5 ""
-  "collection/chapter3.tex" 1676329933 213 3c46c8a6c81b2f5c90c4581aab2301c0 ""
-  "main.aux" 1676329935 554 04ae3964aa57b78538b565d0454a3de2 "pdflatex"
-  "main.out" 1676329935 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "collection/chapter3.tex" 1676355309 214 f0d9e0baa99885ba289f0ec7199b1553 ""
+  "main.aux" 1676355311 554 04ae3964aa57b78538b565d0454a3de2 "pdflatex"
+  "main.out" 1676355311 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
   "main.tex" 1676329897 621 1fbb751cbf7b8bbd0915a17d347b367e ""
   (generated)
   "main.aux"
