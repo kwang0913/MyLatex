@@ -1,18 +1,40 @@
-\section*{Chapter 1: Set Theory and Probability}
+\section*{Chapter 1: Set Theory, Probability, and Single Experiment}
 \begin{enumerate}
-    \item Basic Probability
+    \item From Set Theory to Probability (of the single experiment)
+    \begin{enumerate}
+        \item~{
+            \begin{center}
+                \begin{tabular}{|c|c|}
+                    \hline
+                    \textbf{Set Theory} & \textbf{Probability} \\
+                    \hline
+                    \hline
+                    Element & Outcome \\
+                    \hline
+                    Subset  & Event   \\
+                    \hline
+                    Universal Set & Sample Space \\
+                    \hline
+                \end{tabular}
+            \end{center}
+                        }
+            \item $\mathbb{P}(Outcome)=$the possibility that the outcome appears in the sample space. Outcomes are always \textbf{Mutually Exclusive}.
+            \item $\mathbb{P}(Event)=$Event constitutes by different combinations of outcomes, including \textit{null set} and the whole sample space.
+            \item Apparently, $\mathbb{P}(\emptyset)=0$ since there is no element in \textit{null set}, and $\mathbb{P}(\text{Sample Space})=1$
+    \end{enumerate}
+    \item Probability Properties
     \begin{enumerate}
         \item $\mathbb{P}(A \cup B) = \mathbb{P}(A)+\mathbb{P}(B)-\mathbb{P}(A\cap B)$
         \item \textbf{Mutually Exclusive:}~$\mathbb{P}(A \cap B)=0$ so that $\mathbb{P}(A \cup B) = \mathbb{P}(A)+\mathbb{P}(B)$
         \item \textbf{Collectively Exhaustive:}~$\mathbb{P}(A\cup B)=1$
-        \item \textbf{Independent:}~$\mathbb{P}(A\cap B)=\mathbb{P}(A)\mathbb{P}(B)$ so that $\mathbb{P}(A \cup B) = \mathbb{P}(A)+\mathbb{P}(B)-\mathbb{P}(A)\mathbb{P}(B)$
-        \item \textbf{Partitions:}~$\mathbb{P}(\cup_{i=1}^N A_i)=\sum_{i=1}^{N}\mathbb{P}(A_i)$
+        \item \textbf{Partitions:}~$\mathbb{P}(\cup_{i=1}^N A_i)=\sum_{i=1}^{N}\mathbb{P}(A_i)=1$
     \end{enumerate}
     \item Conditional Probability
     \begin{enumerate}
         \item $\mathbb{P}(\mathbf{A|B}) = \frac{\mathbb{P}(\mathbf{AB})}{\mathbb{P}(\mathbf{B})}$
-        \item \textbf{If $A_i$ are Mutually Exclusive:}~$\mathbb{P}(\mathbf{A|B}) = \sum_{i=1}^{n}\mathbb{P}(\mathbf{A_i|B}) = \sum_{i=1}^{n}\frac{\mathbb{P}(\mathbf{A_iB})}{\mathbb{P}(\mathbf{B})}= \frac{\sum_{i=1}^{n}\mathbb{P}(\mathbf{A_iB})}{\mathbb{P}(\mathbf{B})}$
-        \item \textbf{If $B_i$ are Partitions:}~$\mathbb{P}(\mathbf{A}) = \sum_{i=1}^{m}\mathbb{P}(\mathbf{A|B_i})\mathbb{P}(\mathbf{B_i})$
+        \item \textbf{If $A_i$ are Mutually Exclusive:}~$\mathbb{P}(\mathbf{A|B}) = \sum_{i=1}^{n}\mathbb{P}(\mathbf{A_i|B})$ %= \sum_{i=1}^{n}\frac{\mathbb{P}(\mathbf{A_i B})}{\mathbb{P}(\mathbf{B})}= \frac{\sum_{i=1}^{n}\mathbb{P}(\mathbf{A_i B})}{\mathbb{P}(\mathbf{B})}$
+        \item \textbf{If $B_i$ are Partitions of A:}~$\mathbb{P}(\mathbf{A}) = \sum_{i=1}^{m}\mathbb{P}(\mathbf{A\cap B_i}) = \sum_{i=1}^{m}\mathbb{P}(\mathbf{A|B_i})\mathbb{P}(\mathbf{B_i})$---\textit{Law of Total Number}
     \end{enumerate}
     \item Baye's Theorem:~$\mathbb{P}(\mathbf{A|B}) = \frac{\mathbb{P}(\mathbf{B|A})\mathbb{P}(\mathbf{A})}{\mathbb{P}(\mathbf{B})}$
+    \item \textbf{Independent:}~$\mathbb{P}(A\cap B)=\mathbb{P}(A)\mathbb{P}(B)$ so that $\mathbb{P}(A \cup B) = \mathbb{P}(A)+\mathbb{P}(B)-\mathbb{P}(A)\mathbb{P}(B)$
 \end{enumerate}
