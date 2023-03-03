@@ -18,23 +18,41 @@
                 \end{tabular}
             \end{center}
                         }
-            \item $\mathbb{P}(Outcome)=$the possibility that the outcome appears in the sample space. Outcomes are always \textbf{Mutually Exclusive}.
-            \item $\mathbb{P}(Event)=$Event constitutes by different combinations of outcomes, including \textit{null set} and the whole sample space.
-            \item Apparently, $\mathbb{P}(\emptyset)=0$ since there is no element in \textit{null set}, and $\mathbb{P}(\text{Sample Space})=1$
+            \item Outcome and Event: {
+                \begin{enumerate}
+                    \item Outcomes are always \textbf{Mutually Exclusive} since there are the smallest units (i.e., Elements) in the Set.
+                    \item Event constitutes by different combinations of outcomes (through Union ($\cup$) Operation).
+                \end{enumerate}
+            } 
+            \item $\P{\text{Event}}$ is the possibility that the event appears in the sample space. 
+            \item $\P{\emptyset}=0$ since there is no element in \textit{null set}, and $\P{\text{Sample Space}}=1$.
     \end{enumerate}
     \item Probability Properties
     \begin{enumerate}
-        \item $\mathbb{P}(A \cup B) = \mathbb{P}(A)+\mathbb{P}(B)-\mathbb{P}(A\cap B)$
-        \item \textbf{Mutually Exclusive:}~$\mathbb{P}(A \cap B)=0$ so that $\mathbb{P}(A \cup B) = \mathbb{P}(A)+\mathbb{P}(B)$
-        \item \textbf{Collectively Exhaustive:}~$\mathbb{P}(A\cup B)=1$
-        \item \textbf{Partitions:}~$\mathbb{P}(\cup_{i=1}^N A_i)=\sum_{i=1}^{N}\mathbb{P}(A_i)=1$
+        \item $\P{A \cup B} = \P{A}+\P{B}-\P{A\cap B}$.
+        \item \textbf{Mutually Exclusive:}~$\P{A \cap B}=0$ so that $\P{A \cup B} = \P{A}+\P{B}$.
+        \item \textbf{Collectively Exhaustive:}~$\P{A\cup B}=1$.
+        \item \textbf{Partitions (i.e., Mutually Exclusive \& Collectively Exhaustive):}~$\P{\cup_{i=1}^N A_i}=\sum_{i=1}^{N}\P{A_i}=1$.
     \end{enumerate}
     \item Conditional Probability
     \begin{enumerate}
-        \item $\mathbb{P}(\mathbf{A|B}) = \frac{\mathbb{P}(\mathbf{AB})}{\mathbb{P}(\mathbf{B})}$
-        \item \textbf{If $A_i$ are Mutually Exclusive:}~$\mathbb{P}(\mathbf{A|B}) = \sum_{i=1}^{n}\mathbb{P}(\mathbf{A_i|B})$ %= \sum_{i=1}^{n}\frac{\mathbb{P}(\mathbf{A_i B})}{\mathbb{P}(\mathbf{B})}= \frac{\sum_{i=1}^{n}\mathbb{P}(\mathbf{A_i B})}{\mathbb{P}(\mathbf{B})}$
-        \item \textbf{If $B_i$ are Partitions of A:}~$\mathbb{P}(\mathbf{A}) = \sum_{i=1}^{m}\mathbb{P}(\mathbf{A\cap B_i}) = \sum_{i=1}^{m}\mathbb{P}(\mathbf{A|B_i})\mathbb{P}(\mathbf{B_i})$---\textit{Law of Total Number}
+        \item $\condP{A}{B} = \frac{\P{AB}}{\P{B}}$.
+        \item \textbf{If $A_i$ are Mutually Exclusive:}~$\condP{A}{B} = \condP{\cup_{i=1}^{N}A_i}{B} = \sum_{i=1}^{N}\condP{A_i}{B}$.
+        \item \textbf{If $B_i$ are Partitions}~(Law of Total Number),
+        \begin{flalign*}
+            && \condP{A}{B} &= \frac{\P{AB}}{\P{B}} && \\
+            && &= \P{AB} && (\textrm{$B$ is Collectively Exhaustive}) \\
+            && &= \P{A\cdot\cup_{i=1}^{N}B_i} && (\textrm{$B$ is Mutually Exclusive}) \\
+            && &= \sum_{i=1}^{N}\P{AB_i} && (\textrm{$B$ is Partition}) \\
+            && &= \sum_{i=1}^{N}\condP{A}{B_i}\P{B_i}. &&
+        \end{flalign*}
     \end{enumerate}
-    \item Baye's Theorem:~$\mathbb{P}(\mathbf{A|B}) = \frac{\mathbb{P}(\mathbf{B|A})\mathbb{P}(\mathbf{A})}{\mathbb{P}(\mathbf{B})}$
-    \item \textbf{Independent:}~$\mathbb{P}(A\cap B)=\mathbb{P}(A)\mathbb{P}(B)$ so that $\mathbb{P}(A \cup B) = \mathbb{P}(A)+\mathbb{P}(B)-\mathbb{P}(A)\mathbb{P}(B)$
+    \item Baye's Theorem:~$\condP{A}{B} = \frac{\condP{B}{A}\P{A}}{\P{B}}$
+    \item Independent:{
+        \begin{enumerate}
+            \item $\P{A\cap B}=\P{A}\P{B}$.
+            \item $\P{A \cup B} = \P{A}+\P{B}-\P{A}\P{B}$.
+            \item $\condP{A}{B} = \frac{\P{AB}}{\P{B}}=\frac{\P{A}\P{B}}{\P{B}}=\P{A}$.
+        \end{enumerate}
+    } 
 \end{enumerate}
