@@ -12,6 +12,16 @@
                     0   & otherwise.
                 \end{cases} \]
             }
+            \item Binomial(n,p): Get \textbf{x} successes in \textbf{n} Bernoulli(p) experiments $\iff$ independent trails{
+                $$P_X(\textcolor{red}{x}) = \binom{n}{\textcolor{red}{x}}p^x(1-p)^{n-x}$$.
+            }
+            \item Poisson($\alpha$): Binomial(n,p) with extremely small p (a.k.a. $\alpha$) and large n{
+                \[ P_X(x) = 
+                \begin{cases}
+                    \dfrac{\alpha^xe^{-\alpha}}{x!}   & x=0,1,\ldots \\
+                    0   & otherwise.
+                \end{cases} \]
+            }
             \item Geometric(p): Get the \textbf{1st} success at the \textbf{x-th} Bernoulli(p) experiment {
                 \[ P_X(x) = 
                 \begin{cases}
@@ -19,26 +29,16 @@
                     0   & otherwise.
                 \end{cases} \]
             }
-            \item Binomial(n,p): Get \textbf{x} successes in \textbf{n} Bernoulli(p) experiments $\iff$ independent trails{
-                $$P_X(x) = \binom{n}{x}p^x(1-p)^{n-x}$$.
+            \item Pascal(k,p): Get the \textbf{k-th} success at the \textbf{x-th} Bernoulli(p) experiment (Geometric(p) is Pascal(1,p)){
+                $$P_X(\textcolor{red}{x}) = \binom{\textcolor{red}{x-1}}{k-1}p^k(1-p)^{x-k}$$.
             }
-            \item Pascal(k,p): Get the \textbf{k-th} success at the \textbf{x-th} Bernoulli(p) experiment (This is also called Negative Binomial) {
-                $$P_X(x) = \binom{x-1}{k-1}p^k(1-p)^{x-k}$$.
-            }
-            \item Discrete Uniform(k,l): outcomes are uniformly distributed on range (k,l) {
+            \item Discrete Uniform(k,l): outcomes are uniformly distributed on range (k,l) \textbf{E.g., Roll a Dice}{
                 \[ P_X(x) = 
                 \begin{cases}
                     1/(l-k+1)   & x=k,k+1,k+2,\ldots,l \\
                     0   & otherwise.
                 \end{cases} \]
-            }
-            \item Poisson($\alpha$):Binomial(n,p) with extremely small p (a.k.a. $\alpha$) and large n{
-                \[ P_X(x) = 
-                \begin{cases}
-                    \dfrac{\alpha^xe^{-\alpha}}{x!}   & x=0,1,\ldots \\
-                    0   & otherwise.
-                \end{cases} \]
-            }
+            }            
         \end{enumerate}
     }
     \item Cumulative Distribution Function~(CDF): {
@@ -51,21 +51,21 @@
         \begin{enumerate}
             \item Mode $$P_X(x_{mod})\geq P_X(x)$$
             \item Medeian $$P[X\leq x_{med}]\geq 1/2 \qquad \qquad P[X\geq x_{med}]\geq 1/2$$
-            \item \textcolor{red}{Expected Value:} {
+            \item Expected Value: {
                 \begin{enumerate}
                     \item Definition:{
                         \begin{align}
-                            \E{X}&=\sum_{x\in S_X}xP_X(x) \tag{mean: $\mu_x$}\\
-                            \E{X^2}&=\sum_{x\in S_X}x^2P_X(x) \tag{second order expected value}
+                            \E{X}&=\sum_{x\in S_X}xP_X(x) \tag{First Moment/Mean/$\mu_x$}\\
+                            \E{X^2}&=\sum_{x\in S_X}x^2P_X(x) \tag{Second Moment}
                         \end{align}
                     }
                     \item Important Means{
                         \begin{enumerate}
                             \item Bernoulli(p): $$\E{X}=0\cdot P_X(0)+1\cdot P_X(1)=0(1-p)+1(p)=p$$
-                            \item Geometric(p): $$\E{X}=\sum_{x=1}^{\infty}xP_X(x)=\sum_{x=1}^{\infty}xp(1-p)^{x-1}=\dfrac{p}{1-p}\sum_{x=1}^{\infty}x(1-p)^x=\dfrac{p}{1-p}\dfrac{1-p}{[1-(1-p)]^2}=\dfrac{p}{p^2}=\dfrac{1}{p}$$
-                            \item Poisson($\alpha$): $$\E{X}=\alpha$$
                             \item Binomial(n,p): $$\E{X}=np$$
-                            \item Pascal(k,p): $$k/p$$
+                            \item Poisson($\alpha$): $$\E{X}=\alpha$$
+                            \item Geometric(p): $$\E{X}=\sum_{x=1}^{\infty}xP_X(x)=\sum_{x=1}^{\infty}xp(1-p)^{x-1}=\dfrac{p}{1-p}\sum_{x=1}^{\infty}x(1-p)^x=\dfrac{p}{1-p}\dfrac{1-p}{[1-(1-p)]^2}=\dfrac{p}{p^2}=\dfrac{1}{p}$$
+                            \item Pascal(k,p): $$\E{X}=k/p$$
                             \item Discrete Uniform(k,l): $$\E{X}=(k+l)/2$$
                         \end{enumerate}
                     }
@@ -75,10 +75,10 @@
     }
     \item Derived Random Variable: $Y = g(X)${
         \begin{enumerate}
-            \item $P_Y(y) = P[Y=y] = P[Y=g(x)] = P[X=x] = P_X(x)$
+            \item $P_Y(y) = P[Y=y] = P[Y=g(x)] = P[g^{-1}(Y)=g^{-1}(g(x))] = P[X=x] = P_X(x)$
             \item $\E{Y} = \sum yP_Y(y) = \sum g(x)P_X(x)$
             \item $\E{X-\mu_x}=\sum_{x\in S_X}(x-\mu_x)P_X(x)=\sum_{x\in S_X}xP_X(x)-\mu_x\sum_{x\in S_X}P_X(x)=\E{X}-\mu_x\cdot 1=\mu_x-\mu_x=0$
-            \item $\E{aX+b}=a\E{X}+b$
+            \item $\E{aX+b}=a\E{X}+b \Rightarrow \E{b}=0\E{X}+b=b$
         \end{enumerate}
     }
     \item Variance($\sigma_x^2$) and Standard Deviation($\sigma_x$){
@@ -89,10 +89,10 @@
             \item Important Variance:{
                 \begin{enumerate}
                     \item Bernoulli(p): $$\Var(X)=p(1-p)$$
-                    \item Geometric(p): $$\Var(X)=(1-p)/p^2$$
                     \item Binomial(n,p): $$\Var(X)=np(1-p)$$
-                    \item Pascal(k,p): $$\Var(X)=k(1-p)/p^2$$
                     \item Poisson($\alpha$): $$\Var(X)=\alpha$$
+                    \item Geometric(p): $$\Var(X)=(1-p)/p^2$$
+                    \item Pascal(k,p): $$\Var(X)=k(1-p)/p^2$$
                     \item Discrete Uniform(k,l): $$\Var(X)=(l-k)(l-k+2)/12$$
                 \end{enumerate}
             }

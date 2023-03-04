@@ -5,32 +5,17 @@
     inner=0.75in,
     outer=0.75in
 ]{geometry}
-%\pagestyle{plain}
 
 %%%% Page Header and Foot %%%%
 \usepackage{fancyhdr}
 \pagestyle{fancyplain}
 \headheight 0.5in
 \lhead{\lefthead}
-\chead{\textbf{\centerhead}}
+\chead{\centerhead}
 \rhead{\righthead}
 \lfoot{\leftbottom}
-\cfoot{}
-\rfoot{\thepage}
-% \headsep 1.5em
-
-% \usepackage{fancyhdr}
-% \fancypagestyle{plain}{%  the preset of fancyhdr 
-%     \fancyhf{} % clear all header and footer fields
-%     % \headheight 0.25in
-%     \fancyhead[L]{\course}
-%     \fancyhead[C]{Recitation Week \wk}
-%     \fancyhead[R]{\semester}
-%     \fancyfoot[L]{TA: \TA}
-%     \fancyfoot[C]{}
-%     \fancyfoot[R]{\thepage}
-% }
-% % \headsep 1.5em
+\cfoot{\centerbottom}
+\rfoot{\rightbottom}
 
 %%%% Additional Packages to Load %%%%
 %%%% Main Font
@@ -38,7 +23,7 @@
 \usepackage{libertinus} %Very popular math font
 \usepackage[T1]{fontenc} %I don't know what this is but it is used everywhere
 
-%%%% Math Font
+%%%% Math Env
 \usepackage{amsfonts,amsmath,amssymb, amsthm}
 \usepackage{mathtools} 
 \usepackage{mleftright}  % fixes some annoying spacing issues

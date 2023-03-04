@@ -41,7 +41,7 @@
         \item \textbf{If $B_i$ are Partitions}~(Law of Total Number),
         \begin{flalign*}
             && \condP{A}{B} &= \frac{\P{AB}}{\P{B}} && \\
-            && &= \P{AB} && (\textrm{$B$ is Collectively Exhaustive}) \\
+            && &= \P{AB} && (\textrm{$B$ is Collectively Exhaustive so $P(B)=1$}) \\
             && &= \P{A\cdot\cup_{i=1}^{N}B_i} && (\textrm{$B$ is Mutually Exclusive}) \\
             && &= \sum_{i=1}^{N}\P{AB_i} && (\textrm{$B$ is Partition}) \\
             && &= \sum_{i=1}^{N}\condP{A}{B_i}\P{B_i}. &&
