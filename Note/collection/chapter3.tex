@@ -43,23 +43,28 @@
     }
     \item Cumulative Distribution Function~(CDF): {
         \begin{align*}
-            F_X(x)&=P[X\leq x] \\
-            F_X(b)-F_X(a)&=P(a<X\leq b)
+            F_X(x)&=P_X[X\leq x] \\
+            F_X(b)-F_X(a)&=P_X(a<X\leq b)
         \end{align*}
     }
-    \item Average{
+    \item Average and Expectations{
         \begin{enumerate}
-            \item Mode $$P_X(x_{mod})\geq P_X(x)$$
-            \item Medeian $$P[X\leq x_{med}]\geq 1/2 \qquad \qquad P[X\geq x_{med}]\geq 1/2$$
-            \item Expected Value: {
+            \item In ordinary language, an \textbf{Average} is a single number taken as representative of a list of numbers.{
+            \begin{enumerate}
+                \item Mode: The outcome appears the most often in the sample space $$P_X(x_{mod})\geq P_X(x)$$
+                \item Median: The outcome which separates the higher half from  the lower half of a sample space $$P[X\leq x_{med}]\geq 1/2 \qquad \qquad P[X\geq x_{med}]\geq 1/2$$
+                \item (Arithmetic) mean:  The sum of all the outcomes divided by the number of outcomes $$\bar{x} = \frac{1}{n}\sum_{i=1}^{n}x_i$$
+            \end{enumerate}
+            }
+            \item Expectations: Weighted (Arithmetic) mean{
                 \begin{enumerate}
                     \item Definition:{
                         \begin{align}
-                            \E{X}&=\sum_{x\in S_X}xP_X(x) \tag{First Moment/Mean/$\mu_x$}\\
-                            \E{X^2}&=\sum_{x\in S_X}x^2P_X(x) \tag{Second Moment}
+                            \mu_x = \E{X}&=\sum_{x\in S_X}xP_X(x) \tag{First Moment of $X$}\\
+                            \E{X^2}&=\sum_{x\in S_X}x^2P_X(x) \tag{Second Moment of $X$}
                         \end{align}
                     }
-                    \item Important Means{
+                    \item Important Expectations{
                         \begin{enumerate}
                             \item Bernoulli(p): $$\E{X}=0\cdot P_X(0)+1\cdot P_X(1)=0(1-p)+1(p)=p$$
                             \item Binomial(n,p): $$\E{X}=np$$
@@ -78,7 +83,7 @@
             \item $P_Y(y) = P[Y=y] = P[Y=g(x)] = P[g^{-1}(Y)=g^{-1}(g(x))] = P[X=x] = P_X(x)$
             \item $\E{Y} = \sum yP_Y(y) = \sum g(x)P_X(x)$
             \item $\E{X-\mu_x}=\sum_{x\in S_X}(x-\mu_x)P_X(x)=\sum_{x\in S_X}xP_X(x)-\mu_x\sum_{x\in S_X}P_X(x)=\E{X}-\mu_x\cdot 1=\mu_x-\mu_x=0$
-            \item $\E{aX+b}=a\E{X}+b \Rightarrow \E{b}=0\E{X}+b=b$
+            \item $\E{aX+b}=a\E{X}+b \Rightarrow \E{b}=\E{0\cdot X+b}=b$
         \end{enumerate}
     }
     \item Variance($\sigma_x^2$) and Standard Deviation($\sigma_x$){
