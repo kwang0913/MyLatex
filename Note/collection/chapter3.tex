@@ -1,10 +1,10 @@
-\section*{Chapter 3: Discrete Random Variables}
+\chapter{Discrete Random Variables}
 \begin{enumerate}
     \item Discrete Random Variables: Assign numerical value to discrete outcomes
     \item Probability Mass Function~(PMF): \[\sum_{x\in X}P_X(x)=1.\] 
     \item Families of Discrete Random Variables and their PMF{
         \begin{enumerate}
-            \item Bernoulli(p): \textbf{E.g., Flip a coin}{
+            \item Bernoulli($p$): \textbf{E.g., Flip a coin}{
                 \[ P_X(x) = 
                 \begin{cases}
                     1-p & x=0, \\
@@ -12,27 +12,27 @@
                     0   & otherwise.
                 \end{cases} \]
             }
-            \item Binomial(n, p): Get \textbf{x} successes in \textbf{n} Bernoulli(p) experiments $\iff$ independent trails{
+            \item Binomial($n, p$): Get \textbf{x} successes in \textbf{n} Bernoulli($p$) experiments $\iff$ independent trails{
                 \[P_X(\textcolor{red}{x}) = \binom{n}{\textcolor{red}{x}}p^x(1-p)^{n-x}.\]
             }
-            \item Poisson($\alpha$): Binomial(n, p) with extremely small p (a.k.a. $\alpha$) and large n{
+            \item Poisson($\alpha$): Binomial($n, p$) with small $p$ and large $n${
                 \[ P_X(x) = 
                 \begin{cases}
                     \dfrac{\alpha^xe^{-\alpha}}{x!}   & x=0,1,\ldots \\
                     0   & otherwise.
                 \end{cases} \]
             }
-            \item Geometric(p): Get the \textbf{1st} success at the \textbf{x-th} Bernoulli(p) experiment {
+            \item Geometric($p$): Get the \textbf{1st} success at the \textbf{x-th} Bernoulli($p$) experiment {
                 \[ P_X(x) = 
                 \begin{cases}
                     p(1-p)^{x-1} & x=1,2,\ldots \\
                     0   & otherwise.
                 \end{cases} \]
             }
-            \item Pascal(k,p): Get the \textbf{k-th} success at the \textbf{x-th} Bernoulli(p) experiment (Geometric(p) is Pascal(1,p)){
+            \item Pascal($k,p$): Get the \textbf{k-th} success at the \textbf{x-th} Bernoulli($p$) experiment (Geometric($p$) is Pascal($1,p$)){
                 \[P_X(\textcolor{red}{x}) = \binom{\textcolor{red}{x-1}}{k-1}p^k(1-p)^{x-k}.\]
             }
-            \item Discrete Uniform(k, l): outcomes are uniformly distributed on range (k, l) \textbf{E.g., Roll a Die}{
+            \item Discrete Uniform($k, l$): outcomes are uniformly distributed on range $(k, l)$ \textbf{E.g., Roll a Die}{
                 \[ P_X(x) = 
                 \begin{cases}
                     1/(l-k+1)   & x=k,k+1,k+2,\ldots,l \\
@@ -45,6 +45,15 @@
         \begin{align*}
             F_X(x)&=P_X[X\leq x] \\
             F_X(b)-F_X(a)&=P_X(a<X\leq b)
+        \end{align*}
+        The CDF of Geometric($p$) is worth to remember
+        \begin{align*}
+            F_X(x)
+            &= P_X[X\leq x] \\
+            &= 1-P_X[X > x] \\
+            &= 1-\sum_{i=x+1}^{\infty}p(1-p)^{i-1} \\
+            &= 1-(1-p)^x\sum_{i=1}^{\infty}p(1-p)^{i-1} \\
+            &= 1-(1-p)^x
         \end{align*}
     }
     \item Average and Expectations{
