@@ -130,3 +130,103 @@
         \end{align*}
     }
 \end{enumerate}
+
+\section{Gaussian Random Variables}
+\begin{definition}[Gaussian Random Variable]
+    $X$ is a $\mathsf{Gaussian}(\mu, \sigma)$ random variable if the \textrm{PDF} of $X$ is 
+    \[f_X(x)=\frac{1}{\sqrt{2\pi\sigma^2}}\exp(-\frac{(x-\mu)^2}{2\sigma^2}).\]
+    $X$ is also called $\mathsf{Normal}(\mu,\sigma)$ random variable. We will use $\mathsf{N}(\mu, \sigma)$ in the following content.
+\end{definition}
+
+\begin{theorem}[The Expectation and Variance of $X\sim\Gaus(\mu,\sigma)$]
+    \[\E{X} = \mu \qquad \Var(X) = \sigma^2.\]
+\end{theorem}
+
+\begin{theorem}
+    If $X$ is $\Gaus(\mu,\sigma)$, $Y=aX+b$ is $\Gaus(a\mu+b,a\sigma).$
+\end{theorem}
+
+\begin{theorem}[Standard Normal Random Variable]
+    The $\Gaus(\mu,\sigma)$ with $\mu=0, \sigma=1$ is called standard normal random variable $Z\sim\Gaus(0,1)$. The \emph{PDF} is,
+    \[f_X(x)=\frac{1}{\sqrt{2\pi}}\exp(-\frac{x^2}{2}).\]
+    And the \emph{CDF} is 
+    \[\Phi(z)=\int_{-\infty}^{z}\frac{1}{\sqrt{2\pi}}\exp(-\frac{u^2}{2})\diff u.\]
+\end{theorem}
+
+\begin{theorem}
+    If $X$ is $\Gaus(\mu,\sigma)$, the \emph{CDF} of $X$ is 
+    \[F_X(x)=\Phi\parens*{\frac{x-\mu}{\sigma}}.\]
+    The probability that $X$ is in the interval \emph{$(a,b]$} is
+    \[\P{a<X\leq b}=\Phi\parens*{\frac{b-\mu}{\sigma}}-\Phi\parens*{\frac{a-\mu}{\sigma}}.\]
+\end{theorem}
+
+\begin{theorem}
+    $\Phi(-z)=1-\Phi(z).$
+\end{theorem}
+
+\includegraphics[width=\textwidth, center]{normal_cdf.pdf}
+
+\section{Delta Function, Mixed(Being Discrete and Continuous at the same time) Random Variable}
+\begin{definition}[Unit Impulse (Delta) Function]
+    Let
+    \[d_{\epsilon}(x)={
+        \begin{cases}
+            1/\epsilon & -\epsilon/2\leq x\leq \epsilon/2, \\
+            0 & otherwise.
+        \end{cases}
+    }\]
+    The \textbf{unit impulse function} is 
+    \[\delta(x)=\lim_{\epsilon\rightarrow 0}d_{\epsilon}(x).\]
+    Since 
+    \[\int_{-\infty}^{\infty}\delta(x)\diff x = 1.\]
+    The $\delta(x)$ is indeed a PDF given it is also non-negative.
+\end{definition}
+
+\begin{theorem}
+    For any continuous function $g(x)$,
+    \[\int_{-\infty}^{\infty}g(x)\delta(x-x_0)\diff x = g(x_0).\]
+\end{theorem}
+
+\begin{definition}[Unit Step Function]
+    The \textbf{unit step function} is
+    \[u(x)={
+        \begin{cases}
+            0 & x<0, \\
+            1 & x\geq 0.
+        \end{cases}
+    }\]
+\end{definition}
+
+\begin{theorem}[CDF of $\delta(x)$ and connection to the unit step function]\label{delta}
+    \[\int_{-\infty}^{x}\delta(v)\diff v = u(x).\]
+    And thus
+    \[\delta(x)=\frac{\diff u(x)}{\diff x}.\]
+\end{theorem}
+
+\begin{corollary}
+    Theorem~\eqref{delta} allows us to define a generalized \emph{PDF} that applies to discrete random variables as well as to continuous random variables. Consider the \emph{CDF} of a discrete random variable, $X$. It is constant(let's say $0$ for now) everywhere except at point $x_i\in S_X$, where it has jumps of height $P_X(x_i)$. Using the \textbf{unit step function}, the \emph{CDF} of $X$ is 
+    \[F_X(x)=\sum_{x_i\in S_X} P_X(x_i)u(x-x_i).\]
+    And the \emph{PDF} can be defined with $\delta(x)$ as
+    \[f_X(x)=\sum_{x_i\in S_X}P_X(x_i)\delta(x-x_i).\]
+    Then the \emph{Expectation} will be
+    \begin{align*}
+        \E{X} &= \int_{-\infty}^{\infty}x\sum_{x_i\in S_X}P_X(x_i)\delta(x-x_i)\diff x \\
+        \E{X} &= \sum_{x_i\in S_X}\int_{-\infty}^{\infty}xP_X(x_i)\delta(x-x_i)\diff x \\
+        &= \sum_{x_i\in S_X}x_iP_X(x_i)
+    \end{align*}
+\end{corollary}
+
+\begin{theorem}
+    For a random variable $X$ (not specified whether it is discrete or continuous), we have 
+    \begin{align*}
+        q
+        &= \P{X=x_0} && \text{(General representation)} \\
+        &= P_X(x_0) && \text{(PMF)} \\
+        &= F_X(x_0^+) - F_X(x_0^-) && \text{(CDF)} \\
+        &= f_X(x_0) = q\delta(0). && \text{(PDF \& delta function)}
+    \end{align*}
+\end{theorem}
+
+\begin{theorem}
+    $X$ is a \textbf{mixed} random variable if and only if $f_X(x)$ contains both impulses and nonzero, finite values.
+\end{theorem}
