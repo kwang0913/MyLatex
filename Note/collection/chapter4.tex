@@ -1,7 +1,6 @@
 \chapter{Continuous Random Variables}
 
 
-
 \section{Continuous sample space} 
 \begin{axiom}
     A random variable $X$ is continuous if the range $S_X$ consists of one or more intervals. For each $x\in S_X$, $\P{X=x}=0$. 
@@ -131,7 +130,12 @@
     }
 \end{enumerate}
 
+
 \section{Gaussian Random Variables}
+\begin{theorem}[Gaussian Integral]
+    \[\int_{-\infty}^{\infty}e^{-x^2}\diff x=\pi.\]
+\end{theorem}
+
 \begin{definition}[Gaussian Random Variable]
     $X$ is a $\mathsf{Gaussian}(\mu, \sigma)$ random variable if the \textrm{PDF} of $X$ is 
     \[f_X(x)=\frac{1}{\sqrt{2\pi\sigma^2}}\exp(-\frac{(x-\mu)^2}{2\sigma^2}).\]
