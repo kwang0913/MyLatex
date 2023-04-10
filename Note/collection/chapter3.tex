@@ -13,9 +13,15 @@
                 \end{cases} \]
             }
             \item Binomial($n, p$): Get \textbf{x} successes in \textbf{n} Bernoulli($p$) experiments $\iff$ independent trails{
-                \[P_X(\textcolor{red}{x}) = \binom{n}{\textcolor{red}{x}}p^x(1-p)^{n-x}.\]
+                \[P_X(\textcolor{red}{x}) = {
+                    \begin{cases}
+                        \binom{n}{x}p^x(1-p)^{n-x} & x=0,1,\ldots,n \\ 
+                        0 & otherwise.
+                    \end{cases}
+                }\]
+                \textbf{Note:} Bernoulli($p$) $\iff$ Binomial($1, p$). 
             }
-            \item Poisson($\alpha$): Binomial($n, p$) with small $p$ and large $n${
+            \item Poisson($\alpha$): Binomial($n, p$) with small $p$, large $n$, and $\alpha=np${
                 \[ P_X(x) = 
                 \begin{cases}
                     \dfrac{\alpha^xe^{-\alpha}}{x!}   & x=0,1,\ldots \\
@@ -29,8 +35,14 @@
                     0   & otherwise.
                 \end{cases} \]
             }
-            \item Pascal($k,p$): Get the \textbf{k-th} success at the \textbf{x-th} Bernoulli($p$) experiment (Geometric($p$) is Pascal($1,p$)){
-                \[P_X(\textcolor{red}{x}) = \binom{\textcolor{red}{x-1}}{k-1}p^k(1-p)^{x-k}.\]
+            \item Pascal($k,p$): Get the \textbf{k-th} success at the \textbf{x-th} Bernoulli($p$) experiment {
+                \[P_X(\textcolor{red}{x}) = {
+                    \begin{cases}
+                        \binom{x-1}{k-1}p^k(1-p)^{x-k} & x=k,k+1,k+2,\ldots \\
+                        0 & otherwise.
+                    \end{cases}
+                }\]
+                \textbf{Note:} Geometric($p$) $\iff$ Pascal($1, p$).
             }
             \item Discrete Uniform($k, l$): outcomes are uniformly distributed on range $(k, l)$ \textbf{E.g., Roll a Die}{
                 \[ P_X(x) = 
@@ -43,8 +55,8 @@
     }
     \item Cumulative Distribution Function (CDF): {
         \begin{align*}
-            F_X(x)&=P_X[X\leq x] \\
-            F_X(b)-F_X(a)&=P_X(a<X\leq b)
+            F_X(x)&=P_X[X\leq x]=\sum_{k=0}^{x}P_X(k). \\
+            F_X(b)-F_X(a)&=\sum_{k=0}^{b}P_X(k)-\sum_{k=0}^{a}P_X(k)=\sum_{k=a+1}^{b}P_X(k)=P_X(a<X\leq b).
         \end{align*}
         The CDF of Geometric($p$) is worth to remember
         \begin{align*}
@@ -53,34 +65,34 @@
             &= 1-P_X[X > x] \\
             &= 1-\sum_{i=x+1}^{\infty}p(1-p)^{i-1} \\
             &= 1-(1-p)^x\sum_{i=1}^{\infty}p(1-p)^{i-1} \\
-            &= 1-(1-p)^x
+            &= 1-(1-p)^x.
         \end{align*}
     }
     \item Average and Expectations{
         \begin{enumerate}
             \item In ordinary language, an \textbf{Average} is a single number taken as representative of a list of numbers.{
             \begin{enumerate}
-                \item Mode: The outcome appears the most often in the sample space \[P_X(x_{mod})\geq P_X(x)\]
-                \item Median: The outcome which separates the higher half from  the lower half of a sample space \[P_X[X < x_{med}] \leq 1/2 \qquad \qquad P_X[X > x_{med}] \leq 1/2\]
-                \item (Arithmetic) mean:  The sum of all the outcomes divided by the number of outcomes \[\bar{x} = \frac{1}{n}\sum_{i=1}^{n}x_i\]
+                \item Mode: The outcome appears the most often in the sample space \[P_X(x_{mod})\geq P_X(x).\]
+                \item Median: The outcome which separates the higher half from  the lower half of a sample space \[P_X[X \leq x_{med}] \geq 1/2, \qquad \qquad P_X[X \geq x_{med}] \geq 1/2.\]
+                \item (Arithmetic) mean:  The sum of all the outcomes divided by the number of outcomes \[\bar{x} = \frac{1}{n}\sum_{i=1}^{n}x_i.\]
             \end{enumerate}
             }
             \item Expectation: Weighted (Arithmetic) mean{
                 \begin{enumerate}
                     \item Definition:{
                         \begin{align}
-                            \mu_x = \E{X}&=\sum_{x\in S_X}xP_X(x) \tag{First Moment of $X$}\\
-                            \E{X^2}&=\sum_{x\in S_X}x^2P_X(x) \tag{Second Moment of $X$}
+                            \mu_x = \E{X}&=\sum_{x\in S_X}xP_X(x). \tag{First Moment of $X$}\\
+                            \E{X^2}&=\sum_{x\in S_X}x^2P_X(x). \tag{Second Moment of $X$}
                         \end{align}
                     }
                     \item Important Expectations{
                         \begin{enumerate}
-                            \item Bernoulli(p): \[\E{X}=0\cdot P_X(0)+1\cdot P_X(1)=0(1-p)+1(p)=p\]
-                            \item Binomial(n, p): \[\E{X}=np\]
-                            \item Poisson($\alpha$): \[\E{X}=\alpha\]
-                            \item Geometric(p): \[\E{X}=\sum_{x=1}^{\infty}xP_X(x)=\sum_{x=1}^{\infty}xp(1-p)^{x-1}=\dfrac{p}{1-p}\sum_{x=1}^{\infty}x(1-p)^x=\dfrac{p}{1-p}\dfrac{1-p}{[1-(1-p)]^2}=\dfrac{p}{p^2}=\dfrac{1}{p}\]
-                            \item Pascal(k, p): \[\E{X}=k/p\]
-                            \item Discrete Uniform(k, l): \[\E{X}=(k+l)/2\]
+                            \item Bernoulli(p): \[\E{X}=0\cdot P_X(0)+1\cdot P_X(1)=0(1-p)+1(p)=p.\]
+                            \item Binomial(n, p): \[\E{X}=np.\]
+                            \item Poisson($\alpha$): \[\E{X}=\alpha.\]
+                            \item Geometric(p): \[\E{X}=1/p.\]
+                            \item Pascal(k, p): \[\E{X}=k/p.\]
+                            \item Discrete Uniform(k, l): \[\E{X}=(k+l)/2.\]
                         \end{enumerate}
                     }
                 \end{enumerate}
@@ -114,12 +126,12 @@
             \item $\Var(aX+b)=a^2\Var(X)$
             \item Important Variance:{
                 \begin{enumerate}
-                    \item Bernoulli(p): \[\Var(X)=p(1-p)\]
-                    \item Binomial(n,p): \[\Var(X)=np(1-p)\]
-                    \item Poisson($\alpha$): \[\Var(X)=\alpha\]
-                    \item Geometric(p): \[\Var(X)=(1-p)/p^2\]
-                    \item Pascal(k,p): \[\Var(X)=k(1-p)/p^2\]
-                    \item Discrete Uniform(k,l): \[\Var(X)=(l-k)(l-k+2)/12\]
+                    \item Bernoulli(p): \[\Var(X)=p(1-p).\]
+                    \item Binomial(n,p): \[\Var(X)=np(1-p).\]
+                    \item Poisson($\alpha$): \[\Var(X)=\alpha.\]
+                    \item Geometric(p): \[\Var(X)=(1-p)/p^2.\]
+                    \item Pascal(k,p): \[\Var(X)=k(1-p)/p^2.\]
+                    \item Discrete Uniform(k,l): \[\Var(X)=(l-k)(l-k+2)/12.\]
                 \end{enumerate}
             }
         \end{enumerate}

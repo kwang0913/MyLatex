@@ -24,31 +24,32 @@
 
 
 \section{Probability Density Function}
+Start with a continuous random variable $X$ with CDF $F_X(x)$. The probability of ``$X$ with volumn $\triangle$'' is defined as:
 \begin{align*}
-    \P{x<X<x+\triangle} 
+    \P{x<X\leq x+\triangle} 
     &= F_X(x+\triangle)-F_X(x) \\
     &= \frac{F_X(x+\triangle)-F_X(x)}{(x+\triangle)-x}\cdot\triangle.
 \end{align*}
-\begin{definition}[Probability Density Function (PDF)]  
+\begin{definition}[Probability Density Function (PDF)] 
     \begin{align*}
         f_X(x) 
         &= \lim_{\triangle\rightarrow 0}\frac{F_X(x+\triangle)-F_X(x)}{\triangle} \\
-        &= \frac{\diff F_X(x)}{\diff x}
+        &= \frac{\diff F_X(x)}{\diff x}.
     \end{align*}
 \end{definition}
 
 \begin{theorem}
     For a continuous random variable $X$ with PDF $f_X(x)$,
     \begin{enumerate}
-        \item $f_X(x)\geq 0$ for all $x$,
-        \item $F_X(x)=\int_{-\infty}^x f_X(u)\diff u$,
+        \item $f_X(x)\geq 0$ for all $x$
+        \item $F_X(x)=\int_{-\infty}^x f_X(u)\diff u$
         \item $\int_{-\infty}^{\infty} f_X(x)\diff x = 1$
     \end{enumerate}
 \end{theorem}
 
 \begin{theorem}
     \begin{align*}
-        \P{x_1<X<x_2}=\int_{x_1}^{x_2}f_X(x)\diff x.
+        \P{x_1<X\leq x_2}=\int_{x_1}^{x_2}f_X(x)\diff x.
     \end{align*}
 \end{theorem}
 
@@ -83,7 +84,7 @@
             f_X(x) 
             &= {
                 \begin{cases}
-                \frac{1}{l-k} & k\leq x \leq l, \\
+                \frac{1}{l-k} & k\leq x \leq l \\
                 0             & otherwise.
                 \end{cases} } \\
             F_X(x) 
@@ -99,7 +100,7 @@
             f_X(x) 
             &= {
                 \begin{cases}
-                    \lambda e^{-\lambda x} & x\geq 0, \\
+                    \lambda e^{-\lambda x} & x\geq 0 \\
                     0                      & otherwise.
                 \end{cases}
             } \\
@@ -116,8 +117,8 @@
             f_X(x)
             &= {
                 \begin{cases}
-                    \frac{\lambda (\lambda x)^{n-1}e^{-\lambda x}}{(n-1)!} & x\geq 0, \\
-                    0                                              & otherwise.
+                    \frac{\lambda (\lambda x)^{n-1}e^{-\lambda x}}{(n-1)!} & x\geq 0 \\
+                    0      & otherwise.
                 \end{cases}
             } \\
             F_X(x)
@@ -143,7 +144,7 @@
 \end{definition}
 
 \begin{theorem}[The Expectation and Variance of $X\sim\Gaus(\mu,\sigma)$]
-    \[\E{X} = \mu \qquad \Var(X) = \sigma^2.\]
+    \[\E{X} = \mu, \qquad \Var(X) = \sigma^2.\]
 \end{theorem}
 
 \begin{theorem}
@@ -175,7 +176,7 @@
     Let
     \[d_{\epsilon}(x)={
         \begin{cases}
-            1/\epsilon & -\epsilon/2\leq x\leq \epsilon/2, \\
+            1/\epsilon & -\epsilon/2\leq x\leq \epsilon/2 \\
             0 & otherwise.
         \end{cases}
     }\]
@@ -208,7 +209,7 @@
 \end{theorem}
 
 \begin{corollary}
-    Theorem~\eqref{delta} allows us to define a generalized \emph{PDF} that applies to discrete random variables as well as to continuous random variables. Consider the \emph{CDF} of a discrete random variable, $X$. It is constant(let's say $0$ for now) everywhere except at point $x_i\in S_X$, where it has jumps of height $P_X(x_i)$. Using the \textbf{unit step function}, the \emph{CDF} of $X$ is 
+    The~\cref{delta} allows us to define a generalized \emph{PDF} that applies to discrete random variables as well as to continuous random variables. Consider the \emph{CDF} of a discrete random variable, $X$. It is constant(let's say $0$ for now) everywhere except at point $x_i\in S_X$, where it has jumps of height $P_X(x_i)$. Using the \textbf{unit step function}, the \emph{CDF} of $X$ is 
     \[F_X(x)=\sum_{x_i\in S_X} P_X(x_i)u(x-x_i).\]
     And the \emph{PDF} can be defined with $\delta(x)$ as
     \[f_X(x)=\sum_{x_i\in S_X}P_X(x_i)\delta(x-x_i).\]
@@ -224,7 +225,7 @@
     For a random variable $X$ (not specified whether it is discrete or continuous), we have 
     \begin{align*}
         q
-        &= \P{X=x_0} && \text{(General representation)} \\
+        &= \P{X=x_0} && \text{(General expression)} \\
         &= P_X(x_0) && \text{(PMF)} \\
         &= F_X(x_0^+) - F_X(x_0^-) && \text{(CDF)} \\
         &= f_X(x_0) = q\delta(0). && \text{(PDF \& delta function)}
