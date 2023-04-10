@@ -1,5 +1,6 @@
 %%%% Page Margin %%%%
 \usepackage[
+    letterpaper, 
     top=1in,
     bottom=1in,
     inner=0.75in,
@@ -23,6 +24,7 @@
 \usepackage{libertinus} %Very popular math font
 \usepackage[T1]{fontenc} %Better Printing Font
 \usepackage[utf8]{inputenc} %enable utf8 encoding
+\usepackage[english]{babel}
 
 %%%% Math Env
 \usepackage{amsfonts,amsmath,amssymb, amsthm}
@@ -30,16 +32,23 @@
 \usepackage{mleftright}  %Fixes some annoying spacing issues
 \usepackage{bm} %Boldface math, load after other math font packages
 
-%%%% Others
+%%%% Beautiful Stuff
 \usepackage{graphicx}
 \usepackage[export]{adjustbox}
 \usepackage[dvipsnames,svgnames]{xcolor} %Must load before tcolorbox
 \usepackage[breakable]{tcolorbox} %Customized Box
 \tcbuselibrary{skins}
 \usepackage{tabularx} %Better Table
-\usepackage{enumitem}
+
+%%%% Theorems etc (also  problems)
+\usepackage[shortlabels]{enumitem}
 \usepackage{hyperref, cleveref} %Fantastic crossrefer
-\usepackage[english]{babel}
+\usepackage{thmtools}
+\usepackage{thm-restate}
+\declaretheorem[numbered=no, style=definition]{axiom}
+\declaretheorem[numberwithin=chapter,style=definition]{definition}
+\declaretheorem[sibling=definition]{theorem, lemma, corollary, proposition, conjecture}
+\declaretheorem[numbered=no,style=remark]{remark, claim}
 
 %%%% Commands to Define Homework Boxes %%%%
 %%%% A box fill the rest of the page
@@ -87,14 +96,3 @@
 %%%% New Command %%%%
 %%%% Draw a line
 \newcommand{\myrule}{\rule{1.5in}{0.1mm}}
-
-
-%%%% Define Theorem Environment
-\newtheorem{theorem}{Theorem}[section]
-\newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{corollary}{Corollary}[theorem]
-\newtheorem*{lemma}{Lemma}
-\newtheorem*{axiom}{Axiom}
-
-\theoremstyle{definition}
-\newtheorem*{definition}{Definition}
