@@ -21,13 +21,14 @@
 %%%% Additional Packages to Load %%%%
 %%%% Main Font
 \usepackage{lmodern} %Computer Modern, but with many more glyphs
+\usepackage{microtype} %Better Font Rendering
 \usepackage{libertinus} %Very popular math font
 \usepackage[T1]{fontenc} %Better Printing Font
 \usepackage[utf8]{inputenc} %enable utf8 encoding
 \usepackage[english]{babel} %English Language
 
 %%%% Math Env
-\usepackage{amsfonts,amsmath,amssymb, amsthm} %Math Font Packages
+\usepackage{amsfonts,amsmath,amssymb} %Math Font Packages
 \usepackage{mathtools} %Better Math Environments
 \usepackage{mleftright}  %Fixes some annoying spacing issues
 \usepackage{bm} %Boldface math, load after other math font packages
@@ -38,17 +39,40 @@
 \usepackage[dvipsnames,svgnames]{xcolor} %Must load before tcolorbox
 \usepackage[breakable]{tcolorbox} %Customized Box
 \tcbuselibrary{skins}
+\usepackage{transparent} 
+
+%%%% Table and List 
 \usepackage{tabularx} %Better Table
+\usepackage{multirow}
+\usepackage{colortbl}
+\usepackage{array}
 
 %%%% Theorems etc (also  problems)
 \usepackage[shortlabels]{enumitem} %Better List
 \usepackage{hyperref, cleveref} %Fantastic crossrefer
-\usepackage{thmtools} %Better Theorems
+\usepackage{amsthm, thmtools} %Better Theorems
 \usepackage{thm-restate} %Better Theorems
 \declaretheorem[numbered=no, style=definition]{axiom}
 \declaretheorem[numberwithin=section,style=definition]{definition}
 \declaretheorem[sibling=definition]{theorem, lemma, corollary, proposition, conjecture}
 \declaretheorem[numbered=no,style=remark]{remark, claim}
+
+%%%% Code Packages
+\usepackage{algorithm2e} % Package to create pseudo-code
+\usepackage{listings} % Package to insert code
+\usepackage{keyval}
+
+%%%% Display Packages
+\usepackage[document]{ragged2e} % Package to justify text
+\usepackage{csquotes} % Package to facilities quotations
+\usepackage{multicol} % Package to use multicols
+
+%%%% Other Packages
+\usepackage{calc}
+\usepackage{rotating}
+\usepackage{pgf, tikz}
+\usepackage{epstopdf}
+\usepackage[backend=biber, style=numeric, sorting=none]{biblatex}
 
 %%%% Commands to Define Homework Boxes %%%%
 %%%% A box fill the rest of the page
