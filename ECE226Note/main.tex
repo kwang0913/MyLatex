@@ -9,9 +9,14 @@
 \newcommand{\rightbottom}{}        
 
 %%%% Load Format %%%%
-\input{../formats/docformats.tex}
-\input{../formats/docmacros.tex}
+\input{../formats/formats.tex}
+\input{../formats/macros.tex}
 
+%%%% Theorem Style %%%%
+\declaretheorem[numbered=no, style=definition]{axiom}
+\declaretheorem[numberwithin=chapter,style=definition]{definition}
+\declaretheorem[sibling=definition]{theorem, lemma, corollary, proposition, conjecture}
+\declaretheorem[numbered=no,style=remark]{remark, claim}
 
 %%%% Document Information %%%%
 \title{}

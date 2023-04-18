@@ -1,28 +1,38 @@
 % delimiters
 \DeclarePairedDelimiter\parens{\lparen}{\rparen}  
+\DeclarePairedDelimiter\bracks{\lbrack}{\rbrack}
+\DeclarePairedDelimiter\braces{\lbrace}{\rbrace}
 \DeclarePairedDelimiter\abs{\lvert}{\rvert}
 \DeclarePairedDelimiter\norm{\lVert}{\rVert}
-\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
-\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
-\DeclarePairedDelimiter\braces{\lbrace}{\rbrace}
-\DeclarePairedDelimiter\bracks{\lbrack}{\rbrack}
 \DeclarePairedDelimiter\angles{\langle}{\rangle}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
 
 \DeclareMathOperator{\argmax}{\mathrm{argmax}}
 \DeclareMathOperator{\argmin}{\mathrm{argmin}}
+\DeclareMathOperator{\tr}{\mathrm{tr}}
+\DeclareMathOperator{\eig}{\mathrm{eig}}
+\DeclareMathOperator{\sgn}{\mathrm{sgn}}
+\let\det\relax % "Undefine" \det
+\DeclareMathOperator{\det}{\mathrm{det}} % already defined in mathtools
 \DeclareMathOperator{\diag}{\mathrm{diag}}
-\DeclareMathOperator{\tr}{\mathop{\mathrm{tr}}\nolimits}
-\DeclareMathOperator{\rank}{\mathrm{rank}\nolimits}
+\DeclareMathOperator{\rank}{\mathrm{rank}}
 \DeclareMathOperator{\Vol}{\mathrm{Vol}}   % volume
 \DeclareMathOperator{\Surf}{\mathrm{Surf}} % surface area
-\DeclareMathOperator{\eig}{\mathrm{eig}}
+
+% Transforms! -- requires mathtools package
+\newcommand*{\LapTrans}{\xleftrightarrow{\mathcal{Z}}}
+\newcommand*{\ZTrans}{\xleftrightarrow{\mathcal{L}}}
+\newcommand*{\CTFS}{\xleftrightarrow{\mathrm{CTFS}}}
+\newcommand*{\CTFT}{\xleftrightarrow{\mathrm{CTFT}}}
+\newcommand*{\DTFS}{\xleftrightarrow{\mathrm{DTFS}}}
+\newcommand*{\DTFT}{\xleftrightarrow{\mathrm{DTFT}}}
 
 % vector font
 \let\oldvec\vec
 \renewcommand*{\vec}[1]{\mathbf{#1}}
-\newcommand*{\T}{{}^{\mkern-4mu\intercal}}
-% \newcommand*{\trn}{^\intercal} % operator transpose
-% \newcommand*{\inv}{^{-1}} %inverse
+\newcommand*{\trn}{{}^{\mkern-4mu\intercal}}
+\newcommand*{\inv}{^{-1}} 
 
 % number systems
 \newcommand*{\R}{\mathbb{R}}
@@ -53,8 +63,17 @@
 \newcommand*{\Geomv}{\mathsf{Geom}}
 \newcommand*{\Binomv}{\mathsf{Binom}}
 \newcommand*{\NegBinomv}{\mathsf{NB}}
+\newcommand*{\Lap}{\mathsf{Lap}}
 \newcommand*{\Gaus}{\mathsf{N}}
+\newcommand*{\Weibull}{\mathsf{Weibull}}
 
 
 \newcommand*{\iidsim}{\stackrel{\mathrm{i.i.d.}}{\sim}}
-\newcommand*{\diff}{\,\mathrm{d}}
+\newcommand*{\diff}{\mathop{}\!\mathrm{d}}
+
+%%% Special norms and linear algebra stuff
+\newcommand*{\subgnorm}[1]{\norm*{#1}_{\psi_2}}
+\newcommand*{\subexpnorm}[1]{\norm*{#1}_{\psi_1}}
+\newcommand*{\frobnorm}[1]{\norm*{#1}_{\mathrm{F}}}
+\newcommand*{\opnorm}[1]{\norm*{#1}_{\mathrm{op}}}
+\newcommand*{\Lipnorm}[1]{\norm*{#1}_{\mathrm{Lip}}}

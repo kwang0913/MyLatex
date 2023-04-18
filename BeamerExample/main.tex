@@ -1,5 +1,11 @@
-\documentclass{../formats/RU}
-\input{../formats/RUmacros.tex}
+\documentclass[11pt]{../formats/RU}
+\input{../formats/macros.tex}
+
+%Theorem style
+\declaretheorem[numbered=no, style=definition]{axiom}
+\declaretheorem[numberwithin=section,style=definition]{definition}
+\declaretheorem[sibling=definition]{theorem, lemma, corollary, proposition, conjecture}
+\declaretheorem[numbered=no,style=remark]{remark, claim}
 
 %Information to be included in the title page:
 \title[About Beamer]{About the Beamer class in presentation making}
@@ -81,9 +87,9 @@ Sample text
 Sample text in red box
 \end{alertblock}
 
-\begin{examples}
+\begin{exampleblock}{Examples}
 Sample text in green box. The title of the block is "Examples".
-\end{examples}
+\end{exampleblock}
 \end{frame}
 %---------------------------------------------------------
 
@@ -92,6 +98,7 @@ Sample text in green box. The title of the block is "Examples".
 %Two columns
 \begin{frame}
 \frametitle{Two-column slide}
+\framesubtitle{This is a subtitle}
 
 \begin{columns}
 
