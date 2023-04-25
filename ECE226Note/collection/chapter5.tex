@@ -1,0 +1,131 @@
+\chapter{Multiple Random Variables}
+
+\section{Joint CDF}
+\begin{definition}[Joint CDF]
+    The joint CDF of random variables $X$ and $Y$ is 
+    \[F_{X,Y}(x,y) = \P{X\leq x, Y\leq y}.\]
+\end{definition}
+
+The joint CDF is a \textbf{complete} probability model for any pair of random variables $X$ and $Y$.
+
+\begin{theorem}
+    For any pair of random variables, $X$ and $Y$, the following properties hold:
+    \begin{enumerate}[(a)]
+        \item $0 \leq F_{X,Y}(x,y) \leq 1$,
+        \item $F_{X,Y}(\infty,\infty)=1$,
+        \item $F_{X,Y}(-\infty,y)=F_{X,Y}(x,-\infty)=0$,
+        \item $F_X(x)=F_{X,Y}(x,\infty)$ and $F_Y(y)=F_{X,Y}(\infty,y)$,
+        \item $F_{X,Y}(x,y)$ is non-decreasing in $x$ and $y$.
+    \end{enumerate}
+\end{theorem}
+
+\section{Joint PMF}
+\begin{definition}[Joint PMF]
+    The joint PMF of random variables $X$ and $Y$ is 
+    \[P_{X,Y}(x,y) = \P{X=x, Y=y}.\]    
+\end{definition}
+
+The joint PMF is a \textbf{complete} probability model for any pair of discrete random variables $X$ and $Y$.
+
+\begin{theorem}
+    For discrete random variables $X$ and $Y$ and any set $B$ in the $X$, $Y$ plane, the probability of the event $\{(X,Y)\in B\}$ is 
+    \[\P{B}=\sum_{(x,y)\in B}P_{X,Y}(x,y).\]
+\end{theorem}
+
+Apparently, the joint PMF is non-negative and sums to one.
+\[\sum_{x\in S_X}\sum_{y\in S_Y}P_{X,Y}(x,y)=1.\]
+
+\section{Marginal PMF}
+\begin{theorem}
+    For discrete random variables $X$ and $Y$ with joint PMF $P_{X,Y}(x,y)$, 
+    \[P_X(x)=\sum_{y\in S_Y}P_{X,Y}(x,y), \qquad P_Y(y)=\sum_{x\in S_X}P_{X,Y}(x,y).\]
+\end{theorem}
+For discrete random variables, the marginal PMFs $P_X(x)$ and $P_Y(y)$ are probability models for the individual random variables $X$ and $Y$ but they only provide an \textbf{incomplete} probability model for the pair of random variables $X$ and $Y$.
+
+\section{Joint PDF}
+\begin{definition}[Joint PDF]
+    The joint PDF of continuous random variables $X$ and $Y$ is a function $f_{X,Y}(x,y)$ with the property
+    \[F_{X,Y}(x,y)=\int_{-\infty}^{x}\int_{-\infty}^{y}f_{X,Y}(u,v)\diff u \diff v.\]
+\end{definition}
+
+Apparently, we have
+\[f_{X,Y}(x,y)=\frac{\partial^2}{\partial x\partial y}F_{X,Y}(x,y).\]
+The joint PDF is a \textbf{complete} probability model for any pair of continuous random variables $X$ and $Y$.
+
+\begin{theorem}
+    The probability that the continuous random variables $(X,Y)$ are in $A$ 
+    \[P[A]=\iint\limits_A f_{X,Y}(x,y)\diff x\diff y.\]
+\end{theorem}
+
+The joint PDF is non-negative and integrates to one.
+\[\int_{-\infty}^{x}\int_{-\infty}^{y}f_{X,Y}(x,y)\diff x\diff y=1.\]
+
+\section{Marginal PDF}
+\begin{theorem}
+    For continuous random variables $X$ and $Y$ with joint PDF $f_{X,Y}(x,y)$, 
+    \[f_X(x)=\int_{-\infty}^{\infty}f_{X,Y}(x,y)\diff y, \qquad f_Y(y)=\int_{-\infty}^{\infty}f_{X,Y}(x,y)\diff x.\]
+\end{theorem}
+For continuous random variables, the marginal PDFs $f_X(x)$ and $f_Y(y)$ are probability models for the individual random variables $X$ and $Y$ but they only provide an \textbf{incomplete} probability model for the pair of random variables $X$ and $Y$.
+
+\section{Independent Random Variables}
+\begin{definition}[Independent Random Variables]
+    Random variables $X$ and $Y$ are independent if and only if
+    \begin{align}
+        P_{X,Y}(x,y) &=P_X(x)P_Y(y); \tag{Discrete}\\
+        f_{X,Y}(x,y) &=f_X(x)f_Y(y). \tag{Continuous}
+    \end{align}
+\end{definition}
+It's easy to show that if $X$ and $Y$ are independent, then 
+\[F_{X,Y}(x,y)=\P{X\leq x, Y\leq y}=\P{X\leq x}\P{Y\leq y}=F_X(x)F_Y(y).\]
+
+\section{Expected Value of a Function of Two Random Variables}
+\begin{theorem}[Expected Value of a Function of Two Random Variables]
+    The expected value of a function $g(X,Y)$ of two random variables $X$ and $Y$ is
+    \begin{align}
+        \E{g(X,Y)} &= \sum_{x\in S_X}\sum_{y\in S_Y}g(x,y)P_{X,Y}(x,y); \tag{Discrete}\\
+        \E{g(X,Y)} &= \int_{-\infty}^{\infty}\int_{-\infty}^{\infty}g(x,y)f_{X,Y}(x,y)\diff x\diff y. \tag{Continuous}
+    \end{align}
+\end{theorem} 
+
+\begin{theorem}
+    \[\E{\sum_{i=1}^{n}a_ig_i(X,Y)}=\sum_{i=1}^{n}a_i\E{g_i(X,Y)}.\]
+\end{theorem}
+
+\begin{theorem}
+    For \textbf{any} two random variables $X$ and $Y$,
+    \[\E{aX+bY}=a\E{X}+b\E{Y}.\]    
+\end{theorem}
+
+\section{Covariance, Correlation and Independent}
+\begin{definition}[Covariance]
+    The covariance of two random variables $X$ and $Y$ is
+    \[\sigma_{xy}=\Cov[X,Y]=\E{(X-\E{X})(Y-\E{Y})}=\E{XY}-\E{X}\E{Y}.\]
+\end{definition}
+
+
+\begin{theorem}
+    The variance of the sum of two random variables is
+    \[\Var[aX+bY]=a^2\Var[X]+b^2\Var[Y]+2ab\Cov[X,Y].\]
+\end{theorem}
+
+\begin{definition}[Correlation Coefficient]
+    The correlation coefficient of two random variables $X$ and $Y$ is
+    \[\rho_{xy}=\Corr[X,Y]=\frac{\Cov[X,Y]}{\sqrt{\Var[X]\Var[Y]}}=\frac{\sigma_{xy}}{\sigma_x\sigma_y}.\]
+\end{definition}
+\textbf{Note:} In some definition of correlation coefficient, $\rho_{xy}$ is defined as $\rho_{xy}=\sigma_{xy}$ (\eg , in stochastic analysis where state space is unit free).
+
+\begin{theorem}
+    \[-1\leq \rho_{xy}\leq 1.\]
+\end{theorem}
+
+\begin{theorem}
+    If $X$ and $Y$ are independent, then
+    \begin{enumerate}[(a)]
+        \item $\E{XY}=\E{X}\E{Y}$,
+        \item $\Cov[X, Y]=0$,
+        \item $\Var[aX+bY]=a^2\Var[X]+b^2\Var[Y]$.
+    \end{enumerate}
+\end{theorem}
+
+
+

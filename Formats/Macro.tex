@@ -1,4 +1,4 @@
-% delimiters
+%%%% delimiters
 \DeclarePairedDelimiter\parens{\lparen}{\rparen}  
 \DeclarePairedDelimiter\bracks{\lbrack}{\rbrack}
 \DeclarePairedDelimiter\braces{\lbrace}{\rbrace}
@@ -8,19 +8,20 @@
 \DeclarePairedDelimiter\ceil{\lceil}{\rceil}
 \DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
 
+%%%% math operators naming
 \DeclareMathOperator{\argmax}{\mathrm{argmax}}
 \DeclareMathOperator{\argmin}{\mathrm{argmin}}
 \DeclareMathOperator{\tr}{\mathrm{tr}}
 \DeclareMathOperator{\eig}{\mathrm{eig}}
 \DeclareMathOperator{\sgn}{\mathrm{sgn}}
-\let\det\relax % "Undefine" \det
-\DeclareMathOperator{\det}{\mathrm{det}} % already defined in mathtools
+% \let\det\relax % "Undefine" \det
+% \DeclareMathOperator{\det}{\mathrm{det}} % already defined in mathtools
 \DeclareMathOperator{\diag}{\mathrm{diag}}
 \DeclareMathOperator{\rank}{\mathrm{rank}}
 \DeclareMathOperator{\Vol}{\mathrm{Vol}}   % volume
 \DeclareMathOperator{\Surf}{\mathrm{Surf}} % surface area
 
-% Transforms! -- requires mathtools package
+%%%% Transforms! -- requires mathtools package
 \newcommand*{\LapTrans}{\xleftrightarrow{\mathcal{Z}}}
 \newcommand*{\ZTrans}{\xleftrightarrow{\mathcal{L}}}
 \newcommand*{\CTFS}{\xleftrightarrow{\mathrm{CTFS}}}
@@ -28,52 +29,59 @@
 \newcommand*{\DTFS}{\xleftrightarrow{\mathrm{DTFS}}}
 \newcommand*{\DTFT}{\xleftrightarrow{\mathrm{DTFT}}}
 
-% vector font
+%%%% vector font
 \let\oldvec\vec
 \renewcommand*{\vec}[1]{\mathbf{#1}}
 \newcommand*{\trn}{{}^{\mkern-4mu\intercal}}
 \newcommand*{\inv}{^{-1}} 
 
-% number systems
-\newcommand*{\R}{\mathbb{R}}
-\newcommand*{\C}{\mathbb{C}}
-\newcommand*{\N}{\mathbb{N}}
-\newcommand*{\Z}{\mathbb{Z}}
-\newcommand*{\F}{\mathbb{F}}
-\newcommand*{\Q}{\mathbb{Q}}
+%%%% number systems
+\DeclareMathOperator{\R}{\mathbb{R}}
+\DeclareMathOperator{\C}{\mathbb{C}}
+\DeclareMathOperator{\N}{\mathbb{N}}
+\DeclareMathOperator{\Z}{\mathbb{Z}}
+\DeclareMathOperator{\F}{\mathbb{F}}
+\DeclareMathOperator{\Q}{\mathbb{Q}}
 
-% STATISTICS AND PROBABILITY
-\newcommand*{\Var}{\mathop{\mathrm{Var}}\nolimits}
-\newcommand*{\Cov}{\mathop{\mathrm{Cov}}\nolimits}
-\newcommand*{\MSE}{\mathop{\mathrm{MSE}}\nolimits}
+%%%% STATISTICS AND PROBABILITY
+\newcommand*{\Var}{\mathop{\mathrm{Var}}}
+\newcommand*{\Cov}{\mathop{\mathrm{Cov}}}
+\newcommand*{\Corr}{\mathop{\mathrm{Corr}}}
+\newcommand*{\MSE}{\mathop{\mathrm{MSE}}}
 
 \newcommand*{\E}[1]{\mathbb{E}\bracks*{#1}}
 \newcommand*{\condE}[2]{\mathbb{E}\bracks*{#1 \mid #2}}
 \renewcommand*{\P}[1]{\mathbb{P}\parens*{#1}}
 \newcommand*{\condP}[2]{\mathbb{P}\parens*{#1 \mid #2}}
 
-\newcommand*{\Bern}{\mathsf{Bern}}
-\newcommand*{\Unif}{\mathsf{Unif}}
-\newcommand*{\Expv}{\mathsf{Exp}}
-\newcommand*{\Poi}{\mathsf{Poi}}
-\newcommand*{\Gamv}{\mathsf{Gamma}}
-\newcommand*{\Dirv}{\mathsf{Dir}}
-\newcommand*{\Mult}{\mathsf{Mult}}
-\newcommand*{\Beta}{\mathsf{Beta}}
-\newcommand*{\Geomv}{\mathsf{Geom}}
-\newcommand*{\Binomv}{\mathsf{Binom}}
-\newcommand*{\NegBinomv}{\mathsf{NB}}
-\newcommand*{\Lap}{\mathsf{Lap}}
-\newcommand*{\Gaus}{\mathsf{N}}
-\newcommand*{\Weibull}{\mathsf{Weibull}}
+\DeclareMathOperator{\Bern}{\mathsf{Bern}}
+\DeclareMathOperator{\Unif}{\mathsf{Unif}}
+\DeclareMathOperator{\Expv}{\mathsf{Exp}}
+\DeclareMathOperator{\Poi}{\mathsf{Poi}}
+\DeclareMathOperator{\Gamv}{\mathsf{Gamma}}
+\DeclareMathOperator{\Dirv}{\mathsf{Dir}}
+\DeclareMathOperator{\Mult}{\mathsf{Mult}}
+\DeclareMathOperator{\Beta}{\mathsf{Beta}}
+\DeclareMathOperator{\Geomv}{\mathsf{Geom}}
+\DeclareMathOperator{\Binomv}{\mathsf{Binom}}
+\DeclareMathOperator{\NegBinomv}{\mathsf{NB}}
+\DeclareMathOperator{\Lap}{\mathsf{Lap}}
+\DeclareMathOperator{\Gaus}{\mathsf{N}}
+\DeclareMathOperator{\Weibull}{\mathsf{Weibull}}
 
 
-\newcommand*{\iidsim}{\stackrel{\mathrm{i.i.d.}}{\sim}}
-\newcommand*{\diff}{\mathop{}\!\mathrm{d}}
+\DeclareMathOperator{\iidsim}{\stackrel{\mathrm{i.i.d.}}{\sim}}
+\DeclareMathOperator{\diff}{\mathop{}\!\mathrm{d}}
 
-%%% Special norms and linear algebra stuff
+%%%% Special norms and linear algebra stuff
 \newcommand*{\subgnorm}[1]{\norm*{#1}_{\psi_2}}
 \newcommand*{\subexpnorm}[1]{\norm*{#1}_{\psi_1}}
 \newcommand*{\frobnorm}[1]{\norm*{#1}_{\mathrm{F}}}
 \newcommand*{\opnorm}[1]{\norm*{#1}_{\mathrm{op}}}
 \newcommand*{\Lipnorm}[1]{\norm*{#1}_{\mathrm{Lip}}}
+
+%%%%
+\newcommand*{\set}[1]{\bracks*{\,#1\,}}
+\newcommand*{\ie}{\textnormal{i.e.\ }}
+\newcommand*{\eg}{\textnormal{e.g.\ }}
+\newcommand*{\etc}{\textnormal{etc.\ }}
