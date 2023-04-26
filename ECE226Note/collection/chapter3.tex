@@ -4,7 +4,7 @@
     \item Probability Mass Function~(PMF): \[\sum_{x\in X}P_X(x)=1.\] 
     \item Families of Discrete Random Variables and their PMF{
         \begin{enumerate}
-            \item Bernoulli($p$): \textbf{E.g., Flip a coin}{
+            \item Bernoulli ($p$): \textbf{E.g., Flip a coin}{
                 \[ P_X(x) = 
                 \begin{cases}
                     1-p & x=0, \\
@@ -12,39 +12,39 @@
                     0   & otherwise.
                 \end{cases} \]
             }
-            \item Binomial($n, p$): Get \textbf{x} successes in \textbf{n} Bernoulli($p$) experiments $\iff$ independent trails{
+            \item Binomial ($n, p$): Get \textbf{x} successes in \textbf{n} Bernoulli ($p$) experiments $\iff$ independent trails{
                 \[P_X(\textcolor{red}{x}) = {
                     \begin{cases}
                         \binom{n}{x}p^x(1-p)^{n-x} & x=0,1,\ldots,n \\ 
                         0 & otherwise.
                     \end{cases}
                 }\]
-                \textbf{Note:} Bernoulli($p$) $\iff$ Binomial($1, p$). 
+                \textbf{Note:} Bernoulli ($p$) $\iff$ Binomial ($1, p$). 
             }
-            \item Poisson($\alpha$): Binomial($n, p$) with small $p$, large $n$, and $\alpha=np${
+            \item Poisson ($\alpha$): Binomial ($n, p$) with small $p$, large $n$, and $\alpha=np${
                 \[ P_X(x) = 
                 \begin{cases}
-                    \dfrac{\alpha^xe^{-\alpha}}{x!}   & x=0,1,\ldots \\
+                    \dfrac{\alpha^x e^{-\alpha}}{x!}   & x=0,1,\ldots \\
                     0   & otherwise.
                 \end{cases} \]
             }
-            \item Geometric($p$): Get the \textbf{1st} success at the \textbf{x-th} Bernoulli($p$) experiment {
+            \item Geometric ($p$): Get the \textbf{1st} success at the $\bm{x}$-\textbf{th} Bernoulli ($p$) experiment {
                 \[ P_X(x) = 
                 \begin{cases}
                     p(1-p)^{x-1} & x=1,2,\ldots \\
                     0   & otherwise.
                 \end{cases} \]
             }
-            \item Pascal($k,p$): Get the \textbf{k-th} success at the \textbf{x-th} Bernoulli($p$) experiment {
+            \item Pascal ($k,p$): Get the $\bm{k}$-\textbf{th} success at the $\bm{x}$-\textbf{th} Bernoulli ($p$) experiment {
                 \[P_X(\textcolor{red}{x}) = {
                     \begin{cases}
                         \binom{x-1}{k-1}p^k(1-p)^{x-k} & x=k,k+1,k+2,\ldots \\
                         0 & otherwise.
                     \end{cases}
                 }\]
-                \textbf{Note:} Geometric($p$) $\iff$ Pascal($1, p$).
+                \textbf{Note:} Geometric ($p$) $\iff$ Pascal ($1, p$).
             }
-            \item Discrete Uniform($k, l$): outcomes are uniformly distributed on range $(k, l)$ \textbf{E.g., Roll a Die}{
+            \item Discrete Uniform ($k, l$): outcomes are uniformly distributed on range $(k, l)$ \textbf{E.g., Roll a Die}{
                 \[ P_X(x) = 
                 \begin{cases}
                     1/(l-k+1)   & x=k,k+1,k+2,\ldots,l \\
@@ -58,7 +58,7 @@
             F_X(x)&=P_X[X\leq x]=\sum_{k=0}^{x}P_X(k). \\
             F_X(b)-F_X(a)&=\sum_{k=0}^{b}P_X(k)-\sum_{k=0}^{a}P_X(k)=\sum_{k=a+1}^{b}P_X(k)=P_X(a<X\leq b).
         \end{align*}
-        The CDF of Geometric($p$) is worth to remember
+        The CDF of Geometric ($p$) is worth to remember
         \begin{align*}
             F_X(x)
             &= P_X[X\leq x] \\
@@ -72,8 +72,8 @@
         \begin{enumerate}
             \item In ordinary language, an \textbf{Average} is a single number taken as representative of a list of numbers.{
             \begin{enumerate}
-                \item Mode: The outcome appears the most often in the sample space \[P_X(x_{mod})\geq P_X(x).\]
-                \item Median: The outcome which separates the higher half from  the lower half of a sample space \[P_X[X \leq x_{med}] \geq 1/2, \qquad \qquad P_X[X \geq x_{med}] \geq 1/2.\]
+                \item Mode: The outcome appears the most often in the sample space \[P_X(x_{\textnormal{mode}})\geq P_X(x).\]
+                \item Median: The outcome which separates the higher half from  the lower half of a sample space \[P_X[X \leq x_{\textnormal{med}}] \geq 1/2, \qquad \qquad P_X[X \geq x_{\textnormal{med}}] \geq 1/2.\]
                 \item (Arithmetic) mean:  The sum of all the outcomes divided by the number of outcomes \[\bar{x} = \frac{1}{n}\sum_{i=1}^{n}x_i.\]
             \end{enumerate}
             }
@@ -87,12 +87,12 @@
                     }
                     \item Important Expectations{
                         \begin{enumerate}
-                            \item Bernoulli(p): \[\E{X}=0\cdot P_X(0)+1\cdot P_X(1)=0(1-p)+1(p)=p.\]
-                            \item Binomial(n, p): \[\E{X}=np.\]
-                            \item Poisson($\alpha$): \[\E{X}=\alpha.\]
-                            \item Geometric(p): \[\E{X}=1/p.\]
-                            \item Pascal(k, p): \[\E{X}=k/p.\]
-                            \item Discrete Uniform(k, l): \[\E{X}=(k+l)/2.\]
+                            \item Bernoulli (p): \[\E{X}=0\cdot P_X(0)+1\cdot P_X(1)=0(1-p)+1(p)=p.\]
+                            \item Binomial (n, p): \[\E{X}=np.\]
+                            \item Poisson ($\alpha$): \[\E{X}=\alpha.\]
+                            \item Geometric (p): \[\E{X}=1/p.\]
+                            \item Pascal (k, p): \[\E{X}=k/p.\]
+                            \item Discrete Uniform (k, l): \[\E{X}=(k+l)/2.\]
                         \end{enumerate}
                     }
                 \end{enumerate}
@@ -109,14 +109,14 @@
             \item $\E{aX+b}=a\E{X}+b \Rightarrow \E{b}=\E{0\cdot X+b}=b$
         \end{enumerate}
     }
-    \item Variance($\sigma_x^2$) and Standard Deviation($\sigma_x$){
+    \item Variance ($\sigma_x^2$) and Standard Deviation ($\sigma_x$){
         \begin{enumerate}
             \item {
                 \begin{align*}
                     \sigma_x^2 
                     &= \Var(X) \\
                     &= \E{(X-\mu_x)^2} \\
-                    &= \E{X^2-2\mu_xX+\mu_x^2} \\
+                    &= \E{X^2-2\mu_x X+\mu_x^2} \\
                     &= \E{X^2}-2\mu_x\E{X}+\E{\mu_x^2} \\
                     &= \E{X^2}-2\mu_x^2+\mu_x^2 \\
                     &= \E{X^2}-\mu_x^2
@@ -126,12 +126,12 @@
             \item $\Var(aX+b)=a^2\Var(X)$
             \item Important Variance:{
                 \begin{enumerate}
-                    \item Bernoulli(p): \[\Var(X)=p(1-p).\]
-                    \item Binomial(n,p): \[\Var(X)=np(1-p).\]
-                    \item Poisson($\alpha$): \[\Var(X)=\alpha.\]
-                    \item Geometric(p): \[\Var(X)=(1-p)/p^2.\]
-                    \item Pascal(k,p): \[\Var(X)=k(1-p)/p^2.\]
-                    \item Discrete Uniform(k,l): \[\Var(X)=(l-k)(l-k+2)/12.\]
+                    \item Bernoulli (p): \[\Var(X)=p(1-p).\]
+                    \item Binomial (n, p): \[\Var(X)=np(1-p).\]
+                    \item Poisson ($\alpha$): \[\Var(X)=\alpha.\]
+                    \item Geometric (p): \[\Var(X)=(1-p)/p^2.\]
+                    \item Pascal (k, p): \[\Var(X)=k(1-p)/p^2.\]
+                    \item Discrete Uniform (k, l): \[\Var(X)=(l-k)(l-k+2)/12.\]
                 \end{enumerate}
             }
         \end{enumerate}

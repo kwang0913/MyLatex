@@ -28,7 +28,9 @@ The joint CDF is a \textbf{complete} probability model for any pair of random va
 The joint PMF is a \textbf{complete} probability model for any pair of discrete random variables $X$ and $Y$.
 
 \begin{theorem}
-    For discrete random variables $X$ and $Y$ and any set $B$ in the $X$, $Y$ plane, the probability of the event $\set{(X,Y)\in B}$ is 
+    For discrete random variables $X$ and $Y$ and any set $B$ in the $X$, $Y$ plane, the probability of the event 
+    % $\set{(X,Y)\in B}$ 
+    is 
     \[\P{[B]}=\sum_{(x,y)\in B}P_{X,Y}(x,y).\]
 \end{theorem}
 
@@ -40,7 +42,7 @@ Apparently, the joint PMF is non-negative and sums to one.
     For discrete random variables $X$ and $Y$ with joint PMF $P_{X,Y}(x,y)$, 
     \[P_X(x)=\sum_{y\in S_Y}P_{X,Y}(x,y), \qquad P_Y(y)=\sum_{x\in S_X}P_{X,Y}(x,y).\]
 \end{theorem}
-For discrete random variables, the marginal PMFs $P_X(x)$ and $P_Y(y)$ are probability models for the individual random variables $X$ and $Y$ but they only provide an \textbf{incomplete} probability model for the pair of random variables $X$ and $Y$.
+For discrete random variables, the marginal PMF $P_X(x)$ and $P_Y(y)$ are probability models for the individual random variables $X$ and $Y$, but they only provide an \textbf{incomplete} probability model for the pair of random variables $X$ and $Y$.
 
 \section{Joint PDF}
 \begin{definition}[Joint PDF]
@@ -65,7 +67,7 @@ The joint PDF is non-negative and integrates to one.
     For continuous random variables $X$ and $Y$ with joint PDF $f_{X,Y}(x,y)$, 
     \[f_X(x)=\int_{-\infty}^{\infty}f_{X,Y}(x,y)\diff y, \qquad f_Y(y)=\int_{-\infty}^{\infty}f_{X,Y}(x,y)\diff x.\]
 \end{theorem}
-For continuous random variables, the marginal PDFs $f_X(x)$ and $f_Y(y)$ are probability models for the individual random variables $X$ and $Y$ but they only provide an \textbf{incomplete} probability model for the pair of random variables $X$ and $Y$.
+For continuous random variables, the marginal PDFs $f_X(x)$ and $f_Y(y)$ are probability models for the individual random variables $X$ and $Y$, but they only provide an \textbf{incomplete} probability model for the pair of random variables $X$ and $Y$.
 
 \section{Independent Random Variables}
 \begin{definition}[Independent Random Variables]
@@ -88,7 +90,7 @@ It's easy to show that if $X$ and $Y$ are independent, then
 \end{theorem} 
 
 \begin{theorem}
-    \[\E{\sum_{i=1}^{n}a_ig_i(X,Y)}=\sum_{i=1}^{n}a_i\E{g_i(X,Y)}.\]
+    \[\E{\sum_{i=1}^{n}a_i g_i(X,Y)}=\sum_{i=1}^{n}a_i\E{g_i(X,Y)}.\]
 \end{theorem}
 
 \begin{theorem}
@@ -112,7 +114,7 @@ It's easy to show that if $X$ and $Y$ are independent, then
     The correlation coefficient of two random variables $X$ and $Y$ is
     \[\rho_{xy}=\Corr[X,Y]=\frac{\Cov[X,Y]}{\sqrt{\Var[X]\Var[Y]}}=\frac{\sigma_{xy}}{\sigma_x\sigma_y}.\]
 \end{definition}
-\textbf{Note:} In some definition of correlation coefficient, $\rho_{xy}$ is defined as $\rho_{xy}=\sigma_{xy}$ (\eg , in stochastic analysis where state space is unit free).
+\textbf{Note:} In some definition of correlation coefficient, $\rho_{xy}$ is defined as $\rho_{xy}=\sigma_{xy}$ (\eg, in stochastic analysis where state space is unit free).
 
 \begin{theorem}
     \[-1\leq \rho_{xy}\leq 1.\]
