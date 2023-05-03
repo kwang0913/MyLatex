@@ -12,7 +12,14 @@
 % \PassOptionsToPackage{dvipsnames,svgnames}{xcolor} %Beamer has this by default, call option instead of passoptions
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{beamer}}
 \ProcessOptions\relax
-\LoadClass[compress, xcolor={dvipsnames,svgnames}, notheorems]{beamer}
+\LoadClass[
+    compress, 
+    xcolor={
+        % dvipsnames,
+        svgnames,
+        }, 
+    notheorems,
+    ]{beamer}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%% Packages Used
@@ -40,14 +47,16 @@
 %% Theorems etc (also  problems)
 \RequirePackage[shortlabels]{enumitem} %Better List
 % \RequirePackage{hyperref} %Beamer has this by default
-\RequirePackage{cleveref} %Must load before amsthm
+% \RequirePackage{cleveref} %Must load before amsthm
 \RequirePackage{amsthm} %Better Theorems
 \RequirePackage{thmtools} %Better Theorems
 \RequirePackage{thm-restate} %Better Theorems
 
 %% Code Packages
-\RequirePackage{algorithm2e} % Package to create pseudo-code
-\RequirePackage{listings} % Package to insert code
+% \RequirePackage{algorithm2e} % Package to create pseudo-code
+% \RequirePackage{listings} % Package to insert code
+\RequirePackage{algorithm}
+\RequirePackage{algpseudocode}
 % \RequirePackage{keyval}
 
 %% Display Packages
@@ -65,10 +74,9 @@
 %% Graphics Packages
 \RequirePackage{graphicx} %Better Graphics
 \RequirePackage[export]{adjustbox} %Better Graphics
-% \RequirePackage[dvipsnames,svgnames]{xcolor} %Must load before tcolorbox
 \RequirePackage[breakable]{tcolorbox} %Customized Box
 \tcbuselibrary{skins}
-\usepackage{transparent}
+\RequirePackage{transparent}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%% Colors
@@ -139,10 +147,10 @@
 \setbeamercolor*{block title}{fg=white, bg=RUred}
 \setbeamercolor*{block body}{fg=black, bg=white}
 % alert block
-\setbeamercolor*{block title alerted}{fg=white, bg=SkyBlue}
+\setbeamercolor*{block title alerted}{fg=white, bg=MediumSlateBlue}
 \setbeamercolor*{block body alerted}{fg=black, bg=white}
 % example block
-\setbeamercolor*{block title example}{fg=white, bg=SeaGreen}
+\setbeamercolor*{block title example}{fg=white, bg=MediumSeaGreen}
 \setbeamercolor*{block body example}{fg=black, bg=white}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Theorem Style
