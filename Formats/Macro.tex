@@ -9,25 +9,25 @@
 \DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
 
 %%%% math operators naming
-\DeclareMathOperator*{\argmax}{\mathrm{argmax}}
-\DeclareMathOperator*{\argmin}{\mathrm{argmin}}
-\DeclareMathOperator{\tr}{\mathrm{tr}}
-\DeclareMathOperator{\eig}{\mathrm{eig}}
-\DeclareMathOperator{\sgn}{\mathrm{sgn}}
+\DeclareMathOperator*{\argmax}{\textnormal{argmax}}
+\DeclareMathOperator*{\argmin}{\textnormal{argmin}}
+\DeclareMathOperator{\tr}{\textnormal{tr}}
+\DeclareMathOperator{\eig}{\textnormal{eig}}
+\DeclareMathOperator{\sgn}{\textnormal{sgn}}
 % \let\det\relax % "Undefine" \det
-% \DeclareMathOperator{\det}{\mathrm{det}} % already defined in mathtools
-\DeclareMathOperator{\diag}{\mathrm{diag}}
-\DeclareMathOperator{\rank}{\mathrm{rank}}
-\DeclareMathOperator{\Vol}{\mathrm{Vol}}   % volume
-\DeclareMathOperator{\Surf}{\mathrm{Surf}} % surface area
+% \DeclareMathOperator{\det}{\textnormal{det}} % already defined in mathtools
+\DeclareMathOperator{\diag}{\textnormal{diag}}
+\DeclareMathOperator{\rank}{\textnormal{rank}}
+\DeclareMathOperator{\Vol}{\textnormal{Vol}}   % volume
+\DeclareMathOperator{\Surf}{\textnormal{Surf}} % surface area
 
 %%%% Transforms! -- requires mathtools package
 \newcommand*{\LapTrans}{\xleftrightarrow{\mathcal{Z}}}
 \newcommand*{\ZTrans}{\xleftrightarrow{\mathcal{L}}}
-\newcommand*{\CTFS}{\xleftrightarrow{\mathrm{CTFS}}}
-\newcommand*{\CTFT}{\xleftrightarrow{\mathrm{CTFT}}}
-\newcommand*{\DTFS}{\xleftrightarrow{\mathrm{DTFS}}}
-\newcommand*{\DTFT}{\xleftrightarrow{\mathrm{DTFT}}}
+\newcommand*{\CTFS}{\xleftrightarrow{\textnormal{CTFS}}}
+\newcommand*{\CTFT}{\xleftrightarrow{\textnormal{CTFT}}}
+\newcommand*{\DTFS}{\xleftrightarrow{\textnormal{DTFS}}}
+\newcommand*{\DTFT}{\xleftrightarrow{\textnormal{DTFT}}}
 
 %%%% vector font
 \let\oldvec\vec
@@ -44,10 +44,10 @@
 \DeclareMathOperator{\Q}{\mathbb{Q}}
 
 %%%% STATISTICS AND PROBABILITY
-\newcommand*{\Var}{\mathop{\mathrm{Var}}}
-\newcommand*{\Cov}{\mathop{\mathrm{Cov}}}
-\newcommand*{\Corr}{\mathop{\mathrm{Corr}}}
-\newcommand*{\MSE}{\mathop{\mathrm{MSE}}}
+\newcommand*{\Var}{\mathop{\textnormal{Var}}}
+\newcommand*{\Cov}{\mathop{\textnormal{Cov}}}
+\newcommand*{\Corr}{\mathop{\textnormal{Corr}}}
+\newcommand*{\MSE}{\mathop{\textnormal{MSE}}}
 
 \newcommand*{\E}[1]{\mathbb{E}\bracks*{#1}}
 \newcommand*{\condE}[2]{\mathbb{E}\bracks*{#1 \mid #2}}
@@ -70,18 +70,19 @@
 \DeclareMathOperator{\Weibull}{\mathsf{Weibull}}
 
 
-\DeclareMathOperator{\iidsim}{\stackrel{\mathrm{i.i.d.}}{\sim}}
-\DeclareMathOperator{\diff}{\mathop{}\!\mathrm{d}}
+\DeclareMathOperator{\iidsim}{\stackrel{\textnormal{i.i.d.}}{\sim}}
+\DeclareMathOperator{\diff}{\mathop{}\!\textnormal{d}}
 
 %%%% Special norms and linear algebra stuff
 \newcommand*{\subgnorm}[1]{\norm*{#1}_{\psi_2}}
 \newcommand*{\subexpnorm}[1]{\norm*{#1}_{\psi_1}}
-\newcommand*{\frobnorm}[1]{\norm*{#1}_{\mathrm{F}}}
-\newcommand*{\opnorm}[1]{\norm*{#1}_{\mathrm{op}}}
-\newcommand*{\Lipnorm}[1]{\norm*{#1}_{\mathrm{Lip}}}
+\newcommand*{\frobnorm}[1]{\norm*{#1}_{\textnormal{F}}}
+\newcommand*{\opnorm}[1]{\norm*{#1}_{\textnormal{op}}}
+\newcommand*{\Lipnorm}[1]{\norm*{#1}_{\textnormal{Lip}}}
 
 %%%%
 \newcommand*{\set}[1]{\braces*{\,#1\,}}
 \newcommand*{\ie}{\textnormal{i.e.\ }}
 \newcommand*{\eg}{\textnormal{e.g.\ }}
 \newcommand*{\etc}{\textnormal{etc.\ }}
+\newcommand*{\iid}{\textnormal{i.i.d.\ }}

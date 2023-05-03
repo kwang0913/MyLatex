@@ -17,8 +17,8 @@
 \institute[Rutgers] % (optional)
 {
   \inst{1}%
-  Ph.D. of ECE\\
-  Rutgers University University
+  Ph.D.\ of ECE\\
+  Rutgers University
   % \and
   % \inst{2}%
   % Faculty of Statistics\\
@@ -101,7 +101,7 @@
 \begin{frame}
   \frametitle{Kernel Trick}
   \begin{itemize}
-    \item<1-> Consider the following derivation,
+    \item <1-> Consider the following derivation,
     \begin{align*}
       (x_n\trn x_m)^2 
       &= \parens*{\bracks*{x_{n,1} \ x_{n,2}}\bracks*{x_{m,1} \ x_{m,2}}\trn}^2 \\
@@ -109,8 +109,8 @@
       &= x_{n,1}^2x_{m,1}^2 + x_{n,2}^2x_{m,2}^2 + 2x_{n,1}x_{n,2}x_{m,1}x_{m,2} \\
       &= \phi(x_n)\trn\phi(x_m)
     \end{align*}
-    \item<2-> Instead of computing inner product in the high dimensional space, we compute the inner product in the original space.
-    \item<3-> The function 
+    \item <2-> Instead of computing inner product in the high dimensional space, we compute the inner product in the original space.
+    \item <3-> The function 
     \begin{align*}
       K(x_n, x_m) = (x_n\trn x_m)^2 = \phi(x_n)\trn\phi(x_m)
     \end{align*}
@@ -121,7 +121,7 @@
 \begin{frame}
   \frametitle{There must be disadvantages\ldots}
   \begin{itemize}
-    \item<1-> Given training data $(x_1, y_1), (x_2, y_2), \ldots, (x_N, y_N) \in \mathcal{X}\times\mathcal{Y}$, where $\mathcal{X}\subseteq \R^d$ and $\mathcal{Y}\subseteq\R$. Consider \emph{Kernel Ridge Regression} (KRR), with $\phi(\mathcal{X})\subseteq \R^k$, where $k\rightarrow\infty$
+    \item <1-> Given training data $(x_1, y_1), (x_2, y_2), \ldots, (x_N, y_N) \in \mathcal{X}\times\mathcal{Y}$, where $\mathcal{X}\subseteq \R^d$ and $\mathcal{Y}\subseteq\R$. Consider \emph{Kernel Ridge Regression} (KRR), with $\phi(\mathcal{X})\subseteq \R^k$, where $k\rightarrow\infty$
     \begin{align*}
       \mathcal{L}(\vec{w}, \lambda)=\argmin_{\vec{w}}\sum_{n}^{N}(y_n - \vec{w}\trn\phi(\vec{x}_n))^2 + \lambda\vec{w}\trn\vec{w}.
     \end{align*}
@@ -130,7 +130,7 @@
       (\mathbf{K}+\lambda\mathbf{I}_k)\vec{\alpha} = \vec{y},
     \end{align*} 
     requires $\Theta(k^3)$ time and $\Theta(k^2)$ memory. Here $\mathbf{K}\in \R^{k\times k}$ is the kernel matrix or Gram matrix defined by $\mathbf{K}_{nm} \equiv K(\vec{x}_n, \vec{x}_m)$.
-    \item<2-> \textbf{Intuition:} Can we find a kernel function which lifts $\mathcal{X}$ to $\R^s$, where $d < s\ll k$, while not sacrifices model performance?
+    \item <2-> \textbf{Intuition:} Can we find a kernel function which lifts $\mathcal{X}$ to $\R^s$, where $d < s\ll k$, while not sacrifices model performance?
   \end{itemize}
 \end{frame}
 %---------------------------------------------------------
@@ -140,68 +140,87 @@
 %---------------------------------------------------------
 \begin{frame}
 \frametitle{Some Prerequisites}
-\begin{alertblock}{Shift Invariant Kernel (Radial Basis Kernel (RBK))}
+\begin{alertblock}{Shift Invariant Kernel (Radial Basis Function (RBF))}
   A kernel function $K(\vec{x_n}, \vec{x_m})$ is called \textbf{shift invariant} if it can be written as $K(\vec{x_n}, \vec{x_m}) = g(\vec{x_n}-\vec{x_m})$ for some function $g(\cdot)$
   
   (\eg $K_{Gaussian}(\vec{x_n},\vec{x_m})=\exp(-\gamma\norm{\vec{x_n}-\vec{x_m}}_2^2)$).
 \end{alertblock}
 \begin{block}{Mercer’s Theorem}
-  A continuous function $K(\vec{x_n}, \vec{x_m})$ is a valid kernel function if and only if the kernel matrix $\mathbf{K}$ is \textbf{positive definite}.
+  A continuous function $K(\vec{x_n}, \vec{x_m})$ is a valid kernel function if and only if the kernel matrix $\mathbf{K}$ is \textbf{positive semi-definite}.
 \end{block}
 \begin{block}{Bochner's Theorem}
-  A continuous function $g(\cdot)$ is \textbf{positive definite} if and only if it is the Fourier transform of a non-negative measure.
+  A continuous function $g(\cdot)$ is \textbf{positive semi-definite} if and only if it is the Fourier transform of a non-negative measure.
 \end{block}
 \end{frame}
 %---------------------------------------------------------
 \begin{frame}
   \frametitle{Random Fourier Features}
   \begin{exampleblock}{Conclusion}
-    A continuous \textbf{shift invariant} kernel $K(\vec{x_n}, \vec{x_m})$, which is \textbf{positive definite} (Mercer's Theorem), is the Fourier transform of a non-negative measure $p(\cdot)$.
+    A continuous \textbf{shift invariant} kernel $K(\vec{x_n}, \vec{x_m})$, which is \textbf{positive semi-definite} (Mercer's Theorem), is the Fourier transform of a non-negative measure $p(\cdot)$.
     \begin{align}
       \phi(\vec{x_n})\trn\phi(\vec{x_m})
       &= K(\vec{x_n}, \vec{x_m}) = K(\vec{x_n}-\vec{x_m}) \\
-      &=\int_{\R^s}p(\vec{\omega})\exp(i\vec{\omega}\trn(\vec{x_n}-\vec{x_m}))d\vec{\omega} \\
-      &= \mathbb{E}_{\vec{\omega}}\bracks*{\xi(\vec{x_n})\xi(\vec{x_m})^*}\label{rffinC}
+      &=\int_{\R^d}p(\vec{\omega})\exp(i\vec{\omega}\trn(\vec{x_n}-\vec{x_m}))d\vec{\omega} \\
+      &= \mathbb{E}_{\vec{\omega}}\bracks*{\xi_{\vec{\omega}}(\vec{x_n})^*\xi_{\vec{\omega}}(\vec{x_m})}\label{rffinC}
     \end{align}
     Here 
     $
-    \xi(\vec{x})=\exp(i\vec{\omega}\trn\vec{x})={
+    \xi_{\vec{\omega}}(\vec{x})=\exp(i\vec{\omega}\trn\vec{x})
+    ={
       \begin{bmatrix}
         \cos(\vec{\omega}\trn\vec{x}) \\
         \sin(\vec{\omega}\trn\vec{x})
       \end{bmatrix}
     }
     $ 
-    and hence $\xi(\vec{x_n})\xi(\vec{x_m})^*$ is an unbiased estimator of $K(\vec{x_n}, \vec{x_m})$.
+    and hence $\xi_{\vec{\omega}}(\vec{x_n})^*\xi_{\vec{\omega}}(\vec{x_m})$ is an unbiased estimator of $K(\vec{x_n}, \vec{x_m})$ when $\vec{\omega}$ is drawn from $p(\cdot)$.
   \end{exampleblock}
 \end{frame}
 %---------------------------------------------------------
 \begin{frame}
+  \frametitle{Random Fourier Features}
+  \begin{itemize}
+    \item <1-> Since both the $p(\cdot)$ and $K(\triangle)$ are real-valued, we can replace $\xi(\vec{x})$ with $z_{\vec{\omega}}(\vec{x})=[\sqrt{2}\cos(\vec{\omega}\trn\vec{x}+b)]$ where $\vec{\omega}$ is drawn from $p(\vec{\omega})$ and $b$ is uniformly drawn from $[0, 2\pi]$. Then eq.~\eqref{rffinC} becomes $\mathbb{E}_{\vec{\omega}}[z(\vec{x_n})\trn z(\vec{x_m})]$
+    \item <2-> \textbf{Note:} $z(\vec{x_n})\trn z(\vec{x_m})$ is an unbiased estimator of $\phi(\vec{x_n})\trn\phi(\vec{x_m})$. The $z(\vec{x})$ is not a lifting function.
+    \item <3-> \textbf{Note:} To further reduce the variance of the estimator, we can randomly draw $s$ samples of $\vec{\omega}$ and normalize each corresponding $z(\vec{x})$ by $\sqrt{s}$. Then the inner product $z(\vec{x_n})\trn z(\vec{x_m})=\frac{1}{s}\sum_{j=1}^{s}z_{\vec{\omega}j}(\vec{x_n})\trn z_{\vec{\omega}j}(\vec{x_m})$
+    % \item <4-> \textbf{Question:} The author samples $\vec{\omega}$ from $\R^d$ and average over $s$ samples in the following algorithm. However, $d\&s$ seems can be arbitrary number based on the above derivation.
+  \end{itemize}
+\end{frame}
+%---------------------------------------------------------
+\begin{frame}
   \frametitle{Algorithm}
-  Since both the $p(\cdot)$ and $K(\triangle)$ are real-valued, we can replace $\xi(\vec{x})$ with $z_{\vec{\omega}}(\vec{x})=[\sqrt{2}\cos(\vec{\omega}\trn\vec{x}+b)]$ where $\vec{\omega}$ is drawn from $p(\vec{\omega})$ and $b$ is uniformly drawn from $[0, 2\pi]$. Then~\eqref{rffinC} becomes $\mathbb{E}_{\vec{\omega}}[z(\vec{x_n})z(\vec{x_m})\trn]$
   \begin{algorithm}[H]
-    \caption{An algorithm with caption}\label{alg:cap}
-    \begin{algorithmic}[1]
-    \Require $n \geq 0$
-    \Ensure $y = x^n$
-    \State $y \gets 1$
-    \State $X \gets x$
-    \State $N \gets n$
-    \While{$N \neq 0$}
-    \If{$N$ is even}
-        \State $X \gets X \times X$
-        \State $N \gets \frac{N}{2}$  \Comment{This is a comment}
-    \ElsIf{$N$ is odd}
-        \State $y \gets y \times X$
-        \State $N \gets N - 1$
-    \EndIf
-    \EndWhile
+    \caption{Random Fourier Features}\label{RFF}
+    \begin{algorithmic}
+    \Require A shift invariant kernel $K(\vec{x_n}, \vec{x_m}) = K(\vec{x_n}- \vec{x_m})$.
+    \Ensure A randomized feature map $z(\vec{x}): \R^d\rightarrow\R^s$ so that $z(\vec{x_n})\trn z(\vec{x_m})\approx K(\vec{x_n}, \vec{x_m})$.
+    \State Compute the Fourier transform $p(\cdot)$ of the kernel $K: p(\vec{\omega})=\frac{1}{2\pi}\int \exp(-i\vec{\omega}\trn\triangle)K(\triangle)\diff\triangle$ 
+    \State Draw $s$ \iid samples $\vec{\omega}_1, \vec{\omega}_2, \ldots, \vec{\omega}_s \in \R^d$ from $p(\cdot)$ and $s$ \iid samples $b_1, b_2, \ldots, b_s \in [0, 2\pi]$.
+    \State Let $z(\vec{x})\equiv \sqrt{\frac{2}{s}}[\cos(\vec{\omega}_1\trn\vec{x}+b_1)\ \cos(\vec{\omega}_2\trn\vec{x}+b_2)\ \ldots\ \cos(\vec{\omega}_s\trn\vec{x}+b_s)]\trn$   
     \end{algorithmic}
   \end{algorithm}
 \end{frame}
 %---------------------------------------------------------
-
-
+\begin{frame}
+  \frametitle{Convergence}
+  \begin{exampleblock}{Bound for a \emph{fixed} pair of points $\vec{x_n}$ and $\vec{x_m}$}
+    Given $z_{\vec{\omega}}$ is bounded random variable between $[-\sqrt{2}, \sqrt{2}]$, with Hoeffding's Inequality, we have
+    \begin{align*}
+      \P{\abs{z(\vec{x_n})\trn z(\vec{x_m})-K(\vec{x_n}, \vec{x_m})}\geq \epsilon} \leq 2\exp\parens*{-\frac{s\epsilon^2}{4}}.
+    \end{align*}      
+  \end{exampleblock}
+\end{frame}
+%---------------------------------------------------------
+\begin{frame}
+  \frametitle{Convergence}
+  \begin{exampleblock}{Bound for \emph{all} pair of points $\vec{x_n}$ and $\vec{x_m}$}
+    Let $\mathcal{M}$ be a compact sunset of $\R^d$ with diameter $\textnormal{diam}(\mathcal{M})$. Then, for the mapping $z$ defined in Algorithm~\ref{RFF}, we have
+    \begin{align*}
+      \P{\sup_{x,y\in\mathcal{M}}\abs{z(\vec{x_n})\trn z(\vec{x_m})-K(\vec{x_n}, \vec{x_m})}\geq \epsilon} \\
+      \leq 2^8\parens*{\frac{\sigma_{p(\cdot)}\textnormal{diam}(\mathcal{M})}{\epsilon}}^2\exp\parens*{-\frac{s\epsilon^2}{4(d+2)}}.
+    \end{align*}
+  \end{exampleblock}
+\end{frame}
 %---------------------------------------------------------
 %Two columns
 \begin{frame}

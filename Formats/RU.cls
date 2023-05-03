@@ -9,7 +9,6 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{../formats/RU}[02/11/2023 v0.0.1 Rutgers template beamer]
 
-% \PassOptionsToPackage{dvipsnames,svgnames}{xcolor} %Beamer has this by default, call option instead of passoptions
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{beamer}}
 \ProcessOptions\relax
 \LoadClass[
@@ -47,13 +46,12 @@
 %% Theorems etc (also  problems)
 \RequirePackage[shortlabels]{enumitem} %Better List
 % \RequirePackage{hyperref} %Beamer has this by default
-% \RequirePackage{cleveref} %Must load before amsthm
+% \RequirePackage{cleveref} %Must load before amsthm Conflict With Beamer
 \RequirePackage{amsthm} %Better Theorems
 \RequirePackage{thmtools} %Better Theorems
 \RequirePackage{thm-restate} %Better Theorems
 
 %% Code Packages
-% \RequirePackage{algorithm2e} % Package to create pseudo-code
 % \RequirePackage{listings} % Package to insert code
 \RequirePackage{algorithm}
 \RequirePackage{algpseudocode}
@@ -93,7 +91,7 @@
 \usebackgroundtemplate{
 \parbox[c][\paperheight][c]{\paperwidth}{\centering\transparent{0.1}\includegraphics[height=0.8\paperheight]{../formats/RULogos/RU_SHIELD_BLACK.eps}}
 }
-\logo{\includegraphics[scale=0.1]{../formats/RULogos/RU_SHIELD_CMYK_RED.eps}}
+\logo{\includegraphics[scale=0.075]{../formats/RULogos/RU_SHIELD_CMYK_RED.eps}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%% Style of the blocks 
