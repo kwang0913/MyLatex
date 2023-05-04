@@ -1,0 +1,61 @@
+\chapter{Set Theory, Probability, and Single Experiment}
+\begin{enumerate}
+    \item From Set to Probability (of the single experiment)
+    \begin{enumerate}
+        \item~{
+            \begin{center}
+                \begin{tabular}{|c|c|}
+                    \hline
+                    \textbf{Set Theory} & \textbf{Probability} \\
+                    \hline
+                    \hline
+                    Element & Outcome \\
+                    \hline
+                    Subset  & Event   \\
+                    \hline
+                    Universal Set & Sample Space \\
+                    \hline
+                \end{tabular}
+            \end{center}
+                        }
+            \item Outcome and Event: {
+                \begin{enumerate}
+                    \item Outcomes are always \textbf{Mutually Exclusive} since there are the smallest units (i.e., Elements) in the Set.
+                    \item Event constitutes by different combinations of outcomes (through Union ($\cup$) Operation).
+                \end{enumerate}
+            } 
+            \item $\P{\text{Event}}$ is the possibility that the event appears in the sample space. 
+            \item $\P{\emptyset}=0$ since there is no element in \textit{null set}, and $\P{\text{Sample Space}}=1$.
+    \end{enumerate}
+    \item From Set Operation to Probability Operation
+    \begin{enumerate}
+        \item There are three Set Operations: $A \cup B, A \cap B, A^{^\mathsf{c}}$.
+        \item $\P{A \cup B} = \P{A}+\P{B}-\P{A\cap B}$.
+        \item \textbf{Union Bound:} $\P{\cup_{i=1}^N A_i}\leq \sum_{i=1}^{N}\P{A_i}$.
+        \item \textbf{Mutually Exclusive:}~$\P{A \cap B}=0$ so that $\P{A \cup B} = \P{A}+\P{B}$.
+        \item \textbf{Collectively Exhaustive:}~$\P{A\cup B}=1$.
+        \item \textbf{Partitions (i.e., Mutually Exclusive \& Collectively Exhaustive):}~$\P{\cup_{i=1}^N A_i}=\sum_{i=1}^{N}\P{A_i}=1$.
+    \end{enumerate}
+    \item Conditional Probability
+    \begin{enumerate}
+        \item $\condP{A}{B} = \frac{\P{AB}}{\P{B}}$.
+        \item \textbf{If $A_i$ are Mutually Exclusive:}~$\condP{A}{B} = \condP{\cup_{i=1}^{N}A_i}{B} = \sum_{i=1}^{N}\condP{A_i}{B}$.
+        \item \textbf{If $B_i$ are Partitions}~(Law of Total Number),
+        \begin{align}
+             \condP{A}{B} 
+             &= \frac{\P{AB}}{\P{B}}  \tag{Definition of Conditional Probability}\\
+             &= \P{AB}  \tag{$B$ is Collectively Exhaustive so $P (B)=1$} \\
+             &= \P{A\cdot\cup_{i=1}^{N}B_i}  \tag{$B$ is Mutually Exclusive} \\
+             &= \sum_{i=1}^{N}\P{AB_i}  \tag{$B$ is Partition} \\
+             &= \sum_{i=1}^{N}\condP{A}{B_i}\P{B_i}. \tag{Definition of Conditional Probability}
+        \end{align}
+    \end{enumerate}
+    \item Bayes' Theorem:~$\condP{A}{B} = \frac{\condP{B}{A}\P{A}}{\P{B}}$.
+    \item Independent:{
+        \begin{enumerate}
+            \item $\P{A\cap B}=\P{A}\P{B}$.
+            \item $\P{A \cup B} = \P{A}+\P{B}-\P{A}\P{B}$.
+            \item $\condP{A}{B} = \frac{\P{AB}}{\P{B}}=\frac{\P{A}\P{B}}{\P{B}}=\P{A}$.
+        \end{enumerate}
+    } 
+\end{enumerate}
