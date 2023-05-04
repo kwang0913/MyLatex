@@ -1,11 +1,11 @@
 # Fdb version 4
-["biber main"] 0 "main.bcf" "main.bbl" "main" 1683152400 -1
-  "main.bcf" 1683152399 106450 b70b9d6197cac106e3c1a12a05e832e8 "pdflatex"
+["biber main"] 1683235139 "main.bcf" "main.bbl" "main" 1683235157 0
+  "main.bcf" 1683235156 106450 b70b9d6197cac106e3c1a12a05e832e8 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1683152394 "c:/Users/wkl36/Dropbox/MyLatex/BeamerExample/main.tex" "main.pdf" "main" 1683152400 0
+["pdflatex"] 1683235151 "c:/Users/wkl36/Dropbox/MyLatex/BeamerExample/main.tex" "main.pdf" "main" 1683235157 0
   "../Formats/Macro.tex" 1683144877 3514 30f95f56cd49b460a8f82cbf1bfc8b94 ""
   "../formats/RU.cls" 1683146844 6129 484e2327b711e2d8662365d96a3434b1 ""
   "../formats/RULogos/RU_SHIELD_BLACK.eps" 1682878185 1244090 dd85c2f0612ec76a741f1ba685ae7350 ""
@@ -80,6 +80,7 @@
   "C:/Users/wkl36/scoop/apps/miktex/current/texmfs/install/fonts/type1/public/lm/lmmi5.pfb" 1256929440 31443 ba2241b179aa231f73e052863720cb42 ""
   "C:/Users/wkl36/scoop/apps/miktex/current/texmfs/install/fonts/type1/public/lm/lmmi7.pfb" 1256929440 30789 39c6b966e509dbc60e7a1aaaf85d08a0 ""
   "C:/Users/wkl36/scoop/apps/miktex/current/texmfs/install/fonts/type1/public/lm/lmr10.pfb" 1256929440 119235 05e5c8d6d60439433e50047898c2c0e0 ""
+  "C:/Users/wkl36/scoop/apps/miktex/current/texmfs/install/fonts/type1/public/lm/lmr5.pfb" 1256929440 120387 4904c2679a7b90fe9e17171d6c7c9dd0 ""
   "C:/Users/wkl36/scoop/apps/miktex/current/texmfs/install/fonts/type1/public/lm/lmr7.pfb" 1256929440 121145 00b210fbe9efd7ce850c04e64670de9a ""
   "C:/Users/wkl36/scoop/apps/miktex/current/texmfs/install/fonts/type1/public/lm/lmss10.pfb" 1256929440 97408 f595704ec2a07246c2d6f7b602587452 ""
   "C:/Users/wkl36/scoop/apps/miktex/current/texmfs/install/fonts/type1/public/lm/lmss12.pfb" 1256929440 96107 daf52840b555e3b38f9679b629b5e2df ""
@@ -364,16 +365,16 @@
   "C:/Users/wkl36/scoop/apps/miktex/current/texmfs/install/tex/latex/xcolor/svgnam.def" 1656236890 4704 af34fa7e0b1716f97116d8a28100bb35 ""
   "C:/Users/wkl36/scoop/apps/miktex/current/texmfs/install/tex/latex/xcolor/xcolor.sty" 1656236890 56148 51a9a8571c07b9921892ae11063ae853 ""
   "C:/Users/wkl36/scoop/apps/miktex/current/texmfs/install/tex/latex/xkeyval/xkeyval.sty" 1656236919 4937 4ce600ce9bd4ec84d0250eb6892fcf4f ""
-  "c:/Users/wkl36/Dropbox/MyLatex/BeamerExample/main.tex" 1683152386 11828 922241bbb49a412573fb8f38ba9a83df ""
+  "c:/Users/wkl36/Dropbox/MyLatex/BeamerExample/main.tex" 1683235133 15642 7fcd98f74a2d40d9175fcc13f437810c ""
   "figs/2d_poly_circle.eps" 1683084296 70092 4829b28682629275f8337b139c60d489 ""
   "figs/3d_poly_circle.eps" 1683084343 75237 d8cb381df099cf290450b99576adf18b ""
-  "main.aux" 1683152399 4275 a9d2d24ee1009090e2d4b65a29d63190 "pdflatex"
-  "main.bbl" 1683095020 0 d41d8cd98f00b204e9800998ecf8427e "biber main"
-  "main.nav" 1683152399 1825 35480572f6fccc77f4e60fdbd7955150 "pdflatex"
-  "main.out" 1683152399 257 63072ea984f8850e4685527118e37d61 "pdflatex"
-  "main.run.xml" 1683152399 2224 bc6149f5caee4074188e1b81a66978d0 "pdflatex"
-  "main.tex" 1683152386 11828 922241bbb49a412573fb8f38ba9a83df ""
-  "main.toc" 1683152399 136 e0eab225ac1cf7392e039dee41b249e2 "pdflatex"
+  "main.aux" 1683235156 5022 f75e5ed60d515e4f0089d79746d2516d "pdflatex"
+  "main.bbl" 1683235144 0 d41d8cd98f00b204e9800998ecf8427e "biber main"
+  "main.nav" 1683235156 2274 695f2736517a8399ef8bc2dbb2a96e6a "pdflatex"
+  "main.out" 1683235156 399 9615b810d668804eaf5ca9e23a99f0c5 "pdflatex"
+  "main.run.xml" 1683235156 2224 bc6149f5caee4074188e1b81a66978d0 "pdflatex"
+  "main.tex" 1683235133 15642 7fcd98f74a2d40d9175fcc13f437810c ""
+  "main.toc" 1683235156 191 a1617ae3705227f9c0e7b5130891b09e "pdflatex"
   (generated)
   "main.aux"
   "main.bcf"

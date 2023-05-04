@@ -1,3 +1,4 @@
 \babel@toc {english}{}\relax 
 \beamer@sectionintoc {1}{Motivation}{3}{0}{1}
 \beamer@sectionintoc {2}{Random Fourier Features}{13}{0}{2}
+\beamer@sectionintoc {3}{An analysis of RFF}{22}{0}{3}

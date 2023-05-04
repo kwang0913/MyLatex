@@ -8,8 +8,8 @@
 \declaretheorem[numbered=no,style=remark]{remark, claim}
 
 %Information to be included in the title page:
-\title[Random Fourier Features]{Random Fourier Features for Kernel Ridge Regression}
-\subtitle{Approximation Bounds and Statistical Guarantees}
+\title[Random Fourier Feature]{A random matrix analysis of random fourier features}
+\subtitle{beyond the Gaussian kernel, a precise phase transition, and the corresponding double descent}
 \author[Kai] % (optional, for multiple authors)
 {Kailong Wang\inst{1} 
 %\and Someone Else\inst{2}
@@ -48,7 +48,7 @@
   Consider a binary classification problem with non-linear (\eg polynomial) samples. This is not separable with linear function. 
 
   (\eg %$Y=X\beta+b$ where 
-  $X = {
+  $\mathbf{X} = {
     \begin{bmatrix}
       x_{1,1} \ x_{1,2} \\
       x_{2,1} \ x_{2,2} \\
@@ -69,7 +69,7 @@
   \end{figure}
   The Lifting function in this case is 
   $
-  \phi(X) = {
+  \phi(\mathbf{X}) = {
     \begin{bmatrix}
       x_{1,1}^2 \ x_{1,2}^2 \ \sqrt{2}x_{1,1}x_{1,2} \\
       x_{2,1}^2 \ x_{2,2}^2 \ \sqrt{2}x_{2,1}x_{2,2} \\
@@ -85,12 +85,12 @@
 \begin{itemize}
   \item<1-> Consider solving the above problem with \emph{support vector machine} (SVM).
   \begin{align*}
-    \mathcal{L}(\vec{w}, \vec{\alpha}) = \sum_{n=1}^N\alpha_n - \frac{1}{2}\sum_{n}^{N}\sum_{m}^{N}\alpha_n\alpha_m y_ny_m(x_n\trn x_m).
+    \mathcal{L}(\vec{w}, \vec{\alpha}) = \sum_{n=1}^N\alpha_n - \frac{1}{2}\sum_{n}^{N}\sum_{m}^{N}\alpha_n\alpha_m y_ny_m(\mathbf{x_n}\trn \mathbf{x_m}).
   \end{align*}
   The $\vec{w}$ is the linear decision boundary and $\vec{\alpha}$ is a vector of Lagrange multipliers.
-  \item <2-> We need to use lifting function $\phi(X)$ to make the samples linearly separable. Specifically, we replace $(x_n\trn x_m)$ with $(\phi(x_n)\trn\phi(x_m))$.
+  \item <2-> We need to use lifting function $\phi(X)$ to make the samples linearly separable. Specifically, we replace $(\mathbf{x_n}\trn \mathbf{x_m})$ with $(\phi(\mathbf{x_n})\trn\phi(\mathbf{x_m}))$.
   \begin{align*}
-    \phi(x_n)\trn\phi(x_m) 
+    \phi(\mathbf{x_n})\trn\phi(\mathbf{x_m}) 
     &= \bracks*{x_{n,1}^2 \ x_{n,2}^2 \ \sqrt{2}x_{n,1}x_{n,2}}\bracks*{x_{m,1}^2 \ x_{m,2}^2 \ \sqrt{2}x_{m,1}x_{m,2}}\trn \\
     &= x_{n,1}^2x_{m,1}^2 + x_{n,2}^2x_{m,2}^2 + 2x_{n,1}x_{n,2}x_{m,1}x_{m,2}
   \end{align*}
@@ -103,16 +103,16 @@
   \begin{itemize}
     \item <1-> Consider the following derivation,
     \begin{align*}
-      (x_n\trn x_m)^2 
+      (\mathbf{x_n}\trn \mathbf{x_m})^2 
       &= \parens*{\bracks*{x_{n,1} \ x_{n,2}}\bracks*{x_{m,1} \ x_{m,2}}\trn}^2 \\
       &= \parens*{x_{n,1}x_{m,1} + x_{n,2}x_{m,2}}^2 \\
       &= x_{n,1}^2x_{m,1}^2 + x_{n,2}^2x_{m,2}^2 + 2x_{n,1}x_{n,2}x_{m,1}x_{m,2} \\
-      &= \phi(x_n)\trn\phi(x_m)
+      &= \phi(\mathbf{x_n})\trn\phi(\mathbf{x_m})
     \end{align*}
     \item <2-> Instead of computing inner product in the high dimensional space, we compute the inner product in the original space.
     \item <3-> The function 
     \begin{align*}
-      K(x_n, x_m) = (x_n\trn x_m)^2 = \phi(x_n)\trn\phi(x_m)
+      K(\mathbf{x_n}, \mathbf{x_m}) = (\mathbf{x_n}\trn \mathbf{x_m})^2 = \phi(\mathbf{x_n})\trn\phi(\mathbf{x_m})
     \end{align*}
      is called a \textbf{kernel function}.
   \end{itemize}
@@ -121,7 +121,7 @@
 \begin{frame}
   \frametitle{There must be disadvantages\ldots}
   \begin{itemize}
-    \item <1-> Given training data $(x_1, y_1), (x_2, y_2), \ldots, (x_N, y_N) \in \mathcal{X}\times\mathcal{Y}$, where $\mathcal{X}\subseteq \R^d$ and $\mathcal{Y}\subseteq\R$. Consider \emph{Kernel Ridge Regression} (KRR), with $\phi(\mathcal{X})\subseteq \R^k$, where $k\rightarrow\infty$
+    \item <1-> Given training data $(\vec{x_1}, y_1), (\vec{x_2}, y_2), \ldots, (\vec{x_N}, y_N) \in \mathcal{X}\times\mathcal{Y}$, where $\mathcal{X}\subseteq \R^d$ and $\mathcal{Y}\subseteq\R$. Consider \emph{Kernel Ridge Regression} (KRR), with $\phi(\mathcal{X})\subseteq \R^k$, where $k\rightarrow\infty$
     \begin{align*}
       \mathcal{L}(\vec{w}, \lambda)=\argmin_{\vec{w}}\sum_{n}^{N}(y_n - \vec{w}\trn\phi(\vec{x}_n))^2 + \lambda\vec{w}\trn\vec{w}.
     \end{align*}
@@ -129,7 +129,7 @@
     \begin{align*}%\label{}
       (\mathbf{K}+\lambda\mathbf{I}_k)\vec{\alpha} = \vec{y},
     \end{align*} 
-    requires $\Theta(k^3)$ time and $\Theta(k^2)$ memory. Here $\mathbf{K}\in \R^{k\times k}$ is the kernel matrix or Gram matrix defined by $\mathbf{K}_{nm} \equiv K(\vec{x}_n, \vec{x}_m)$.
+    requires $\Theta(k^3)$ time and $\Theta(k^2)$ memory. Here $\mathbf{K}\in \R^{k\times k}$ is the kernel matrix or Gram matrix defined by $\mathbf{K}_{nm} \equiv K(\mathbf{x_n}, \mathbf{x_m})$.
     \item <2-> \textbf{Intuition:} Can we find a kernel function which lifts $\mathcal{X}$ to $\R^s$, where $d < s\ll k$, while not sacrifices model performance?
   \end{itemize}
 \end{frame}
@@ -180,9 +180,9 @@
 \begin{frame}
   \frametitle{Random Fourier Features}
   \begin{itemize}
-    \item <1-> Since both the $p(\cdot)$ and $K(\triangle)$ are real-valued, we can replace $\xi(\vec{x})$ with $z_{\vec{\omega}}(\vec{x})=[\sqrt{2}\cos(\vec{\omega}\trn\vec{x}+b)]$ where $\vec{\omega}$ is drawn from $p(\vec{\omega})$ and $b$ is uniformly drawn from $[0, 2\pi]$. Then eq.~\eqref{rffinC} becomes $\mathbb{E}_{\vec{\omega}}[z(\vec{x_n})\trn z(\vec{x_m})]$
-    \item <2-> \textbf{Note:} $z(\vec{x_n})\trn z(\vec{x_m})$ is an unbiased estimator of $\phi(\vec{x_n})\trn\phi(\vec{x_m})$. The $z(\vec{x})$ is not a lifting function.
-    \item <3-> \textbf{Note:} To further reduce the variance of the estimator, we can randomly draw $s$ samples of $\vec{\omega}$ and normalize each corresponding $z(\vec{x})$ by $\sqrt{s}$. Then the inner product $z(\vec{x_n})\trn z(\vec{x_m})=\frac{1}{s}\sum_{j=1}^{s}z_{\vec{\omega}j}(\vec{x_n})\trn z_{\vec{\omega}j}(\vec{x_m})$
+    \item <1-> Since both the $p(\cdot)$ and $K(\triangle)$ are real-valued, we can replace $\xi_{\vec{\omega}}(\vec{x})$ with $z_{\vec{\omega}}(\vec{x})=[\sqrt{2}\cos(\vec{\omega}\trn\vec{x}+b)]$ where $\vec{\omega}$ is drawn from $p(\vec{\omega})$ and $b$ is uniformly drawn from $[0, 2\pi]$. Then eq.~\eqref{rffinC} becomes $\mathbb{E}_{\vec{\omega}}[z_{\vec{\omega}}(\vec{x_n})\trn z_{\vec{\omega}}(\vec{x_m})]$
+    \item <2-> \textbf{Note:} $z_{\vec{\omega}}(\vec{x_n})\trn z_{\vec{\omega}}(\vec{x_m})$ is an unbiased estimator of $\phi(\vec{x_n})\trn\phi(\vec{x_m})$. The $z_{\vec{\omega}}(\vec{x})$ is not a lifting function.
+    \item <3-> \textbf{Note:} To further reduce the variance of the estimator, we can randomly draw $s$ samples of $\vec{\omega}$ and normalize each corresponding $z_{\vec{\omega}}(\vec{x})$ by $\sqrt{s}$. Then the inner product $z(\vec{x_n})\trn z(\vec{x_m})=\frac{1}{s}\sum_{j=1}^{s}z_{\vec{\omega}j}(\vec{x_n})\trn z_{\vec{\omega}j}(\vec{x_m})$
     % \item <4-> \textbf{Question:} The author samples $\vec{\omega}$ from $\R^d$ and average over $s$ samples in the following algorithm. However, $d\&s$ seems can be arbitrary number based on the above derivation.
   \end{itemize}
 \end{frame}
@@ -203,7 +203,7 @@
 %---------------------------------------------------------
 \begin{frame}
   \frametitle{Convergence}
-  \begin{exampleblock}{Bound for a \emph{fixed} pair of points $\vec{x_n}$ and $\vec{x_m}$}
+  \begin{exampleblock}{Bound for a \emph{fixed} pair of samples $\vec{x_n}$ and $\vec{x_m}$}
     Given $z_{\vec{\omega}}$ is bounded random variable between $[-\sqrt{2}, \sqrt{2}]$, with Hoeffding's Inequality, we have
     \begin{align*}
       \P{\abs{z(\vec{x_n})\trn z(\vec{x_m})-K(\vec{x_n}, \vec{x_m})}\geq \epsilon} \leq 2\exp\parens*{-\frac{s\epsilon^2}{4}}.
@@ -213,7 +213,7 @@
 %---------------------------------------------------------
 \begin{frame}
   \frametitle{Convergence}
-  \begin{exampleblock}{Bound for \emph{all} pair of points $\vec{x_n}$ and $\vec{x_m}$}
+  \begin{exampleblock}{Bound for \emph{all} pair of samples $\vec{x_n}$ and $\vec{x_m}$}
     Let $\mathcal{M}$ be a compact sunset of $\R^d$ with diameter $\textnormal{diam}(\mathcal{M})$. Then, for the mapping $z$ defined in Algorithm~\ref{RFF}, we have
     \begin{align*}
       \P{\sup_{x,y\in\mathcal{M}}\abs{z(\vec{x_n})\trn z(\vec{x_m})-K(\vec{x_n}, \vec{x_m})}\geq \epsilon} \\
@@ -222,30 +222,58 @@
   \end{exampleblock}
 \end{frame}
 %---------------------------------------------------------
-%Two columns
-\begin{frame}
-\frametitle{Two-column slide}
-\framesubtitle{This is a subtitle}
-
-\begin{columns}
-
-\column{0.5\textwidth}
-This is a text in first column.
-\begin{align*}
-  E=mc^2
-\end{align*}
-\begin{itemize}
-\item First item $\ell$
-\item Second item
-\end{itemize}
-
-\column{0.5\textwidth}
-This text will be in the second column
-and on a second thought this is a nice looking
-layout in some cases.
-\end{columns}
+\begin{frame}{Common RFF}
+  \centering
+  \begin{tabular}{c c c}
+    Kernel & $K(\triangle)$ & $p(\vec{\omega})$ \\ 
+    \hline
+    Gaussian & $\exp(-\gamma\norm{\triangle}_2^2)$ & $(2\pi)^{-\frac{s}{2}}\exp{-\gamma\norm{\vec{\omega}}_2^2}$\\ 
+    Laplacian & $\exp(-\norm{\triangle}_1)$ & $\prod\limits_{d}(\pi(1+\omega_d^2))^{-1}$\\ 
+    Cauchy & $\prod\limits_{d}2(1+\triangle_d^2)^{-1}$ & $\exp(-\norm{\triangle}_1)(\textcolor{red}{\mathord{?}})$
+  \end{tabular}
 \end{frame}
 %---------------------------------------------------------
 
+\section{An analysis of RFF}
+%---------------------------------------------------------
+\begin{frame}
+  \frametitle{The challenge that RFF faces in the learning regime}
+  Consider a machine learning system with $d$ parameters, trained on a dataset of size $N$, asymptotic analysis has
+  \begin{itemize}
+    \item \textbf{Classical regime:} either focuses on the (statistical) population $N\rightarrow\infty$ limit, for $d$ fixed, or the over-parameterized $d\rightarrow\infty$ limit, for a given $N$.
+    \item \textbf{Modern regime:} modern learning system (\eg Neural Network) usually has model complexity and data size increase together. A double asymptotic regime where $N, d\rightarrow\infty, d/N\rightarrow c$ is established. 
+  \end{itemize}
+  RFF has been shown that entry-wise the Gram matrix $\xi(\vec{x})$ converges to the Gaussian kernel matrix as $s\rightarrow\infty$ and this property remains in modern regime.
+
+  However, the convergence $\norm{\mathbf{\Xi}\trn\mathbf{\Xi}/s-\mathbf{K}}\rightarrow 0$ no longer holds in spectral norm (blow-up). Here $\mathbf{\Xi}$ is the matrix formed by stacking $\xi(\vec{x})$ for all samples.
+\end{frame}
+%---------------------------------------------------------
+\begin{frame}
+  \frametitle{Setup}
+  \begin{itemize}
+    \item $0< \lim\inf\limits_N\min\braces{\frac{s}{N},\frac{d}{N}}\leq \lim\sup\limits_N\max\braces{\frac{s}{N},\frac{d}{N}}<\infty$.
+    \item $\lim\sup\limits_N\norm{\mathbf{X}}_2<\infty \qquad \lim\sup\limits_N\norm{\vec{y}}_{\infty}<\infty$ 
+    \item In classical regime $\norm{\mathbf{\Xi}\trn\mathbf{\Xi}/s}\equiv \mathbf{K}\equiv\mathbf{K}_{\cos}+\mathbf{K}_{\sin}$
+    \item Training MSE: $\mathcal{L}_{train}=\frac{1}{N}\norm{\vec{y}-\mathbf{\Xi}\trn\vec{w}}_2^2=\frac{\lambda^2}{N}\norm{\mathbf{Q}(\lambda)\vec{y}}_2^2$ where 
+    \begin{align*}
+      \mathbf{Q}(\lambda)\equiv\parens*{\frac{1}{N}\mathbf{\Xi}\trn\mathbf{\Xi}+\lambda\mathbf{I}_N}^{-1}
+    \end{align*}
+    \item We want to assess the asymptotic $\mathcal{L}_{train}$ by expectation which is equivalent to assess the asymptotic $\mathbb{E}_{\vec{\Omega}}\braces{\mathbf{Q}(\lambda)}$ where $\vec{\Omega}$ is the matrix form of $\vec{\omega}$, which is numerically hard.
+    % \item Testing MSE: $\mathcal{L}_{test}=\frac{1}{N}\norm{\vec{\hat{y}}-\mathbf{\hat{\Xi}}_{test}\trn\vec{w}}_2^2$
+    \item \textbf{Object:} Find an asymptotic ``alternative'' for $\mathbb{E}_{\vec{\Omega}}\braces{\mathbf{Q}(\lambda)}$ when $d, s, N\rightarrow\infty$.
+  \end{itemize}
+\end{frame}
+%---------------------------------------------------------
+\begin{frame}
+  \frametitle{Some Vague Idea from me...}
+  We want to show that with consideration of $d, s, N$
+  \begin{align*}
+    &\norm{\mathbb{E}_{\vec{\Omega}}\braces{\mathbf{Q}(\lambda)}-\mathbf{\hat{Q}}(\lambda)}_2\rightarrow 0 \\
+    &\mathbf{\hat{Q}}(\lambda)\equiv\parens*{\frac{s}{N}\parens*{\frac{\vec{K}_{\cos}}{1+\delta_{\cos}}+\frac{\vec{K}_{\sin}}{1+\delta_{\sin}}}+\lambda\mathbf{I}_N}^{-1} \\
+    &\delta_{\cos}=\frac{1}{N}\tr\parens*{\vec{K}_{\cos}\vec{\hat{\vec{Q}}}} \qquad \delta_{\sin}=\frac{1}{N}\tr\parens*{\vec{K}_{\sin}\vec{\hat{\vec{Q}}}}
+  \end{align*}
+  When $\frac{s}{N}\rightarrow\infty$, $\delta_{\cos},\delta_{\sin}\rightarrow 0$ and thus $\mathbf{\hat{Q}}\simeq \parens*{\frac{s}{N}\mathbf{K}}^{-1}$
+\end{frame}
+%---------------------------------------------------------
 
 \end{document}
