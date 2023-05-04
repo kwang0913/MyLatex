@@ -1,0 +1,9 @@
+*
+!figs
+!*.pdf
+!*.tex
+!.gitignore
+!*.eps
+!figs/code
+!*.py
+

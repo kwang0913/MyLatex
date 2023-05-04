@@ -1,0 +1,5 @@
+*
+!collection
+!*.pdf
+!*.tex
+!.gitignore
