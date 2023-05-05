@@ -3,4 +3,5 @@
 !*.tex
 !*.eps
 !*.py
-!.gitignore
+!*.gitignore
+!*.md
