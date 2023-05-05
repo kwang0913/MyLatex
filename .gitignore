@@ -1,1 +1,6 @@
-**/.vscode/
+*.*
+!*.pdf
+!*.tex
+!*.eps
+!*.py
+!.gitignore

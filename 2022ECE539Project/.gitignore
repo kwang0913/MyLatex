@@ -1,7 +1,0 @@
-*
-!figs
-!*.pdf
-!*.tex
-!*.eps
-!*.py
-!.gitignore
