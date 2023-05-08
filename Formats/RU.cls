@@ -75,14 +75,10 @@
 \RequirePackage[breakable]{tcolorbox} %Customized Box
 \tcbuselibrary{skins}
 \RequirePackage{transparent}
+\RequirePackage{textpos}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%% Colors
-% \definecolor{black}{RGB}{0, 0, 0}
-% \definecolor{white}{RGB}{255, 255, 255}
-% \definecolor{blue}{RGB}{0, 83, 134}
-% \definecolor{yellow}{RGB}{206, 177, 68}
-% \definecolor{green}{RGB}{0, 146, 62}
 \definecolor{RUgray}{HTML}{6A757C} % gray = PANTONE 431
 \definecolor{RUred}{HTML}{cc0033} % red = PANTONE 186(250 anniversary version)
 
@@ -91,7 +87,8 @@
 \usebackgroundtemplate{
 \parbox[c][\paperheight][c]{\paperwidth}{\centering\transparent{0.1}\includegraphics[height=0.8\paperheight]{../formats/RULogos/RU_SHIELD_BLACK.eps}}
 }
-\logo{\includegraphics[scale=0.075]{../formats/RULogos/RU_SHIELD_CMYK_RED.eps}}
+
+% \logo{\includegraphics[scale=0.075]{../formats/RULogos/RU_SHIELD_CMYK_RED.eps}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%% Style of the blocks 
@@ -103,7 +100,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%% Header and foot
-\setbeamercolor*{section in head/foot}{bg=RUred, fg=white}
+\setbeamercolor*{section in head/foot}{fg=RUred}
 % \setbeamercolor{subsection in head/foot}{bg=RUgray, fg=white}
 % \setbeamerfont{block title}{size={}}
 
@@ -112,15 +109,28 @@
 \setbeamercolor*{title in head/foot}{bg=RUgray, fg=white}
 \setbeamercolor*{date in head/foot}{bg=RUred, fg=white}
 
-% foot style
-\defbeamertemplate*{footline}{infolines theme}{
+% Headline style
+\setbeamertemplate{headline}{%
+\begin{minipage}[c][0.09\paperheight]{\paperwidth}
+    \begin{minipage}{0.25\paperwidth}
+        ~\includegraphics[height=0.081\paperheight]{../formats/RULogos/RU_SHIELD_CMYK_RED.eps}
+    \end{minipage}
+    \begin{minipage}{0.75\paperwidth}
+        \insertnavigation{0.75\paperwidth}
+    \end{minipage}
+\end{minipage}
+\color{RUred}\rule{\paperwidth}{1pt} 
+}
+
+% footline style
+\defbeamertemplate*{footline}{infolines theme}{%
 \leavevmode%
 \hbox{%
 \begin{beamercolorbox}[wd=.15\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
 \usebeamerfont{author in head/foot}\insertshortauthor
 \end{beamercolorbox}%
 
-\begin{beamercolorbox}[wd=.10\paperwidth,ht=2.25ex,dp=1ex,center]{institute in head/foot}%
+\begin{beamercolorbox}[wd=.15\paperwidth,ht=2.25ex,dp=1ex,center]{institute in head/foot}%
 \usebeamerfont{institute in head/foot}\insertshortinstitute
 \end{beamercolorbox}%
 
@@ -128,12 +138,14 @@
 \usebeamerfont{title in head/foot}\insertshorttitle
 \end{beamercolorbox}%
 
-\begin{beamercolorbox}[wd=.25\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%
+\begin{beamercolorbox}[wd=.20\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%
 \usebeamerfont{date in head/foot}\insertshortdate{}\hspace*{4ex}
 \insertframenumber{} / \inserttotalframenumber\hspace*{2ex}
 \end{beamercolorbox}
 }%
 }
+% \mode
+% <all>
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%% Create the blocks of the beamer template
@@ -152,10 +164,10 @@
 \setbeamercolor*{block body example}{fg=black, bg=white}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Theorem Style
-\declaretheoremstyle[
-    spaceabove=6pt, spacebelow=6pt,
-    headfont=\normalfont\bfseries,
-    notefont=\mdseries, notebraces={(}{)},
-    bodyfont=\normalfont,
-    postheadspace=1em
-    ]{mystyle}
+% \declaretheoremstyle[
+%     spaceabove=6pt, spacebelow=6pt,
+%     headfont=\normalfont\bfseries,
+%     notefont=\mdseries, notebraces={(}{)},
+%     bodyfont=\normalfont,
+%     postheadspace=1em
+%     ]{mystyle}
