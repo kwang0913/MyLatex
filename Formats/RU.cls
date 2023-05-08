@@ -24,8 +24,8 @@
 %%%% Packages Used
 
 %% Font Packages
-\RequirePackage[english]{babel}
 % \RequirePackage[utf8]{inputenc} %beamer has this by default
+\RequirePackage[english]{babel}
 \RequirePackage[T1]{fontenc}
 \RequirePackage{libertinus}
 \RequirePackage{microtype}
@@ -37,6 +37,14 @@
 \RequirePackage{mleftright}  %Fixes some annoying spacing issues
 \RequirePackage{bm} %Boldface math, load after other math font packages
 
+%% Graphics Packages
+\RequirePackage{graphicx} %Better Graphics
+\RequirePackage[export]{adjustbox} %Better Graphics
+% \RequirePackage[svgnames]{xcolor} %Beamer has this by default
+\RequirePackage[breakable]{tcolorbox} %Customized Box
+\tcbuselibrary{skins}
+\RequirePackage{transparent}
+
 %% Table Packages
 \RequirePackage{tabularx} 
 \RequirePackage{multirow} 
@@ -47,20 +55,18 @@
 \RequirePackage[shortlabels]{enumitem} %Better List
 % \RequirePackage{hyperref} %Beamer has this by default
 % \RequirePackage{cleveref} %Must load before amsthm Conflict With Beamer
-\RequirePackage{amsthm} %Better Theorems
-\RequirePackage{thmtools} %Better Theorems
-\RequirePackage{thm-restate} %Better Theorems
+\RequirePackage{amsthm, thmtools, thm-restate} %Better Theorems
 
 %% Code Packages
-% \RequirePackage{listings} % Package to insert code
+% \RequirePackage{listings} %Package to insert code
 \RequirePackage{algorithm}
 \RequirePackage{algpseudocode}
 % \RequirePackage{keyval}
 
 %% Display Packages
-\RequirePackage[document]{ragged2e} % Package to justify text
-\RequirePackage{csquotes} % Package to facilities quotations
-\RequirePackage{multicol} % Package to use multicols
+\RequirePackage[document]{ragged2e} %Package to justify text
+\RequirePackage{csquotes} %Package to facilities quotations
+\RequirePackage{multicol} %Package to use multicols
 
 %% Other Packages
 \RequirePackage{calc}
@@ -68,14 +74,6 @@
 \RequirePackage{pgf, tikz}
 \RequirePackage{epstopdf}
 \RequirePackage[backend=biber, style=numeric, sorting=none]{biblatex}
-
-%% Graphics Packages
-\RequirePackage{graphicx} %Better Graphics
-\RequirePackage[export]{adjustbox} %Better Graphics
-\RequirePackage[breakable]{tcolorbox} %Customized Box
-\tcbuselibrary{skins}
-\RequirePackage{transparent}
-\RequirePackage{textpos}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%% Colors
@@ -134,11 +132,11 @@
 \usebeamerfont{institute in head/foot}\insertshortinstitute
 \end{beamercolorbox}%
 
-\begin{beamercolorbox}[wd=.50\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+\begin{beamercolorbox}[wd=.45\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
 \usebeamerfont{title in head/foot}\insertshorttitle
 \end{beamercolorbox}%
 
-\begin{beamercolorbox}[wd=.20\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%
+\begin{beamercolorbox}[wd=.25\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%
 \usebeamerfont{date in head/foot}\insertshortdate{}\hspace*{4ex}
 \insertframenumber{} / \inserttotalframenumber\hspace*{2ex}
 \end{beamercolorbox}

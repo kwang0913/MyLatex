@@ -1,5 +1,5 @@
 %%%% Page Margin %%%%
-\RequirePackage{geometry}
+\RequirePackage[letterpaper, margin=0.75in]{geometry}
 
 %%%% Page Header and Foot %%%%
 \RequirePackage{fancyhdr}
@@ -17,8 +17,8 @@
 \RequirePackage{microtype} %Better Font Rendering
 \RequirePackage{libertinus} %Very popular math font
 \RequirePackage[T1]{fontenc} %Better Printing Font
-\RequirePackage[utf8]{inputenc} %enable utf8 encoding
 \RequirePackage[english]{babel} %English Language
+\RequirePackage[utf8]{inputenc} %enable utf8 encoding
 
 %%%% Math Env
 \RequirePackage{amsfonts,amsmath,amssymb} %Math Font Packages
@@ -26,10 +26,10 @@
 \RequirePackage{mleftright}  %Fixes some annoying spacing issues
 \RequirePackage{bm} %Boldface math, load after other math font packages
 
-%%%% Beautiful Stuff
+%%%% Graphics Packages
 \RequirePackage{graphicx} %Better Graphics
 \RequirePackage[export]{adjustbox} %Better Graphics
-\RequirePackage[dvipsnames, svgnames]{xcolor} %Must load before tcolorbox
+\RequirePackage[svgnames]{xcolor} %Must load before tcolorbox
 \RequirePackage[breakable]{tcolorbox} %Customized Box
 \tcbuselibrary{skins}
 \RequirePackage{transparent} 
@@ -42,19 +42,20 @@
 
 %%%% Theorems etc (also  problems)
 \RequirePackage[shortlabels]{enumitem} %Better List
-\RequirePackage{hyperref, cleveref} %Fantastic crossrefer
-\RequirePackage{amsthm, thmtools} %Better Theorems
-\RequirePackage{thm-restate} %Better Theorems
+\RequirePackage{hyperref} %Fantastic crossrefer
+\RequirePackage{cleveref} %Must load before amsthm and after hyperref
+\RequirePackage{amsthm, thmtools, thm-restate} %Better Theorems
 
 %%%% Code Packages
-\RequirePackage{algorithm2e} % Package to create pseudo-code
-\RequirePackage{listings} % Package to insert code
+% \RequirePackage{listings} %Package to insert code
+\RequirePackage{algorithm}
+\RequirePackage{algpseudocode}
 % \RequirePackage{keyval}
 
 %%%% Display Packages
-\RequirePackage[document]{ragged2e} % Package to justify text
-\RequirePackage{csquotes} % Package to facilities quotations
-\RequirePackage{multicol} % Package to use multicols
+\RequirePackage[document]{ragged2e} %Package to justify text
+\RequirePackage{csquotes} %Package to facilities quotations
+\RequirePackage{multicol} %Package to use multicols
 
 %%%% Other Packages
 \RequirePackage{calc}
@@ -66,22 +67,22 @@
 %%%% A box fill the rest of the page
 \newtcolorbox{stretchbox}[1][]{
     height fill,
-    sharp corners,
+    % sharp corners,
     colback=white,
-    % colframe=yellow!50!black,
+    colframe=black,
     #1
     }
 
 %%%% Box Environment
-\newtcolorbox{prob}[1]{
+\newtcolorbox{problem}[1]{
 % Set box style
-    sidebyside,
-    sidebyside align=top,
+    % sidebyside,
+    % sidebyside align=top,
 % Dimensions and layout
-    width=\textwidth,
+    % width=\textwidth,
     toptitle=2.5pt,
     bottomtitle=2.5pt,
-    righthand width=0.20\textwidth,
+    % righthand width=0.20\textwidth,
 % Coloring
     colbacktitle=white,
     coltitle=black,
@@ -89,21 +90,22 @@
     colframe=black,
 % Title formatting
     title={
-        #1 \hfill Grade:\hspace*{0.15\textwidth}
+        #1 \hspace*{0.5\paperwidth} Grade:
     },
     fonttitle=\large\bfseries
 }
 
 %%%% Problem Environment 
-\newenvironment{problem}[1]{
-    \begin{prob}{#1}
-}
-{
-    \tcblower
-    \centering
-    \textit{\scriptsize\bfseries Faculty Comments}
-    \end{prob}
-}
+% \newenvironment{problem}[1]{
+%     \begin{prob}{#1}
+% }
+% {
+%     % 
+%     \tcblower
+%     \centering
+%     \textit{\scriptsize\bfseries Faculty Comments}
+%     \end{prob}
+% }
 
 %%%% Draw a line
 \newcommand{\myrule}{\rule{1.5in}{0.1mm}}
