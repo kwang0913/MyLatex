@@ -2,7 +2,7 @@
 
 \section{Joint CDF}
 \begin{definition}[Joint CDF]
-    The joint CDF of random variables $X$ and $Y$ is 
+    The joint CDF of random variables $X$ and $Y$ is
     \[F_{X,Y}(x,y) = \P{X\leq x, Y\leq y}.\]
 \end{definition}
 
@@ -21,16 +21,16 @@ The joint CDF is a \textbf{complete} probability model for any pair of random va
 
 \section{Joint PMF}
 \begin{definition}[Joint PMF]
-    The joint PMF of random variables $X$ and $Y$ is 
-    \[P_{X,Y}(x,y) = \P{X=x, Y=y}.\]    
+    The joint PMF of random variables $X$ and $Y$ is
+    \[P_{X,Y}(x,y) = \P{X=x, Y=y}.\]
 \end{definition}
 
 The joint PMF is a \textbf{complete} probability model for any pair of discrete random variables $X$ and $Y$.
 
 \begin{theorem}
-    For discrete random variables $X$ and $Y$ and any set $B$ in the $X$, $Y$ plane, the probability of the event 
-    % $\set{(X,Y)\in B}$ 
-    is 
+    For discrete random variables $X$ and $Y$ and any set $B$ in the $X$, $Y$ plane, the probability of the event
+    % $\set{(X,Y)\in B}$
+    is
     \[\P{[B]}=\sum_{(x,y)\in B}P_{X,Y}(x,y).\]
 \end{theorem}
 
@@ -39,7 +39,7 @@ Apparently, the joint PMF is non-negative and sums to one.
 
 \section{Marginal PMF}
 \begin{theorem}
-    For discrete random variables $X$ and $Y$ with joint PMF $P_{X,Y}(x,y)$, 
+    For discrete random variables $X$ and $Y$ with joint PMF $P_{X,Y}(x,y)$,
     \[P_X(x)=\sum_{y\in S_Y}P_{X,Y}(x,y), \qquad P_Y(y)=\sum_{x\in S_X}P_{X,Y}(x,y).\]
 \end{theorem}
 For discrete random variables, the marginal PMF $P_X(x)$ and $P_Y(y)$ are probability models for the individual random variables $X$ and $Y$, but they only provide an \textbf{incomplete} probability model for the pair of random variables $X$ and $Y$.
@@ -55,7 +55,7 @@ Apparently, we can then derive the joint PDF as follows,
 The joint PDF is a \textbf{complete} probability model for any pair of continuous random variables $X$ and $Y$.
 
 \begin{theorem}
-    The probability that the continuous random variables $(X,Y)$ are in $A$ 
+    The probability that the continuous random variables $(X,Y)$ are in $A$
     \[\P{[A]}=\iint\limits_A f_{X,Y}(x,y)\diff x\diff y.\]
 \end{theorem}
 
@@ -64,7 +64,7 @@ The joint PDF is non-negative and integrates to one.
 
 \section{Marginal PDF}
 \begin{theorem}
-    For continuous random variables $X$ and $Y$ with joint PDF $f_{X,Y}(x,y)$, 
+    For continuous random variables $X$ and $Y$ with joint PDF $f_{X,Y}(x,y)$,
     \[f_X(x)=\int_{-\infty}^{\infty}f_{X,Y}(x,y)\diff y, \qquad f_Y(y)=\int_{-\infty}^{\infty}f_{X,Y}(x,y)\diff x.\]
 \end{theorem}
 For continuous random variables, the marginal PDFs $f_X(x)$ and $f_Y(y)$ are probability models for the individual random variables $X$ and $Y$, but they only provide an \textbf{incomplete} probability model for the pair of random variables $X$ and $Y$.
@@ -77,7 +77,7 @@ For continuous random variables, the marginal PDFs $f_X(x)$ and $f_Y(y)$ are pro
         f_{X,Y}(x,y) &=f_X(x)f_Y(y). \tag{Continuous}
     \end{align}
 \end{definition}
-It's easy to show that if $X$ and $Y$ are independent, then 
+It's easy to show that if $X$ and $Y$ are independent, then
 \[F_{X,Y}(x,y)=\P{X\leq x, Y\leq y}=\P{X\leq x}\P{Y\leq y}=F_X(x)F_Y(y).\]
 
 \section{Expected Value of a Function of Two Random Variables}
@@ -87,7 +87,7 @@ It's easy to show that if $X$ and $Y$ are independent, then
         \E{g(X,Y)} &= \sum_{x\in S_X}\sum_{y\in S_Y}g(x,y)P_{X,Y}(x,y); \tag{Discrete}\\
         \E{g(X,Y)} &= \int_{-\infty}^{\infty}\int_{-\infty}^{\infty}g(x,y)f_{X,Y}(x,y)\diff x\diff y. \tag{Continuous}
     \end{align}
-\end{theorem} 
+\end{theorem}
 
 \begin{theorem}
     \[\E{\sum_{i=1}^{n}a_i g_i(X,Y)}=\sum_{i=1}^{n}a_i\E{g_i(X,Y)}.\]
@@ -95,7 +95,7 @@ It's easy to show that if $X$ and $Y$ are independent, then
 
 \begin{theorem}
     For \textbf{any} two random variables $X$ and $Y$,
-    \[\E{aX+bY}=a\E{X}+b\E{Y}.\]    
+    \[\E{aX+bY}=a\E{X}+b\E{Y}.\]
 \end{theorem}
 
 \section{Covariance, Correlation and Independent}

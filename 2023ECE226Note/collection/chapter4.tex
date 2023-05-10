@@ -1,15 +1,15 @@
 \chapter{Continuous Random Variables}
 
 
-\section{Continuous sample space} 
+\section{Continuous sample space}
 \begin{axiom}
-    A random variable $X$ is continuous if the range $S_X$ consists of one or more intervals. For $x\in S_X$, $\P{X=x}=0$. 
+    A random variable $X$ is continuous if the range $S_X$ consists of one or more intervals. For $x\in S_X$, $\P{X=x}=0$.
 \end{axiom}
 
 
 \section{The Cumulative Distribution Function}
 \begin{definition}[Cumulative Distribution Function (CDF)]
-    The CDF of random variable $X$ is 
+    The CDF of random variable $X$ is
     \[F_X(x) = \P{X\leq x}.\]
 \end{definition}
 
@@ -26,13 +26,13 @@
 \section{Probability Density Function}
 Start with a continuous random variable $X$ with CDF $F_X(x)$. The probability of ``$X$ with volume $\triangle$'' is defined as:
 \begin{align*}
-    \P{x<X\leq x+\triangle} 
+    \P{x<X\leq x+\triangle}
     &= F_X(x+\triangle)-F_X(x) \\
     &= \frac{F_X(x+\triangle)-F_X(x)}{(x+\triangle)-x}\cdot\triangle.
 \end{align*}
-\begin{definition}[Probability Density Function (PDF)] 
+\begin{definition}[Probability Density Function (PDF)]
     \begin{align*}
-        f_X(x) 
+        f_X(x)
         &= \lim_{\triangle\rightarrow 0}\frac{F_X(x+\triangle)-F_X(x)}{\triangle} \\
         &= \frac{\diff F_X(x)}{\diff x}.
     \end{align*}
@@ -81,32 +81,32 @@ Start with a continuous random variable $X$ with CDF $F_X(x)$. The probability o
 \begin{enumerate}
     \item Continuous Uniform $\Unif(k,l)$: A continuous counterpart of Discrete Uniform {
         \begin{align*}
-            f_X(x) 
+            f_X(x)
             &= {
                 \begin{cases}
                 \frac{1}{l-k} & k\leq x \leq l \\
                 0             & otherwise.
                 \end{cases} } \\
-            F_X(x) 
+            F_X(x)
             &= \frac{x-k}{l-k}. \qquad x\in (k,l)\\
             \E{X}
             &= (l+k)/2. \\
-            \Var[X] 
+            \Var[X]
             &= (l-k)^2/12. \\
         \end{align*}
     }
     \item Exponential $\Expv(\lambda)$: A continuous counterpart of $\Geomv(1-e^{-\lambda})$ {
         \begin{align*}
-            f_X(x) 
+            f_X(x)
             &= {
                 \begin{cases}
                     \lambda e^{-\lambda x} & x\geq 0 \\
                     0                      & otherwise.
                 \end{cases}
             } \\
-            F_X(x) 
+            F_X(x)
             &= 1-e^{-\lambda x}. \\
-            \E{X} 
+            \E{X}
             &= 1/\lambda. \\
             \Var[X]
             &= 1/\lambda^2.
@@ -138,7 +138,7 @@ Start with a continuous random variable $X$ with CDF $F_X(x)$. The probability o
 \end{theorem}
 
 \begin{definition}[Gaussian Random Variable]
-    $X$ is a $\mathsf{Gaussian}(\mu, \sigma)$ random variable if the \textrm{PDF} of $X$ is 
+    $X$ is a $\mathsf{Gaussian}(\mu, \sigma)$ random variable if the \textrm{PDF} of $X$ is
     \[f_X(x)=\frac{1}{\sqrt{2\pi\sigma^2}}\exp(-\frac{(x-\mu)^2}{2\sigma^2}).\]
     $X$ is also called $\mathsf{Normal}(\mu,\sigma)$ random variable. We will use $\mathsf{N}(\mu, \sigma)$ in the following content.
 \end{definition}
@@ -154,12 +154,12 @@ Start with a continuous random variable $X$ with CDF $F_X(x)$. The probability o
 \begin{theorem}[Standard Normal Random Variable]
     The $\Gaus(\mu,\sigma)$ with $\mu=0, \sigma=1$ is called standard normal random variable $Z\sim\Gaus(0,1)$. The \emph{PDF} is,
     \[f_X(x)=\frac{1}{\sqrt{2\pi}}\exp(-\frac{x^2}{2}).\]
-    And the \emph{CDF} is 
+    And the \emph{CDF} is
     \[\Phi(z)=\int_{-\infty}^{z}\frac{1}{\sqrt{2\pi}}\exp(-\frac{u^2}{2})\diff u.\]
 \end{theorem}
 
 \begin{theorem}
-    If $X$ is $\Gaus(\mu,\sigma)$, the \emph{CDF} of $X$ is 
+    If $X$ is $\Gaus(\mu,\sigma)$, the \emph{CDF} of $X$ is
     \[F_X(x)=\Phi\parens*{\frac{x-\mu}{\sigma}}.\]
     The probability that $X$ is in the interval \emph{$(a,b)$} is
     \[\P{a<X\leq b}=\Phi\parens*{\frac{b-\mu}{\sigma}}-\Phi\parens*{\frac{a-\mu}{\sigma}}.\]
@@ -180,9 +180,9 @@ Start with a continuous random variable $X$ with CDF $F_X(x)$. The probability o
             0 & otherwise.
         \end{cases}
     }\]
-    The \textbf{unit impulse function} is 
+    The \textbf{unit impulse function} is
     \[\delta(x)=\lim_{\epsilon\rightarrow 0}d_{\epsilon}(x).\]
-    Since 
+    Since
     \[\int_{-\infty}^{\infty}\delta(x)\diff x = 1.\]
     The $\delta(x)$ is indeed a PDF given it is also non-negative.
 \end{definition}
@@ -209,7 +209,7 @@ Start with a continuous random variable $X$ with CDF $F_X(x)$. The probability o
 \end{theorem}
 
 \begin{corollary}
-    The~\cref{delta} allows us to define a generalized \emph{PDF} that applies to discrete random variables as well as to continuous random variables. Consider the \emph{CDF} of a discrete random variable, $X$. It is constant (let's say $0$ for now) everywhere except at point $x_i\in S_X$, where it has jumps of height $P_X(x_i)$. Using the \textbf{unit step function}, the \emph{CDF} of $X$ is 
+    The~\cref{delta} allows us to define a generalized \emph{PDF} that applies to discrete random variables as well as to continuous random variables. Consider the \emph{CDF} of a discrete random variable, $X$. It is constant (let's say $0$ for now) everywhere except at point $x_i\in S_X$, where it has jumps of height $P_X(x_i)$. Using the \textbf{unit step function}, the \emph{CDF} of $X$ is
     \[F_X(x)=\sum_{x_i\in S_X} P_X(x_i)u(x-x_i).\]
     And the \emph{PDF} can be defined with $\delta(x)$ as
     \[f_X(x)=\sum_{x_i\in S_X}P_X(x_i)\delta(x-x_i).\]
@@ -222,7 +222,7 @@ Start with a continuous random variable $X$ with CDF $F_X(x)$. The probability o
 \end{corollary}
 
 \begin{theorem}
-    For a random variable $X$ (not specified whether it is discrete or continuous), we have 
+    For a random variable $X$ (not specified whether it is discrete or continuous), we have
     \begin{align*}
         q
         &= \P{X=x_0} && \text{(General expression)} \\

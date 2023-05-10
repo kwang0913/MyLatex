@@ -1,11 +1,11 @@
 \chapter{Discrete Random Variables}
 \begin{enumerate}
     \item Discrete Random Variables: Assign numerical value to discrete outcomes
-    \item Probability Mass Function~(PMF): \[\sum_{x\in X}P_X(x)=1.\] 
+    \item Probability Mass Function~(PMF): \[\sum_{x\in X}P_X(x)=1.\]
     \item Families of Discrete Random Variables and their PMF{
         \begin{enumerate}
             \item Bernoulli ($p$): \textbf{E.g., Flip a coin}{
-                \[ P_X(x) = 
+                \[ P_X(x) =
                 \begin{cases}
                     1-p & x=0, \\
                     p   & x=1, \\
@@ -15,21 +15,21 @@
             \item Binomial ($n, p$): Get \textbf{x} successes in \textbf{n} Bernoulli ($p$) experiments $\iff$ independent trails{
                 \[P_X(\textcolor{red}{x}) = {
                     \begin{cases}
-                        \binom{n}{x}p^x(1-p)^{n-x} & x=0,1,\ldots,n \\ 
+                        \binom{n}{x}p^x(1-p)^{n-x} & x=0,1,\ldots,n \\
                         0 & otherwise.
                     \end{cases}
                 }\]
-                \textbf{Note:} Bernoulli ($p$) $\iff$ Binomial ($1, p$). 
+                \textbf{Note:} Bernoulli ($p$) $\iff$ Binomial ($1, p$).
             }
             \item Poisson ($\alpha$): Binomial ($n, p$) with small $p$, large $n$, and $\alpha=np${
-                \[ P_X(x) = 
+                \[ P_X(x) =
                 \begin{cases}
                     \dfrac{\alpha^x e^{-\alpha}}{x!}   & x=0,1,\ldots \\
                     0   & otherwise.
                 \end{cases} \]
             }
             \item Geometric ($p$): Get the \textbf{1st} success at the $\bm{x}$-\textbf{th} Bernoulli ($p$) experiment {
-                \[ P_X(x) = 
+                \[ P_X(x) =
                 \begin{cases}
                     p(1-p)^{x-1} & x=1,2,\ldots \\
                     0   & otherwise.
@@ -45,12 +45,12 @@
                 \textbf{Note:} Geometric ($p$) $\iff$ Pascal ($1, p$).
             }
             \item Discrete Uniform ($k, l$): outcomes are uniformly distributed on range $(k, l)$ \textbf{E.g., Roll a Die}{
-                \[ P_X(x) = 
+                \[ P_X(x) =
                 \begin{cases}
                     1/(l-k+1)   & x=k,k+1,k+2,\ldots,l \\
                     0   & otherwise.
                 \end{cases} \]
-            }            
+            }
         \end{enumerate}
     }
     \item Cumulative Distribution Function (CDF): {
@@ -97,8 +97,8 @@
                     }
                 \end{enumerate}
             }
-            \item From an engineering perspective, \textbf{Mean (including Expectations, etc.)} is numerically easier to calculate, either using human brain or computers, than Mode and Median, when the sample space is humongous. 
-            \item In most cases, average, mean and expectation refer to the same concept. 
+            \item From an engineering perspective, \textbf{Mean (including Expectations, etc.)} is numerically easier to calculate, either using human brain or computers, than Mode and Median, when the sample space is humongous.
+            \item In most cases, average, mean and expectation refer to the same concept.
         \end{enumerate}
     }
     \item Derived Random Variable: $Y = g(X)${
@@ -113,7 +113,7 @@
         \begin{enumerate}
             \item {
                 \begin{align*}
-                    \sigma_x^2 
+                    \sigma_x^2
                     &= \Var(X) \\
                     &= \E{(X-\mu_x)^2} \\
                     &= \E{X^2-2\mu_x X+\mu_x^2} \\

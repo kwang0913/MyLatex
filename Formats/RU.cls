@@ -2,7 +2,7 @@
 %% Rutgers Beamer Class File
 %% Author: Kailong Wang
 %% Description: This file creates a custom beamer class for the Rutgers University, the State University of New Jersey.
-%% Original Template: https://www.overleaf.com/latex/templates/template-beamer-lepten-ufsc/vjdrghyjyvrp 
+%% Original Template: https://www.overleaf.com/latex/templates/template-beamer-lepten-ufsc/vjdrghyjyvrp
 %% Color Profile based on the instruction from: http://identity.rutgers.edu/about-identity/colors
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -12,11 +12,11 @@
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{beamer}}
 \ProcessOptions\relax
 \LoadClass[
-    compress, 
+    compress,
     xcolor={
         % dvipsnames,
         svgnames,
-        }, 
+        },
     notheorems,
     ]{beamer}
 
@@ -46,8 +46,8 @@
 \RequirePackage{transparent}
 
 %% Table Packages
-\RequirePackage{tabularx} 
-\RequirePackage{multirow} 
+\RequirePackage{tabularx}
+\RequirePackage{multirow}
 \RequirePackage{colortbl}
 \RequirePackage{array}
 
@@ -89,7 +89,7 @@
 % \logo{\includegraphics[scale=0.075]{../formats/RULogos/RU_SHIELD_CMYK_RED.eps}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%% Style of the blocks 
+%%%% Style of the blocks
 \usecolortheme[named=RUred]{structure}
 \usefonttheme[onlymath]{serif}
 \useinnertheme{circles}
@@ -117,7 +117,7 @@
         \insertnavigation{0.75\paperwidth}
     \end{minipage}
 \end{minipage}
-\color{RUred}\rule{\paperwidth}{1pt} 
+\color{RUred}\rule{\paperwidth}{1pt}
 }
 
 % footline style
