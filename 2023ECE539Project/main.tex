@@ -11,7 +11,7 @@
 \title[Random Fourier Feature]{A random matrix analysis of random fourier features}
 \subtitle{beyond the Gaussian kernel, a precise phase transition, and the corresponding double descent}
 \author[Kai] % (optional, for multiple authors)
-{Kailong Wang\inst{1} 
+{Kailong Wang\inst{1}
 %\and Someone Else\inst{2}
 }
 \institute[Rutgers] % (optional)
@@ -45,9 +45,9 @@
 %---------------------------------------------------------
 \begin{frame}
   \frametitle{Linear Classification with Non-linear Input}
-  Consider a binary classification problem with non-linear (\eg polynomial) samples. This is not separable with linear function. 
+  Consider a binary classification problem with non-linear (\eg polynomial) samples. This is not separable with linear function.
 
-  (\eg %$Y=X\beta+b$ where 
+  (\eg %$Y=X\beta+b$ where
   $\mathbf{X} = {
     \begin{bmatrix}
       x_{1,1} \ x_{1,2} \\
@@ -67,14 +67,14 @@
   \begin{figure}
     \includegraphics[height=0.45\textheight]{./figs/3d_poly_circle.eps}%
   \end{figure}
-  The Lifting function in this case is 
+  The Lifting function in this case is
   $
   \phi(\mathbf{X}) = {
     \begin{bmatrix}
       x_{1,1}^2 \ x_{1,2}^2 \ \sqrt{2}x_{1,1}x_{1,2} \\
       x_{2,1}^2 \ x_{2,2}^2 \ \sqrt{2}x_{2,1}x_{2,2} \\
       \cdots \\
-      x_{N,1}^2 \ x_{N,2}^2 \ \sqrt{2}x_{N,1}x_{N,2} 
+      x_{N,1}^2 \ x_{N,2}^2 \ \sqrt{2}x_{N,1}x_{N,2}
     \end{bmatrix}
   }
   $.
@@ -90,7 +90,7 @@
   The $\vec{w}$ is the linear decision boundary and $\vec{\alpha}$ is a vector of Lagrange multipliers.
   \item <2-> We need to use lifting function $\phi(X)$ to make the samples linearly separable. Specifically, we replace $(\mathbf{x_n}\trn \mathbf{x_m})$ with $(\phi(\mathbf{x_n})\trn\phi(\mathbf{x_m}))$.
   \begin{align*}
-    \phi(\mathbf{x_n})\trn\phi(\mathbf{x_m}) 
+    \phi(\mathbf{x_n})\trn\phi(\mathbf{x_m})
     &= \bracks*{x_{n,1}^2 \ x_{n,2}^2 \ \sqrt{2}x_{n,1}x_{n,2}}\bracks*{x_{m,1}^2 \ x_{m,2}^2 \ \sqrt{2}x_{m,1}x_{m,2}}\trn \\
     &= x_{n,1}^2x_{m,1}^2 + x_{n,2}^2x_{m,2}^2 + 2x_{n,1}x_{n,2}x_{m,1}x_{m,2}
   \end{align*}
@@ -103,14 +103,14 @@
   \begin{itemize}
     \item <1-> Consider the following derivation,
     \begin{align*}
-      (\mathbf{x_n}\trn \mathbf{x_m})^2 
+      (\mathbf{x_n}\trn \mathbf{x_m})^2
       &= \parens*{\bracks*{x_{n,1} \ x_{n,2}}\bracks*{x_{m,1} \ x_{m,2}}\trn}^2 \\
       &= \parens*{x_{n,1}x_{m,1} + x_{n,2}x_{m,2}}^2 \\
       &= x_{n,1}^2x_{m,1}^2 + x_{n,2}^2x_{m,2}^2 + 2x_{n,1}x_{n,2}x_{m,1}x_{m,2} \\
       &= \phi(\mathbf{x_n})\trn\phi(\mathbf{x_m})
     \end{align*}
     \item <2-> Instead of computing inner product in the high dimensional space, we compute the inner product in the original space.
-    \item <3-> The function 
+    \item <3-> The function
     \begin{align*}
       K(\mathbf{x_n}, \mathbf{x_m}) = (\mathbf{x_n}\trn \mathbf{x_m})^2 = \phi(\mathbf{x_n})\trn\phi(\mathbf{x_m})
     \end{align*}
@@ -128,7 +128,7 @@
     Solving it with Lagrange multipliers $\vec{\alpha}$, which is the solution of
     \begin{align*}%\label{}
       (\mathbf{K}+\lambda\mathbf{I}_k)\vec{\alpha} = \vec{y},
-    \end{align*} 
+    \end{align*}
     requires $\Theta(k^3)$ time and $\Theta(k^2)$ memory. Here $\mathbf{K}\in \R^{k\times k}$ is the kernel matrix or Gram matrix defined by $\mathbf{K}_{nm} \equiv K(\mathbf{x_n}, \mathbf{x_m})$.
     \item <2-> \textbf{Intuition:} Can we find a kernel function which lifts $\mathcal{X}$ to $\R^s$, where $d < s\ll k$, while not sacrifices model performance?
   \end{itemize}
@@ -142,7 +142,7 @@
 \frametitle{Some Prerequisites}
 \begin{alertblock}{Shift Invariant Kernel (Radial Basis Function (RBF))}
   A kernel function $K(\vec{x_n}, \vec{x_m})$ is called \textbf{shift invariant} if it can be written as $K(\vec{x_n}, \vec{x_m}) = g(\vec{x_n}-\vec{x_m})$ for some function $g(\cdot)$
-  
+
   (\eg $K_{Gaussian}(\vec{x_n},\vec{x_m})=\exp(-\gamma\norm{\vec{x_n}-\vec{x_m}}_2^2)$).
 \end{alertblock}
 \begin{block}{Mercer’s Theorem}
@@ -163,7 +163,7 @@
       &=\int_{\R^d}p(\vec{\omega})\exp(i\vec{\omega}\trn(\vec{x_n}-\vec{x_m}))d\vec{\omega} \\
       &= \mathbb{E}_{\vec{\omega}}\bracks*{\xi_{\vec{\omega}}(\vec{x_n})^*\xi_{\vec{\omega}}(\vec{x_m})}\label{rffinC}
     \end{align}
-    Here 
+    Here
     $
     \xi_{\vec{\omega}}(\vec{x})=\exp(i\vec{\omega}\trn\vec{x})
     ={
@@ -172,7 +172,7 @@
         \sin(\vec{\omega}\trn\vec{x})
       \end{bmatrix}
     }
-    $ 
+    $
     and hence $\xi_{\vec{\omega}}(\vec{x_n})^*\xi_{\vec{\omega}}(\vec{x_m})$ is an unbiased estimator of $K(\vec{x_n}, \vec{x_m})$ when $\vec{\omega}$ is drawn from $p(\cdot)$.
   \end{exampleblock}
 \end{frame}
@@ -194,9 +194,9 @@
     \begin{algorithmic}
     \Require A shift invariant kernel $K(\vec{x_n}, \vec{x_m}) = K(\vec{x_n}- \vec{x_m})$.
     \Ensure A randomized feature map $z(\vec{x}): \R^d\rightarrow\R^s$ so that $z(\vec{x_n})\trn z(\vec{x_m})\approx K(\vec{x_n}, \vec{x_m})$.
-    \State Compute the Fourier transform $p(\cdot)$ of the kernel $K: p(\vec{\omega})=\frac{1}{2\pi}\int \exp(-i\vec{\omega}\trn\triangle)K(\triangle)\diff\triangle$ 
+    \State Compute the Fourier transform $p(\cdot)$ of the kernel $K: p(\vec{\omega})=\frac{1}{2\pi}\int \exp(-i\vec{\omega}\trn\triangle)K(\triangle)\diff\triangle$
     \State Draw $s$ \iid samples $\vec{\omega}_1, \vec{\omega}_2, \ldots, \vec{\omega}_s \in \R^d$ from $p(\cdot)$ and $s$ \iid samples $b_1, b_2, \ldots, b_s \in [0, 2\pi]$.
-    \State Let $z(\vec{x})\equiv \sqrt{\frac{2}{s}}[\cos(\vec{\omega}_1\trn\vec{x}+b_1)\ \cos(\vec{\omega}_2\trn\vec{x}+b_2)\ \ldots\ \cos(\vec{\omega}_s\trn\vec{x}+b_s)]\trn$   
+    \State Let $z(\vec{x})\equiv \sqrt{\frac{2}{s}}[\cos(\vec{\omega}_1\trn\vec{x}+b_1)\ \cos(\vec{\omega}_2\trn\vec{x}+b_2)\ \ldots\ \cos(\vec{\omega}_s\trn\vec{x}+b_s)]\trn$
     \end{algorithmic}
   \end{algorithm}
 \end{frame}
@@ -207,7 +207,7 @@
     Given $z_{\vec{\omega}}$ is bounded random variable between $[-\sqrt{2}, \sqrt{2}]$, with Hoeffding's Inequality, we have
     \begin{align*}
       \P{\abs{z(\vec{x_n})\trn z(\vec{x_m})-K(\vec{x_n}, \vec{x_m})}\geq \epsilon} \leq 2\exp\parens*{-\frac{s\epsilon^2}{4}}.
-    \end{align*}      
+    \end{align*}
   \end{exampleblock}
 \end{frame}
 %---------------------------------------------------------
@@ -225,10 +225,10 @@
 \begin{frame}{Common RFF}
   \centering
   \begin{tabular}{c c c}
-    Kernel & $K(\triangle)$ & $p(\vec{\omega})$ \\ 
+    Kernel & $K(\triangle)$ & $p(\vec{\omega})$ \\
     \hline
-    Gaussian & $\exp(-\gamma\norm{\triangle}_2^2)$ & $(2\pi)^{-\frac{s}{2}}\exp{-\gamma\norm{\vec{\omega}}_2^2}$\\ 
-    Laplacian & $\exp(-\norm{\triangle}_1)$ & $\prod\limits_{d}(\pi(1+\omega_d^2))^{-1}$\\ 
+    Gaussian & $\exp(-\gamma\norm{\triangle}_2^2)$ & $(2\pi)^{-\frac{s}{2}}\exp{-\gamma\norm{\vec{\omega}}_2^2}$\\
+    Laplacian & $\exp(-\norm{\triangle}_1)$ & $\prod\limits_{d}(\pi(1+\omega_d^2))^{-1}$\\
     Cauchy & $\prod\limits_{d}2(1+\triangle_d^2)^{-1}$ & $\exp(-\norm{\triangle}_1)(\textcolor{red}{\mathord{?}})$
   \end{tabular}
 \end{frame}
@@ -241,7 +241,7 @@
   Consider a machine learning system with $d$ parameters, trained on a dataset of size $N$, asymptotic analysis has
   \begin{itemize}
     \item \textbf{Classical regime:} either focuses on the (statistical) population $N\rightarrow\infty$ limit, for $d$ fixed, or the over-parameterized $d\rightarrow\infty$ limit, for a given $N$.
-    \item \textbf{Modern regime:} modern learning system (\eg Neural Network) usually has model complexity and data size increase together. A double asymptotic regime where $N, d\rightarrow\infty, d/N\rightarrow c$ is established. 
+    \item \textbf{Modern regime:} modern learning system (\eg Neural Network) usually has model complexity and data size increase together. A double asymptotic regime where $N, d\rightarrow\infty, d/N\rightarrow c$ is established.
   \end{itemize}
   RFF has been shown that entry-wise the Gram matrix $\xi(\vec{x})$ converges to the Gaussian kernel matrix as $s\rightarrow\infty$ and this property remains in modern regime.
 
@@ -252,9 +252,9 @@
   \frametitle{Setup}
   \begin{itemize}
     \item $0< \lim\inf\limits_N\min\braces{\frac{s}{N},\frac{d}{N}}\leq \lim\sup\limits_N\max\braces{\frac{s}{N},\frac{d}{N}}<\infty$.
-    \item $\lim\sup\limits_N\norm{\mathbf{X}}_2<\infty \qquad \lim\sup\limits_N\norm{\vec{y}}_{\infty}<\infty$ 
+    \item $\lim\sup\limits_N\norm{\mathbf{X}}_2<\infty \qquad \lim\sup\limits_N\norm{\vec{y}}_{\infty}<\infty$
     \item In classical regime $\norm{\mathbf{\Xi}\trn\mathbf{\Xi}/s}\equiv \mathbf{K}\equiv\mathbf{K}_{\cos}+\mathbf{K}_{\sin}$
-    \item Training MSE: $\mathcal{L}_{train}=\frac{1}{N}\norm{\vec{y}-\mathbf{\Xi}\trn\vec{w}}_2^2=\frac{\lambda^2}{N}\norm{\mathbf{Q}(\lambda)\vec{y}}_2^2$ where 
+    \item Training MSE: $\mathcal{L}_{train}=\frac{1}{N}\norm{\vec{y}-\mathbf{\Xi}\trn\vec{w}}_2^2=\frac{\lambda^2}{N}\norm{\mathbf{Q}(\lambda)\vec{y}}_2^2$ where
     \begin{align*}
       \mathbf{Q}(\lambda)\equiv\parens*{\frac{1}{N}\mathbf{\Xi}\trn\mathbf{\Xi}+\lambda\mathbf{I}_N}^{-1}
     \end{align*}
