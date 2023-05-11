@@ -32,8 +32,11 @@
 %%%% vector font
 \let\oldvec\vec
 \renewcommand*{\vec}[1]{\mathbf{#1}}
-\newcommand*{\trn}{{}^{\!\intercal\!}}
-% \newcommand*{\trn}{{}^{\!\mathsf{T}}\!}
+% \newcommand*{\trn}{\!^{\!\intercal}}
+\newcommand*{\trn}{\!^{\mathsf{T}}}
+% \newcommand*{\coj}{\!^{\dag}} % Text Mode Symbol, Should not be used
+% \newcommand*{\coj}{\!^{\dagger}}
+\newcommand*{\coj}{\!^{\mathsf{H}}}
 \newcommand*{\inv}{^{-1}}
 
 %%%% number systems

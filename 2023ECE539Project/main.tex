@@ -88,7 +88,9 @@
     \mathcal{L}(\vec{w}, \vec{\alpha}) = \sum_{n=1}^N\alpha_n - \frac{1}{2}\sum_{n}^{N}\sum_{m}^{N}\alpha_n\alpha_m y_ny_m(\mathbf{x_n}\trn \mathbf{x_m}).
   \end{align*}
   The $\vec{w}$ is the linear decision boundary and $\vec{\alpha}$ is a vector of Lagrange multipliers.
-  \item <2-> We need to use lifting function $\phi(X)$ to make the samples linearly separable. Specifically, we replace $(\mathbf{x_n}\trn \mathbf{x_m})$ with $(\phi(\mathbf{x_n})\trn\phi(\mathbf{x_m}))$.
+  \item <2-> We need to use lifting function $\phi(X)$ to make the samples linearly separable. Specifically, we replace $(\mathbf{x_n}\trn \mathbf{x_m})$ with $(\phi%\trn
+  (\mathbf{x_n})\trn
+  \phi(\mathbf{x_m}))$.
   \begin{align*}
     \phi(\mathbf{x_n})\trn\phi(\mathbf{x_m})
     &= \bracks*{x_{n,1}^2 \ x_{n,2}^2 \ \sqrt{2}x_{n,1}x_{n,2}}\bracks*{x_{m,1}^2 \ x_{m,2}^2 \ \sqrt{2}x_{m,1}x_{m,2}}\trn \\

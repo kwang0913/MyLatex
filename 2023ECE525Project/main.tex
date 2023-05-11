@@ -41,7 +41,7 @@ The focus of this report is on the review~\cite{Arenas_Garcia_2016} of key ideas
 \subsection{Problem Formulation and Notation}
 The adaptive filter in the MSE sense satisfy a linear regression model of the form
 \begin{equation}
-    d(n) = u\trn(n)w_o(n)+v(n),
+    d(n) = u(n)\trn w_o(n)+v(n),
 \end{equation}
 where $w_o(n)$ represents the (possibly) time-varying optimal solution, and $v(n)$ is a noise sequence (usually WSS), which is under the assumption of independent and identically distributed, and independent of $u(m)$, for all $n$, $m$.
 The estimation of the optimal solution at time $n$ is usually solved by recursion of the form\begin{equation}
@@ -52,8 +52,8 @@ where $f[\cdot]$ is the update function of the adaptive schemes and $s(n)$ repre
 The following error variables are considered in evaluating and designing the adaptive filters:
 \begin{itemize}
     \item Weight error: $\tilde{w}(n)=w_o(n)-w(n)$
-    \item A priori filter error: $e_a(n)=u\trn(n)\tilde{w}(n)$
-    \item Filter error: $e(n)=d(n)-u\trn(n)w(n)=e_a(n)+v(n)$
+    \item A priori filter error: $e_a(n)=u(n)\trn\tilde{w}(n)$
+    \item Filter error: $e(n)=d(n)-u(n)\trn w(n)=e_a(n)+v(n)$
     \item Mean squared error (MSE): $\MSE(n)=\E{e^2(n)}$
     \item Excess MSE (EMSE): $\xi(n)=\E{e_a^2(n)}=\MSE(n)-\E{v^2(n)}$
     \item Mean squared deviation: $\MSD(n)=\E{\norm{\tilde{w}(n)}_2^2}$.
