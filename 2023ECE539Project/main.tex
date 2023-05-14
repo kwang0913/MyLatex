@@ -162,8 +162,8 @@
     \begin{align}
       \phi(\vec{x_n})\trn\phi(\vec{x_m})
       &= K(\vec{x_n}, \vec{x_m}) = K(\vec{x_n}-\vec{x_m}) \\
-      &=\int_{\R^d}p(\vec{\omega})\exp(i\vec{\omega}\trn(\vec{x_n}-\vec{x_m}))d\vec{\omega} \\
-      &= \mathbb{E}_{\vec{\omega}}\bracks*{\xi_{\vec{\omega}}(\vec{x_n})^*\xi_{\vec{\omega}}(\vec{x_m})}\label{rffinC}
+      &=\int_{\R^d}p(\vec{\omega})\exp(i\vec{\omega}\trn(\vec{x_n}-\vec{x_m}))\diff\vec{\omega} \\
+      &= \mathbb{E}_{\vec{\omega}}\bracks*{\xi_{\vec{\omega}}(\vec{x_n})\coj\xi_{\vec{\omega}}(\vec{x_m})}\label{rffinC}
     \end{align}
     Here
     $
