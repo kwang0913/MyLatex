@@ -1,61 +1,66 @@
 \chapter{Set Theory, Probability, and Single Experiment}
+\section{From Set to Probability (of the single experiment)}
+\begin{center}
+\begin{tabular}{|c|c|}
+    \hline
+    \textbf{Set Theory} & \textbf{Probability} \\
+    \hline
+    \hline
+    Element & Outcome \\
+    \hline
+    Subset  & Event   \\
+    \hline
+    Universal Set & Sample Space ($\Omega$) \\
+    \hline
+\end{tabular}
+\end{center}
 \begin{enumerate}
-    \item From Set to Probability (of the single experiment)
-    \begin{enumerate}
-        \item~{
-            \begin{center}
-                \begin{tabular}{|c|c|}
-                    \hline
-                    \textbf{Set Theory} & \textbf{Probability} \\
-                    \hline
-                    \hline
-                    Element & Outcome \\
-                    \hline
-                    Subset  & Event   \\
-                    \hline
-                    Universal Set & Sample Space \\
-                    \hline
-                \end{tabular}
-            \end{center}
-                        }
-            \item Outcome and Event: {
-                \begin{enumerate}
-                    \item Outcomes are always \textbf{Mutually Exclusive} since there are the smallest units (i.e., Elements) in the Set.
-                    \item Event constitutes by different combinations of outcomes (through Union ($\cup$) Operation).
-                \end{enumerate}
-            }
-            \item $\P{\text{Event}}$ is the possibility that the event appears in the sample space.
-            \item $\P{\emptyset}=0$ since there is no element in \textit{null set}, and $\P{\text{Sample Space}}=1$.
-    \end{enumerate}
-    \item From Set Operation to Probability Operation
-    \begin{enumerate}
-        \item There are three Set Operations: $A \cup B, A \cap B, A^{^\mathsf{c}}$.
-        \item $\P{A \cup B} = \P{A}+\P{B}-\P{A\cap B}$.
-        \item \textbf{Union Bound:} $\P{\cup_{i=1}^N A_i}\leq \sum_{i=1}^{N}\P{A_i}$.
-        \item \textbf{Mutually Exclusive:}~$\P{A \cap B}=0$ so that $\P{A \cup B} = \P{A}+\P{B}$.
-        \item \textbf{Collectively Exhaustive:}~$\P{A\cup B}=1$.
-        \item \textbf{Partitions (i.e., Mutually Exclusive \& Collectively Exhaustive):}~$\P{\cup_{i=1}^N A_i}=\sum_{i=1}^{N}\P{A_i}=1$.
-    \end{enumerate}
-    \item Conditional Probability
-    \begin{enumerate}
-        \item $\condP{A}{B} = \frac{\P{AB}}{\P{B}}$.
-        \item \textbf{If $A_i$ are Mutually Exclusive:}~$\condP{A}{B} = \condP{\cup_{i=1}^{N}A_i}{B} = \sum_{i=1}^{N}\condP{A_i}{B}$.
-        \item \textbf{If $B_i$ are Partitions}~(Law of Total Number),
-        \begin{align}
-            \condP{A}{B}
-            &= \frac{\P{AB}}{\P{B}}  \tag{Definition of Conditional Probability}\\
-            &= \P{AB}  \tag{$B$ is Collectively Exhaustive so $P (B)=1$} \\
-            &= \P{A\cdot\cup_{i=1}^{N}B_i}  \tag{$B$ is Mutually Exclusive} \\
-            &= \sum_{i=1}^{N}\P{AB_i}  \tag{$B$ is Partition} \\
-            &= \sum_{i=1}^{N}\condP{A}{B_i}\P{B_i}. \tag{Definition of Conditional Probability}
-        \end{align}
-    \end{enumerate}
-    \item Bayes' Theorem:~$\condP{A}{B} = \frac{\condP{B}{A}\P{A}}{\P{B}}$.
-    \item Independent:{
-        \begin{enumerate}
-            \item $\P{A\cap B}=\P{A}\P{B}$.
-            \item $\P{A \cup B} = \P{A}+\P{B}-\P{A}\P{B}$.
-            \item $\condP{A}{B} = \frac{\P{AB}}{\P{B}}=\frac{\P{A}\P{B}}{\P{B}}=\P{A}$.
-        \end{enumerate}
-    }
+    \item There are three Set Operations: $A \cup B, A \cap B, A^{\mathsf{c}}$.
+    \item A probability $\P{\cdot}$ is a function that maps events in the sample space to real numbers such that $\P{\emptyset}=0$, $\P{\text{Event}}\geq 0$, and $\P{\Omega}=1$, where $\emptyset$ is null set has no element (i.e., event has no outcome).
+    \item $\P{A \cup B} = \P{A}+\P{B}-\P{AB}$, where $\P{AB}=\P{A\cap B}$.
+    \item Union Bound: $\P{A\cup B}\leq \P{A}+\P{B}$. And $\P{\cup_{i=1}^N A_i}\leq \sum_{i=1}^{N}\P{A_i}$ for more than two sets.
 \end{enumerate}
+\section{Set Properties and corresponding Probability Properties}
+\begin{enumerate}
+    \item Mutually Exclusive: $A \cap B = \emptyset \Rightarrow \P{A \cap B}=0$, which implies $\P{A \cup B} = \P{A}+\P{B}$.
+    \item Pairwise Mutually Exclusive: $A_i \cap A_j = \emptyset$ for $i\neq j$.
+    \item Outcomes are always Pairwise Mutually Exclusive since they are the smallest units (i.e., Elements) in the Set.
+    \item Collectively Exhaustive: $\cup_{i=1}^{N}A_i = \Omega \Rightarrow \P{\cup_{i=1}^{N}A_i} = 1$.
+    \item Partitions (i.e., Mutually Exclusive \& Collectively Exhaustive): $\P{\cup_{i=1}^N A_i}=\sum_{i=1}^{N}\P{A_i}=1$.
+\end{enumerate}
+\section{Conditional Probability and Bayes' Theorem}
+\begin{enumerate}
+    \item $\condP{A}{B} = \P{AB}/\P{B}$.
+    \item If $A_i$ are Mutually Exclusive: $\condP{A}{B} = \condP{\cup_{i=1}^{N}A_i}{B} = \sum_{i=1}^{N}\condP{A_i}{B}$.
+    \item If $B_i$ are Partitions (Law of Total Number),
+    \begin{align}
+        \condP{A}{B}
+        &= \frac{\P{AB}}{\P{B}}  \tag{Definition of Conditional Probability}\\
+        &= \P{AB}  \tag{$B$ is Collectively Exhaustive so $\P{B}=1$} \\
+        &= \P{A\cdot\cup_{i=1}^{N}B_i}  \tag{$B$ is Mutually Exclusive} \\
+        &= \sum_{i=1}^{N}\P{AB_i}  \tag{$B$ is Partition} \\
+        &= \sum_{i=1}^{N}\condP{A}{B_i}\P{B_i}. \tag{Definition of Conditional Probability}
+    \end{align}
+\item Bayes' Theorem:{
+    \begin{equation*}
+        \condP{A}{B} = \frac{\condP{B}{A}\P{A}}{\P{B}}.
+    \end{equation*}
+}
+\end{enumerate}
+\section{Independent}
+    \begin{enumerate}
+        \item $\P{A\cap B}=\P{A}\P{B}$.
+        \item $\P{A \cup B} = \P{A}+\P{B}-\P{A}\P{B}$.
+        \item $\condP{A}{B} = \frac{\P{AB}}{\P{B}}=\frac{\P{A}\P{B}}{\P{B}}=\P{A}$.
+        \item If $A$ and $B$ are independent then $A^{\mathsf{c}}$ and $B$ are independent and so on.{
+            \begin{align*}
+                \P{B} = \P{(A\cup A^{\mathsf{c}})\cap B}
+                &= \P{AB}+\P{A^{\mathsf{c}}B} && \text{($A$ and $A^\mathsf{c}$ are partitions)}\\
+                \Rightarrow \P{A^{\mathsf{c}}B}
+                &= \P{B}-\P{AB} \\
+                &= \P{B}-\P{A}\P{B} \\
+                &= \P{B}\left(1-\P{A}\right) \\
+                &= \P{B}\P{A^{\mathsf{c}}}.
+            \end{align*}
+        }
+    \end{enumerate}

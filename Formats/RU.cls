@@ -69,6 +69,7 @@
 \RequirePackage{multicol} %Package to use multicols
 
 %% Other Packages
+\RequirePackage{xspace} %Package to add space after macros
 \RequirePackage{calc}
 \RequirePackage{rotating}
 \RequirePackage{pgf, tikz}

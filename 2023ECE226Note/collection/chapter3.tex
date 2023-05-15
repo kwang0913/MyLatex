@@ -15,7 +15,7 @@
             \item Binomial ($n, p$): Get \textbf{x} successes in \textbf{n} Bernoulli ($p$) experiments $\iff$ independent trails{
                 \[P_X(\textcolor{red}{x}) = {
                     \begin{cases}
-                        \binom{n}{x}p^x(1-p)^{n-x} & x=0,1,\ldots,n \\
+                        \binom{n}{\textcolor{red}{x}}p^x(1-p)^{n-x} & x=0,1,\ldots,n \\
                         0 & otherwise.
                     \end{cases}
                 }\]
@@ -28,17 +28,17 @@
                     0   & otherwise.
                 \end{cases} \]
             }
-            \item Geometric ($p$): Get the \textbf{1st} success at the $\bm{x}$-\textbf{th} Bernoulli ($p$) experiment {
+            \item Geometric ($p$): Get the $\bm{1}$\textbf{st} success at the $\bm{x}$\textbf{th} Bernoulli ($p$) experiment {
                 \[ P_X(x) =
                 \begin{cases}
                     p(1-p)^{x-1} & x=1,2,\ldots \\
                     0   & otherwise.
                 \end{cases} \]
             }
-            \item Pascal ($k,p$): Get the $\bm{k}$-\textbf{th} success at the $\bm{x}$-\textbf{th} Bernoulli ($p$) experiment {
+            \item Pascal ($k,p$): Get the $\bm{k}$\textbf{th} success at the $\bm{x}$\textbf{th} Bernoulli ($p$) experiment {
                 \[P_X(\textcolor{red}{x}) = {
                     \begin{cases}
-                        \binom{x-1}{k-1}p^k(1-p)^{x-k} & x=k,k+1,k+2,\ldots \\
+                        \binom{\textcolor{red}{x}-1}{k-1}p^k(1-p)^{x-k} & x=k,k+1,k+2,\ldots \\
                         0 & otherwise.
                     \end{cases}
                 }\]
@@ -114,7 +114,7 @@
             \item {
                 \begin{align*}
                     \sigma_x^2
-                    &= \Var(X) \\
+                    &= \Var[X] \\
                     &= \E{(X-\mu_x)^2} \\
                     &= \E{X^2-2\mu_x X+\mu_x^2} \\
                     &= \E{X^2}-2\mu_x\E{X}+\E{\mu_x^2} \\
@@ -122,16 +122,16 @@
                     &= \E{X^2}-\mu_x^2
                 \end{align*}
             }
-            \item $\Var(X)\geq 0$
-            \item $\Var(aX+b)=a^2\Var(X)$
+            \item $\Var[X]\geq 0$
+            \item $\Var[aX+b]=a^2\Var[X]$
             \item Important Variance:{
                 \begin{enumerate}
-                    \item Bernoulli (p): \[\Var(X)=p(1-p).\]
-                    \item Binomial (n, p): \[\Var(X)=np(1-p).\]
-                    \item Poisson ($\alpha$): \[\Var(X)=\alpha.\]
-                    \item Geometric (p): \[\Var(X)=(1-p)/p^2.\]
-                    \item Pascal (k, p): \[\Var(X)=k(1-p)/p^2.\]
-                    \item Discrete Uniform (k, l): \[\Var(X)=(l-k)(l-k+2)/12.\]
+                    \item Bernoulli (p): \[\Var[X]=p(1-p).\]
+                    \item Binomial (n, p): \[\Var[X]=np(1-p).\]
+                    \item Poisson ($\alpha$): \[\Var[X]=\alpha.\]
+                    \item Geometric (p): \[\Var[X]=(1-p)/p^2.\]
+                    \item Pascal (k, p): \[\Var[X]=k(1-p)/p^2.\]
+                    \item Discrete Uniform (k, l): \[\Var[X]=(l-k)(l-k+2)/12.\]
                 \end{enumerate}
             }
         \end{enumerate}

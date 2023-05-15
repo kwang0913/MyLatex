@@ -48,12 +48,12 @@
 \DeclareMathOperator{\Q}{\mathbb{Q}}
 
 %%%% STATISTICS AND PROBABILITY
-\newcommand*{\Var}{\mathop{\textnormal{Var}}}
-\newcommand*{\Cov}{\mathop{\textnormal{Cov}}}
-\newcommand*{\Corr}{\mathop{\textnormal{Corr}}}
-\newcommand*{\MSE}{\mathop{\textnormal{MSE}}}
-\newcommand*{\MSD}{\mathop{\textnormal{MSD}}}
-\newcommand*{\NSD}{\mathop{\textnormal{NSD}}}
+\DeclareMathOperator{\Var}{\textnormal{Var}}
+\DeclareMathOperator{\Cov}{\textnormal{Cov}}
+\DeclareMathOperator{\Corr}{\textnormal{Corr}}
+\DeclareMathOperator{\MSE}{\textnormal{MSE}}
+\DeclareMathOperator{\MSD}{\textnormal{MSD}}
+\DeclareMathOperator{\NSD}{\textnormal{NSD}}
 
 \newcommand*{\E}[1]{\mathbb{E}\bracks*{#1}}
 \newcommand*{\condE}[2]{\mathbb{E}\bracks*{#1 \mid #2}}
@@ -77,18 +77,31 @@
 
 
 \DeclareMathOperator{\iidsim}{\stackrel{\textnormal{i.i.d.}}{\sim}}
-\DeclareMathOperator{\diff}{\mathop{}\!\textnormal{d}}
 
 %%%% Special norms and linear algebra stuff
 \newcommand*{\subgnorm}[1]{\norm*{#1}_{\psi_2}}
 \newcommand*{\subexpnorm}[1]{\norm*{#1}_{\psi_1}}
 \newcommand*{\frobnorm}[1]{\norm*{#1}_{\textnormal{F}}}
-\newcommand*{\opnorm}[1]{\norm*{#1}_{\textnormal{op}}}
+\newcommand*{\opnorm}[1]{\norm*{#1}_{\textnormal{Op}}}
 \newcommand*{\Lipnorm}[1]{\norm*{#1}_{\textnormal{Lip}}}
 
-%%%%
+%%%% Some Abbreviations
+\newcommand*{\diff}{\mathop{}\!\mathrm{d}}
 \newcommand*{\set}[1]{\braces*{\,#1\,}}
-\newcommand*{\ie}{\textnormal{i.e.\ }}
-\newcommand*{\eg}{\textnormal{e.g.\ }}
-\newcommand*{\etc}{\textnormal{etc.\ }}
-\newcommand*{\iid}{\textnormal{i.i.d.\ }}
+
+%%%% CVPR
+% Add a period to the end of an abbreviation unless there's one already,
+% then \xspace.
+\makeatletter
+\DeclareRobustCommand\onedot{\futurelet\@let@token\@onedot}
+\def\@onedot{\ifx\@let@token.\else.\null\fi\xspace}
+
+\def\eg{\emph{e.g}\onedot} \def\Eg{\emph{E.g}\onedot}
+\def\ie{\emph{i.e}\onedot} \def\Ie{\emph{I.e}\onedot}
+\def\cf{\emph{cf}\onedot} \def\Cf{\emph{Cf}\onedot}
+\def\etc{\emph{etc}\onedot} \def\vs{\emph{vs}\onedot}
+\def\wrt{w.r.t\onedot} \def\dof{d.o.f\onedot}
+\def\iid{i.i.d\onedot} \def\wolog{w.l.o.g\onedot}
+\def\etal{\emph{et al}\onedot}
+\def\whp{w.h.p\onedot}
+\makeatother

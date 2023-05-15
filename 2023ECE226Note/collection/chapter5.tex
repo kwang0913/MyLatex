@@ -31,7 +31,7 @@ The joint PMF is a \textbf{complete} probability model for any pair of discrete 
     For discrete random variables $X$ and $Y$ and any set $B$ in the $X$, $Y$ plane, the probability of the event
     % $\set{(X,Y)\in B}$
     is
-    \[\P{[B]}=\sum_{(x,y)\in B}P_{X,Y}(x,y).\]
+    \[\P{\set{B}}=\sum_{(x,y)\in B}P_{X,Y}(x,y).\]
 \end{theorem}
 
 Apparently, the joint PMF is non-negative and sums to one.
@@ -56,7 +56,7 @@ The joint PDF is a \textbf{complete} probability model for any pair of continuou
 
 \begin{theorem}
     The probability that the continuous random variables $(X,Y)$ are in $A$
-    \[\P{[A]}=\iint\limits_A f_{X,Y}(x,y)\diff x\diff y.\]
+    \[\P{\set{A}}=\iint\limits_A f_{X,Y}(x,y)\diff x\diff y.\]
 \end{theorem}
 
 The joint PDF is non-negative and integrates to one.
@@ -124,8 +124,10 @@ It's easy to show that if $X$ and $Y$ are independent, then
     If $X$ and $Y$ are independent, then
     \begin{enumerate}[(a)]
         \item $\E{XY}=\E{X}\E{Y}$,
-        \item $\Cov[X, Y]=0$,
+        \item $\Cov[X, Y]=0$, this is also called uncorrelated since the $\rho_{xy}=0$
         \item $\Var[aX+bY]=a^2\Var[X]+b^2\Var[Y]$.
+        \item Uncorrelatedness  does not imply independence. \eg, $X\sim \Unif[-1,1]$ and $Y=X^2$.
+        \item Specifically, Uncorrelatedness is known as linear independent. But independent includes both linear and nonlinear independent.
     \end{enumerate}
 \end{theorem}
 
