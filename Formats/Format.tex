@@ -1,108 +1,53 @@
-%%%% Page Header and Foot %%%%
-\RequirePackage{fancyhdr}
-\pagestyle{fancyplain}
-\lhead{\lefthead}
-\chead{\centerhead}
-\rhead{\righthead}
-\lfoot{\leftbottom}
-\cfoot{\centerbottom}
-\rfoot{\rightbottom}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Packages to Load
+%% Font Packages
+\RequirePackage[english]{babel} %Multilingual support
+\RequirePackage[utf8]{inputenc} %utf8 support.
+\RequirePackage[T1]{fontenc} %Better Font Encoding for printing
+\RequirePackage{libertinus} %Popular Math Font
+\RequirePackage{microtype} %Better Font Spacing.
+\RequirePackage{lmodern} %Popular Font
 
-%%%% Additional Packages to Load %%%%
-%%%% Main Font
-\RequirePackage{lmodern} %Computer Modern, but with many more glyphs
-\RequirePackage{microtype} %Better Font Rendering
-\RequirePackage{libertinus} %Very popular math font
-\RequirePackage[T1]{fontenc} %Better Printing Font
-\RequirePackage[english]{babel} %English Language
-\RequirePackage[utf8]{inputenc} %enable utf8 encoding
-
-%%%% Math Env
-\RequirePackage{amsfonts,amsmath,amssymb} %Math Font Packages
-\RequirePackage{mathtools} %Better Math Environments
+%% Math Packages
+\RequirePackage{amsfonts,amsmath,amssymb} %Math Fonts and Symbols
+\RequirePackage{mathtools} %Define math symbols
 \RequirePackage{mleftright}  %Fixes some annoying spacing issues
 \RequirePackage{bm} %Boldface math, load after other math font packages
 
-%%%% Graphics Packages
-\RequirePackage{graphicx} %Better Graphics
-\RequirePackage[export]{adjustbox} %Better Graphics
-\RequirePackage[svgnames]{xcolor} %Must load before tcolorbox
-\RequirePackage[breakable]{tcolorbox} %Customized Box
-\tcbuselibrary{skins}
-\RequirePackage{transparent}
+%% Graphics Packages
+\RequirePackage{graphicx} %Graphics backend with key-value arguments
+\RequirePackage[export]{adjustbox} %More arguments for includegraphics
+\RequirePackage[svgnames]{xcolor} %Beamer has this by default
+\RequirePackage[most]{tcolorbox} %Customized Box
+\RequirePackage{transparent} %Transparent Images
 \RequirePackage{subcaption} %Package to use subfigure
 
-%%%% Table and List
-\RequirePackage{tabularx}
-\RequirePackage{multirow}
-\RequirePackage{colortbl}
-\RequirePackage{array}
+%% Table Packages
+\RequirePackage{tabularx} %Including tabular with more space option
+\RequirePackage{multirow} %Package to use multirow in tables
+\RequirePackage{colortbl} %Package to use color in tables
+\RequirePackage{array} %Math and more spacing support in tables
 
-%%%% Theorems etc (also  problems)
+%% Theorems etc (also  problems)
 \RequirePackage[shortlabels]{enumitem} %Better List
-\RequirePackage{hyperref} %Fantastic crossrefer
-\RequirePackage{cleveref} %Must load before amsthm and after hyperref
+\RequirePackage{hyperref} %Beamer has this by default
+\RequirePackage{cleveref} %Must load before amsthm. Conflict With Beamer
 \RequirePackage{amsthm, thmtools, thm-restate} %Better Theorems
 
-%%%% Code Packages
-% \RequirePackage{listings} %Package to insert code
-\RequirePackage{algorithm}
-\RequirePackage{algpseudocode}
+%% Code Packages
+\RequirePackage{listings} %Package to insert code. Better than minted
+\RequirePackage{algorithm} %Package to insert algorithm
+\RequirePackage{algpseudocode} %Package to insert algorithm
 % \RequirePackage{keyval}
 
-%%%% Display Packages
-\RequirePackage[document]{ragged2e} %Package to justify text
+%% Display Packages
+% \RequirePackage[document]{ragged2e} %Replaced by microtype
 \RequirePackage{csquotes} %Package to facilities quotations
 \RequirePackage{multicol} %Package to use multicols
 
-%%%% Other Packages
+%% Other Packages
 \RequirePackage{xspace} %Package to add space after macros
-\RequirePackage{calc} %Package to do calculation
-\RequirePackage{rotating} %Package to rotate text
-\RequirePackage{pgf, tikz} %Package to draw figures
+\RequirePackage{calc} %Package to calculate in Latex
+\RequirePackage{rotating} %Package to rotate objects
+% \RequirePackage{pgf, tikz} %Package to draw figures.
 \RequirePackage{epstopdf} %Package to convert eps to pdf
-\RequirePackage[backend=biber, style=numeric, sorting=none]{biblatex} %Package to manage bibliography
-
-%%%% A box fill the rest of the page
-\newtcolorbox{stretchbox}[1][]{
-    height fill,
-    % sharp corners,
-    colback=white,
-    colframe=black,
-    #1
-    }
-
-%%%% Box Environment
-\newtcolorbox{problem}[1]{
-% Set box style
-    % sidebyside,
-    % sidebyside align=top,
-% Dimensions and layout
-    % width=\textwidth,
-    toptitle=2.5pt,
-    bottomtitle=2.5pt,
-    % righthand width=0.20\textwidth,
-% Coloring
-    colbacktitle=white,
-    coltitle=black,
-    colback=white,
-    colframe=black,
-% Title formatting
-    fonttitle=\large\bfseries,
-    title={#1 \hfill Grade:\hspace*{0.15\paperwidth}\ }, %\! works as a placeholder
-}
-
-%%%% Problem Environment
-% \newenvironment{problem}[1]{
-%     \begin{prob}{#1}
-% }
-% {
-%     %
-%     % \tcblower
-%     % \centering
-%     % \textit{\scriptsize\bfseries Faculty Comments}
-%     \end{prob}
-% }
-
-%%%% Draw a line
-\newcommand{\myrule}{\rule{1.5in}{0.1mm}}
+\RequirePackage[backend=biber, style=numeric, sorting=none]{biblatex}

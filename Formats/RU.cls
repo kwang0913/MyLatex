@@ -20,86 +20,80 @@
     notheorems,
     ]{beamer}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%% Packages Used
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Packages Used
 
 %% Font Packages
-% \RequirePackage[utf8]{inputenc} %beamer has this by default
-\RequirePackage[english]{babel}
-\RequirePackage[T1]{fontenc}
-\RequirePackage{libertinus}
-\RequirePackage{microtype}
-\RequirePackage{lmodern}
+\RequirePackage[english]{babel} %Multilangual support
+% \RequirePackage[utf8]{inputenc} %utf8 support. beamer has this by default
+\RequirePackage[T1]{fontenc} %Better Font Encoding for printing
+\RequirePackage{libertinus} %Popular Math Font
+\RequirePackage{microtype} %Better Font Spacing.
+\RequirePackage{lmodern} %Popular Font
 
 %% Math Packages
-\RequirePackage{amsfonts,amsmath,amssymb} %Math Font Packages
-\RequirePackage{mathtools} %Better Math Environments
+\RequirePackage{amsfonts,amsmath,amssymb} %Math Fonts and Symbols
+\RequirePackage{mathtools} %Define math symbols
 \RequirePackage{mleftright}  %Fixes some annoying spacing issues
 \RequirePackage{bm} %Boldface math, load after other math font packages
 
 %% Graphics Packages
-\RequirePackage{graphicx} %Better Graphics
-\RequirePackage[export]{adjustbox} %Better Graphics
+\RequirePackage{graphicx} %Graphics backend with key-value arguments
+\RequirePackage[export]{adjustbox} %More arguments for includegraphics
 % \RequirePackage[svgnames]{xcolor} %Beamer has this by default
-\RequirePackage[breakable]{tcolorbox} %Customized Box
-\tcbuselibrary{skins}
-\RequirePackage{transparent}
+\RequirePackage[most]{tcolorbox} %Customized Box
+\RequirePackage{transparent} %Transparent Images
 \RequirePackage{subcaption} %Package to use subfigure
 
 %% Table Packages
-\RequirePackage{tabularx}
-\RequirePackage{multirow}
-\RequirePackage{colortbl}
-\RequirePackage{array}
+\RequirePackage{tabularx} %Including tabular with more space option
+\RequirePackage{multirow} %Package to use multirow in tables
+\RequirePackage{colortbl} %Package to use color in tables
+\RequirePackage{array} %Math and more spacing support in tables
 
 %% Theorems etc (also  problems)
 \RequirePackage[shortlabels]{enumitem} %Better List
 % \RequirePackage{hyperref} %Beamer has this by default
-% \RequirePackage{cleveref} %Must load before amsthm Conflict With Beamer
+% \RequirePackage{cleveref} %Must load before amsthm. Conflict With Beamer
 \RequirePackage{amsthm, thmtools, thm-restate} %Better Theorems
 
 %% Code Packages
-% \RequirePackage{listings} %Package to insert code
-\RequirePackage{algorithm}
-\RequirePackage{algpseudocode}
+\RequirePackage{listings} %Package to insert code. Better than minted
+\RequirePackage{algorithm} %Package to insert algorithm
+\RequirePackage{algpseudocode} %Package to insert algorithm
 % \RequirePackage{keyval}
 
 %% Display Packages
-\RequirePackage[document]{ragged2e} %Package to justify text
+% \RequirePackage[document]{ragged2e} %Replaced by microtype
 \RequirePackage{csquotes} %Package to facilities quotations
 \RequirePackage{multicol} %Package to use multicols
 
 %% Other Packages
 \RequirePackage{xspace} %Package to add space after macros
-\RequirePackage{calc}
-\RequirePackage{rotating}
-\RequirePackage{pgf, tikz}
-\RequirePackage{epstopdf}
+\RequirePackage{calc} %Package to calculate in Latex
+\RequirePackage{rotating} %Package to rotate objects
+% \RequirePackage{pgf, tikz} %Package to draw figures.
+\RequirePackage{epstopdf} %Package to convert eps to pdf
 \RequirePackage[backend=biber, style=numeric, sorting=none]{biblatex}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%% Colors
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Colors
 \definecolor{RUgray}{HTML}{6A757C} % gray = PANTONE 431
 \definecolor{RUred}{HTML}{cc0033} % red = PANTONE 186(250 anniversary version)
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%% Putting the background image in the frames
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Putting the background image in the frames
 \usebackgroundtemplate{
 \parbox[c][\paperheight][c]{\paperwidth}{\centering\transparent{0.1}\includegraphics[height=0.8\paperheight]{../formats/RULogos/RU_SHIELD_BLACK.eps}}
 }
 
 % \logo{\includegraphics[scale=0.075]{../formats/RULogos/RU_SHIELD_CMYK_RED.eps}}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%% Style of the blocks
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Style of the blocks
 \usecolortheme[named=RUred]{structure}
 \usefonttheme[onlymath]{serif}
 \useinnertheme{circles}
 \useoutertheme[subsection=false]{miniframes}
 % \setbeamertemplate{navigation symbols}{}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%% Header and foot
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Header and foot
 \setbeamercolor*{section in head/foot}{fg=RUred}
 % \setbeamercolor{subsection in head/foot}{bg=RUgray, fg=white}
 % \setbeamerfont{block title}{size={}}
@@ -144,11 +138,10 @@
 \end{beamercolorbox}
 }%
 }
-% \mode
-% <all>
+\mode
+<all>
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%% Create the blocks of the beamer template
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Create the blocks of the beamer template
 
 % draw the blocks
 \setbeamertemplate{blocks}[rounded][shadow=true]

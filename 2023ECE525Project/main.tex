@@ -1,14 +1,22 @@
-\documentclass[11pt]{article}
-\usepackage[letterpaper, margin=1in]{geometry}
+\documentclass{article}
+\usepackage[
+    % letterpaper,
+    margin=1in,
+    % headheight=13.6pt,
+]{geometry}
 
-
-%%%% Header and Foot Information %%%%
-\newcommand{\lefthead}{ECE 14:332:525}
-\newcommand{\centerhead}{\textbf{Optimal Signal Processing}}
-\newcommand{\righthead}{Spring 2023}
-\newcommand{\leftbottom}{}
-\newcommand{\centerbottom}{\thepage}
-\newcommand{\rightbottom}{}
+%%%% Page Header and Foot %%%%
+\usepackage{fancyhdr}
+\fancypagestyle{plain}{
+\fancyhf{}
+\fancyhead[L]{ECE 14:332:525}
+\fancyhead[C]{\textbf{Optimal Signal Processing}}
+\fancyhead[R]{Spring 2023}
+\fancyfoot[L]{}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{}
+}
+\pagestyle{plain}
 
 %%%% Load Format %%%%
 \input{../Formats/format.tex}

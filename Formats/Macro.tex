@@ -32,6 +32,7 @@
 %%%% vector font
 \let\oldvec\vec
 \renewcommand*{\vec}[1]{\mathbf{#1}}
+\newcommand*{\mtx}[1]{\mathbf{#1}}
 % \newcommand*{\trn}{\!^{\!\intercal}}
 \newcommand*{\trn}{\!^{\mathsf{T}}}
 % \newcommand*{\coj}{\!^{\dag}} % Text Mode Symbol, Should not be used
@@ -86,6 +87,7 @@
 \newcommand*{\diff}{\mathop{}\!\mathrm{d}}
 \newcommand*{\set}[1]{\braces*{\,#1\,}}
 \newcommand*{\iidsim}{\stackrel{\textnormal{i.i.d.}}{\sim}}
+\newcommand*{\myrule}{\rule{1.5in}{0.1mm}}
 
 %%%% CVPR ABBREVIATIONS
 % Add a period to the end of an abbreviation unless there's one already,
@@ -103,3 +105,44 @@
 \def\etal{\emph{et al}\onedot}
 \def\whp{w.h.p\onedot}
 \makeatother
+
+%%%% A box fill the rest of the page
+\newtcolorbox{stretchbox}[1][]{
+    height fill,
+    % sharp corners,
+    colback=white,
+    colframe=black,
+    #1
+    }
+
+%%%% Box Environment
+\newtcolorbox{problem}[1]{
+% Set box style
+    % sidebyside,
+    % sidebyside align=top,
+% Dimensions and layout
+    % width=\textwidth,
+    toptitle=2.5pt,
+    bottomtitle=2.5pt,
+    % righthand width=0.20\textwidth,
+% Coloring
+    colbacktitle=white,
+    coltitle=black,
+    colback=white,
+    colframe=black,
+% Title formatting
+    fonttitle=\large\bfseries,
+    title={#1 \hfill Grade:\hspace*{0.15\paperwidth}\ }, %\! works as a placeholder
+}
+
+%%%% Problem Environment
+% \newenvironment{problem}[1]{
+%     \begin{prob}{#1}
+% }
+% {
+%     %
+%     % \tcblower
+%     % \centering
+%     % \textit{\scriptsize\bfseries Faculty Comments}
+%     \end{prob}
+% }

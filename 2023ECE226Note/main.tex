@@ -1,13 +1,22 @@
-\documentclass[10pt]{report}
-\usepackage[letterpaper, margin=1in]{geometry}
+\documentclass{report}
+\usepackage[
+    % letterpaper,
+    margin=1in,
+    % headheight=13.6pt,
+]{geometry}
 
-%%%% Header and Foot Information %%%%
-\newcommand{\lefthead}{ECE 14:332:226}
-\newcommand{\centerhead}{\textbf{Probability And Random Processes}}
-\newcommand{\righthead}{Spring 2023}
-\newcommand{\leftbottom}{}
-\newcommand{\centerbottom}{\thepage}
-\newcommand{\rightbottom}{}
+%%%% Page Header and Foot %%%%
+\usepackage{fancyhdr}
+\fancypagestyle{plain}{
+\fancyhf{}
+\fancyhead[L]{ECE 14:332:226}
+\fancyhead[C]{\textbf{Probability And Random Processes}}
+\fancyhead[R]{Spring 2023}
+\fancyfoot[L]{}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{}
+}
+\pagestyle{plain}
 
 %%%% Load Format %%%%
 \input{../Formats/Format.tex}
