@@ -216,7 +216,7 @@
 \begin{frame}
   \frametitle{Convergence}
   \begin{exampleblock}{Bound for \emph{all} pair of samples $\vec{x_n}$ and $\vec{x_m}$}
-    Let $\mathcal{M}$ be a compact sunset of $\R^d$ with diameter $\textnormal{diam}(\mathcal{M})$. Then, for the mapping $z$ defined in Algorithm~\ref{RFF}, we have
+    Let $\mathcal{M}$ be a compact subset of $\R^d$ with diameter $\textnormal{diam}(\mathcal{M})$. Then, for the mapping $z$ defined in Algorithm~\ref{RFF}, we have
     \begin{align*}
       \P{\sup_{x,y\in\mathcal{M}}\abs{z(\vec{x_n})\trn z(\vec{x_m})-K(\vec{x_n}, \vec{x_m})}\geq \epsilon} \\
       \leq 2^8\parens*{\frac{\sigma_{p(\cdot)}\textnormal{diam}(\mathcal{M})}{\epsilon}}^2\exp\parens*{-\frac{s\epsilon^2}{4(d+2)}}.

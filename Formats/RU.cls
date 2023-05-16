@@ -44,6 +44,7 @@
 \RequirePackage[breakable]{tcolorbox} %Customized Box
 \tcbuselibrary{skins}
 \RequirePackage{transparent}
+\RequirePackage{subcaption} %Package to use subfigure
 
 %% Table Packages
 \RequirePackage{tabularx}

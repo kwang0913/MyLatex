@@ -30,9 +30,10 @@
 \RequirePackage[breakable]{tcolorbox} %Customized Box
 \tcbuselibrary{skins}
 \RequirePackage{transparent}
+\RequirePackage{subcaption} %Package to use subfigure
 
 %%%% Table and List
-\RequirePackage{tabularx} %Better Table
+\RequirePackage{tabularx}
 \RequirePackage{multirow}
 \RequirePackage{colortbl}
 \RequirePackage{array}
@@ -55,12 +56,12 @@
 \RequirePackage{multicol} %Package to use multicols
 
 %%%% Other Packages
-\RequirePackage{xspace}
-\RequirePackage{calc}
-\RequirePackage{rotating}
-\RequirePackage{pgf, tikz}
-\RequirePackage{epstopdf}
-\RequirePackage[backend=biber, style=numeric, sorting=none]{biblatex}
+\RequirePackage{xspace} %Package to add space after macros
+\RequirePackage{calc} %Package to do calculation
+\RequirePackage{rotating} %Package to rotate text
+\RequirePackage{pgf, tikz} %Package to draw figures
+\RequirePackage{epstopdf} %Package to convert eps to pdf
+\RequirePackage[backend=biber, style=numeric, sorting=none]{biblatex} %Package to manage bibliography
 
 %%%% A box fill the rest of the page
 \newtcolorbox{stretchbox}[1][]{
