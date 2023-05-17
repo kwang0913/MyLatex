@@ -37,7 +37,7 @@
         \condP{A}{B}
         &= \frac{\P{AB}}{\P{B}}  \tag{Definition of Conditional Probability}\\
         &= \P{AB}  \tag{$B$ is Collectively Exhaustive so $\P{B}=1$} \\
-        &= \P{A\cdot\cup_{i=1}^{N}B_i}  \tag{$B$ is Mutually Exclusive} \\
+        &= \P{A\cdot\bigcup\limits_{i=1}^{N}B_i}  \tag{$B$ is Mutually Exclusive} \\
         &= \sum_{i=1}^{N}\P{AB_i}  \tag{$B$ is Partition} \\
         &= \sum_{i=1}^{N}\condP{A}{B_i}\P{B_i}. \tag{Definition of Conditional Probability}
     \end{align}
