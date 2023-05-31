@@ -1,0 +1,46 @@
+\documentclass[10pt]{../formats/RU}
+\input{../Formats/Macro.tex}
+
+%Theorem style
+\declaretheorem[numbered=no, style=definition]{axiom}
+\declaretheorem[numberwithin=section,style=definition]{definition}
+\declaretheorem[sibling=definition]{theorem, lemma, corollary, proposition, conjecture}
+\declaretheorem[numbered=no,style=remark]{remark, claim}
+
+%Information to be included in the title page:
+\title[ECE 226 Probability]{Probability and Random Process}
+% \subtitle{}
+\author[Kai] % (optional, for multiple authors)
+{Kailong Wang\inst{1}
+%\and Someone Else\inst{2}
+}
+\institute[Rutgers] % (optional)
+{
+  \inst{1}%
+  Faculty of ECE\\
+  Rutgers University
+  % \and
+  % \inst{2}%
+  % Faculty of Statistics\\
+  % Very Famous University
+}
+\date[\today] % (optional)
+{\today}
+
+
+
+\begin{document}
+\frame{\titlepage}
+%---------------------------------------------------------
+%This block of code is for the table of contents after
+%the title page
+\begin{frame}
+\frametitle{Table of Contents}
+\tableofcontents
+\end{frame}
+%---------------------------------------------------------
+
+
+\section{Motivation}
+
+\end{document}

@@ -1,0 +1,116 @@
+\documentclass{article}
+\usepackage[
+    % letterpaper,
+    margin=1in,
+    % headheight=13.6pt,
+]{geometry}
+
+%%%% Page Header and Foot %%%%
+\usepackage{fancyhdr}
+\fancypagestyle{plain}{
+\fancyhf{}
+\fancyhead[L]{ECE 14:332:226}
+\fancyhead[C]{\textbf{Probability And Random Processes}}
+\fancyhead[R]{Summer 2023}
+\fancyfoot[L]{}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{}
+}
+\pagestyle{plain}
+
+%%%% Load Format %%%%
+\input{../Formats/Format.tex}
+\input{../Formats/Macro.tex}
+\addbibresource{bib.bib}
+
+%%%% Theorem Style %%%%
+\declaretheorem[numbered=no, style=definition]{axiom}
+\declaretheorem[numberwithin=section,style=definition]{definition}
+\declaretheorem[sibling=definition]{theorem, lemma, corollary, proposition, conjecture}
+\declaretheorem[numbered=no,style=remark]{remark, claim}
+
+%%%% Document Information %%%%
+\title{RUTGERS UNIVERSITY, DEPARTMENT OF ECE \\
+COURSE SYLLABUS: 14:332:226}
+\author{Kailong Wang}
+\date{\today}
+
+\begin{document}
+\maketitle
+Probability theory studies random phenomena in a formal mathematical way. It is essential for all engineering and scientific disciplines dealing with models that depend on chance.
+Probability provides a well-defined way to quantify the uncertainty of a random event. With this framework, we can analyze the behavior of complex systems and \textbf{make informed decisions} (i.e., minimize the negative effect of bad behavior and maximize the positive effect of good behavior).
+With a long history development of probability theory, it plays a central role in e.g.,  telecommunications and finance systems. Telecommunications systems strive to provide reliable and secure transmission and storage of information under the uncertainties coming from various types of random noise and adversarial behavior. Finance systems strive to maximize profits in spite of the uncertainties coming from natural and man-made events.
+% With the rapid growth of AIGC, probability theory inspired the design of model learning algorithms and architectures. For example, ChatGPT is a large model which outputs result with maximized likelihood of human language habits.
+The students will learn the fundamentals of probability that are necessary for several ECE courses and related fields and help them prepare for the career in the industry and academia.
+
+\textbf{Class Time and Place:} Monday$\sim$Thursday 10:30am$\sim$12:20pm, Busch SEC-203.
+
+\textbf{Office Hour:} TBD.
+
+\textbf{Contact:} kw414@scarletmail.rutgers.edu.
+
+\textbf{Prerequisites:} Calculus.
+
+\textbf{Grading:} {
+    \begin{itemize}
+        \item Structure: {
+            \begin{itemize}
+                \item HW Presentation: 20 times$\times$1 credit
+                \item Exam: 2 times$\times$50 credits
+                \item Bonus Project: 1 times$\times$20 credits
+            \end{itemize}
+        }
+        \item Exam Formats: {
+            \begin{itemize}
+                \item In total 150 points in each exam. Each will convert to 50 credits in final grade.
+                \item 60 points easy questions from HW. No partial credit. Need a complete calculation process.
+                \item 40 points intermediate questions modified from HW. No partial credit. Fill the blank.
+                \item 50 points hard questions. Multiple-choice. Probability class deserves some randomness.
+            \end{itemize}
+        }
+    \end{itemize}
+}
+
+\textbf{Textbook and Materials:} {
+    \begin{enumerate}
+        \item \textbf{(Best For Beginner and Engineer)} \fullcite{Yates_Goodman_2015}
+
+        \href{https://bcs.wiley.com/he-bcs/Books?action=index&itemId=1118324560&bcsId=8677}{\textbf{Student Companion Site}}
+        \item \textbf{(Beginner Alternative)} \fullcite{94107244}
+        % \item \textbf{(Classic Alternative)} \fullcite{91610706}
+        \item \textbf{(Online Alternative)} \href{https://www.probabilitycourse.com/}{Introduction to Probability, Statistics, and Random Processes} by Pishro-Nik
+        \item \textbf{(Modern Alternative)} \href{https://www.stat.berkeley.edu/~aldous/134/grinstead.pdf}{Introduction to Probability} by Grinstead and Snell
+        % \item \textbf{(Optional)} \fullcite{93738109}
+        % \item \textbf{(Advanced Choice)} \fullcite{94013254}
+    \end{enumerate}
+}
+
+\textbf{Topics Covered By Day:} {
+    \begin{enumerate}[\textbf{Day} 1]
+        \item Course Introduction and Review of Calculus
+        \item Combinatorics Analysis, Counting Methods, Tree Diagrams
+        \item Examples and Exercises
+        \item Set Theory, Axioms of Probability, Conditional Probability, Independence, Venn Diagrams
+        \item Examples and Exercises
+        \item PMF, Discrete Random Variables, CDF, Derived Random Variable, Expectation
+        \item Examples and Exercises
+        \item CDF, Continuous Random Variables, PDF, Gaussian Random Variable, Delta Function
+        \item Examples and Exercises
+        \item Review
+        \item Exam 1
+        \item Joint CDF, Joint Random Variables, Joint PMF, Joint PDF, Marginal PMF, Marginal PDF, Joint Expectation, Covariance, Correlation, Linear Independence
+        \item Examples and Exercises
+        \item Derived Random Variables
+        \item Examples and Exercises
+        \item Conditional Random Variables
+        \item Examples and Exercises
+        \item Sum of Random Variables
+        \item Examples and Exercises
+        \item Review
+        \item Exam 2
+        \item Convergence and Intro to Stochastic Process
+        \item Bonus Presentation
+    \end{enumerate}
+}
+
+\end{document}
