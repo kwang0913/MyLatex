@@ -3,13 +3,13 @@
 
 \section{Continuous sample space}
 \begin{axiom}
-    A random variable $X$ is continuous if the range $S_X$ consists of one or more intervals. For $x\in S_X$, $\P{X=x}=0$.
+    A random variable $X$ is continuous if the sample space $S_X$ consists of one or more intervals. For $x\in S_X$, $P_X(x)=0$.
 \end{axiom}
 
 
 \section{The Cumulative Distribution Function}
 \begin{definition}[Cumulative Distribution Function (CDF)]
-    The CDF of random variable $X$ is
+    The CDF of continuous random variable $X$ is
     \[F_X(x) = \P{X\leq x}.\]
 \end{definition}
 
@@ -42,7 +42,7 @@ Start with a continuous random variable $X$ with CDF $F_X(x)$. The probability o
     For a continuous random variable $X$ with PDF $f_X(x)$,
     \begin{enumerate}
         \item $f_X(x)\geq 0$ for all $x$
-        \item $F_X(x)=\int_{-\infty}^x f_X(u)\diff u$
+        \item $F_X(u)=\int_{-\infty}^u f_X(x)\diff x$
         \item $\int_{-\infty}^{\infty} f_X(x)\diff x = 1$
     \end{enumerate}
 \end{theorem}
@@ -60,6 +60,12 @@ Start with a continuous random variable $X$ with CDF $F_X(x)$. The probability o
         \E{X}=\int_{-\infty}^{\infty} xf_X(x) \diff x.
     \end{align*}
 \end{definition}
+
+\begin{corollary}
+    [Integral Identity]
+    For every non-negative random variable $X$, \[\E{X}=\int_{0}^{\infty}1-F_X(u)\diff s=\int_{0}^{\infty}\P{X>u}\diff u.\]
+
+\end{corollary}
 
 \begin{theorem}[Derived Random Variable]
     \begin{align*}
@@ -79,7 +85,7 @@ Start with a continuous random variable $X$ with CDF $F_X(x)$. The probability o
 
 \section{Families of Continuous Random Variables}
 \begin{enumerate}
-    \item Continuous Uniform $\Unif(k,l)$: A continuous counterpart of Discrete Uniform {
+    \item Continuous Uniform $(k,l)$: A continuous counterpart of Discrete Uniform {
         \begin{align*}
             f_X(x)
             &= {
@@ -95,7 +101,7 @@ Start with a continuous random variable $X$ with CDF $F_X(x)$. The probability o
             &= (l-k)^2/12. \\
         \end{align*}
     }
-    \item Exponential $\Expv(\lambda)$: A continuous counterpart of $\Geomv(1-e^{-\lambda})$ {
+    \item Exponential $(\lambda)$: A continuous counterpart of Geometry $(1-e^{-\lambda})$ {
         \begin{align*}
             f_X(x)
             &= {
@@ -112,7 +118,7 @@ Start with a continuous random variable $X$ with CDF $F_X(x)$. The probability o
             &= 1/\lambda^2.
         \end{align*}
     }
-    \item Erlang $\mathsf{Erlang}(n,\lambda)$: A continuous counterpart of  $\mathsf{Pascal}(n,1-e^{-\lambda})${
+    \item Erlang $(n,\lambda)$: A continuous counterpart of  $(n,1-e^{-\lambda})${
         \begin{align*}
             f_X(x)
             &= {
@@ -155,7 +161,7 @@ Start with a continuous random variable $X$ with CDF $F_X(x)$. The probability o
     The $\Gaus(\mu,\sigma)$ with $\mu=0, \sigma=1$ is called standard normal random variable $Z\sim\Gaus(0,1)$. The \emph{PDF} is,
     \[f_X(x)=\frac{1}{\sqrt{2\pi}}\exp(-\frac{x^2}{2}).\]
     And the \emph{CDF} is
-    \[\Phi(z)=\int_{-\infty}^{z}\frac{1}{\sqrt{2\pi}}\exp(-\frac{u^2}{2})\diff u.\]
+    \[\Phi(z)=\int_{-\infty}^{z}\frac{1}{\sqrt{2\pi}}\exp(-\frac{x^2}{2})\diff x.\]
 \end{theorem}
 
 \begin{theorem}

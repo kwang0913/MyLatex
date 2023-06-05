@@ -15,7 +15,7 @@
             \item Binomial ($n, p$): Get \textbf{x} successes in \textbf{n} Bernoulli ($p$) experiments $\iff$ independent trails{
                 \[P_X(\textcolor{red}{x}) = {
                     \begin{cases}
-                        \binom{n}{\textcolor{red}{x}}p^x(1-p)^{n-x} & x=0,1,\ldots,n \\
+                        \binom{n}{\textcolor{red}{x}}p^x(1-p)^{n-x} & x=0,1,\ldots,n, \\
                         0 & otherwise.
                     \end{cases}
                 }\]
@@ -24,21 +24,21 @@
             \item Poisson ($\alpha$): Binomial ($n, p$) with small $p$, large $n$, and $\alpha=np${
                 \[ P_X(x) =
                 \begin{cases}
-                    \dfrac{\alpha^x e^{-\alpha}}{x!}   & x=0,1,\ldots \\
+                    \dfrac{\alpha^x e^{-\alpha}}{x!}   & x=0,1,\ldots, \\
                     0   & otherwise.
                 \end{cases} \]
             }
             \item Geometric ($p$): Get the $\bm{1}$\textbf{st} success at the $\bm{x}$\textbf{th} Bernoulli ($p$) experiment {
                 \[ P_X(x) =
                 \begin{cases}
-                    p(1-p)^{x-1} & x=1,2,\ldots \\
+                    p(1-p)^{x-1} & x=1,2,\ldots, \\
                     0   & otherwise.
                 \end{cases} \]
             }
             \item Pascal ($k,p$): Get the $\bm{k}$\textbf{th} success at the $\bm{x}$\textbf{th} Bernoulli ($p$) experiment {
                 \[P_X(\textcolor{red}{x}) = {
                     \begin{cases}
-                        \binom{\textcolor{red}{x}-1}{k-1}p^k(1-p)^{x-k} & x=k,k+1,k+2,\ldots \\
+                        \binom{\textcolor{red}{x}-1}{k-1}p^k(1-p)^{x-k} & x=k,k+1,k+2,\ldots, \\
                         0 & otherwise.
                     \end{cases}
                 }\]
@@ -47,7 +47,7 @@
             \item Discrete Uniform ($k, l$): outcomes are uniformly distributed on range $(k, l)$ \textbf{E.g., Roll a Die}{
                 \[ P_X(x) =
                 \begin{cases}
-                    1/(l-k+1)   & x=k,k+1,k+2,\ldots,l \\
+                    1/(l-k+1)   & x=k,k+1,k+2,\ldots,l, \\
                     0   & otherwise.
                 \end{cases} \]
             }

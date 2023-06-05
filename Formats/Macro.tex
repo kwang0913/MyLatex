@@ -32,6 +32,8 @@
 %%%% vector font
 \let\oldvec\vec
 \renewcommand*{\vec}[1]{\mathbf{#1}}
+\let\oldcomplement\complement
+\renewcommand*{\complement}{^{\mathsf{c}}}
 \newcommand*{\mtx}[1]{\mathbf{#1}}
 % \newcommand*{\trn}{\!^{\!\intercal}}
 \newcommand*{\trn}{\!^{\mathsf{T}}}

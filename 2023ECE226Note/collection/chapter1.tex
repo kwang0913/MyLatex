@@ -23,22 +23,28 @@
 \section{Set Properties and corresponding Probability Properties}
 \begin{enumerate}
     \item Mutually Exclusive: $A \cap B = \emptyset \Rightarrow \P{A \cap B}=0$, which implies $\P{A \cup B} = \P{A}+\P{B}$.
-    \item Pairwise Mutually Exclusive: $A_i \cap A_j = \emptyset$ for $i\neq j$.
-    \item Outcomes are always Pairwise Mutually Exclusive since they are the smallest units (i.e., Elements) in the Set.
+    % \item Pairwise Mutually Exclusive: $A_i \cap A_j = \emptyset$ for $i\neq j$.
     \item Collectively Exhaustive: $\cup_{i=1}^{N}A_i = \Omega \Rightarrow \P{\cup_{i=1}^{N}A_i} = 1$.
     \item Partitions (i.e., Mutually Exclusive \& Collectively Exhaustive): $\P{\cup_{i=1}^N A_i}=\sum_{i=1}^{N}\P{A_i}=1$.
+    \item All Outcomes constitute a partition.
+    \item $A$ and $A\complement$ constitute a partition.
+    \item If $B_i$ are Collectively Exhaustive, then $\P{A\cap(\cup_{i=1}^N B_i)}=\P{A\Omega}=\P{A}$
+    \item For any $B$, $\P{A}=\P{A\cap(B\cup B\complement)}=\P{A\cap B}+\P{A\cap B\complement}$
 \end{enumerate}
 \section{Conditional Probability and Bayes' Theorem}
 \begin{enumerate}
-    \item $\condP{A}{B} = \P{AB}/\P{B}$.
-    \item If $A_i$ are Mutually Exclusive: $\condP{A}{B} = \condP{\cup_{i=1}^{N}A_i}{B} = \sum_{i=1}^{N}\condP{A_i}{B}$.
+    \item $\condP{A}{B} = \P{AB}/\P{B}$. 
+    % One way to understand this concept is treating $A\mid B$ as the new sample space.
+    \item If $A_i$ are Mutually Exclusive: $\condP{\cup_{i=1}^{N}A_i}{B} = \sum_{i=1}^{N}\condP{A_i}{B}$.
+    \item If $A_i$ are Collectively Exhaustive: $\condP{\cup_{i=1}^N A_i}{B}=\condP{\Omega}{B}=\P{\Omega B}/\P{B}=1$.
+    \item If $A_i$ are partitions: $\sum_{i=1}^{N}\condP{A_i}{B}=\condP{\cup_{i=1}^{N}A_i}{B}=\condP{\Omega}{B}=\P{\Omega B}/\P{B}=1$.
+    \item If $B_i$ are Mutually Exclusive: $\condP{A}{\cup_{i=1}^{N}B_i} = \P{A\cap(\cup_{i=1}^N B_i)}/\P{\cup_{i=1}^N B_i}=\sum_{i=1}^{N}\P{AB_i}/\sum_{i=1}^N\P{B_i}$.
+    \item If $B_i$ are Collectively Exhaustive: $\condP{A}{\cup_{i=1}^{N}B_i} = \condP{A}{\Omega}=\P{A\Omega}/\P{\Omega}=\P{A}$
     \item If $B_i$ are Partitions (Law of Total Number),
     \begin{align}
         \condP{A}{B}
-        &= \frac{\P{AB}}{\P{B}}  \tag{Definition of Conditional Probability}\\
-        &= \P{AB}  \tag{$B$ is Collectively Exhaustive so $\P{B}=1$} \\
-        &= \P{A\cdot\bigcup\limits_{i=1}^{N}B_i}  \tag{$B$ is Mutually Exclusive} \\
-        &= \sum_{i=1}^{N}\P{AB_i}  \tag{$B$ is Partition} \\
+        &= \sum_{i=1}^{N}\P{AB_i}/\sum_{i=1}^N\P{B_i} \tag{$B_i$ are Mutually Exclusive} \\
+        &= \sum_{i=1}^{N}\P{AB_i}  \tag{$B_i$ are Collectively Exhaustive} \\
         &= \sum_{i=1}^{N}\condP{A}{B_i}\P{B_i}. \tag{Definition of Conditional Probability}
     \end{align}
 \item Bayes' Theorem:{
@@ -58,7 +64,7 @@
                 &= \P{AB}+\P{A^{\mathsf{c}}B} && \text{($A$ and $A^\mathsf{c}$ are partitions)}\\
                 \Rightarrow \P{A^{\mathsf{c}}B}
                 &= \P{B}-\P{AB} \\
-                &= \P{B}-\P{A}\P{B} \\
+                &= \P{B}-\P{A}\P{B} && \text{($A$ and $B$ are independent)}\\
                 &= \P{B}\left(1-\P{A}\right) \\
                 &= \P{B}\P{A^{\mathsf{c}}}.
             \end{align*}
