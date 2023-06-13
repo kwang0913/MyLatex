@@ -11,7 +11,7 @@
 \fancyhf{}
 \fancyhead[L]{ECE 14:332:226}
 \fancyhead[C]{\textbf{Probability And Random Processes}}
-\fancyhead[R]{Spring 2023}
+\fancyhead[R]{Rutgers University}
 \fancyfoot[L]{}
 \fancyfoot[C]{\thepage}
 \fancyfoot[R]{}
@@ -21,11 +21,12 @@
 %%%% Load Format %%%%
 \input{../Formats/Format.tex}
 \input{../Formats/Macro.tex}
+\allowdisplaybreaks
 
 %%%% Theorem Style %%%%
-\declaretheorem[numbered=no, style=definition]{axiom}
+\declaretheorem[numbered=no, style=plain]{axiom, lemma}
 \declaretheorem[numberwithin=chapter,style=definition]{definition}
-\declaretheorem[sibling=definition]{theorem, lemma, corollary, proposition, conjecture}
+\declaretheorem[sibling=definition]{theorem, corollary, proposition, conjecture}
 \declaretheorem[numbered=no,style=remark]{remark, claim}
 
 %%%% Document Information %%%%
@@ -43,11 +44,15 @@
 % }
 \begin{document}
 % \maketitle
+\tableofcontents
 
 \input{collection/chapter1.tex}
 \input{collection/chapter2.tex}
 \input{collection/chapter3.tex}
 \input{collection/chapter4.tex}
 \input{collection/chapter5.tex}
+\input{collection/chapter7.tex}
+\input{collection/chapter6.tex}
+\input{collection/chapter8.tex}
 
 \end{document}

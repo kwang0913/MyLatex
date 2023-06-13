@@ -1,0 +1,224 @@
+\chapter{Conditional Probability Models}
+
+\section{Conditioning by an Event}
+\subsection{Conditioning a Random Variable by an Event}
+\begin{definition}
+    [Conditional CDF]
+    Given the event $B$ with $\P{B} > 0$, the conditional \textnormal{CDF} of $X$ given $B$ is
+    \[F_{X\mid B}(x)=\P{X\leq x\mid B}.\]
+\end{definition}
+
+\begin{definition}
+    [Conditional PMF]
+    Given the event $B$ with $\P{B} > 0$, the conditional \textnormal{PMF} of $X$ given $B$ is
+    \[P_{X\mid B}(x)=\P{X=x\mid B} ={
+        \begin{cases}
+            \frac{P_{X}(x)}{\P{B}} & x\in B, \\
+            0 & otherwise.
+        \end{cases}
+    }\]
+\end{definition}
+
+\begin{definition}
+    [Conditional PDF]
+    Given the event $B$ with $\P{B} > 0$, the conditional \textnormal{PDF} of $X$ given $B$ is
+    \[f_{X\mid B}(x)=\frac{\diff F_{X\mid B}(x)}{\diff x}={
+        \begin{cases}
+            \frac{f_{X}(x)}{\P{B}} & x\in B, \\
+            0 & otherwise.
+        \end{cases}
+    }\]
+\end{definition}
+
+% \begin{theorem}
+%     % [Law of Total Probability]
+%     For random variable $X$ resulting from an experiment with partitions $B_1, B_2, \ldots, B_m$,
+%     \begin{align*}
+%         &\text{Discrete:}& P_X(x)&=\sum_{i=1}^{m}P_{X\mid B_i}(x)\P{B_i}, \\
+%         &\text{Continuous:}& f_X(x)&=\sum_{i=1}^{m}f_{X\mid B_i}(x)\P{B_i}.
+%     \end{align*}
+% \end{theorem}
+
+\begin{theorem}
+    \begin{multicols}{2}
+        Discrete $X$:
+        \begin{enumerate}
+            \item For any $x \in B$, $P_{X\mid B}(x)\geq 0$,
+            \item $\sum_{x\in B}P_{X\mid B}(x)=1$,
+            \item The conditional probability that $X$ is in the set $C$ is $\condP{C}{B}=\sum_{x\in C}P_{X\mid B}(x).$
+        \end{enumerate}
+
+        \columnbreak
+
+        Continuous $X$:
+        \begin{enumerate}
+            \item For any $x \in B$, $f_{X\mid B}(x)\geq 0$,
+            \item $\int_{x\in B}f_{X\mid B}(x)\diff x=1$,
+            \item The conditional probability that $X$ is in the set $C$ is $\condP{C}{B}=\int_{x\in C}f_{X\mid B}(x)\diff x.$
+        \end{enumerate}
+    \end{multicols}
+\end{theorem}
+
+\subsection{Conditional Expected Value by an Event}
+\begin{definition}
+    [Conditional Expected Value]
+    The conditional expected value of random variable $X$ and $Y=g(X)$ given condition $B$ is
+    \begin{align*}
+        &\text{Discrete:}& \E{X\mid B}&=\sum_{x\in B}xP_{X\mid B}(x), \\
+        && \E{Y\mid B}&=\sum_{x\in B}g(x)P_{X\mid B}(x), \\
+        &\text{Continuous:}& \E{X\mid B}&=\int_{-\infty}^{\infty}xf_{X\mid B}(x)\diff x, \\
+        && \E{Y\mid B}&=\int_{-\infty}^{\infty}g(x)f_{X\mid B}(x)\diff x.
+    \end{align*}
+\end{definition}
+
+% \begin{theorem}
+%     For a random variable $X$ resulting from an experiment with partitions $B_1, B_2, \ldots, B_m$,
+%     \[\E{X}=\sum_{i=1}^{m}\E{X\mid B_i}\P{B_i}.\]
+% \end{theorem}
+
+\begin{theorem}
+    The conditional variance of random variable $X$ given condition $B$ is
+    \[\Var[X\mid B]=\E{X^2\mid B}-\E{X\mid B}^2.\]
+\end{theorem}
+
+\textcolor{red}{To get used to the conditional probability, think ``$X\mid B$'' as a random variable instead of an operation.}
+
+\subsection{Conditioning Two Random Variables by an Event}
+\begin{definition}
+    [Conditional Joint CDF]
+    For random variables $X$ and $Y$ and an event with $\P{B}>0$, the conditional joint \textnormal{CDF} of $X$ and $Y$ given $B$ is
+    \[F_{X,Y\mid B}(x,y)=\P{X\leq x,Y\leq y\mid B}.\]
+\end{definition}
+
+\begin{definition}
+    [Conditional Joint PMF]
+    For discrete random variables $X$ and $Y$ and an event with $\P{B}>0$, the conditional joint \textnormal{PMF} of $X$ and $Y$ given $B$ is
+    \[P_{X,Y\mid B}(x,y)=\P{X=x,Y=y\mid B}={
+        \begin{cases}
+            \frac{P_{X,Y}(x,y)}{\P{B}}. & (x,y)\in B, \\
+            0. & otherwise.
+        \end{cases}
+    }\]
+\end{definition}
+
+\begin{definition}
+    [Conditional Joint PDF]
+    For continuous random variables $X$ and $Y$ and an event with $\P{B}>0$, the conditional joint \textnormal{PDF} of $X$ and $Y$ given $B$ is
+    \[f_{X,Y\mid B}(x,y)=\frac{\partial^2 F_{X,Y\mid B}(x,y)}{\partial x\partial y}={
+        \begin{cases}
+            \frac{f_{X,Y}(x,y)}{\P{B}}. & (x,y)\in B, \\
+            0. & otherwise.
+        \end{cases}
+    }\]
+\end{definition}
+
+\begin{definition}
+    [Conditional Marginal CDF, PMF/PDF]
+    For random variables $X$ and $Y$ and an event with $\P{B}>0$, the conditional marginal \textnormal{CDF}, \textnormal{PMF} and \textnormal{PDF} of $X$ given $B$ is
+    \begin{align*}
+        F_{X\mid B}(x)&=F_{X,Y\mid B}(x,\infty), \\
+        P_{X\mid B}(x)&=\sum_{y\in S_Y}P_{X,Y\mid B}(x,y), \\
+        f_{X\mid B}(x)&=\int_{-\infty}^{\infty}f_{X,Y\mid B}(x,y)\diff y.
+    \end{align*}
+\end{definition}
+
+\begin{definition}
+    [Conditional Joint Expected Value]
+    For random variables $X$ and $Y$ and an event with $\P{B}>0$, the conditional expected value of $W=g(X,Y)$ given $B$ is
+    \begin{align*}
+        &\text{Discrete:}& \E{W\mid B}&=\sum_{x\in S_X}\sum_{y\in S_Y}g(x,y)P_{X,Y\mid B}(x,y), \\
+        &\text{Continuous:}& \E{W\mid B}&=\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}g(x,y)f_{X,Y\mid B}(x,y)\diff x\diff y.
+    \end{align*}
+\end{definition}
+
+\section{Conditioning by a Random Variable}
+\subsection{Conditioning a Random Variable by a Random Variable with Fixed Value}
+\begin{definition}
+    % [Conditional PMF]
+    For any event $Y=y$ such that $P_Y(y)>0$, the conditional \textnormal{PMF} of $X$ given $Y=y$ is
+    \[P_{X\mid Y}(x\mid y)=\condP{X=x}{Y=y}=\frac{P_{X,Y}(x,y)}{P_Y(y)}.\]
+    \[P_{Y\mid X}(y\mid x)=\condP{Y=y}{X=x}=\frac{P_{X,Y}(x,y)}{P_X(x)}.\]
+\end{definition}
+
+\begin{definition}
+    % [Conditional PDF]
+    \label{def:conditional_pdf}
+    For any event $Y=y$ such that $f_Y(y)>0$, the conditional \textnormal{PDF} of $X$ given $Y=y$ is
+    \[f_{X\mid Y}(x\mid y)=\frac{f_{X,Y}(x,y)}{f_Y(y)}.\]
+    \[f_{Y\mid X}(y\mid x)=\frac{f_{X,Y}(x,y)}{f_X(x)}.\]
+\end{definition}
+
+\begin{theorem}
+    If $X$ and $Y$ are independent, then
+    \[P_{X\mid Y}(x\mid y)=P_X(x), \qquad P_{Y\mid X}(y\mid x)=P_Y(y).\]
+\end{theorem}
+
+\begin{definition}
+    % [Conditional Expected Value]
+    \label{def:conditional_expected_value}
+    The conditional expected value of $X$ given $Y=y\in S_Y$ is
+    \begin{align*}
+        &\text{Discrete:}& \E{X\mid Y=y}&=\sum_{x\in S_X}xP_{X\mid Y}(x\mid y), \\
+        &\text{Continuous:}& \E{X\mid Y=y}&=\int_{-\infty}^{\infty}xf_{X\mid Y}(x\mid y)\diff x.
+    \end{align*}
+\end{definition}
+
+\begin{theorem}
+    If random variables $X$ and $Y$ are independent, then
+    \[\E{X\mid Y=y}=\E{X}, \qquad \E{Y\mid X=x}=\E{Y}.\]
+\end{theorem}
+\textbf{Note:} The result of $\E{X\mid Y=y}$ is a function of $y$ and the result of $\E{Y\mid X=x}$ is a function of $x$. When $X$ and $Y$ are independent, the result of $\E{X\mid Y=y}$ is a constant and the result of $\E{Y\mid X=x}$ is a constant. Because when $X$ and $Y$ are independent, changing one variable does not affect the probability distribution of the other.
+
+\subsection{Conditioning a Random Variable by a Random Variable}
+\begin{theorem}\label{thm:conditional_expected_value}
+    If $Y$ is unspecified, then ``$X\mid Y$'' is a function of both $X$ and $Y$, whose expectation is determined by joint distribution $P_{X,Y}(x,y)$, (equivalently, you can think $Y$ as a partitions).
+    \begin{align*}
+        &\text{Discrete:}& \E{X\mid Y}&=\sum_{x\in S_X}\sum_{y\in S_Y}xP_{X\mid Y}(x\mid y)P_y(y)=\sum_{x\in S_X}\sum_{y\in S_Y}xP_{X, Y}(x, y), \\
+        &\text{Continuous:}& \E{X\mid Y}&=\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}xf_{X\mid Y}(x\mid y)f_Y(y)\diff x\diff y=\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}xf_{X, Y}(x, y)\diff x\diff y.
+    \end{align*}
+\end{theorem}
+
+\begin{theorem}
+    Following \cref{thm:conditional_expected_value}, the variance of ``$X\mid Y$'' is
+    \begin{align*}
+        \Var[X\mid Y]
+        &= \E{(X-\E{X\mid Y})^2\mid Y} \\
+        &= \E{X^2\mid Y}-\E{X\mid Y}^2 .
+    \end{align*}
+\end{theorem}
+
+\begin{theorem}
+    [Iterated Expectation]
+    \label{thm:iterated_expectation}
+    If $Y$ is unspecified, then $\E{X\mid Y}$ is the function of $Y$, which is also a random variable. We certainly are interested in \textbf{the expectation of} $\E{X\mid Y}$,
+    \[\E{\E{X\mid Y}}=\E{X} \qquad \E{\E{g(x)\mid Y}}=\E{g(X)}.\]
+\end{theorem}
+
+\begin{proof}
+    \begin{align*}
+        \E{\E{X\mid Y}}
+        &= \int_{-\infty}^{\infty}\E{X\mid Y=y}f_Y(y)\diff y && \text{($\E{X\mid Y}$ is a function of $Y$)}\\
+        &= \int_{-\infty}^{\infty}\left(\int_{-\infty}^{\infty}xf_{X\mid Y}(x\mid y)\diff x\right)f_Y(y)\diff y && \text{(\cref{def:conditional_expected_value})}\\
+        &= \int_{-\infty}^{\infty}x\int_{-\infty}^{\infty}f_{X\mid Y}(x\mid y)f_Y(y)\diff y\diff x && \text{(Some Algebra)}\\
+        &= \int_{-\infty}^{\infty}x\int_{-\infty}^{\infty}f_{X,Y}(x,y)\diff y \diff x && \text{(\cref{def:conditional_pdf})}\\
+        &= \int_{-\infty}^{\infty}xf_X(x)\diff x && \text{(\cref{def:marginal_pdf})}\\
+        &= \E{X}. && \text{(definition of $\E{X}$)}
+    \end{align*}
+\end{proof}
+
+\begin{theorem}
+    \label{thm:iterated_variance}
+    Following \cref{thm:iterated_expectation}, the variance of $\E{X\mid Y}$ is
+    \[\Var[\E{X\mid Y}]= \E{\E{X\mid Y}^2}-\E{X}^2.\]
+\end{theorem}
+
+\begin{theorem}
+    \label{thm:iterated_variance2}
+    We also are interested the expectation of $\Var[X\mid Y]$ for the same reason of \cref{thm:iterated_expectation},
+    \[\E{\Var[X\mid Y]}=\E{X^2}-\E{\E{X\mid Y}^2}.\]
+\end{theorem}
+
+\begin{theorem}
+    The combination of \cref{thm:iterated_variance,thm:iterated_variance2} leads to a very useful formula,
+    \[\Var[X]=\E{\Var[X\mid Y]}+\Var[\E{X\mid Y}].\]
+\end{theorem}

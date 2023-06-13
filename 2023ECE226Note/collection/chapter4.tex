@@ -1,14 +1,14 @@
 \chapter{Continuous Random Variables}
 
 
-\section{Continuous sample space}
+% \section{Continuous Sample Space}
 \begin{axiom}
     A random variable $X$ is continuous if the sample space $S_X$ consists of one or more intervals. For $x\in S_X$, $P_X(x)=0$.
 \end{axiom}
 
 
-\section{The Cumulative Distribution Function}
-\begin{definition}[Cumulative Distribution Function (CDF)]
+\section{Cumulative Distribution Function (CDF)}
+\begin{definition}
     The CDF of continuous random variable $X$ is
     \[F_X(x) = \P{X\leq x}.\]
 \end{definition}
@@ -23,7 +23,7 @@
 \end{theorem}
 
 
-\section{Probability Density Function}
+\section{Probability Density Function (PDF)}
 Start with a continuous random variable $X$ with CDF $F_X(x)$. The probability of ``$X$ with volume $\triangle$'' is defined as:
 \begin{align*}
     \P{x<X\leq x+\triangle}
@@ -33,13 +33,13 @@ Start with a continuous random variable $X$ with CDF $F_X(x)$. The probability o
 \begin{definition}[Probability Density Function (PDF)]
     \begin{align*}
         f_X(x)
-        &= \lim_{\triangle\rightarrow 0}\frac{F_X(x+\triangle)-F_X(x)}{\triangle} \\
-        &= \frac{\diff F_X(x)}{\diff x}.
+        = \lim_{\triangle\rightarrow 0}\frac{F_X(x+\triangle)-F_X(x)}{\triangle}
+        = \frac{\diff F_X(x)}{\diff x}.
     \end{align*}
 \end{definition}
 
 \begin{theorem}
-    For a continuous random variable $X$ with PDF $f_X(x)$,
+    For a continuous random variable $X$ with \textnormal{PDF} $f_X(x)$,
     \begin{enumerate}
         \item $f_X(x)\geq 0$ for all $x$
         \item $F_X(u)=\int_{-\infty}^u f_X(x)\diff x$
@@ -61,11 +61,19 @@ Start with a continuous random variable $X$ with CDF $F_X(x)$. The probability o
     \end{align*}
 \end{definition}
 
-\begin{corollary}
+\begin{theorem}
     [Integral Identity]
-    For every non-negative random variable $X$, \[\E{X}=\int_{0}^{\infty}1-F_X(u)\diff s=\int_{0}^{\infty}\P{X>u}\diff u.\]
+    For every non-negative random variable $X$, \[\E{X}=\int_{0}^{\infty}1-F_X(u)\diff u=\int_{0}^{\infty}\P{X>u}\diff u.\]
+\end{theorem}
 
-\end{corollary}
+\begin{proof}
+    \begin{align*}
+        \E{X}
+        &= \int_{0}^{\infty}xf_X(x)\diff x && \text{($X$ is non-negative)} \\
+        &= \int_{0}^{\infty}\parens*{\int_{0}^{x} 1 \diff u} f_X(x)\diff x = \int_{0}^{\infty}\parens*{\int_{u}^{\infty}f_X(x)\diff x}\diff u && \text{(Some Algebra)}\\
+        &= \int_{0}^{\infty}1-F_X(u)\diff u = \int_{0}^{\infty}\P{X>u}\diff u. && \text{(Definition of CDF)}
+    \end{align*}
+\end{proof}
 
 \begin{theorem}[Derived Random Variable]
     \begin{align*}
@@ -76,8 +84,8 @@ Start with a continuous random variable $X$ with CDF $F_X(x)$. The probability o
 \begin{theorem}
     For any random variable $X$,
     \begin{enumerate}
-        \item $\E{X-\mu_x}=0$,
         \item $\E{aX+b}=a\E{X}+b$,
+        \item $\E{X-\mu_x}=0$,
         \item $\Var[X] = \E{X^2}-\mu_x^2$,
         \item $\Var[aX+b]=a^2\Var[X]$.
     \end{enumerate}
@@ -139,12 +147,12 @@ Start with a continuous random variable $X$ with CDF $F_X(x)$. The probability o
 
 
 \section{Gaussian Random Variables}
-\begin{theorem}[Gaussian Integral]
-    \[\int_{-\infty}^{\infty}e^{-x^2}\diff x=\sqrt{\pi}.\]
-\end{theorem}
+% \begin{theorem}[Gaussian Integral]
+%     \[\int_{-\infty}^{\infty}e^{-x^2}\diff x=\sqrt{\pi}.\]
+% \end{theorem}
 
 \begin{definition}[Gaussian Random Variable]
-    $X$ is a $\mathsf{Gaussian}(\mu, \sigma)$ random variable if the \textrm{PDF} of $X$ is
+    $X$ is a $\mathsf{Gaussian}(\mu, \sigma)$ random variable if the \textnormal{PDF} of $X$ is
     \[f_X(x)=\frac{1}{\sqrt{2\pi\sigma^2}}\exp(-\frac{(x-\mu)^2}{2\sigma^2}).\]
     $X$ is also called $\mathsf{Normal}(\mu,\sigma)$ random variable. We will use $\mathsf{N}(\mu, \sigma)$ in the following content.
 \end{definition}
@@ -157,12 +165,12 @@ Start with a continuous random variable $X$ with CDF $F_X(x)$. The probability o
     If $X$ is $\Gaus(\mu,\sigma)$, $Y=aX+b$ is $\Gaus(a\mu+b,a\sigma)$.
 \end{theorem}
 
-\begin{theorem}[Standard Normal Random Variable]
-    The $\Gaus(\mu,\sigma)$ with $\mu=0, \sigma=1$ is called standard normal random variable $Z\sim\Gaus(0,1)$. The \emph{PDF} is,
+\begin{definition}[Standard Normal Random Variable]
+    The $\Gaus(\mu,\sigma)$ with $\mu=0, \sigma=1$ is called standard normal random variable $Z\sim\Gaus(0,1)$. The PDF is,
     \[f_X(x)=\frac{1}{\sqrt{2\pi}}\exp(-\frac{x^2}{2}).\]
-    And the \emph{CDF} is
+    And the CDF is
     \[\Phi(z)=\int_{-\infty}^{z}\frac{1}{\sqrt{2\pi}}\exp(-\frac{x^2}{2})\diff x.\]
-\end{theorem}
+\end{definition}
 
 \begin{theorem}
     If $X$ is $\Gaus(\mu,\sigma)$, the \emph{CDF} of $X$ is
@@ -177,7 +185,9 @@ Start with a continuous random variable $X$ with CDF $F_X(x)$. The probability o
 
 % \includegraphics[width=\textwidth, center]{normal_cdf.pdf}
 
-\section{Delta Function, Mixed (Being Discrete and Continuous at the same time) Random Variable}
+\section{Delta Function, Mixed (Being Discrete and Continuous at the same time) Random Variables
+% (\textcolor{red}{Only for Engineering Students})
+}
 \begin{definition}[Unit Impulse (Delta) Function]
     Let
     \[d_{\epsilon}(x)={
@@ -215,15 +225,14 @@ Start with a continuous random variable $X$ with CDF $F_X(x)$. The probability o
 \end{theorem}
 
 \begin{corollary}
-    The~\cref{delta} allows us to define a generalized \emph{PDF} that applies to discrete random variables as well as to continuous random variables. Consider the \emph{CDF} of a discrete random variable, $X$. It is constant (let's say $0$ for now) everywhere except at point $x_i\in S_X$, where it has jumps of height $P_X(x_i)$. Using the \textbf{unit step function}, the \emph{CDF} of $X$ is
+    The~\cref{delta} allows us to define a generalized \emph{PDF} that applies to discrete random variables as well as to continuous random variables. Consider the \emph{CDF} of a discrete random variable, $X$. It is constant (let's say $0$ for now) everywhere except at point $x_i\in S_X$, where it has jumps of height $P_X(x_i)$. Using the unit step function, the \emph{CDF} of $X$ is
     \[F_X(x)=\sum_{x_i\in S_X} P_X(x_i)u(x-x_i).\]
     And the \emph{PDF} can be defined with $\delta(x)$ as
     \[f_X(x)=\sum_{x_i\in S_X}P_X(x_i)\delta(x-x_i).\]
     Then the \emph{Expectation} will be
     \begin{align*}
         \E{X} &= \int_{-\infty}^{\infty}x\sum_{x_i\in S_X}P_X(x_i)\delta(x-x_i)\diff x \\
-        \E{X} &= \sum_{x_i\in S_X}\int_{-\infty}^{\infty}xP_X(x_i)\delta(x-x_i)\diff x \\
-        &= \sum_{x_i\in S_X}x_i P_X(x_i)
+        \E{X} &= \sum_{x_i\in S_X}\int_{-\infty}^{\infty}xP_X(x_i)\delta(x-x_i)\diff x = \sum_{x_i\in S_X}x_i P_X(x_i)
     \end{align*}
 \end{corollary}
 
@@ -231,10 +240,11 @@ Start with a continuous random variable $X$ with CDF $F_X(x)$. The probability o
     For a random variable $X$ (not specified whether it is discrete or continuous), we have
     \begin{align*}
         q
-        &= \P{X=x_0} && \text{(General expression)} \\
-        &= P_X(x_0) && \text{(PMF)} \\
-        &= F_X(x_0^+) - F_X(x_0^-) && \text{(CDF)} \\
-        &= f_X(x_0) = q\delta(0). && \text{(PDF \& delta function)}
+        &= \P{X=x_0}  \tag{General expression} \\
+        &= P_X(x_0)  \tag{PMF} \\
+        &= F_X(x_0^+) - F_X(x_0^-)  \tag{CDF} \\
+        &= f_X(x_0)  \tag{(PDF)} \\
+        &= q\delta(0).  \tag{Delta function}
     \end{align*}
 \end{theorem}
 
