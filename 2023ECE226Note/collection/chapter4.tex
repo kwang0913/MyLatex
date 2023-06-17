@@ -93,7 +93,7 @@ Start with a continuous random variable $X$ with CDF $F_X(x)$. The probability o
 
 \section{Families of Continuous Random Variables}
 \begin{enumerate}
-    \item Continuous Uniform $(k,l)$: A continuous counterpart of Discrete Uniform {
+    \item Continuous Uniform($k$, $l$): A continuous counterpart of Discrete Uniform($k$, $l$){
         \begin{align*}
             f_X(x)
             &= {
@@ -109,7 +109,7 @@ Start with a continuous random variable $X$ with CDF $F_X(x)$. The probability o
             &= (l-k)^2/12. \\
         \end{align*}
     }
-    \item Exponential $(\lambda)$: A continuous counterpart of Geometry $(1-e^{-\lambda})$ {
+    \item Exponential($\lambda$): Get the $\bm{1}$\textbf{st} success at the $\bm{x}$\textbf{th} unit of time. This is a continuous counterpart of Geometry($p$) where $p=\lim\limits_{\triangle t\rightarrow 0}\lambda\triangle t$ (\ie $\lambda$ is the probability density of success per unit of time) {
         \begin{align*}
             f_X(x)
             &= {
@@ -126,22 +126,40 @@ Start with a continuous random variable $X$ with CDF $F_X(x)$. The probability o
             &= 1/\lambda^2.
         \end{align*}
     }
-    \item Erlang $(n,\lambda)$: A continuous counterpart of  $(n,1-e^{-\lambda})${
+    \item Erlang($k$, $\lambda$): Get the $\bm{k}$\textbf{th} success at the $\bm{x}$\textbf{th} unit of time. This is a continuous counterpart of  Pascal($k$,$p$){
         \begin{align*}
             f_X(x)
             &= {
                 \begin{cases}
-                    \frac{\lambda (\lambda x)^{n-1}e^{-\lambda x}}{(n-1)!} & x\geq 0 \\
+                    \frac{\lambda^kx^{k-1}e^{-\lambda x}}{(k-1)!} & x\geq 0 \\
                     0      & otherwise.
                 \end{cases}
             } \\
             F_X(x)
-            &= 1-\sum_{k=0}^{n-1}\frac{(\lambda x)^k e^{-\lambda x}}{k!} = \mathbb{P}_{\mathbf{poisson}}(k\geq n). \\
+            &= \frac{\gamma(k, \lambda x)}{(k-1)!}. \\
             \E{X}
-            &= n/\lambda. \\
+            &= k/\lambda. \\
             \Var[X]
-            &= n/\lambda^2.
+            &= k/\lambda^2.
         \end{align*}
+    }
+    \item Gamma($\alpha$, $\beta$): Erlang($k$, $\lambda$) with $k=\alpha$ being a positive real number (not limits to integer), $\lambda=\beta$ and $\Gamma(\alpha)=(\alpha-1)!$. {
+        \begin{align*}
+            f_X(x)
+            &= {
+                \begin{cases}
+                    \frac{\beta^{\alpha}x^{\alpha-1}e^{-\beta x}}{\Gamma(\alpha)} & x\geq 0 \\
+                    0      & otherwise.
+                \end{cases}
+            } \\
+            F_X(x)
+            &= \frac{\gamma(\alpha,\beta x)}{\Gamma(\alpha)}. \\
+            \E{X}
+            &= \alpha/\beta. \\
+            \Var[X]
+            &= \alpha/\beta^2.
+        \end{align*}
+        \textbf{Note:} Both Erlang($k$, $\lambda$) and Gamma($\alpha$, $\beta$) are a sequence of independent Exponential($\lambda$) experiments.
     }
 \end{enumerate}
 
@@ -150,6 +168,7 @@ Start with a continuous random variable $X$ with CDF $F_X(x)$. The probability o
 % \begin{theorem}[Gaussian Integral]
 %     \[\int_{-\infty}^{\infty}e^{-x^2}\diff x=\sqrt{\pi}.\]
 % \end{theorem}
+We have seen the continuous counterpart of Discrete Uniform, Geometric and Pascal random variables. It is natural to ask what is the continuous counterpart of Binomial random variable. The answer is Gaussian random variable. We will show how to derive the Gaussian random variable from Binomial random variable in \cref{sec:CLT}. But first, let's start from the \textnormal{PDF}.
 
 \begin{definition}[Gaussian Random Variable]
     $X$ is a $\mathsf{Gaussian}(\mu, \sigma)$ random variable if the \textnormal{PDF} of $X$ is

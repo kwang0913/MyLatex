@@ -87,7 +87,7 @@ Following the same idea as in \cref{thm:pdf_of_derived_rv}, we can easily derive
 \end{corollary}
 
 \subsection{Methods of Generating Functions}
-It is quite intuitive to consider an experimental random variable as the linear combination of many well-defined random variables. However, it is not easy to derive the complete probability model (\ie the \textnormal{PMF} or \textnormal{PDF}) in such a case. The generating function method provides a way to solve this problem.
+It is quite intuitive to consider an experimental random variable as the linear combination of many well-defined random variables. However, it is not easy to calculate the moments related information (\eg mean, variance, \etc) in such a case. The generating function method provides a way to solve this problem.
 \begin{definition}
     [Probability Generating Function]
     If $X$ is a \textbf{non-negative discrete} random variable, then the probability generating function of $X$ is defined as
@@ -168,8 +168,10 @@ It is quite intuitive to consider an experimental random variable as the linear 
     \end{enumerate}
 \end{remark}
 
+\textbf{Note:} If the \textnormal{MGF} exists, it uniquely determines the probability distribution. It is powerful because the calculation of moments becomes derivative instead of integral. \textnormal{MGF} fails to calculate the probability.
+
 \begin{theorem}
-    [\textnormal{MGF} of the Sum of Independent Random Variables]
+    [\textnormal{MGF} of the Sum of Independent Random Variables]\label{thm:MGF_of_sum_of_independent_rv}
     If $X_1,X_2,\ldots,X_n$ are independent random variables with \textnormal{MGF}s $M_{X_1}(t),M_{X_2}(t),\ldots,M_{X_n}(t)$, then the \textnormal{MGF} of $W_n=X_1+X_2+\cdots+X_n$ is
     \[M_{W_n}(t)=M_{X_1}(t)M_{X_2}(t)\cdots M_{X_n}(t).\]
     If $X_1,X_2,\ldots,X_n$ are also identically distributed, then
@@ -246,14 +248,15 @@ It is quite intuitive to consider an experimental random variable as the linear 
     You can think of it as the \textit{Fourier Transform} of $P_X(x)$/$f_X(x)$. Note that $\phi_X(t)=M_X(it)$. The characteristic function is always defined.
 \end{definition}
 
-\section{Central Limit Theorem}
+\section{Central Limit Theorem}\label{sec:CLT}
 In this part of the lecture, we will see a sequence of essentially random or unpredictable events can sometimes be expected to settle down into a behavior that is essentially unchanging when items far enough into the sequence are studied. This is the fundamental theory that why probability (\ie a measure of uncertainty) can be used to model the deterministic world.
 
 \begin{theorem}
     [Central Limit Theorem]\label{thm:CLT}
     Given $X_1, X_2,\ldots$ a sequence of \iid random variables with expected value $\mu_X$ and variance $\sigma_X^2$, the \textnormal{CDF} of $Z_n=(\sum_{i=1}^{n}X_i-n\mu_X)/\sqrt{n\sigma_X^2}$ has the property
     \[\lim_{n\rightarrow \infty}F_{Z_n}(z)=\Phi(z).\]
-    That is the \textbf{CDF} of ``sum of standardized \iid random variables (not necessary Gaussian)'' converges to the standard Gaussian random variable as $n\rightarrow\infty$.
+    That is the \textbf{CDF} of ``sum of standardized \iid random variables (not necessary Gaussian)'' converges to the standard Gaussian random variable as $n\rightarrow\infty$. Alternatively, we can express it as
+    \[\lim_{n\rightarrow \infty}\frac{n(\bar{X}-\mu_X)}{\sqrt{n}\sigma_X}\sim \Gaus(0, 1).\]
 \end{theorem}
 
 \begin{proof}
@@ -278,3 +281,56 @@ In this part of the lecture, we will see a sequence of essentially random or unp
     For a binomial random variable $X\sim \Binomv(n,p)$,
     \[\P{x_1\leq X\leq x_2}\approx \P{x_1-0.5\leq X\leq x_2+0.5}\approx \Phi\parens*{\frac{x_2+0.5-np}{\sqrt{np(1-p)}}}-\Phi\parens*{\frac{x_1-0.5-np}{\sqrt{np(1-p)}}}.\]
 \end{theorem}
+
+% \section{Family of Distributions derived using \textnormal{MGF}s}
+
+% \begin{enumerate}
+%     \item \textbf{Bernoulli}($p$){
+%         \begin{align*}
+%             M_X(t)
+%             &= \E{e^{tX}}\\
+%             &= e^{t\cdot 0}P_X(0)+e^{t\cdot 1}P_X(1)\\
+%             &= 1-p+pe^t.
+%         \end{align*}
+%     }
+%     \item \textbf{Binomial}($n$,$p$): The sum of $n$ \iid Bernoulli($p$).{
+%         \begin{align*}
+%             M_X(t)
+%             &= \E{e^{tX}}\\
+%             &= \E{e^{t(X_1+X_2+\cdots+X_n)}}\\
+%             &= \E{e^{tX_1}e^{tX_2}\cdots e^{tX_n}}\\
+%             &= \E{e^{tX_1}}\E{e^{tX_2}}\cdots \E{e^{tX_n}}\\
+%             &= \left(1-p+pe^t\right)^n.
+%         \end{align*}
+%         This can also be done using \cref{thm:MGF_of_sum_of_independent_rv}.
+%     }
+%     \item \textbf{Poisson}($\alpha$): \textbf{Binomial}($n$,$p$) with $n\rightarrow\infty$ and $\alpha=np${
+%         \begin{align*}
+%             M_X(t)
+%             &= \lim_{n\rightarrow\infty}\parens*{1-\frac{\alpha}{n}+\frac{\alpha}{n}e^t}^n \\
+%             &= \lim_{n\rightarrow\infty}\parens*{1+\frac{\alpha\parens*{e^t-1}}{n}}^n \\
+%             &= e^{\alpha\parens*{e^t-1}}.
+%         \end{align*}
+%     }
+%     \item \textbf{Geometric}($p$){
+%         \begin{align*}
+%             &M_X(t)
+%             = p\cdot e^{t\cdot 1}+(1-p)\E{e^{t(X+1)}}
+%             = pe^t+(1-p)M_X(t)e^t\\
+%             \Rightarrow
+%             &M_X(t)=\frac{pe^t}{1-(1-p)e^t}.
+%         \end{align*}
+%     }
+%     \item \textbf{Pascal}($k$, $p$): The sum of $k$ \iid \textbf{Geometric}($p$).{
+%         \begin{align*}
+%             M_X(t)
+%             &= \parens*{\frac{pe^t}{1-(1-p)e^t}}^k.
+%         \end{align*}
+%     }
+%     \item \textbf{Gamma}($\alpha=k$, $\alpha$): The sum of $k$ \iid \textbf{Exponential}($\alpha$).{
+%         \begin{align*}
+%             M_X(t)
+%             &= \parens*{\frac{\alpha}{\alpha-t}}^k.
+%         \end{align*}
+%     }
+% \end{enumerate}

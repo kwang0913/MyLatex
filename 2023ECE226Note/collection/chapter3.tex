@@ -19,7 +19,7 @@
 
 \section{Families of Discrete Random Variables}
 \begin{enumerate}
-    \item Bernoulli ($p$): \textbf{E.g., Flip a coin}{
+    \item Bernoulli($p$): Single experiment with success rate $p$ (\textbf{\ie, Flip a coin}), $x$ is the number of successes{
         \[ P_X(x) =
         \begin{cases}
             1-p & x=0, \\
@@ -27,39 +27,45 @@
             0   & otherwise.
         \end{cases} \]
     }
-    \item Binomial ($n, p$): Get \textbf{x} successes in \textbf{n} Bernoulli ($p$) experiments $\iff$ independent trails{
+    \item Binomial($n$, $p$): A sequence of $\mathbf{n}$ independent Bernoulli($p$) experiments, $x$ is the number of successes{
         \[P_X(\textcolor{red}{x}) = {
             \begin{cases}
                 \binom{n}{\textcolor{red}{x}}p^x(1-p)^{n-x} & x=0,1,\ldots,n, \\
                 0 & otherwise.
             \end{cases}
         }\]
-        \textbf{Note:} Bernoulli ($p$) $\iff$ Binomial ($1, p$).
+        \textbf{Note:} Binomial($1, p$) $\iff$ Bernoulli($p$).
+
+        \textbf{Note:} Binomial($n, p$) $\iff$ Independent trails.
     }
-    \item Poisson ($\alpha$): Binomial ($n, p$) with small $p$, large $n$, and $\alpha=np${
+    \item Poisson($\alpha$): Binomial($n, p$) with $n\rightarrow\infty$, and $\alpha=np$, $x$ is the number of successes{
         \[ P_X(x) =
         \begin{cases}
             \dfrac{\alpha^x e^{-\alpha}}{x!}   & x=0,1,\ldots, \\
             0   & otherwise.
         \end{cases} \]
     }
-    \item Geometric ($p$): Get the $\bm{1}$\textbf{st} success at the $\bm{x}$\textbf{th} Bernoulli ($p$) experiment {
+    \item Geometric($p$): Get the $\bm{1}$\textbf{st} success at the $\bm{x}$\textbf{th} independent Bernoulli($p$) experiment {
         \[ P_X(x) =
         \begin{cases}
             p(1-p)^{x-1} & x=1,2,\ldots, \\
             0   & otherwise.
         \end{cases} \]
     }
-    \item Pascal ($k,p$): Get the $\bm{k}$\textbf{th} success at the $\bm{x}$\textbf{th} Bernoulli ($p$) experiment {
+    \item Pascal($k,p$): Get the $\bm{k}$\textbf{th} success at the $\bm{x}$\textbf{th} independent Bernoulli($p$) experiment {
         \[P_X(\textcolor{red}{x}) = {
             \begin{cases}
                 \binom{\textcolor{red}{x}-1}{k-1}p^k(1-p)^{x-k} & x=k,k+1,k+2,\ldots, \\
                 0 & otherwise.
             \end{cases}
         }\]
-        \textbf{Note:} Geometric ($p$) $\iff$ Pascal ($1, p$).
+        \textbf{Note:} Pascal($k,p$) is also called Negative Binomial($k,p$).
+
+        \textbf{Note:} Pascal($1, p$) $\iff$ Geometric($p$).
+
+        \textbf{Note:} Pascal($k, p$) is a sequence of $\mathbf{k}$ independent Geometric($p$) experiments.
     }
-    \item Discrete Uniform ($k, l$): outcomes are uniformly distributed on range $(k, l)$ \textbf{E.g., Roll a Die}{
+    \item Discrete Uniform($k, l$): outcomes are uniformly distributed on range $(k, l)$ \textbf{\ie, Roll a Die}{
         \[ P_X(x) =
         \begin{cases}
             1/(l-k+1)   & x=k,k+1,k+2,\ldots,l, \\
@@ -113,12 +119,12 @@
     [Important Expectations]
     Here are some important expectations:
     \begin{enumerate}
-        \item Bernoulli (p): \[\E{X}=0\cdot P_X(0)+1\cdot P_X(1)=0(1-p)+1(p)=p.\]
-        \item Binomial (n, p): \[\E{X}=np.\]
-        \item Poisson ($\alpha$): \[\E{X}=\alpha.\]
-        \item Geometric (p): \[\E{X}=1/p.\]
-        \item Pascal (k, p): \[\E{X}=k/p.\]
-        \item Discrete Uniform (k, l): \[\E{X}=(k+l)/2.\]
+        \item Bernoulli($p$): \[\E{X}=0\cdot P_X(0)+1\cdot P_X(1)=0(1-p)+1(p)=p.\]
+        \item Binomial($n$, $p$): \[\E{X}=np.\]
+        \item Poisson($\alpha$): \[\E{X}=\alpha.\]
+        \item Geometric($p$): \[\E{X}=p\cdot 1 + (1-p)\cdot (1+\E{X})\Rightarrow 1/p.\]
+        \item Pascal($k$, $p$): \[\E{X}=k/p.\]
+        \item Discrete Uniform($k$, $l$): \[\E{X}=(k+l)/2.\]
     \end{enumerate}
 \end{theorem}
 
@@ -171,11 +177,11 @@
     [Important Variance]
     Here are some important variances:
     \begin{enumerate}
-        \item Bernoulli (p): \[\Var[X]=p(1-p).\]
-        \item Binomial (n, p): \[\Var[X]=np(1-p).\]
-        \item Poisson ($\alpha$): \[\Var[X]=\alpha.\]
-        \item Geometric (p): \[\Var[X]=(1-p)/p^2.\]
-        \item Pascal (k, p): \[\Var[X]=k(1-p)/p^2.\]
-        \item Discrete Uniform (k, l): \[\Var[X]=(l-k)(l-k+2)/12.\]
+        \item Bernoulli($p$): \[\Var[X]=p(1-p).\]
+        \item Binomial($n$, $p$): \[\Var[X]=np(1-p).\]
+        \item Poisson($\alpha$): \[\Var[X]=\alpha.\]
+        \item Geometric($p$): \[\Var[X]=(1-p)/p^2.\]
+        \item Pascal($k$, $p$): \[\Var[X]=k(1-p)/p^2.\]
+        \item Discrete Uniform($k$, $l$): \[\Var[X]=(l-k)(l-k+2)/12.\]
     \end{enumerate}
 \end{theorem}
