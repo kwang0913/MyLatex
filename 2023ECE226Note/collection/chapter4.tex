@@ -70,7 +70,8 @@ Start with a continuous random variable $X$ with CDF $F_X(x)$. The probability o
     \begin{align*}
         \E{X}
         &= \int_{0}^{\infty}xf_X(x)\diff x && \text{($X$ is non-negative)} \\
-        &= \int_{0}^{\infty}\parens*{\int_{0}^{x} 1 \diff u} f_X(x)\diff x = \int_{0}^{\infty}\parens*{\int_{u}^{\infty}f_X(x)\diff x}\diff u && \text{(Some Algebra)}\\
+        &= \int_{0}^{\infty}\parens*{\int_{0}^{x} 1 \diff u} f_X(x)\diff x \\
+        &= \int_{0}^{\infty}\parens*{\int_{u}^{\infty}f_X(x)\diff x}\diff u && \text{(Some Algebra)}\\
         &= \int_{0}^{\infty}1-F_X(u)\diff u = \int_{0}^{\infty}\P{X>u}\diff u. && \text{(Definition of CDF)}
     \end{align*}
 \end{proof}
