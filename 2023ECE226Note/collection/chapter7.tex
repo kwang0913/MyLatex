@@ -1,7 +1,7 @@
-\chapter{Conditional Probability Models}
+\chapter{Conditional Random Variables}
 
 \section{Conditioning by an Event}
-\subsection{Conditioning a Random Variable by an Event}
+\subsection{Conditioning One Random Variable by an Event}
 \begin{definition}
     [Conditional CDF]
     Given the event $B$ with $\P{B} > 0$, the conditional \textnormal{CDF} of $X$ given $B$ is
@@ -83,7 +83,7 @@
 
 \textcolor{red}{To get used to the conditional probability, think ``$X\mid B$'' as a random variable instead of an operation.}
 
-\subsection{Conditioning Two Random Variables by an Event}
+\subsection{Conditioning Joint Random Variables by an Event}
 \begin{definition}
     [Conditional Joint CDF]
     For random variables $X$ and $Y$ and an event with $\P{B}>0$, the conditional joint \textnormal{CDF} of $X$ and $Y$ given $B$ is
@@ -132,7 +132,7 @@
 \end{definition}
 
 \section{Conditioning by a Random Variable}
-\subsection{Conditioning a Random Variable by a Random Variable with Fixed Value}
+\subsection{Conditioning Random Variables by a Random Variable with Fixed Value}
 \begin{definition}
     % [Conditional PMF]
     For any event $Y=y$ such that $P_Y(y)>0$, the conditional \textnormal{PMF} of $X$ given $Y=y$ is
@@ -169,7 +169,7 @@
 \end{theorem}
 \textbf{Note:} The result of $\E{X\mid Y=y}$ is a function of $y$ and the result of $\E{Y\mid X=x}$ is a function of $x$. When $X$ and $Y$ are independent, the result of $\E{X\mid Y=y}$ is a constant and the result of $\E{Y\mid X=x}$ is a constant. Because when $X$ and $Y$ are independent, changing one variable does not affect the probability distribution of the other.
 
-\subsection{Conditioning a Random Variable by a Random Variable}
+\subsection{Conditioning Random Variables by a Random Variable}
 \begin{theorem}\label{thm:conditional_expected_value}
     If $Y$ is unspecified, then ``$X\mid Y$'' is a function of both $X$ and $Y$, whose expectation is determined by joint distribution $P_{X,Y}(x,y)$, (equivalently, you can think $Y$ as a partitions).
     \begin{align*}
