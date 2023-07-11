@@ -1,0 +1,67 @@
+\documentclass{article}
+\usepackage[
+    % letterpaper,
+    margin=1in,
+    % headheight=13.6pt,
+]{geometry}
+
+%%%% Page Header and Foot %%%%
+\usepackage{fancyhdr}
+\fancypagestyle{plain}{
+\fancyhf{}
+\fancyhead[L]{ECE 14:332:226}
+\fancyhead[C]{\textbf{Probability And Random Processes}}
+\fancyhead[R]{Summer 2023}
+\fancyfoot[L]{}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{}
+}
+\pagestyle{plain}
+
+%%%% Load Format %%%%
+\input{../Formats/Format.tex}
+\input{../Formats/Macro.tex}
+\addbibresource{bib.bib}
+
+%%%% Theorem Style %%%%
+\declaretheorem[numbered=no, style=definition]{axiom}
+\declaretheorem[numberwithin=section,style=definition]{definition}
+\declaretheorem[sibling=definition]{theorem, lemma, corollary, proposition, conjecture}
+\declaretheorem[numbered=no,style=remark]{remark, claim}
+
+%%%% Document Information %%%%
+\title{Project: Beta Distribution}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+    In this course, we are going to study several fundamental distributions. These distributions are models of the random variables with some deterministic hyperparameter. A natural question is what if the hyperparameter is also a random variable. In this project, we are going to study the Beta distribution, which is a distribution to model the hyperparameter of a random variable.
+\end{abstract}
+
+The Beta distribution is a family of continuous probability distributions defined on the interval $[0, 1]$ that are parameterized by two positive shape parameters, denoted by $\alpha$ and $\beta$. These parameters determine the shape of the distribution. The Beta distribution has been widely used in various fields due to its flexibility to take on different shapes and its ability to model random variables limited to the interval of $[0,1]$.
+
+Here are two applications of the Beta distribution:
+\begin{enumerate}
+    \item \textbf{Modeling Success Rates or Proportions:} Since the Beta distribution is bounded between 0 and 1, it is often used to model proportions or success rates. For example, in A/B testing, where you want to compare the success rates of two different treatments, the success rates can be modeled as Beta distributed.
+    \item \textbf{Bayesian Statistics:} The Beta distribution is often used as a prior distribution for the parameter p of a Bernoulli or a Binomial distribution in Bayesian statistics. This is because the Beta distribution is a conjugate prior of these distributions. When a Beta distribution is used as a prior, the posterior distribution is also a Beta distribution, which simplifies the computation of the posterior.
+\end{enumerate}
+
+Though the Beta distribution is a flexible distribution that can model a wide variety of shapes on the interval $[0, 1]$, but it does have some limitations:
+
+\begin{enumerate}
+    \item The Beta distribution is defined only on the interval $[0, 1]$. This means it's not appropriate for variables that can take values outside this interval. If your data includes values at exactly 0 or 1, they will be outside the support of the Beta distribution.
+    \item Although the Beta distribution can take many shapes, it may not be able to accurately represent all types of data. For instance, it cannot model multimodal distributions (distributions with multiple peaks) on the interval $[0, 1]$.
+    \item When used in a Bayesian context, inference with the Beta distribution can become mathematically complex if it is not being used as a conjugate prior. This is true of any distribution, but it's worth noting since the Beta distribution is often used as a prior in Bayesian statistics.
+    \item The parameters of a Beta distribution do not have a direct ``real-world'' interpretation, unlike the mean of a Normal distribution or the rate of an Exponential distribution. This can make it more difficult to specify a prior if using the Beta distribution in a Bayesian context.
+\end{enumerate}
+
+In this project, there are three concepts required to be mentioned:
+\begin{enumerate}
+    \item Derive the Beta distribution from the scratch.
+    \item Show how the parameters of the Beta distribution affect the shape of the distribution.
+    \item Show why choose the parameter of the Beta distribution in Bayesian context is important. Comparing the positive and negative examples.
+\end{enumerate}
+
+\end{document}
