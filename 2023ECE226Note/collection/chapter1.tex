@@ -17,8 +17,6 @@
         }
 \end{enumerate}
 
-\section{Venn Diagram}
-
 \section{From Set to Probability}
 \begin{table}[H]
     \centering
@@ -36,7 +34,7 @@
     \end{tabular}
 \end{table}
 \begin{enumerate}
-    \item There are three Set Operations: $A \cup B, A \cap B, A^{\mathsf{c}}$.
+    \item Here are the common Set Operations: $A \cup B, A \cap B, A^{\mathsf{c}}$.
     \item A probability $\P{\cdot}$ is a function that maps events in the sample space to real numbers such that $\P{\emptyset}=0$, $\P{\text{Event}}\geq 0$, and $\P{\Omega}=1$, where $\emptyset$ is null set has no element (\ie, event has no outcome).
     \item $\P{A \cup B} = \P{A}+\P{B}-\P{AB}$, where $\P{AB}=\P{A\cap B}$.
     \item Union Bound: $\P{A\cup B}\leq \P{A}+\P{B}$. And $\P{\cup_{i=1}^N A_i}\leq \sum_{i=1}^{N}\P{A_i}$ for more than two sets.
@@ -51,13 +49,15 @@
     \end{enumerate}
 \end{axiom}
 
+\section{Venn Diagram}
+
 \section{Set Properties and Corresponding Probability Properties}
 \begin{enumerate}
     \item Mutually Exclusive: $A \cap B = \emptyset \Rightarrow \P{A \cap B}=0$, which implies $\P{A \cup B} = \P{A}+\P{B}$.
     % \item Pairwise Mutually Exclusive: $A_i \cap A_j = \emptyset$ for $i\neq j$.
     \item Collectively Exhaustive: $\cup_{i=1}^{N}A_i = \Omega \Rightarrow \P{\cup_{i=1}^{N}A_i} = 1$.
     \item Partitions (\ie, Mutually Exclusive \& Collectively Exhaustive): $\P{\cup_{i=1}^N A_i}=\sum_{i=1}^{N}\P{A_i}=1$.
-    \item All Outcomes constitute a partition.
+    \item All outcomes constitute a partition.
     \item $A$ and $A\complement$ constitute a partition.
     \item If $B_i$ are Collectively Exhaustive, then $\P{A\cap(\cup_{i=1}^N B_i)}=\P{A\Omega}=\P{A}$
     \item For any $B$, $\P{A}=\P{A\cap(B\cup B\complement)}=\P{A\cap B}+\P{A\cap B\complement}$

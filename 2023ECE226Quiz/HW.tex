@@ -1,0 +1,89 @@
+\documentclass{article}
+\usepackage[
+    % letterpaper,
+    margin=1in,
+    % headheight=13.6pt,
+]{geometry}
+
+%%%% Page Header and Foot %%%%
+\usepackage{fancyhdr}
+\fancypagestyle{plain}{
+\fancyhf{}
+\fancyhead[L]{ECE 14:332:226}
+\fancyhead[C]{\textbf{Probability And Random Processes}}
+\fancyhead[R]{Summer 2023}
+\fancyfoot[L]{}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{}
+}
+\pagestyle{plain}
+
+%%%% Load Format %%%%
+\input{../Formats/format.tex}
+\input{../Formats/Macro.tex}
+% \allowpagebreaks
+%%%% Document Information %%%%
+\title{HW 1}
+\author{}
+\date{}
+
+%%%% Start Document %%%%
+\begin{document}
+\maketitle
+
+% \iffalse
+%%%% HW 1
+\begin{problem}
+    {Group 1}
+    Given number $\set{0,1,2,3,4,5}$, how many odd numbers can be formed with 5 unrepeated digits?
+\end{problem}
+
+\begin{problem}
+    {Group 2}
+    Six couples sitting in a table. How many ways can they be seated such that all couples sits together?
+\end{problem}
+
+\begin{problem}
+    {Group 3}
+    We want to order 4 green balls, 3 red balls, and 2 blue balls. The green balls cannot be next to each other. How many ways can we do that?
+\end{problem}
+
+\begin{problem}
+    {Group 4}
+    We want to place 10 balls in 7 boxes. How many ways can we do that?
+\end{problem}
+
+\begin{problem}
+    {Group 5}
+    There are 8 books on a shelf, of 2 are paperbacks and 6 are hardbacks. How many possible selections of 4 books from this shelf Include at least one paperback?
+\end{problem}
+% \fi
+\iffalse
+%%%% HW 2
+\begin{problem}
+    {Group 1}
+    A committee of 7 people has to be chosen among 11 women and 8 men. How many different ways can be chosen if there must be more women than men.
+\end{problem}
+
+\begin{problem}
+    {Group 2}
+    let $A$ and $B$ be events with probability $\P{A}=3/4$ and $\P{B}=1/3$, show that $1/12\leq \P{A\cap B}\leq 1/3$.
+\end{problem}
+
+\begin{problem}
+    {Group 3}
+    Prove that $\binom{n+1}{r}=\binom{n}{r}+\binom{n}{r-1}$
+\end{problem}
+
+\begin{problem}
+    {Group 4}
+    A box contains $30$ red balls, $30$ white balls, and $30$ blue balls. If $10$ balls are selected at random, without replacement, what is the probability that at least one color will be missing from the selection?
+\end{problem}
+
+\begin{problem}
+    {Group 5}
+    If the probability that student A will fail a certain examination is $0.5$, the probability that student B will fail the examination is $0.2$, and the probability that both student A and student B will fail the examination is $0.1$, what is the probability that at least one of these two students will fail the examination?
+\end{problem}
+\fi
+
+\end{document}
