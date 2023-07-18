@@ -22,8 +22,15 @@
 \input{../Formats/format.tex}
 \input{../Formats/Macro.tex}
 % \allowpagebreaks
+
+%%%% Theorem Style %%%%
+\declaretheorem[numbered=no, style=plain]{axiom, lemma}
+\declaretheorem[numberwithin=section,style=definition]{definition}
+\declaretheorem[sibling=definition]{theorem, corollary, proposition, conjecture}
+\declaretheorem[numbered=no,style=remark]{remark, claim}
+
 %%%% Document Information %%%%
-\title{HW 1}
+\title{HW 7}
 \author{}
 \date{}
 
@@ -31,11 +38,11 @@
 \begin{document}
 \maketitle
 
-% \iffalse
+\iffalse
 %%%% HW 1
 \begin{problem}
     {Group 1}
-    Given number $\set{0,1,2,3,4,5}$, how many odd numbers can be formed with 5 unrepeated digits?
+    Given number $\set{0,1,2,3,4,5}$, how many odd numbers can be formed with $5$ unrepeated digits?
 \end{problem}
 
 \begin{problem}
@@ -45,24 +52,24 @@
 
 \begin{problem}
     {Group 3}
-    We want to order 4 green balls, 3 red balls, and 2 blue balls. The green balls cannot be next to each other. How many ways can we do that?
+    We want to order $4$ green balls, $3$ red balls, and $2$ blue balls. The green balls cannot be next to each other. How many ways can we do that?
 \end{problem}
 
 \begin{problem}
     {Group 4}
-    We want to place 10 balls in 7 boxes. How many ways can we do that?
+    We want to place $10$ balls in $7$ boxes. How many ways can we do that?
 \end{problem}
 
 \begin{problem}
     {Group 5}
-    There are 8 books on a shelf, of 2 are paperbacks and 6 are hardbacks. How many possible selections of 4 books from this shelf Include at least one paperback?
+    There are $8$ books on a shelf, of $2$ are paperbacks and $6$ are hardbacks. How many possible selections of $4$ books from this shelf Include at least one paperback?
 \end{problem}
-% \fi
+\fi
 \iffalse
 %%%% HW 2
 \begin{problem}
     {Group 1}
-    A committee of 7 people has to be chosen among 11 women and 8 men. How many different ways can be chosen if there must be more women than men.
+    A committee of $7$ people has to be chosen among $11$ women and $8$ men. How many ways can be chosen if there must be more women than men.
 \end{problem}
 
 \begin{problem}
@@ -85,5 +92,185 @@
     If the probability that student A will fail a certain examination is $0.5$, the probability that student B will fail the examination is $0.2$, and the probability that both student A and student B will fail the examination is $0.1$, what is the probability that at least one of these two students will fail the examination?
 \end{problem}
 \fi
+\iffalse
+%%%% HW 3
+\begin{problem}
+    {Group 1}
+    When utilizing theorems of probability theory (and other theorems), it's crucial to carefully distinguish between the generalized form and the special case. For instance, the generalized version of the combination formula, $\binom{n}{k_1,k_2,\ldots k_r}$, mirrors the pattern of $\binom{n}{k}$. However, the generalized form of De Morgan's Law is not as straightforward as its special case. In this problem, we will delve into the concept of the \textbf{independence of three events}.
+    \begin{definition}
+        $A_1$, $A_2$, and $A_3$ are mutually independent if and only if
+        \begin{enumerate}
+            \item $A_1$ and $A_2$ are independent.
+            \item $A_1$ and $A_3$ are independent.
+            \item $A_2$ and $A_3$ are independent.
+            \item $\P{A_1\cap A_2\cap A_3}=\P{A_1}\P{A_2}\P{A_3}$.
+        \end{enumerate}
+    \end{definition}
+    \textbf{Question:} Rolling two dices independently. Let $X$ and $Y$ be the scores on two fair dice taking values in the set $\set{1,2,\ldots,6}$. Let $A_1 = \set{X+Y=9}$, $A_2=\set{X\in \set{1,2,3}}$, and $A_3=\set{X\in\set{3,4,5}}$. Are $A_1$, $A_2$, and $A_3$ are mutually independent.
 
+    \textbf{Note:} In upcoming lectures, we will learn that the assumption of independence is both strong and commonly employed in many probability modeling theorems. Nevertheless, in real-world problems, it can be quite challenging to meet this assumption. There is a Ph.D. level course, High Dimensional Probability, that tackles this topic in real-life scenarios. For the moment, let's proceed under the assumption that it holds true.
+\end{problem}
+
+\begin{problem}
+    {Group 2}
+    A diagnostic test for a disease is such that it (correctly) detects the  disease in $90\%$ of the individuals who actually have the disease. Also, if a person does not have the disease, the test will report that he or she does not have it with probability $.9$. Only $1\%$ of the population has the disease in question. If a person is chosen at random from the  population and the diagnostic test indicates that she has the disease, what is the conditional probability that she does, in fact, have the disease? Are you surprised by the answer? Would you call this diagnostic test  reliable?
+
+    \textbf{Note:} Always keep \emph{Law of Total Number} in mind.
+\end{problem}
+
+\begin{problem}
+    {Group 3}
+    The \emph{symmetric difference} between two events $A$ and B is the set of all sample points that are in exactly one of the sets and is often denoted $A\triangle B$. Note that $A\triangle B = ( A \cap B\complement) \cup ( A\complement \cap B)$. Prove that $\P{ A \triangle B} = \P{ A } + \P{ B } - 2\P{ A \cap B }$.
+\end{problem}
+
+\begin{problem}
+    {Group 4}
+    Of the travelers arriving at a small airport, $60\%$ fly on major airlines, $30\%$ fly on privately owned planes, and the remainder fly on commercially owned planes not belonging to a major airline. Of those traveling on major airlines, $50\%$ are traveling for business reasons, whereas $60\%$ of those arriving at private planes and $90\%$ of those arriving at other commercially owned planes are traveling for business reasons. Suppose that we randomly select one person arriving at this airport. What is the probability that the person
+    \begin{enumerate}
+        \item is traveling on business?
+        \item is traveling for business on a privately owned plane?
+        \item arrived on a privately owned plane, given that the person is traveling for business reasons?
+        \item is traveling on business, given that the person is flying on a commercially owned plane?
+    \end{enumerate}
+\end{problem}
+
+\begin{problem}
+    {Group 5}
+    If $A_1$, $A_2$, and $A_3$ are three events and $\P{A_1\cap A_2}=\P{A_1\cap A_3}\neq0$ but $\P{A_2\cap A_3}=0$, show that
+    \[\P{\text{at least one}\ A_i}=\P{A_1}+\P{A_2}+\P{A_3}-2\P{A_1\cap A_2}.\]
+    \textbf{Note:} Venn Diagram is helpful, but we correctly expect something beyond that.
+\end{problem}
+\fi
+\iffalse
+%%%% HW 4
+\begin{problem}
+    {Group 1}
+    Two gamblers bet $\$1$ each on the successive tosses of a coin. Each has a bank of $\$6$. What is the probability that
+    \begin{enumerate}
+        \item they break even after six tosses of the coin?
+        \item one player—say, Jones—wins all the money on the tenth toss of the coin?
+    \end{enumerate}
+\end{problem}
+
+\begin{problem}
+    {Group 2}
+    Alice searches for her term paper in her filing cabinet, which has several drawers. Each drawer would be selected with probability $p_i>0 (i=1,2,\ldots,j-1,j,j+1,\ldots)$, and the term paper is in drawer $j$ but Alice doesn't know which one is. The drawers are so messy that even if she correctly guesses that the term paper is in drawer $j$ (\ie with probability $p_j$), the probability that she finds it is only $d$. Alice searches in a particular drawer, but the search is unsuccessful. Condition on this, what is the probability that she chose the correct drawer? And what is the probability that she chose the wrong one?
+
+    \textbf{Note:} The calculation of this problem is not difficult, but the statement can be misleading. Try to describe the problem in your own words.
+
+    \textbf{Note:} You probably have experienced this situation in your life. But you may not notice that a failure search still provides information and increase the chance of success. In designing a strategy to maximize the long term success rate of a sequential experiment, this is a very important concept to start with.
+\end{problem}
+
+\begin{problem}
+    {Group 3}
+    A hunter has two hunting dogs. One day, on the trail of some animal, the hunter comes to a place where the road diverges into two paths. He knows that each dog, independent of the other, will choose the correct path with probability p. The hunter decides to let each dog choose a path, and if they agree, take that one, and if they disagree, to randomly pick a path. Is his strategy better than just letting one of the two dogs decide on a path?
+\end{problem}
+
+\begin{problem}
+    {Group 4}
+    You are a member of a class of $18$ students. A bowl contains $18$ chips: $1$ blue and $17$ red. Each student is to take one chip from the bowl without replacement. The student who draws the blue chip is gauranteed an `A' for the course.
+    \begin{enumerate}
+        \item If you have a choice of drawing first, fifth or last, which would you choose?
+        \item Suppose the bowl contains $2$ blue chips and $16$ red chips. What position would you now choose (Not limited to first, fifth or last)?
+    \end{enumerate}
+\end{problem}
+
+\begin{problem}
+    {Group 5}
+    A hospital receives $40\%$ of its flu vaccine from Company A and the remainder from Company B. Each shipment contains a large number of vials ov vaccine. From Company A, $3\%$ of the vials are ineffective, from Company B, $2\%$ are ineffective. A hospital tests $n=25$ randomly selected vials from one shipment and finds that two are ineffective. What is the conditional probability that the shipment came from Company B?
+\end{problem}
+\fi
+\iffalse
+%%%% HW 5
+\begin{problem}
+    {Group 1}
+    You are a contestant on a TV game show; there are four identical-looking suitcases containing $\$200$, $\$400$, $\$800$, and $\$1600$. You start the game by randomly choosing a suitcase. Among the three unchosen suitcases, the game show host opens the suitcase that holds the least money. The host then asks you if you want to keep your suitcase or switch one of the other remaining suitcases. For the following analysis, use the following notation for events:
+    \begin{itemize}
+        \item $C_i$ is the event that you choose a suitcase with $i$ dollars.
+        \item $O_i$ denotes the event that the host opens a suitcase with $i$ dollars.
+        \item $R$ is the reward in dollars that you keep.
+    \end{itemize}
+    Sketch a tree diagram for this experiment, and answer the following questions.
+    \begin{enumerate}
+        \item You refuse the host’s offer and open the suitcase you first chose. Find the PMF of $R$ and the expected value $\E{R}$.
+        \item You always switch and randomly choose one of the two remaining suitcases. You receive the $R$ dollars in this chosen suitcase. Find the PMF and expected value of $R$.
+        \item Can you do better than either always switching or always staying with your original choice? Explain.
+    \end{enumerate}
+\end{problem}
+
+\begin{problem}
+    {Group 2}
+    Show that the variance of $\Binomv(n,p)$ is
+    \[\Var(X)=np(1-p).\]
+\end{problem}
+
+\begin{problem}
+    {Group 3}
+    In the New Jersey state lottery, each \$ $1$ ticket has six randomly marked numbers out of $1, 2, \dots , 46$. A ticket is a winner if the six marked numbers match six numbers drawn at random at the end of a week. For each ticket sold, $50$ cents are added to the pot for the winners. If there are $k$ winning tickets, the pot is divided equally among the $k$ winners. Suppose you bought a winning ticket in a week in which $2n$ tickets are sold, and the pot is $n$ dollars. Given that your ticket is a winner, what is the probability that there are ``$\E{k}$'' winners?
+
+    \textbf{Note:} For this problem, first explain that the number of winners is a binomial random variable, determine the corresponding parameters and then find the solution. Assume that $2nq$ is an integer, where $q=\frac{1}{\binom{46}{6}}$.
+
+    \textbf{Note:} In this statement, there are a lot of redundant information. Try to extract the essential information and express the problem in your own words.
+\end{problem}
+
+\begin{problem}
+    {Group 4}
+    An internet service provider uses $50$ modems to serve the needs of $1000$ customers. It is estimated that at a given time, each customer will need a connection with probability $0.0 1$, independent of the other customers.
+    \begin{enumerate}[(a)]
+        \item What is the PMF of the number of customers that need a connection at a given time?\label{item:4a}
+        \item Repeat \cref{item:4a} by approximating the PMF of the number of customers that need a connection with a Poisson PMF\label{item:4b}
+        \item What is the probability that there are more customers needing a connection than there are modems? Provide an exact (\cref{item:4a}), as well as an approximate formula based on the Poisson approximation of \cref{item:4b}.
+    \end{enumerate}
+\end{problem}
+
+\begin{problem}
+    {Group 5}
+    Let $X\sim\Binomv(n,p)$ and $Y\sim\Binomv(n,1-p)$ represent binomial random variables with parameters $n$ and $p$, show that
+    \[\P{X\leq i}+\P{Y\leq n-i-1}=1.\]
+\end{problem}
+\fi
+\iffalse
+%%%% HW 6
+\begin{problem}
+    {Group 1}
+    The number of eggs laid on a tree leaf by an insect of a certain type is a Poisson random variable with parameter $\alpha$. However, such a random variable can be observed only if it is positive, since if it is $0$, then we cannot know that such an insect was on the leaf. If we let $Y$ denote the observed number of eggs, then
+    \[\P{Y=i}=\condP{X>0}{X=i}\]
+    where $X$ is Poisson with parameter $\alpha$. Find $\E{Y}$.
+
+    \textbf{Hint:} Regular Poisson $X$ has values starting from $0$ while $Y$ starts from $1$. We can eliminate $P_X(0)$ from $X$ and re-normalize it to get the PMF of $Y$.
+\end{problem}
+
+\begin{problem}
+    {Group 2}
+    A jar contains $n$ chips. Suppose that a boy successively draws a chip from the jar, each time replacing the one drawn before drawing another. The process continues until the boy draws a chip that he has previously drawn. Let $X$ denote the number of draws, and compute its probability mass function and Expectation.
+\end{problem}
+
+\begin{problem}
+    {Group 3}
+    If $X$ is a geometric random variable, show that
+    \[\condP{X = n + k}{X > n} = \P{X = k}.\]
+    This is called memoryless property. Using the interpretation of a geometric random variable, give a verbal argument as to why the preceding equation is true.
+\end{problem}
+
+\begin{problem}
+    {Group 4}
+    True or False: For any random variable $X$, $\E{1/X}=1/\E{X}$.
+\end{problem}
+
+\begin{problem}
+    {Group 5}
+    Find $\P{K<\E{K}}$ when
+    \begin{enumerate}
+        \item K is $\Geomv(1/3)$
+        \item K is $\Binomv(6, 1/2)$
+        \item K is $\Poi(3)$
+    \end{enumerate}
+\end{problem}
+\fi
+
+%%%% HW 7
+\begin{problem}
+    {Group 1}
+
+\end{problem}
 \end{document}
