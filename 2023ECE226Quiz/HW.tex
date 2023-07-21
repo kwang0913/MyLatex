@@ -30,7 +30,7 @@
 \declaretheorem[numbered=no,style=remark]{remark, claim}
 
 %%%% Document Information %%%%
-\title{HW 7}
+\title{HW 8}
 \author{}
 \date{}
 
@@ -267,10 +267,96 @@
     \end{enumerate}
 \end{problem}
 \fi
-
+\iffalse
 %%%% HW 7
 \begin{problem}
     {Group 1}
-
+    Calamity Jane goes to the bank to make a withdrawal, and is equally likely to find $0$ or $1$ customers ahead of her. The service time of the customer ahead, if present, is exponentially distributed with parameter $\lambda$. What is the CDF of Jane's waiting time?
 \end{problem}
+
+\begin{problem}
+    {Group 2}
+    A bus travels between the two cities $A$ and $B$, which are $100$ miles apart. If the bus has a breakdown, the distance from the breakdown to city A has a uniform distribution over $(0, 100)$. There is a bus service station in city $A$, in $B$, and in the center of the route between $A$ and $B$. It is suggested that it would be more efficient to have the three stations located $25$, $50$, and $75$ miles, respectively, from $A$. Do you agree? Why?
+\end{problem}
+
+\begin{problem}
+    {Group 3}
+    The time $X$ (in minutes) between customer arrivals at a bank is exponentially distributed with mean $1.5$ minutes.
+    \begin{enumerate}
+        \item If a customer has just arrived, what is the probability         that no customer will arrive in the next 2 minutes?
+        \item What is the probability that no customer will arrive within the next minute, given that no customer had arrived in the past minute?
+    \end{enumerate}
+\end{problem}
+
+\begin{problem}
+    {Group 4}
+    The random variable $X$ has the probability density function
+    \[f(x)={
+        \begin{cases}
+            ax+bx^2 & 0\leq x\leq 1\\
+            0       & \text{otherwise}
+        \end{cases}
+    }\]
+    If $\E{X}=0.6$, find
+    \begin{enumerate}
+        \item $\P{X<\frac{1}{2}}$.
+        \item $\Var(X)$.
+    \end{enumerate}
+\end{problem}
+
+\begin{problem}
+    {Group 5}
+    The annual rainfall (in inches) in a certain region is normally distributed with $\mu = 40$ and $\sigma = 4$. What is the probability that starting with this year, it will take more than $10$ years before a year occurs having a rainfall of more than $50$ inches? Suppose the rainfall in each year is independent of the rainfall in other years and the distribution of rainfall in each year is the same as in the present year.
+\end{problem}
+\fi
+
+%%%% HW 8
+\begin{problem}
+    {Group 1}
+    If $X$ is uniformly distributed over $(a, b)$, $a < b$, what is the probability density function of $Y = cX + d$ for any constants $c$ and $d$.
+\end{problem}
+
+\begin{problem}
+    {Group 2}
+    A die is biased in such a way that even numbers are three times as likely to be rolled as odd numbers. Approximate the probability that the number $5$ will appear at most $15$ times in 100 throws.
+\end{problem}
+
+\begin{problem}
+    {Group 3}
+    If $Y$ has an exponential distribution with mean $\frac{1}{\lambda}$, find (as a function of $\lambda$) the median of $Y$.
+\end{problem}
+
+\begin{problem}
+    {Group 4}
+    The random variable $X$ has probability density function
+    \[f_X(x)={
+        \begin{cases}
+            cx & 0\leq x\leq 2\\
+            0  & \text{otherwise}
+        \end{cases}
+    }\]
+    \begin{enumerate}
+        \item What is the constant c to make the $f_X$ a valid PDF? The result will be used in the following questions.
+        \item Find the CDF of $X$.
+        \item Find $\E{X}$ and $\Var[X]$.
+    \end{enumerate}
+    The CDF of random variable $Y$ is
+    \[F_Y(y)={
+        \begin{cases}
+            0 & y<-1\\
+            (x+1)/2 & -1\leq y<1\\
+            1 & y\geq 1
+        \end{cases}
+    }\]
+    \begin{enumerate}
+        \item Find the PDF of $Y$.
+        \item Find $\E{Y}$ and $\Var[Y]$.
+    \end{enumerate}
+\end{problem}
+
+\begin{problem}
+    {Group 5}
+    $X$ is a uniform random variable with expected value $\mu_X = 7$ and variance $\Var[X] = 3$. What is the PDF of $X$?
+\end{problem}
+
 \end{document}

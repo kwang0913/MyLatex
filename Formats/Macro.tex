@@ -32,9 +32,9 @@
 %%%% vector font
 \let\oldvec\vec
 \renewcommand*{\vec}[1]{\mathbf{#1}}
+\newcommand*{\mtx}[1]{\mathbf{#1}}
 \let\oldcomplement\complement
 \renewcommand*{\complement}{^{\mathsf{c}}}
-\newcommand*{\mtx}[1]{\mathbf{#1}}
 % \newcommand*{\trn}{\!^{\!\intercal}}
 \newcommand*{\trn}{\!^{\mathsf{T}}}
 % \newcommand*{\coj}{\!^{\dag}} % Text Mode Symbol, Should not be used
@@ -63,16 +63,16 @@
 \renewcommand*{\P}[1]{\mathbb{P}\parens*{#1}}
 \newcommand*{\condP}[2]{\mathbb{P}\parens*{#1 \mid #2}}
 
-\DeclareMathOperator{\Bern}{\mathsf{Bern}}
+\DeclareMathOperator{\Bern}{\mathsf{Ber}}
 \DeclareMathOperator{\Unif}{\mathsf{Unif}}
 \DeclareMathOperator{\Expv}{\mathsf{Exp}}
-\DeclareMathOperator{\Poi}{\mathsf{Poi}}
+\DeclareMathOperator{\Poi}{\mathsf{Poisson}}
 \DeclareMathOperator{\Gamv}{\mathsf{Gamma}}
 \DeclareMathOperator{\Dirv}{\mathsf{Dir}}
 \DeclareMathOperator{\Mult}{\mathsf{Mult}}
 \DeclareMathOperator{\Beta}{\mathsf{Beta}}
-\DeclareMathOperator{\Geomv}{\mathsf{Geom}}
-\DeclareMathOperator{\Binomv}{\mathsf{Binom}}
+\DeclareMathOperator{\Geomv}{\mathsf{Geo}}
+\DeclareMathOperator{\Binomv}{\mathsf{Bin}}
 \DeclareMathOperator{\NegBinomv}{\mathsf{NB}}
 \DeclareMathOperator{\Lap}{\mathsf{Lap}}
 \DeclareMathOperator{\Gaus}{\mathsf{N}}
