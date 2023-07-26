@@ -30,7 +30,7 @@
 \declaretheorem[numbered=no,style=remark]{remark, claim}
 
 %%%% Document Information %%%%
-\title{HW 8}
+\title{HW 10}
 \author{}
 \date{}
 
@@ -69,7 +69,7 @@
 %%%% HW 2
 \begin{problem}
     {Group 1}
-    A committee of $7$ people has to be chosen among $11$ women and $8$ men. How many ways can be chosen if there must be more women than men.
+    A committee of $7$ people have to be chosen among $11$ women and $8$ men. How many ways can be chosen if there must be more women than men.
 \end{problem}
 
 \begin{problem}
@@ -125,12 +125,12 @@
 
 \begin{problem}
     {Group 4}
-    Of the travelers arriving at a small airport, $60\%$ fly on major airlines, $30\%$ fly on privately owned planes, and the remainder fly on commercially owned planes not belonging to a major airline. Of those traveling on major airlines, $50\%$ are traveling for business reasons, whereas $60\%$ of those arriving at private planes and $90\%$ of those arriving at other commercially owned planes are traveling for business reasons. Suppose that we randomly select one person arriving at this airport. What is the probability that the person
+    Of the travelers arriving at a small airport, $60\%$ fly on major airlines, $30\%$ fly on privately owned planes, and the remainder fly on commercially owned planes not belonging to a major airline. Of those traveling on major airlines, $50\%$ are traveling for business reasons, whereas $60\%$ of those arriving at private planes and $90\%$ of those arriving at other commercially owned planes are traveling for business reasons. Suppose that we randomly select one person arriving at this airport. What is the probability that
     \begin{enumerate}
-        \item is traveling on business?
-        \item is traveling for business on a privately owned plane?
-        \item arrived on a privately owned plane, given that the person is traveling for business reasons?
-        \item is traveling on business, given that the person is flying on a commercially owned plane?
+        \item The person is traveling on business?
+        \item The person is traveling for business on a privately owned plane?
+        \item The person arrived at a privately owned plane, given that the person is traveling for business reasons?
+        \item The person is traveling on business, given that the person is flying on a commercially owned plane?
     \end{enumerate}
 \end{problem}
 
@@ -148,13 +148,13 @@
     Two gamblers bet $\$1$ each on the successive tosses of a coin. Each has a bank of $\$6$. What is the probability that
     \begin{enumerate}
         \item they break even after six tosses of the coin?
-        \item one player—say, Jones—wins all the money on the tenth toss of the coin?
+        \item One player—say, Jones—wins all the money on the tenth toss of the coin?
     \end{enumerate}
 \end{problem}
 
 \begin{problem}
     {Group 2}
-    Alice searches for her term paper in her filing cabinet, which has several drawers. Each drawer would be selected with probability $p_i>0 (i=1,2,\ldots,j-1,j,j+1,\ldots)$, and the term paper is in drawer $j$ but Alice doesn't know which one is. The drawers are so messy that even if she correctly guesses that the term paper is in drawer $j$ (\ie with probability $p_j$), the probability that she finds it is only $d$. Alice searches in a particular drawer, but the search is unsuccessful. Condition on this, what is the probability that she chose the correct drawer? And what is the probability that she chose the wrong one?
+    Alice searches for her term paper in her filing cabinet, which has several drawers. Each drawer would be selected with probability $p_i>0 (i=1,2,\ldots,j-1,j,j+1,\ldots)$, and the term paper is in drawer $j$, but Alice doesn't know which one is. The drawers are so messy that even if she correctly guesses that the term paper is in drawer $j$ (\ie with probability $p_j$), the probability that she finds it is only $d$. Alice searches in a particular drawer, but the search is unsuccessful. Condition on this, what is the probability that she chose the correct drawer? And what is the probability that she chose the wrong one?
 
     \textbf{Note:} The calculation of this problem is not difficult, but the statement can be misleading. Try to describe the problem in your own words.
 
@@ -168,7 +168,7 @@
 
 \begin{problem}
     {Group 4}
-    You are a member of a class of $18$ students. A bowl contains $18$ chips: $1$ blue and $17$ red. Each student is to take one chip from the bowl without replacement. The student who draws the blue chip is gauranteed an `A' for the course.
+    You are a member of a class of $18$ students. A bowl contains $18$ chips: $1$ blue and $17$ red. Each student is to take one chip from the bowl without replacement. The student who draws the blue chip is guaranteed an `A' for the course.
     \begin{enumerate}
         \item If you have a choice of drawing first, fifth or last, which would you choose?
         \item Suppose the bowl contains $2$ blue chips and $16$ red chips. What position would you now choose (Not limited to first, fifth or last)?
@@ -177,7 +177,7 @@
 
 \begin{problem}
     {Group 5}
-    A hospital receives $40\%$ of its flu vaccine from Company A and the remainder from Company B. Each shipment contains a large number of vials ov vaccine. From Company A, $3\%$ of the vials are ineffective, from Company B, $2\%$ are ineffective. A hospital tests $n=25$ randomly selected vials from one shipment and finds that two are ineffective. What is the conditional probability that the shipment came from Company B?
+    A hospital receives $40\%$ of its flu vaccine from Company A and the remainder from Company B. Each shipment contains many vials of vaccine. From Company A, $3\%$ of the vials are ineffective, from Company B, $2\%$ are ineffective. A hospital tests $n=25$ randomly selected vials from one shipment and finds that two are ineffective. What is the conditional probability that the shipment came from Company B?
 \end{problem}
 \fi
 \iffalse
@@ -234,7 +234,7 @@
 \begin{problem}
     {Group 1}
     The number of eggs laid on a tree leaf by an insect of a certain type is a Poisson random variable with parameter $\alpha$. However, such a random variable can be observed only if it is positive, since if it is $0$, then we cannot know that such an insect was on the leaf. If we let $Y$ denote the observed number of eggs, then
-    \[\P{Y=i}=\condP{X>0}{X=i}\]
+    \[\P{Y=i}=\condP{X=i}{X>0}\]
     where $X$ is Poisson with parameter $\alpha$. Find $\E{Y}$.
 
     \textbf{Hint:} Regular Poisson $X$ has values starting from $0$ while $Y$ starts from $1$. We can eliminate $P_X(0)$ from $X$ and re-normalize it to get the PMF of $Y$.
@@ -242,7 +242,7 @@
 
 \begin{problem}
     {Group 2}
-    A jar contains $n$ chips. Suppose that a boy successively draws a chip from the jar, each time replacing the one drawn before drawing another. The process continues until the boy draws a chip that he has previously drawn. Let $X$ denote the number of draws, and compute its probability mass function and Expectation.
+    A jar contains $n$ chips. Suppose that a boy successively draws a chip from the jar, each time replacing the one drawn before drawing another. The process continues until the boy draws a chip that he has previously drawn. Let $X$ denote the number of draws, and compute its probability mass function.
 \end{problem}
 
 \begin{problem}
@@ -309,7 +309,7 @@
     The annual rainfall (in inches) in a certain region is normally distributed with $\mu = 40$ and $\sigma = 4$. What is the probability that starting with this year, it will take more than $10$ years before a year occurs having a rainfall of more than $50$ inches? Suppose the rainfall in each year is independent of the rainfall in other years and the distribution of rainfall in each year is the same as in the present year.
 \end{problem}
 \fi
-
+\iffalse
 %%%% HW 8
 \begin{problem}
     {Group 1}
@@ -344,7 +344,7 @@
     \[F_Y(y)={
         \begin{cases}
             0 & y<-1\\
-            (x+1)/2 & -1\leq y<1\\
+            (y+1)/2 & -1\leq y<1\\
             1 & y\geq 1
         \end{cases}
     }\]
@@ -358,5 +358,119 @@
     {Group 5}
     $X$ is a uniform random variable with expected value $\mu_X = 7$ and variance $\Var[X] = 3$. What is the PDF of $X$?
 \end{problem}
+\fi
+\iffalse
+%%%% HW 9
+\begin{problem}
+    {Group 1}
+    Suppose that $3$ balls are chosen without replacement from an urn consisting of $5$ white and $8$ red balls. Let $X_i$ equal $1$ if the $i$th ball selected is white, and let it equal $0$ otherwise. Give the joint probability function of
+    \begin{itemize}
+        \item $X_1$, $X_2$.
+        \item $X_1$, $X_2$, $X_3$.
+    \end{itemize}
+\end{problem}
+
+\begin{problem}
+    {Group 2}
+    Consider a sequence of independent Bernoulli trails each of which is a success with probability $p$. Let $X_1$ be the number of failures preceding the first success, and let $X_2$ be the number of failures between the first and second successes. Find the joint probability mass function of $X_1$ and $X_2$.
+\end{problem}
+
+\begin{problem}
+    {Group 3}
+    The time that it takes to service a car is an exponential random variable with rate $1$.
+    \begin{enumerate}
+        \item If A brings his car in at time $0$ and B brings his car in at time $t$, what is the probability that B's car is ready before A's? Assume that the service times are independent, and the service begins upon arrival.
+        \item If both cars are brought in at time $0$, with work starting on B's car only when A's car has been completely serviced, what is the probability that B's car is ready before $2$?
+    \end{enumerate}
+\end{problem}
+
+\begin{problem}
+    {Group 4}
+    Suppose $X$ and $Y$ are independent normal random variables with parameters $(\mu_X,\sigma_X)$ and $(\mu_Y, \sigma_Y)$, respectively. Find $x$ such that $\P{X-Y>x}=\P{X+Y=a}$ for some constant $a$.
+\end{problem}
+
+\begin{problem}
+    {Group 5}
+    Let $X$ and $Y$ be independent random variables that are exponentially distributed with parameter $\lambda$ for both. Compute the probability that the largest of the two is twice as great as the other one.
+\end{problem}
+\fi
+
+%%%% HW 10
+\begin{problem}
+    {Group 1}
+    Suppose your grade in a probability course depends on your exam scores $X_1$ and $X_2$. The professor, a fan of probability, releases exam scores in a normalized fashion such that $X_1$ and $X_2$ are independent Gaussian $(\mu = 0, \sigma=\sqrt{2})$ random variables. Your semester average is $X = 0.5(X_1 + X_2)$.
+    \begin{enumerate}
+        \item You earn an A grade if $X > 1$. What is $\P{A}$?
+        \item To improve his SIRS (Student Instructional Rating Service) score, the professor decides he should award more A's. Now you get an A if $\max(X_1,X_2) > 1$. What is $\P{A}$ now?
+        \item The professor found out he is unpopular at ratemyprofessor.com and decides to award an A if either $X >1$ or $\max(X_1,X_2) > 1$. Now what is $\P{A}$?
+        \item Under criticism of grade inflation from the department chair, the professor adopts a new policy. An A is awarded if $\max(X_1,X_2) > 1$ and $\min(X_1,X_2) > 0$. Now what is $\P{A}$?
+    \end{enumerate}
+\end{problem}
+
+\begin{problem}
+    {Group 2}
+    Let $X$ and $Y$ be continues random variables with joint PDF
+    \[
+    f(x,y) = {
+        \begin{cases}
+            2 & 0\leq y\leq x\leq 1,\\
+            0 & \text{otherwise.}
+        \end{cases}
+    }
+    \]
+    \begin{enumerate}
+        \item What are $\E{X}$ and $\Var(X)$?
+        \item What are $\E{Y}$ and $\Var(Y)$?
+        \item What are $\Cov(X,Y)$ and $\Corr(X,Y)$?
+        \item What are $\E{X+Y}$ and $\Var(X+Y)$?
+    \end{enumerate}
+\end{problem}
+
+\begin{problem}
+    {Group 3}
+    A company receives shipments from two factories. Depending on the size of the order, a shipment can be in
+    \begin{enumerate}
+        \item 1 box for a small order,
+        \item 2 boxes for a medium order,
+        \item 3 boxes for a large order.
+    \end{enumerate}
+    The company has two different suppliers. Factory Q is 60 miles from the company. Factory R is 180 miles from the company. An experiment consists of monitoring a shipment and observing B, the number of boxes, and M, the number of miles the shipment travels. The following probability model describes the experiment:
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|l|l|l|}
+        \hline
+                     & Factory Q & Factory R \\ \hline
+        small order  & 0.3       & 0.2       \\ \hline
+        medium order & 0.1       & 0.2       \\ \hline
+        large order  & 0.1       & 0.1       \\ \hline
+        \end{tabular}
+    \end{table}
+    \begin{enumerate}
+        \item Find $P_{B,M}(b,m)$, the joint PMF of the number of b oxes and the distance.
+        \item What is $\E{B}$, the expected number of boxes?
+        \item Are $B$ and $M$ independent?
+    \end{enumerate}
+\end{problem}
+
+\begin{problem}
+    {Group 4}
+    Random Variable $N$ and $K$ have the joint PMF
+    \[
+    P_{N,K}(n,k)={
+        \begin{cases}
+            \frac{(1-p)^{n-1}p}{n} & k=1,2,\ldots,n; n=1,2,\ldots\\
+            0 & \text{otherwise.}
+        \end{cases}
+    }
+    \]
+    Find $P_N(n)$, $\E{N}$, $\Var(N)$, $\E{N^2}$, $\E{K}$, $\Var(K)$, $\E{N+K}$, $r_{N,K}$, $\Cov(N,K)$.
+\end{problem}
+
+\begin{problem}
+    {Group 5}
+    $X$ and $Y$ are random variables such that $X$ has expected value $\mu_X = 0$ and standard deviation $\sigma_X = 3$ while $Y$ has expected value $\mu_Y = 1$ and standard deviation $\sigma_Y = 4$. In addition, $X$ and $Y$ have covariance $\Cov[X, Y] = -3$. Find the expected value and variance of $W = 2X+2Y$.
+\end{problem}
+
+
 
 \end{document}
