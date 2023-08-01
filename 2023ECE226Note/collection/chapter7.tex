@@ -188,7 +188,7 @@
 \end{theorem}
 
 \begin{theorem}
-    [Iterated Expectation]
+    [Law of Total Expectation]
     \label{thm:iterated_expectation}
     If $Y$ is unspecified, then $\E{X\mid Y}$ is the function of $Y$, which is also a random variable. We certainly are interested in \textbf{the expectation of} $\E{X\mid Y}$,
     \[\E{\E{X\mid Y}}=\E{X} \qquad \E{\E{g(x)\mid Y}}=\E{g(X)}.\]
@@ -219,6 +219,7 @@
 \end{theorem}
 
 \begin{theorem}
+    [Law of Total Variance]
     The combination of \cref{thm:iterated_variance,thm:iterated_variance2} leads to a very useful formula,
     \[\Var[X]=\E{\Var[X\mid Y]}+\Var[\E{X\mid Y}].\]
 \end{theorem}

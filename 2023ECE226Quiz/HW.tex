@@ -30,7 +30,7 @@
 \declaretheorem[numbered=no,style=remark]{remark, claim}
 
 %%%% Document Information %%%%
-\title{HW 10}
+\title{HW 11}
 \author{}
 \date{}
 
@@ -394,7 +394,7 @@
     Let $X$ and $Y$ be independent random variables that are exponentially distributed with parameter $\lambda$ for both. Compute the probability that the largest of the two is twice as great as the other one.
 \end{problem}
 \fi
-
+\iffalse
 %%%% HW 10
 \begin{problem}
     {Group 1}
@@ -470,7 +470,48 @@
     {Group 5}
     $X$ and $Y$ are random variables such that $X$ has expected value $\mu_X = 0$ and standard deviation $\sigma_X = 3$ while $Y$ has expected value $\mu_Y = 1$ and standard deviation $\sigma_Y = 4$. In addition, $X$ and $Y$ have covariance $\Cov[X, Y] = -3$. Find the expected value and variance of $W = 2X+2Y$.
 \end{problem}
+\fi
 
+%%%% HW 11
+\begin{problem}
+    {Group 1}
+    The expectation of $\Geomv(p)$ can be proved by conditional expectation as follows:
+    \begin{proof}
+        For $X\sim\Geomv(p)$,
+        \begin{align*}
+            \E{X}
+            &= \condE{X}{X=1}\P{X=1}+\condE{X}{X>1}\P{X>1}\\
+            &= 1\cdot p + \left(\E{X}+1\right)(1-p)\\
+            \Rightarrow
+            \E{X} &= \frac{1}{p}.
+        \end{align*}
+    \end{proof}
+    Following the same logic, derive the Variance of $\Geomv(p)$.
+\end{problem}
 
+\begin{problem}
+    {Group 2}
+    A coin that has probability of heads equal to $p$ is tossed successively and independently until a head comes twice in a row or a tail comes twice in a row. Find the expected value of the number of tosses in terms of $p$ and $q=1-p$.
+\end{problem}
+
+\begin{problem}
+    {Group 3}
+    Let $X$ be a random variable with PDF
+    \[
+    f_X(x) = {
+        \begin{cases}
+            x/4 & 1<x\leq 3\\
+            0   & \text{otherwise}
+        \end{cases}
+    }
+    \]
+    and let $A$ be the event $\set{X\geq 2}$.
+    Find $\E{X}$, $\P{A}$, $f_{X\mid A}(x)$, $\E{X\mid A}$.
+\end{problem}
+
+\begin{problem}
+    {Group 4}
+    
+\end{problem}
 
 \end{document}
