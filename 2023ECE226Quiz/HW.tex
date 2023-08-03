@@ -21,7 +21,7 @@
 %%%% Load Format %%%%
 \input{../Formats/format.tex}
 \input{../Formats/Macro.tex}
-% \allowpagebreaks
+\allowdisplaybreaks
 
 %%%% Theorem Style %%%%
 \declaretheorem[numbered=no, style=plain]{axiom, lemma}
@@ -30,7 +30,7 @@
 \declaretheorem[numbered=no,style=remark]{remark, claim}
 
 %%%% Document Information %%%%
-\title{HW 11}
+\title{HW 11 Solution}
 \author{}
 \date{}
 
@@ -370,10 +370,52 @@
     \end{itemize}
 \end{problem}
 
+\begin{solution}
+    {Solution}
+    \[
+    P_{X_1X_2}(x_1x_2) = {
+        \begin{cases}
+            \frac{5}{13}\frac{4}{12} & \text{if } x_1=x_2=1\\
+            \frac{5}{13}\frac{8}{12} & \text{if } x_1=1, x_2=0\\
+            \frac{8}{13}\frac{5}{12} & \text{if } x_1=0, x_2=1\\
+            \frac{8}{13}\frac{7}{12} & \text{if } x_1=x_2=0\\
+            0 & \text{otherwise}
+        \end{cases}
+    }
+    \]
+    \[
+        P_{X_1X_2X_3}(x_1x_2x_3) = {
+            \begin{cases}
+                \frac{5}{13}\frac{4}{12}\frac{3}{11} & \text{if } x_1=x_2=x_3=1\\
+                \frac{5}{13}\frac{4}{12}\frac{8}{11} & \text{if } x_1=x_2=1, x_3=0\\
+                \frac{5}{13}\frac{8}{12}\frac{4}{11} & \text{if } x_1=1, x_2=0, x_3=1\\
+                \frac{5}{13}\frac{8}{12}\frac{7}{11} & \text{if } x_1=1, x_2=x_3=0\\
+                \frac{8}{13}\frac{5}{12}\frac{4}{11} & \text{if } x_1=0, x_2=x_3=1\\
+                \frac{8}{13}\frac{5}{12}\frac{7}{11} & \text{if } x_1=0, x_2=1, x_3=0\\
+                \frac{8}{13}\frac{7}{12}\frac{5}{11} & \text{if } x_1=x_2=0, x_3=1\\
+                \frac{8}{13}\frac{7}{12}\frac{6}{11} & \text{if } x_1=x_2=x_3=0\\
+                0 & \text{otherwise}
+            \end{cases}
+        }
+    \]
+\end{solution}
+
 \begin{problem}
     {Group 2}
     Consider a sequence of independent Bernoulli trails each of which is a success with probability $p$. Let $X_1$ be the number of failures preceding the first success, and let $X_2$ be the number of failures between the first and second successes. Find the joint probability mass function of $X_1$ and $X_2$.
 \end{problem}
+
+\begin{solution}
+    {Solution}
+    \[
+        P_{X_1X_2}(x_1x_2) = {
+            \begin{cases}
+                p^2(1-p)^{x_1+x_2} & \text{if } x_1,x_2\geq 0\\
+                0 & \text{otherwise}
+            \end{cases}
+        }
+    \]
+\end{solution}
 
 \begin{problem}
     {Group 3}
@@ -382,17 +424,110 @@
         \item If A brings his car in at time $0$ and B brings his car in at time $t$, what is the probability that B's car is ready before A's? Assume that the service times are independent, and the service begins upon arrival.
         \item If both cars are brought in at time $0$, with work starting on B's car only when A's car has been completely serviced, what is the probability that B's car is ready before $2$?
     \end{enumerate}
+    \begin{solution}
+        {Hint:}
+        \begin{enumerate}
+            \item Find the Joint PDF of $X_A$ and $X_B$.
+            \item $\P{X_A>X_B+t}$ can be written in a form of $\P{X_A\in(a,b), X_B\in(c,d)}$.
+            \item Then $\P{X_A>X_B+t}=\int_{a}^{b}\int_{c}^{d}P_{X_A,Y_B}(x,y)\diff y \diff x$.
+            \item With the same logic, we can solve $\P{X_A+X_B<2}$.
+        \end{enumerate}
+    \end{solution}
 \end{problem}
+
+\begin{solution}
+    {Solution}
+    Let $X_A$ be the service time of A's car and $X_B$ be the service time of B's car. Due to independent, the joint PDF is
+    \[
+    f_{X_A,X_B}(x_A,x_B) = {
+        \begin{cases}
+            e^{-(x_A+x_B)} & x_A,x_B\geq 0\\
+            0 & \text{otherwise}
+        \end{cases}
+    }
+    \]
+    \begin{align*}
+        \P{X_A>X_B+t}
+        &= \P{0<X_B+t<X_A<\infty} \\
+        &= \int_{0}^{\infty}\int_{x_B+t}^{\infty}e^{-(x_A+x_B)}\diff x_A \diff x_B \\
+        &= \int_{0}^{\infty}e^{-x_B}\int_{x_B+t}^{\infty}e^{-x_A}\diff x_A \diff x_B \\
+        &= \int_{0}^{\infty}e^{-x_B}e^{-(x_B+t)}\diff x_B \\
+        &= \int_{0}^{\infty}e^{-2x_B-t}\diff x_B \\
+        &= \frac{1}{2}e^{-t}
+    \end{align*}
+    \begin{align*}
+        \P{X_A+X_B<2}
+        &= \P{0<X_A<2-X_B<2} \\
+        &= \int_{0}^{2}\int_{0}^{2-x_B}e^{-(x_A+x_B)}\diff x_A \diff x_B \\
+        &= \int_{0}^{2}e^{-x_B}\int_{0}^{2-x_B}e^{-x_A}\diff x_A \diff x_B \\
+        &= \int_{0}^{2}e^{-x_B}-e^{-2}\diff x_B \\
+        &= 1-3e^{-2}
+    \end{align*}
+\end{solution}
 
 \begin{problem}
     {Group 4}
-    Suppose $X$ and $Y$ are independent normal random variables with parameters $(\mu_X,\sigma_X)$ and $(\mu_Y, \sigma_Y)$, respectively. Find $x$ such that $\P{X-Y>x}=\P{X+Y=a}$ for some constant $a$.
+    Suppose $X$ and $Y$ are independent normal random variables with parameters $(\mu_X,\sigma_X)$ and $(\mu_Y, \sigma_Y)$, respectively. Find $x$ such that $\P{X-Y>x}=\P{X+Y>a}$ for some constant $a$.
+    \begin{solution}
+        {Hint:}
+        \begin{enumerate}
+            \item $X-Y$ and $X+Y$ are normal random variables as well. Find their parameters.
+            \item Convert $X-Y$ and $X+Y$ to standard normal random variables.
+            \item Solve the problem with $\Phi$ function, the CDF of standard normal random variable.
+        \end{enumerate}
+    \end{solution}
 \end{problem}
+
+\begin{solution}
+    {Solution}
+    $X-Y\sim \Gaus(\mu_X-\mu_Y,\sqrt{\sigma_X^2+\sigma_Y^2})$, $X+Y\sim \Gaus(\mu_X+\mu_Y,\sqrt{\sigma_X^2+\sigma_Y^2})$.
+    \begin{align*}
+        &\P{X-Y>x} = \P{X+Y>a} \\
+        \Rightarrow
+        &\P{X-Y\leq x} = \P{X+Y\leq a} \\
+        \Rightarrow
+        &\P{\frac{X-Y-(\mu_X-\mu_Y)}{\sqrt{\sigma_X^2+\sigma_Y^2}}\leq \frac{x-(\mu_X-\mu_Y)}{\sqrt{\sigma_X^2+\sigma_Y^2}}} = \P{\frac{X+Y-(\mu_X+\mu_Y)}{\sqrt{\sigma_X^2+\sigma_Y^2}}\leq \frac{a-(\mu_X+\mu_Y)}{\sqrt{\sigma_X^2+\sigma_Y^2}}} \\
+        \Rightarrow
+        &\Phi\left(\frac{x-(\mu_X-\mu_Y)}{\sqrt{\sigma_X^2+\sigma_Y^2}}\right) = \Phi\left(\frac{a-(\mu_X+\mu_Y)}{\sqrt{\sigma_X^2+\sigma_Y^2}}\right) \\
+        \Rightarrow
+        &\frac{x-(\mu_X-\mu_Y)}{\sqrt{\sigma_X^2+\sigma_Y^2}} = \frac{a-(\mu_X+\mu_Y)}{\sqrt{\sigma_X^2+\sigma_Y^2}} \\
+        \Rightarrow
+        &x = a-2\mu_Y
+    \end{align*}
+\end{solution}
 
 \begin{problem}
     {Group 5}
-    Let $X$ and $Y$ be independent random variables that are exponentially distributed with parameter $\lambda$ for both. Compute the probability that the largest of the two is twice as great as the other one.
+    Let $Y_1$ and $Y_2$ be uncorrelated random variables and consider $U_1 = Y_1 + Y_2$ and $U_2 = Y_1 - Y_2$.
+    \begin{enumerate}
+        \item Find the $\Cov(U_1, U_2)$ in terms of the variances of $Y_1$ and $Y_2$.
+        \item Find an expression for the coefficient of correlation between $U_1$ and $U_2$.
+        \item Is it possible that $\Cov(U_1, U_2) = 0$? When does this occur?
+    \end{enumerate}
+    \begin{solution}
+        {Hint:}
+        \begin{enumerate}
+            \item $\Cov(U_1,U_2)=\E{U_1U_2}-\E{U_1}\E{U_2}=\ldots$.
+            \item $\rho=\frac{\sigma_{U_1U_2}}{\sigma_{U_1}\sigma_{U_2}}$
+        \end{enumerate}
+    \end{solution}
 \end{problem}
+
+\begin{solution}
+    {Solution}
+    \begin{align*}
+        \E{U_1} &= \E{Y_1+Y_2} = \E{Y_1}+\E{Y_2} \\
+        \E{U_2} &= \E{Y_1-Y_2} = \E{Y_1}-\E{Y_2} \\
+        \E{U_1U_2} &= \E{(Y_1+Y_2)(Y_1-Y_2)} = \E{Y_1^2}-\E{Y_2^2} \\
+        \Cov(U_1U_2) &= \E{U_1U_2}-\E{U_1}\E{U_2} \\
+        & = \E{Y_1^2}-\E{Y_2^2}-(\E{Y_1}+\E{Y_2})(\E{Y_1}-\E{Y_2}) \\
+        &= \E{Y_1^2}-\E{Y_2^2}-(\E{Y_1}^2-\E{Y_2}^2) \\
+        &= \Var(Y_1)-\Var(Y_2) \\
+        \rho &= \frac{\Cov(U_1,U_2)}{\sqrt{\Var(U_1)\Var(U_2)}} \\
+        &= \frac{\Var(Y_1)-\Var(Y_2)}{\sqrt{\Var(Y_1)\Var(Y_2)}}
+    \end{align*}
+    When $\Var(Y_1)=\Var(Y_2)$, $\rho=0$.
+\end{solution}
 \fi
 \iffalse
 %%%% HW 10
@@ -405,7 +540,45 @@
         \item The professor found out he is unpopular at ratemyprofessor.com and decides to award an A if either $X >1$ or $\max(X_1,X_2) > 1$. Now what is $\P{A}$?
         \item Under criticism of grade inflation from the department chair, the professor adopts a new policy. An A is awarded if $\max(X_1,X_2) > 1$ and $\min(X_1,X_2) > 0$. Now what is $\P{A}$?
     \end{enumerate}
+    \begin{solution}
+        {Hint:}
+        \begin{enumerate}
+            \item Sum of independent Gaussian and $\Phi$ function.
+            \item $\P{\max(X_1,X_2)>1}=1-\P{\max(X_1,X_2)\leq 1}$.
+            \item Draw the Venn Diagram to show the relationship between $X>1$ and $\max(X_1,X_2) > 1$.
+            \item Draw the Venn Diagram to show the relationship between $\max(X_1,X_2) > 1$ and $\min(X_1,X_2) > 0$.
+        \end{enumerate}
+    \end{solution}
 \end{problem}
+
+\begin{solution}
+    {Solution}
+    It's easy to show that $X\sim\Gaus(0, 1)$ which is a standard normal random variable.
+    \begin{align*}
+        \P{X>1}
+        &= 1- \P{X\leq 1} = 1-\Phi(1) \\
+        \P{\max(X_1,X_2)>1}
+        &= 1-\P{\max(X_1,X_2)\leq 1} \\
+        &= 1-\P{X_1\leq 1, X_2\leq 1} \\
+        &= 1-\P{X_1\leq 1}\P{X_2\leq 1} \\
+        &= 1-\Phi(1/\sqrt{2})^2
+    \end{align*}
+    $\set{\max(X_1,X_2)>1 \cup X>1}=\set{\max(X_1,X_2)>1}$ can be visualized by the following plot.
+    \includegraphics[width=\textwidth]{plot1.eps}
+    \begin{align*}
+        \P{\max(X_1,X_2)>1 \cup X>1}=\P{\max(X_1,X_2)>1} = 1-\Phi(1/\sqrt{2})^2
+    \end{align*}
+    $\set{\max(X_1,X_2)>1 \cup \min(X_1,X_2)>0}$ can be visualized by the following plot.
+    \includegraphics[width=\textwidth]{plot2.eps}
+    \begin{align*}
+        \P{A}
+        &= \P{\max(X_1,X_2)>1 \cup \min(X_1,X_2)>0} \\
+        &= \P{X_1>0,X_2>0}-\P{0<X_1<1,0<X_2<1} \\
+        &= \P{X_1>0}\P{X_2>0}-\P{0<X_1<1}\P{0<X_2<1} \\
+        &= (1-\P{X_1\leq 0})(1-\P{X_2\leq 0})-(\P{X_1\leq 1}-\P{X_1\leq 0})(\P{X_2\leq 1}-\P{X_2\leq 0}) \\
+        &= (1-\Phi(0))^2-(\Phi(1/\sqrt{2})-\Phi(0))^2
+    \end{align*}
+\end{solution}
 
 \begin{problem}
     {Group 2}
@@ -425,6 +598,54 @@
         \item What are $\E{X+Y}$ and $\Var(X+Y)$?
     \end{enumerate}
 \end{problem}
+
+\begin{solution}
+    {Solution}
+    \begin{align*}
+        \E{X}
+        &= \int_{0}^{1}\int_{y}^{1}x\cdot 2\diff x \diff y \\
+        &= \int_{0}^{1}1-y^2\diff y \\
+        &= \frac{2}{3} \\
+        \E{X^2}
+        &= \int_{0}^{1}\int_{y}^{1}x^2\cdot 2\diff x \diff y \\
+        &= \int_{0}^{1}\frac{2}{3}(1-y^3)\diff y \\
+        &= \frac{1}{2} \\
+        \Var(X)
+        &= \E{X^2}-\E{X}^2 \\
+        &= \frac{1}{2}-\frac{4}{9} \\
+        &= \frac{1}{18} \\
+        \E{Y}
+        &= \int_{0}^{1}\int_{0}^{x}y\cdot 2\diff y \diff x \\
+        &= \int_{0}^{1}x^2\diff x \\
+        &= \frac{1}{3} \\
+        \E{Y^2}
+        &= \int_{0}^{1}\int_{0}^{x}y^2\cdot 2\diff y \diff x \\
+        &= \int_{0}^{1}\frac{2}{3}x^3\diff x \\
+        &= \frac{1}{6} \\
+        \Var(Y)
+        &= \E{Y^2}-\E{Y}^2 \\
+        &= \frac{1}{6}-\frac{1}{9} \\
+        &= \frac{1}{18} \\
+        \E{XY}
+        &= \int_{0}^{1}\int_{0}^{x}xy\cdot 2\diff y \diff x \\
+        &= \int_{0}^{1}x^3\diff x \\
+        &= \frac{1}{4} \\
+        \Cov(X,Y)
+        &= \E{XY}-\E{X}\E{Y} \\
+        &= \frac{1}{4}-\frac{2}{9} \\
+        &= \frac{1}{36} \\
+        \Corr(X,Y)
+        &= \frac{\Cov(X,Y)}{\sqrt{\Var(X)\Var(Y)}} \\
+        &= \frac{1}{2} \\
+        \E{X+Y}
+        &= \E{X}+\E{Y} \\
+        &= 1 \\
+        \Var(X+Y)
+        &= \Var(X)+\Var(Y)+2\Cov(X,Y) \\
+        &= \frac{1}{18}+\frac{1}{18}+2\frac{1}{36} \\
+        &= \frac{1}{6}
+    \end{align*}
+\end{solution}
 
 \begin{problem}
     {Group 3}
@@ -446,15 +667,36 @@
         \end{tabular}
     \end{table}
     \begin{enumerate}
-        \item Find $P_{B,M}(b,m)$, the joint PMF of the number of b oxes and the distance.
+        \item Find $P_{B,M}(b,m)$, the joint PMF of the number of boxes and the distance.
         \item What is $\E{B}$, the expected number of boxes?
         \item Are $B$ and $M$ independent?
     \end{enumerate}
 \end{problem}
 
+\begin{solution}
+    {Solution}
+    \[
+    P_{B,M}(b,m)={
+        \begin{cases}
+            0.3 & b=1, m=60\\
+            0.2 & b=1, m=180\\
+            0.1 & b=2, m=60\\
+            0.2 & b=2, m=180\\
+            0.1 & b=3, m=60\\
+            0.1 & b=3, m=180\\
+            0 & \text{otherwise}
+        \end{cases}
+    }
+    \]
+    \[
+    \E{B}= 1\cdot 0.3+1\cdot 0.2+2\cdot 0.1+2\cdot 0.2+3\cdot 0.1+3\cdot 0.1=1.7
+    \]
+    No, $B$ and $M$ are not independent. Because $P_{B,M}(1,60)=0.3\neq 0.25=0.5\cdot 0.5=P_B(1)P_M(60)$.
+\end{solution}
+
 \begin{problem}
     {Group 4}
-    Random Variable $N$ and $K$ have the joint PMF
+    Random Variables $N$ and $K$ have the joint PMF
     \[
     P_{N,K}(n,k)={
         \begin{cases}
@@ -464,14 +706,70 @@
     }
     \]
     Find $P_N(n)$, $\E{N}$, $\Var(N)$, $\E{N^2}$, $\E{K}$, $\Var(K)$, $\E{N+K}$, $r_{N,K}$, $\Cov(N,K)$.
+    \begin{solution}
+        {Hint:}
+        Please solve the first four and leave the rest for me.
+    \end{solution}
 \end{problem}
+
+\begin{solution}
+    {Solution}
+    \[
+    P_N(n)={
+        \begin{cases}
+            \sum_{k=1}^{n}\frac{(1-p)^{n-1}p}{n}=n\cdot\frac{(1-p)^{n-1}p}{n}=(1-p)^{n-1}p & n=1,2,\ldots\\
+            0 & \text{otherwise.}
+        \end{cases}
+    }
+    \]
+    \[
+    \E{N} = \frac{1}{p} \qquad \Var[N] = \frac{1-p}{p^2} \qquad \E{N^2} = \Var[N] + \E{N}^2 = \frac{2-p}{p^2}
+    \]
+    \[
+    \E{K} = \sum_{n=1}^{\infty}\sum_{k=1}^{n}k\cdot\frac{(1-p)^{n-1}p}{n} = \sum_{n=1}^{\infty}\frac{(1-p)^{n-1}p}{n}\sum_{k=1}^{n}k = \sum_{n=1}^{\infty}\frac{(1-p)^{n-1}p}{n}\frac{n(n+1)}{2}
+    \]
+    Since $\sum_{n=1}^{\infty}(1-p)^{n-1}p=1$
+    \[
+        \E{K} = \E{\frac{N+1}{2}} = \frac{\E{N}+1}{2} = \frac{1}{2p}+\frac{1}{2}
+    \]
+    Following the same logic,
+    \[
+    \E{K^2} = \E{\frac{(N+1)(2N+1)}{6}}=\frac{2\E{N^2}+3\E{N}+1}{6}= \frac{2-p}{3p^2}+\frac{1}{2p}+\frac{1}{6}
+    \]
+    \[
+    \Var[K] = \E{K^2}-\E{K}^2 = \frac{2-p}{3p^2}+\frac{1}{2p}+\frac{1}{6}-\left(\frac{1}{2p}+\frac{1}{2}\right)^2
+    \]
+    \begin{align*}
+        r_{N,K}
+        &= \E{NK} \\
+        &= \sum_{n=1}^{\infty}\sum_{k=1}^{n}nk\cdot\frac{(1-p)^{n-1}p}{n} \\
+        &= \sum_{n=1}^{\infty}(1-p)^{n-1}p\sum_{k=1}^{n}k \\
+        &= \sum_{n=1}^{\infty}(1-p)^{n-1}p\frac{n(n+1)}{2} \\
+        &= \E{\frac{N(N+1)}{2}} \\
+        &= \frac{1}{2}\E{N^2}+\frac{1}{2}\E{N} \\
+        &= \frac{2-p}{2p^2}+\frac{1}{2p} = \frac{1}{p^2}
+    \end{align*}
+    \[
+    \Cov(N,K) = r_{N,K}-\E{N}\E{K} = \frac{1}{p^2}-\frac{1}{p}\frac{1}{2p}-\frac{1}{2p} = \frac{1}{2p^2}-\frac{1}{2p}    
+    \]
+\end{solution}
 
 \begin{problem}
     {Group 5}
     $X$ and $Y$ are random variables such that $X$ has expected value $\mu_X = 0$ and standard deviation $\sigma_X = 3$ while $Y$ has expected value $\mu_Y = 1$ and standard deviation $\sigma_Y = 4$. In addition, $X$ and $Y$ have covariance $\Cov[X, Y] = -3$. Find the expected value and variance of $W = 2X+2Y$.
 \end{problem}
-\fi
 
+\begin{solution}
+    {Solution}
+    \[
+        \E{W} = \E{2X+2Y} = 2\E{X}+2\E{Y} = 2\cdot 0+2\cdot 1 = 2
+    \]
+    \[
+        \Var(W) = \Var(2X+2Y) = 4\Var(X)+4\Var(Y)+8\Cov(X,Y) = 4\cdot 3^2+4\cdot 4^2+8\cdot (-3) = 76
+    \]
+\end{solution}
+\fi
+% \iffalse
 %%%% HW 11
 \begin{problem}
     {Group 1}
@@ -491,27 +789,224 @@
 
 \begin{problem}
     {Group 2}
+    Let $Y_1$ denote the weight (in tons) of a bulk item stocked by a supplier at the beginning of a week and suppose that $Y_1$ has a uniform distribution over the interval $0 \leq y_1 \leq 1$. Let $Y_2$ denote the amount (by weight) of this item sold by the supplier during the week and suppose that $Y_2$ has a uniform distribution over the interval $0 \leq y_2 \leq y_1$, where $y_1$ is a specific value of $Y_1$.
+    \begin{enumerate}
+        \item Find the joint density function for $Y_1$ and $Y_2$.
+        \item If the supplier stocks a half-ton of the item, what is the probability that she sells more than a quarter-ton?
+        \item If it is known that the supplier sold a quarter-ton of the item, what is the probability that she had stocked more than a half-ton?
+    \end{enumerate}
+\end{problem}
+
+\begin{problem}
+    {Group 3}
+    A quality control plan calls for randomly selecting three items from the daily production (assumed large) of a certain machine and observing the number of defectives. However, the proportion p of defectives produced by the machine varies from day to day and is assumed to have a uniform distribution on the interval (0, 1). For a randomly chosen day, find the unconditional probability that exactly two defectives are observed in the sample.
+\end{problem}
+
+\begin{problem}
+    {Group 4}
+    Suppose that the probability that a head appears when a coin is tossed is $p$ and the probability that a tail occurs is $q = 1 - p$. Person A tosses the coin until the first head appears and stops. Person B does likewise. The results obtained by persons A and B are assumed to be independent. What is the probability that A and B stop on exactly the same number toss? Explain how you think. The calculation is not mandatory.
+\end{problem}
+
+\begin{problem}
+    {Group 5}
+    Let $Y_1$ and $Y_2$ be independent exponentially distributed random variables, each with mean $1$. Find $P( Y_1 > Y_2 \mid Y_1 < 2Y_2)$ and $P( Y_1 < 2Y_2 \mid Y_1 > Y_2)$.
+    \begin{solution}
+        {Hint:}
+        \begin{enumerate}
+            \item Find the joint probability of $Y_1$ and $Y_2$.
+            \item Determine the range of $Y_1$ and $Y_2$ that satisfies the condition.
+            \item Use the definition of conditional probability.
+            \item Surprisingly, $P( Y_1 < 2Y_2 \mid Y_1 > Y_2)$ is much easier to calculate than $P( Y_1 = 2Y_2 \mid Y_1 > Y_2)$.
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+% \fi
+\iffalse
+%%%% HW 12
+\begin{problem}
+    {Group 1}
     A coin that has probability of heads equal to $p$ is tossed successively and independently until a head comes twice in a row or a tail comes twice in a row. Find the expected value of the number of tosses in terms of $p$ and $q=1-p$.
+    \begin{solution}
+        {Hint:}
+        The Law of Total Expectation is useful.
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    {Group 2}
+    $X$ and $Y$ are independent identical discrete uniform $(1, 10)$ random variables. Find the conditional PMF $P_{X,Y \mid A}(x, y)$. Let $A$ denote the event that
+    \begin{enumerate}
+        \item $\min(X, Y) > 5$.
+        \item $\max(X, Y) \leq 5$.
+    \end{enumerate}
+    \begin{solution}
+        {Hint:}
+        For discrete random variables, you can always list all the possible values and their corresponding probabilities.
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    {Group 3}
+    A supermarket has two customers waiting to pay for their purchases at counter I and one customer waiting to pay at counter II. Let $Y_1$ and $Y_2$ denote the numbers of customers who spend more than \$50 on groceries at the respective counters. Suppose that $Y_1$ and $Y_2$ are independent binomial random variables, with the probability that a customer at counter I will spend more than \$50 equal to $.2$ and the probability that a customer at counter II will spend more than \$50 equal to $.3$. Find the
+    \begin{enumerate}
+        \item joint probability distribution for $Y_1$ and $Y_2$.
+        \item probability that not more than one of the three customers will spend more than \$50.
+    \end{enumerate}
+\end{problem}
+
+\begin{problem}
+    {Group 4}
+    The length of life $Y$ for fuses of a certain type is modeled by the exponential distribution, with rate $\lambda=1/3$ (The measurements are in hundreds of hours.).
+    \begin{enumerate}[(a)]
+        \item If two such fuses have independent lengths of life $Y_1$ and $Y_2$, find the joint probability density function for $Y_1$ and $Y_2$.\label{item:4a}
+        \item One fuse in \cref{item:4a} is in a primary system, and the other is in a backup system that comes into use only if the primary system fails. The total effective length of life of the two fuses is then $Y_1 + Y_2$. Find $\P{Y_1 + Y2 \leq 1}$.
+    \end{enumerate}
+\end{problem}
+
+\begin{problem}
+    {Group 5}
+    A bus arrives at a bus stop at a uniformly distributed time over the interval $0$ to $1$ hour. A passenger also arrives at the bus stop at a uniformly distributed time over the interval $0$ to $1$ hour. Assume that the arrival times of the bus and passenger are independent of one another and that the passenger will wait for up to $1/4$ hour for the bus to arrive. What is the probability that the passenger will catch the bus?
+    \begin{solution}
+        {Hint:}
+        \begin{enumerate}
+            \item Let $Y_1$ denote the bus arrival time and $Y_2$ the passenger arrival time.
+            \item Determine the joint density of $Y_1$ and $Y_2$.
+            \item Find $\P{Y_2 \leq Y_1 \leq Y_2 + 1/4}$.
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+\fi
+\iffalse
+%%%% HW 13
+\begin{problem}
+    {Group 1}
+    Two telephone calls uniformly come into a switchboard at random times in a fixed one-hour period. Assume that the calls are made independently of one another. What is the probability that the calls are made
+    \begin{enumerate}
+        \item in the first half hour?
+        \item within five minutes of each other?
+    \end{enumerate}
+\end{problem}
+
+\begin{problem}
+    {Group 2}
+    A process for producing an industrial chemical yields a product containing two types of impurities. For a specified sample from this process, let $Y_1$ denote the proportion of impurities in the sample and let $Y_2$ denote the proportion of type I impurities among all impurities found. Suppose that the joint distribution of $Y_1$ and $Y_2$ can be modeled by the following probability density function:
+    \[
+    f_{Y_1,Y_2}(y_1,y_2)={
+        \begin{cases}
+            2(1-y_1) & 0\leq y_1\leq1, 0\leq y_2\leq 1\\
+            0 & \text{otherwise.}
+        \end{cases}
+    }
+    \]
+    Find the expected value of the proportion of type I impurities in the sample.
+\end{problem}
+
+\begin{problem}
+    {Group 3}
+    Let the discrete random variables $Y_1$ and $Y_2$ have the joint probability function $P_{Y_1,Y_2}(y_1, y_2) = 1/3$, for $(y_1, y_2) = (-1, 0), (0, 1), (1, 0)$. Find $\Cov(Y1, Y2)$. Notice that $Y_1$ and $Y_2$ are dependent. (Why?) This is another example of uncorrelated random variables that are not independent.
+\end{problem}
+
+\begin{problem}
+    {Group 4}
+    Suppose that $Y_1$ and $Y_2$ have correlation coefficient $\rho = .2$. What is the value of the correlation coefficient between
+    \begin{enumerate}
+        \item $1 + 2Y_1$ and $3 + 4Y_2$?
+        \item $1 + 2Y_1$ and $3 - 4Y_2$?
+        \item $1 - 2Y_1$ and $3 - 4Y_2$?
+    \end{enumerate}
+    \begin{solution}
+        {Hint:}
+        Use the variance of derived random variable and the definition of correlation coefficient.
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    {Group 5}
+    Let $Y_1$ and $Y_2$ have a joint density function given by
+    \[
+        f_{Y_1,Y_2} (y1, y2) = {
+            \begin{cases}
+                3y1 & 0 \leq y2 \leq y1 \leq 1,\\
+                0 & elsewhere.
+            \end{cases}
+        }
+    \]
+    \begin{enumerate}
+        \item Find the marginal density functions of $Y_1$ and $Y_2$.
+        \item Find $\condP{Y1 \leq 3/4}{|Y2 \leq 1/2}$.
+        \item Find the conditional density function of $Y_1$ given $Y_2 = y_2$.
+        \item Find $\condP{Y1 \leq 3/4}{|Y2 = 1/2}$.
+    \end{enumerate}
+\end{problem}
+\fi
+\iffalse
+%%%% HW 14
+\begin{problem}
+    {Group 1}
+    Suppose that the number of eggs laid by a certain insect has a Poisson distribution with mean $\lambda$. The probability that any egg hatches is $p$. Assume that the eggs hatch independently of one another. Find the
+    \begin{enumerate}
+        \item expected value of $Y$, the total number of eggs that hatch.
+        \item variance of $Y$.
+    \end{enumerate}
+    \begin{solution}
+        {Hint:}
+        Law of Total Expectation and Law of Total Variance.
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    {Group 2}
+    Let the random variables $X$ and $Y$ have a joint PDF which is uniform over the triangle with vertices at $(0, 0)$, $(0, 1)$, and $(1. 0)$.
+    \begin{enumerate}
+        \item Find the joint PDF of $X$ and $Y$.
+        \item Find the marginal PDF of $Y$.
+        \item Find the conditional PDF of $X$ given $Y$.
+        \item Find $\condE{X}{Y = y}$, and use the total expectation theorem to find $\E{X}$.
+    \end{enumerate}
 \end{problem}
 
 \begin{problem}
     {Group 3}
     Let $X$ be a random variable with PDF
     \[
-    f_X(x) = {
-        \begin{cases}
-            x/4 & 1<x\leq 3\\
-            0   & \text{otherwise}
-        \end{cases}
-    }
+        f_X(x) = {
+            \begin{cases}
+                x/4 & 1 \leq x \leq 3,\\
+                0 & elsewhere.
+            \end{cases}
+        }
     \]
-    and let $A$ be the event $\set{X\geq 2}$.
-    Find $\E{X}$, $\P{A}$, $f_{X\mid A}(x)$, $\E{X\mid A}$.
+    let $A$ be the event ${X \geq 2}$.
+    \begin{enumerate}
+        \item Find $\E{X}$, $\P{A}$, $f_{X\mid A}(x)$, and $\E{X \mid A}$.
+        \item Let $Y = X^2$. Find $\E{Y}$ and $\Var[Y]$.
+    \end{enumerate}
 \end{problem}
 
 \begin{problem}
     {Group 4}
-    
+    The random variable $X$ has the PDF
+    \[
+        f_X(x)={
+            \begin{cases}
+                cx^{-2} & 1\leq x\leq 2,\\
+                0 & \text{otherwise.}
+            \end{cases}
+        }
+    \]
+    \begin{enumerate}
+        \item Determine the value of $c$.
+        \item Let $A$ be the event ${X > 1.5}$. Calculate $\P{A}$ and the conditional PDF of $X$ given that $A$ has occurred.
+    \end{enumerate}
 \end{problem}
 
+\begin{problem}
+    {Group 5}
+    A miner is trapped in a mine containing $3$ doors. The first door leads to a tunnel that will take him to safety after $3$ hours of travel. The second door leads to a tunnel that will return him to the mine after $5$ hours of travel. The third door leads to a tunnel that will return him to the mine after $7$ hours. If we assume that the miner is at all times equally likely to choose any one of the doors, what is the expected length of time until he reaches safety?
+    \begin{solution}
+        {Hint:}
+        Law of Total Expectation.
+    \end{solution}
+\end{problem}
+\fi
 \end{document}

@@ -124,6 +124,7 @@
 
 %%%% Box Environment
 \newtcolorbox{problem}[1]{
+    breakable,
 % Set box style
     % sidebyside,
     % sidebyside align=top,
@@ -153,3 +154,10 @@
 %     % \textit{\scriptsize\bfseries Faculty Comments}
 %     \end{prob}
 % }
+
+\newtcolorbox{solution}[1]{
+    breakable,
+    colback=black!3,
+    fonttitle=\bfseries,
+    title={#1},
+}
