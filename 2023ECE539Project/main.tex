@@ -246,7 +246,33 @@ As shown in the given example, the inner product (a constant value) of the lifte
   The proof of this bound uses the knowledge of $\epsilon$-net and $\epsilon$-covering number.
 \end{frame}
 %---------------------------------------------------------
-
+\begin{frame}
+  \frametitle{Experiment}
+  \begin{table}[]
+    \centering
+    \begin{tabular}{|l|l|l|}
+    \hline
+    \textbf{Datasets} &
+      \textbf{Fourier + LS} &
+      \textbf{SVM} \\ \hline
+    \begin{tabular}[c]{@{}l@{}}CPU\\ regression\\ 6,500 instances; 21 dims\end{tabular} &
+      \begin{tabular}[c]{@{}l@{}}3.6\%\\ 20 secs\\ k = 300\end{tabular} &
+      \begin{tabular}[c]{@{}l@{}}5.5\%\\ 51secs\end{tabular} \\ \hline
+    \begin{tabular}[c]{@{}l@{}}Census\\ regression\\ 18.000 instances; 119 dims\end{tabular} &
+      \begin{tabular}[c]{@{}l@{}}5\%\\ 36 secs\\ k = 500\end{tabular} &
+      \begin{tabular}[c]{@{}l@{}}8.8\%\\ 7.5 mins\end{tabular} \\ \hline
+    \begin{tabular}[c]{@{}l@{}}Adult\\ classification\\ 32,000 instances; 123 dims\end{tabular} &
+      \begin{tabular}[c]{@{}l@{}}14.9\%\\ 9s\\ k = 500\end{tabular} &
+      \begin{tabular}[c]{@{}l@{}}14.8\%\\ 73 mins\end{tabular} \\ \hline
+    \begin{tabular}[c]{@{}l@{}}KDDCUP99\\ classification\\ 4,900,000 instances; 127 dims\end{tabular} &
+      \begin{tabular}[c]{@{}l@{}}7.3\%\\ 1.5 min\\ k = 50\end{tabular} &
+      \begin{tabular}[c]{@{}l@{}}6.2\% (18\%)\\ 1.4 secs (20 secs)\end{tabular} \\ \hline
+    \end{tabular}
+    \caption{Comparison of testing error and training time between ridge regression with random features and Support Vector Machine. For classification tasks, the percent of testing points incorrectly predicted is reported. For regression tasks, the RMS error normalized
+    by the norm of the ground truth is reported. }
+    \label{tab:my-table}
+    \end{table}
+\end{frame}
 %---------------------------------------------------------
 
 \end{document}
