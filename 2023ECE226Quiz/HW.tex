@@ -30,7 +30,7 @@
 \declaretheorem[numbered=no,style=remark]{remark, claim}
 
 %%%% Document Information %%%%
-\title{HW 11 Solution}
+\title{HW 12 Solution}
 \author{}
 \date{}
 
@@ -750,7 +750,7 @@
         &= \frac{2-p}{2p^2}+\frac{1}{2p} = \frac{1}{p^2}
     \end{align*}
     \[
-    \Cov(N,K) = r_{N,K}-\E{N}\E{K} = \frac{1}{p^2}-\frac{1}{p}\frac{1}{2p}-\frac{1}{2p} = \frac{1}{2p^2}-\frac{1}{2p}    
+    \Cov(N,K) = r_{N,K}-\E{N}\E{K} = \frac{1}{p^2}-\frac{1}{p}\frac{1}{2p}-\frac{1}{2p} = \frac{1}{2p^2}-\frac{1}{2p}
     \]
 \end{solution}
 
@@ -769,7 +769,7 @@
     \]
 \end{solution}
 \fi
-% \iffalse
+\iffalse
 %%%% HW 11
 \begin{problem}
     {Group 1}
@@ -779,7 +779,7 @@
         \begin{align*}
             \E{X}
             &= \condE{X}{X=1}\P{X=1}+\condE{X}{X>1}\P{X>1}\\
-            &= 1\cdot p + \left(\E{X}+1\right)(1-p)\\
+            &= \E{X=1}\cdot p + \E{X+1}(1-p)\\
             \Rightarrow
             \E{X} &= \frac{1}{p}.
         \end{align*}
@@ -789,7 +789,20 @@
 
 \begin{solution}
     {Solution}
-    
+    \begin{align*}
+        \E{X^2}
+        &= \condE{X^2}{X=1}\P{X=1}+\condE{X^2}{X>1}\P{X>1}\\
+        &= \E{X=1^2}\cdot p + \E{(X+1)^2}(1-p)\\
+        &= 1\cdot p + \E{X^2+2X+1}(1-p)\\
+        &= p + \E{X^2}(1-p)+2\E{X}(1-p)+1(1-p)\\
+        \Rightarrow
+        \E{X^2}
+        &= \frac{2}{p^2}-\frac{1}{p}\\
+        \Var[X]
+        &= \E{X^2}-\E{X}^2 \\
+        &= \frac{2}{p^2}-\frac{1}{p}-\frac{1}{p^2} \\
+        &= \frac{1-p}{p^2}.
+    \end{align*}
 \end{solution}
 
 \begin{problem}
@@ -802,15 +815,86 @@
     \end{enumerate}
 \end{problem}
 
+\begin{solution}
+    {Solution}
+    \begin{enumerate}
+        \item
+        \begin{align*}
+            f_{Y_1,Y_2}(y_1,y_2)
+            &= f_{Y_2\mid Y_1}(y_2\mid y_1)f_{Y_1}(y_1) \\
+            &= \frac{1}{y_1}\cdot 1 \\
+            f_{Y_1,Y_2}(y_1,y_2)
+            &={
+            \begin{cases}
+                \frac{1}{y_1} & 0\leq y_2\leq y_1\leq 1\\
+                0 & \text{otherwise.}
+            \end{cases}
+        }
+        \end{align*}
+        \item
+        \begin{align*}
+            f_{Y_2\mid Y_1}(y_2\mid y_1)
+            &= \frac{f_{Y_1,Y_2}(y_1,y_2)}{f_{Y_1}(y_1)} \\
+            &= \frac{\frac{1}{y_1}}{\int_{0}^{y_1}\frac{1}{y_1}\diff y_2} \\
+            &= \frac{\frac{1}{y_1}}{1}\\
+            &= \frac{1}{y_1} \\
+            \condP{Y_2>0.25}{Y_1=0.5}
+            &= \int_{0.25}^{0.5}\frac{1}{0.5}\diff y_2 \\
+            &= 0.5
+        \end{align*}
+        \item
+        \begin{align*}
+            f_{Y_1\mid Y_2}(y_1\mid y_2)
+            &= \frac{f_{Y_1,Y_2}(y_1,y_2)}{f_{Y_2}(y_2)} \\
+            &= \frac{\frac{1}{y_1}}{\int_{y_2}^{1}\frac{1}{y_1}\diff y_1} \\
+            &= \frac{\frac{1}{y_1}}{-\ln y_2} \\
+            &= \frac{1}{y_1(-\ln y_2)} \\
+            \P{Y_1>0.5\mid Y_2=0.25}
+            &= \int_{0.5}^{1}\frac{1}{y_1(-\ln 0.25)}\diff y_1 \\
+            &= \frac{\ln 2}{2\ln 2} \\
+            &= 0.5
+        \end{align*}
+    \end{enumerate}
+\end{solution}
+
 \begin{problem}
     {Group 3}
     A quality control plan calls for randomly selecting three items from the daily production (assumed large) of a certain machine and observing the number of defectives. However, the proportion p of defectives produced by the machine varies from day to day and is assumed to have a uniform distribution on the interval (0, 1). For a randomly chosen day, find the unconditional probability that exactly two defectives are observed in the sample.
 \end{problem}
 
+\begin{solution}
+    {Solution}
+    \begin{align*}
+        \condP{Y=y}{p}
+        &= \binom{3}{y}p^y(1-p)^{3-y} \qquad y=0,1,2,3 \\
+        \P{Y=2}
+        &= \int_{0}^{1} \P{Y=2, p}\diff p \\
+        &= \int_{0}^{1}\condP{Y=2}{p}f_P(p)\diff p \\
+        &= \int_{0}^{1}\binom{3}{2}p^2(1-p)^{3-2}\cdot 1\diff p \\
+        &= \int_{0}^{1}3p^2(1-p)\diff p \\
+        &= \int_{0}^{1}(3p^2-3p^3)\diff p \\
+        &= \left[p^3-\frac{3}{4}p^4\right]_{0}^{1} \\
+        &= 1-\frac{3}{4} \\
+        &= \frac{1}{4}
+    \end{align*}
+\end{solution}
+
 \begin{problem}
     {Group 4}
     Suppose that the probability that a head appears when a coin is tossed is $p$ and the probability that a tail occurs is $q = 1 - p$. Person A tosses the coin until the first head appears and stops. Person B does likewise. The results obtained by persons A and B are assumed to be independent. What is the probability that A and B stop on exactly the same number toss? Explain how you think. The calculation is not mandatory.
 \end{problem}
+
+\begin{solution}
+    {Solution}
+    \begin{align*}
+        &\P{A=1,B=1}+\P{A=2,B=2}+\P{A=3,B=3}+\ldots \\
+        = &\P{A=1}\P{B=1}+\P{A=2}\P{B=2}+\P{A=3}\P{B=3}+\ldots \\
+        = &\sum_{i=1}^{\infty}\P{A=i}\P{B=i} \\
+        = &\sum_{i=1}^{\infty}pq^{i-1}pq^{i-1} \\
+        = &p^2\sum_{i=1}^{\infty}(q^2)^{i-1} \\
+        = &\frac{p^2}{1-q^2}
+    \end{align*}
+\end{solution}
 
 \begin{problem}
     {Group 5}
@@ -825,8 +909,28 @@
         \end{enumerate}
     \end{solution}
 \end{problem}
-% \fi
-\iffalse
+
+\begin{solution}
+    {Solution}
+    \begin{align*}
+        f_{Y_1,Y_2}(y_1,y_2)
+        &= f_{Y_1}(y_1)f_{Y_2}(y_2) \\
+        &= e^{-y_1}e^{-y_2} \\
+        &= e^{-(y_1+y_2)} \\
+        \P{Y_1>Y_2\mid Y_1<2Y_2}
+        &= \frac{\P{Y_1>Y_2,Y_1<2Y_2}}{\P{Y_1<2Y_2}} \\
+        &= \frac{\int_{0}^{\infty}\int_{y_2}^{2y_2}e^{-(y_1+y_2)}\diff y_1\diff y_2}{\int_{0}^{\infty}\int_{0}^{2y_2}e^{-(y_1+y_2)}\diff y_1\diff y_2} \\
+        &= \frac{\frac{1}{6}}{\frac{2}{3}} \\
+        &= \frac{1}{4} \\
+        \P{Y_1<2Y_2\mid Y_1>Y_2}
+        &= \frac{\P{Y_1<2Y_2,Y_1>Y_2}}{\P{Y_1>Y_2}} \\
+        &= \frac{\int_{0}^{\infty}\int_{y_2}^{2y_2}e^{-(y_1+y_2)}\diff y_1\diff y_2}{\int_{0}^{\infty}\int_{y_2}^{\infty}e^{-(y_1+y_2)}\diff y_1\diff y_2} \\
+        &= \frac{\frac{1}{6}}{\frac{1}{2}} \\
+        &= \frac{1}{3}
+    \end{align*}
+\end{solution}
+\fi
+% \iffalse
 %%%% HW 12
 \begin{problem}
     {Group 1}
@@ -880,7 +984,7 @@
         \end{enumerate}
     \end{solution}
 \end{problem}
-\fi
+% \fi
 \iffalse
 %%%% HW 13
 \begin{problem}

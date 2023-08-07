@@ -168,23 +168,25 @@ As shown in the given example, the inner product (a constant value) of the lifte
     \end{align}
     Here
     $
-    \xi_{\vec{\omega}}(\vec{x_n-x_m})=\exp(i\vec{\omega}\trn(\vec{x_n-x_m}))
+    \xi_{\vec{\omega}}(\vec{x})=\exp(i\vec{\omega}\trn(\vec{x}))
     $.
   \end{exampleblock}
 \end{frame}
 %---------------------------------------------------------
 \begin{frame}
   \frametitle{Random Fourier Features}
-  Since both the $p(\cdot)$ and $k(\triangle)$ are real-valued, we can replace $\exp(i\vec{\omega}\trn(\vec{x_n-x_m}))$ with $\cos(\vec{\omega}\trn(\vec{x_n-x_m}))$. Let
+  Since both the $p(\cdot)$ and $k(\triangle)$ are real-valued, we can replace $\exp(i\vec{\omega}\trn(\vec{x}))$ with
   $
   z_{\vec{\omega}}(\vec{x})=
   \begin{bmatrix}
-    \cos(\vec{\vec{\omega}\trn x}) \\
-    \sin(\vec{\vec{\omega}\trn x})
+    \cos(\vec{\omega}\trn(\vec{x})) \\
+    \sin(\vec{\omega}\trn(\vec{x}))
   \end{bmatrix}
-  =\sqrt{2}\cos(\vec{\omega}\trn\vec{x}+b)$ where $\vec{\omega}$ is drawn from $p(\vec{\omega})$ and $b$ is uniformly drawn from $[0, 2\pi]$. Then eq.~\eqref{rffinC} becomes $\mathbb{E}_{\vec{\omega}}[z_{\vec{\omega}}(\vec{x_n})\trn z_{\vec{\omega}}(\vec{x_m})]$, which is an unbiased estimator of $\phi(\vec{x_n})\trn\phi(\vec{x_m})$.
+  =\sqrt{2}\cos(\vec{\omega}\trn(\vec{x})+b)$. Then eq.~\eqref{rffinC} becomes $\mathbb{E}_{\vec{\omega}}[z_{\vec{\omega}}(\vec{x_n})\trn z_{\vec{\omega}}(\vec{x_m})]$, which means $z_{\vec{\omega}}(\vec{x_n})\trn z_{\vec{\omega}}(\vec{x_m})$ is an unbiased estimator of $\phi(\vec{x_n})\trn\phi(\vec{x_m})$.
 
-  To further reduce the variance of the estimator, we can randomly draw $s$ samples of $\vec{\omega}$ and normalize each corresponding $z_{\vec{\omega}}(\vec{x})$ by $\sqrt{s}$. Then the inner product $z(\vec{x_n})\trn z(\vec{x_m})=\frac{1}{s}\sum_{j=1}^{s}z_{\vec{\omega}j}(\vec{x_n})\trn z_{\vec{\omega}j}(\vec{x_m})$
+  Let $\vec{\omega}$ been drawn from $p(\vec{\omega})$ and $b$ been uniformly drawn from $[0, 2\pi]$, the calculation of $\phi(\vec{x_n})\trn\phi(\vec{x_m})$ transforms into a sampling problem.
+
+  To further reduce the variance of the estimator, we can randomly draw $s$ samples of $\vec{\omega}$ and $b$, normalize each corresponding $z_{\vec{\omega}}(\vec{x})$ by $\sqrt{s}$, and concatenate them into one vector. Then the inner product $z(\vec{x_n})\trn z(\vec{x_m})=\frac{1}{s}\sum_{j=1}^{s}z_{\vec{\omega}_j}(\vec{x_n})\trn z_{\vec{\omega}_j}(\vec{x_m})$
   % \item <4-> \textbf{Question:} The author samples $\vec{\omega}$ from $\R^d$ and average over $s$ samples in the following algorithm. However, $d\&s$ seems can be arbitrary number based on the above derivation.
 \end{frame}
 %---------------------------------------------------------
@@ -193,10 +195,10 @@ As shown in the given example, the inner product (a constant value) of the lifte
   \begin{algorithm}[H]
     \caption{Random Fourier Features}\label{RFF}
     \begin{algorithmic}
-    \Require A shift invariant kernel $K(\vec{x_n}, \vec{x_m}) = k(\vec{x_n}- \vec{x_m})$.
+    \Require A shift invariant kernel $K(\vec{x_n}, \vec{x_m}) = k(\vec{x_n}- \vec{x_m})=k(\triangle)$.
     \Ensure A randomized feature map $z(\vec{x}): \R^d\rightarrow\R^s$ so that $z(\vec{x_n})\trn z(\vec{x_m})\approx K(\vec{x_n}, \vec{x_m})$.
     \State Compute the Fourier transform $p(\cdot)$ of the kernel $K: p(\vec{\omega})=\frac{1}{2\pi}\int \exp(-i\vec{\omega}\trn\triangle)k(\triangle)\diff\triangle$
-    \State Draw $s$ \iid samples $\vec{\omega}_1, \vec{\omega}_2, \ldots, \vec{\omega}_s \in \R^d$ from $p(\cdot)$ and $s$ \iid samples $b_1, b_2, \ldots, b_s \in [0, 2\pi]$.
+    \State Draw $s$ \iid samples $\vec{\omega}_1, \vec{\omega}_2, \ldots, \vec{\omega}_s \in \R^d$ from $p(\vec{\omega})$ and $s$ \iid samples $b_1, b_2, \ldots, b_s \in [0, 2\pi]$.
     \State Let $z(\vec{x})\equiv \sqrt{\frac{2}{s}}[\cos(\vec{\omega}_1\trn\vec{x}+b_1), \cos(\vec{\omega}_2\trn\vec{x}+b_2), \ldots, \cos(\vec{\omega}_s\trn\vec{x}+b_s)]\trn$
     \end{algorithmic}
   \end{algorithm}
@@ -257,16 +259,16 @@ As shown in the given example, the inner product (a constant value) of the lifte
       \textbf{SVM} \\ \hline
     \begin{tabular}[c]{@{}l@{}}CPU\\ regression\\ 6,500 instances; 21 dims\end{tabular} &
       \begin{tabular}[c]{@{}l@{}}3.6\%\\ 20 secs\\ k = 300\end{tabular} &
-      \begin{tabular}[c]{@{}l@{}}5.5\%\\ 51secs\end{tabular} \\ \hline
+      \begin{tabular}[b]{@{}l@{}}5.5\%\\ 51 secs\end{tabular} \\ \hline
     \begin{tabular}[c]{@{}l@{}}Census\\ regression\\ 18.000 instances; 119 dims\end{tabular} &
       \begin{tabular}[c]{@{}l@{}}5\%\\ 36 secs\\ k = 500\end{tabular} &
-      \begin{tabular}[c]{@{}l@{}}8.8\%\\ 7.5 mins\end{tabular} \\ \hline
+      \begin{tabular}[b]{@{}l@{}}8.8\%\\ 7.5 mins\end{tabular} \\ \hline
     \begin{tabular}[c]{@{}l@{}}Adult\\ classification\\ 32,000 instances; 123 dims\end{tabular} &
-      \begin{tabular}[c]{@{}l@{}}14.9\%\\ 9s\\ k = 500\end{tabular} &
-      \begin{tabular}[c]{@{}l@{}}14.8\%\\ 73 mins\end{tabular} \\ \hline
+      \begin{tabular}[c]{@{}l@{}}14.9\%\\ 9 secs\\ k = 500\end{tabular} &
+      \begin{tabular}[b]{@{}l@{}}14.8\%\\ 73 mins\end{tabular} \\ \hline
     \begin{tabular}[c]{@{}l@{}}KDDCUP99\\ classification\\ 4,900,000 instances; 127 dims\end{tabular} &
-      \begin{tabular}[c]{@{}l@{}}7.3\%\\ 1.5 min\\ k = 50\end{tabular} &
-      \begin{tabular}[c]{@{}l@{}}6.2\% (18\%)\\ 1.4 secs (20 secs)\end{tabular} \\ \hline
+      \begin{tabular}[c]{@{}l@{}}7.3\%\\ 1.5 mins\\ k = 50\end{tabular} &
+      \begin{tabular}[b]{@{}l@{}}6.2\% (18\%)\\ 1.4 secs (20 secs)\end{tabular} \\ \hline
     \end{tabular}
     \caption{Comparison of testing error and training time between ridge regression with random features and Support Vector Machine. For classification tasks, the percent of testing points incorrectly predicted is reported. For regression tasks, the RMS error normalized
     by the norm of the ground truth is reported. }
