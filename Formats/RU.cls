@@ -73,7 +73,7 @@
 \RequirePackage{rotating} %Package to rotate objects
 % \RequirePackage{pgf, tikz} %Package to draw figures.
 \RequirePackage{epstopdf} %Package to convert eps to pdf
-\RequirePackage[backend=biber, style=numeric, sorting=none]{biblatex}
+\RequirePackage[backend=biber, style=verbose, sorting=none]{biblatex}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Colors
 \definecolor{RUgray}{HTML}{6A757C} % gray = PANTONE 431
