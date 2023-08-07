@@ -94,7 +94,7 @@
     &= \bracks*{x_{n,1}^2 , x_{n,2}^2 , \sqrt{2}x_{n,1}x_{n,2}}\bracks*{x_{m,1}^2 , x_{m,2}^2 , \sqrt{2}x_{m,1}x_{m,2}}\trn \\
     &= x_{n,1}^2x_{m,1}^2 + x_{n,2}^2x_{m,2}^2 + 2x_{n,1}x_{n,2}x_{m,1}x_{m,2}
   \end{align*}
-For the given example, it does three multiplication to get the result (a constant value). For a function lifting the original vector space to a much higher dimension, such a calculation can be computationally thirsty. Alternatively, this can be done as follow, whose computational complexity only depends on the dimension of the original vector space.
+As shown in the given example, the inner product (a constant value) of the lifted vector has computational complexity depends on lifted dimension. For a function lifts the original vector space to a much higher dimension, such a calculation can be computationally thirsty. Alternatively, this can be done as follows, whose computational complexity only depends on the dimension of the original vector space.
   \begin{align*}
     (\angles*{\mathbf{x_n}, \mathbf{x_m}})^2
     &= \parens*{\bracks*{x_{n,1} \ x_{n,2}}\bracks*{x_{m,1} \ x_{m,2}}\trn}^2 \\
@@ -134,17 +134,17 @@ For the given example, it does three multiplication to get the result (a constan
 %---------------------------------------------------------
 \begin{frame}
   \frametitle{Motivation}
-  Can we find a way to construct the \textbf{Kernel Matrix}, which is equivalent to lift $\mathbf{X}$ to $\R^s$ with $d < s\ll k$, while not sacrifices model performance?
+  Can we find a way to construct the \textbf{Kernel Matrix}, which is equivalent to lifting $\mathbf{X}$ to $\R^s$ with $d < s\ll k$, while not sacrifices model performance?
 \end{frame}
 %---------------------------------------------------------
 
 
-\section{Random Fourier Features}
+\section{Random Fourier Features (RFF)}
 %---------------------------------------------------------
 \begin{frame}
 \frametitle{Some Prerequisites}
 \begin{alertblock}{Definition: Shift Invariant Kernel (Radial Basis Function (RBF))}
-  A kernel function $K(\vec{x_n}, \vec{x_m})$ is called \textbf{shift invariant} if it can be written as $K(\vec{x_n}, \vec{x_m}) = k(\vec{x_n}-\vec{x_m})$ for some function $g(\cdot)$
+  A kernel function $K(\vec{x_n}, \vec{x_m})$ is called \textbf{shift invariant} if it can be written as $K(\vec{x_n}, \vec{x_m}) = k(\vec{x_n}-\vec{x_m})$ for some function $k(\cdot)$
 
   (\eg $K_{Gaussian}(\vec{x_n},\vec{x_m})=\exp(-\gamma\norm{\vec{x_n}-\vec{x_m}}_2^2)$).
 \end{alertblock}
@@ -175,18 +175,17 @@ For the given example, it does three multiplication to get the result (a constan
 %---------------------------------------------------------
 \begin{frame}
   \frametitle{Random Fourier Features}
-  \begin{itemize}
-    \item Since both the $p(\cdot)$ and $k(\triangle)$ are real-valued, we can replace $\exp(i\vec{\omega}\trn(\vec{x_n-x_m}))$ with $\cos(\vec{\omega}\trn(\vec{x_n-x_m}))$. Let
-    $
-    z_{\vec{\omega}}(\vec{x})=
-    \begin{bmatrix}
-      \cos(\vec{x}) \\
-      \sin(\vec{x})
-    \end{bmatrix}
-    =\sqrt{2}\cos(\vec{\omega}\trn\vec{x}+b)$ where $\vec{\omega}$ is drawn from $p(\vec{\omega})$ and $b$ is uniformly drawn from $[0, 2\pi]$. Then eq.~\eqref{rffinC} becomes $\mathbb{E}_{\vec{\omega}}[z_{\vec{\omega}}(\vec{x_n})\trn z_{\vec{\omega}}(\vec{x_m})]$.
-    \item To further reduce the variance of the estimator, we can randomly draw $s$ samples of $\vec{\omega}$ and normalize each corresponding $z_{\vec{\omega}}(\vec{x})$ by $\sqrt{s}$. Then the inner product $z(\vec{x_n})\trn z(\vec{x_m})=\frac{1}{s}\sum_{j=1}^{s}z_{\vec{\omega}j}(\vec{x_n})\trn z_{\vec{\omega}j}(\vec{x_m})$
-    % \item <4-> \textbf{Question:} The author samples $\vec{\omega}$ from $\R^d$ and average over $s$ samples in the following algorithm. However, $d\&s$ seems can be arbitrary number based on the above derivation.
-  \end{itemize}
+  Since both the $p(\cdot)$ and $k(\triangle)$ are real-valued, we can replace $\exp(i\vec{\omega}\trn(\vec{x_n-x_m}))$ with $\cos(\vec{\omega}\trn(\vec{x_n-x_m}))$. Let
+  $
+  z_{\vec{\omega}}(\vec{x})=
+  \begin{bmatrix}
+    \cos(\vec{\vec{\omega}\trn x}) \\
+    \sin(\vec{\vec{\omega}\trn x})
+  \end{bmatrix}
+  =\sqrt{2}\cos(\vec{\omega}\trn\vec{x}+b)$ where $\vec{\omega}$ is drawn from $p(\vec{\omega})$ and $b$ is uniformly drawn from $[0, 2\pi]$. Then eq.~\eqref{rffinC} becomes $\mathbb{E}_{\vec{\omega}}[z_{\vec{\omega}}(\vec{x_n})\trn z_{\vec{\omega}}(\vec{x_m})]$, which is an unbiased estimator of $\phi(\vec{x_n})\trn\phi(\vec{x_m})$.
+
+  To further reduce the variance of the estimator, we can randomly draw $s$ samples of $\vec{\omega}$ and normalize each corresponding $z_{\vec{\omega}}(\vec{x})$ by $\sqrt{s}$. Then the inner product $z(\vec{x_n})\trn z(\vec{x_m})=\frac{1}{s}\sum_{j=1}^{s}z_{\vec{\omega}j}(\vec{x_n})\trn z_{\vec{\omega}j}(\vec{x_m})$
+  % \item <4-> \textbf{Question:} The author samples $\vec{\omega}$ from $\R^d$ and average over $s$ samples in the following algorithm. However, $d\&s$ seems can be arbitrary number based on the above derivation.
 \end{frame}
 %---------------------------------------------------------
 \begin{frame}
@@ -236,7 +235,7 @@ For the given example, it does three multiplication to get the result (a constan
 %---------------------------------------------------------
 \begin{frame}
   \frametitle{Convergence}
-  \begin{exampleblock}{Bound for \emph{all} pair of samples $\vec{x_n}$ and $\vec{x_m}$}
+  \begin{exampleblock}{Bound for the \textbf{Kernel Matrix}}
     Let $\mathcal{M}$ be a compact subset of $\R^d$ with diameter $\textnormal{diam}(\mathcal{M})$. Then, for the mapping $z$ defined in Algorithm~\ref{RFF}, we have
     \begin{align*}
       \P{\sup_{x,y\in\mathcal{M}}\abs{z(\vec{x_n})\trn z(\vec{x_m})-K(\vec{x_n}, \vec{x_m})}\geq \epsilon} \\
