@@ -30,7 +30,7 @@
 \declaretheorem[numbered=no,style=remark]{remark, claim}
 
 %%%% Document Information %%%%
-\title{HW 12 Solution}
+\title{HW 13 Solution}
 \author{}
 \date{}
 
@@ -930,7 +930,7 @@
     \end{align*}
 \end{solution}
 \fi
-% \iffalse
+\iffalse
 %%%% HW 12
 \begin{problem}
     {Group 1}
@@ -940,6 +940,41 @@
         The Law of Total Expectation is useful.
     \end{solution}
 \end{problem}
+
+\begin{solution}
+    {Solution}
+    With the law of total probability, we can partition the event $X$ based on the first (starting from $0$) toss,
+    \[
+        \P{X}=\P{X\mid H_0}\P{H_0}+\P{X\mid T_0}\P{T_0}.
+    \]
+    Similarly, each partition of the first toss can be partitioned based on the second toss,
+    \begin{align*}
+        \P{X\mid H_0} &= \P{X\mid H_0\cap H_1}\P{H_1}+\P{X\mid H_0\cap T_1}\P{T_1}, \\
+        \P{X\mid T_0} &= \P{X\mid T_0\cap H_1}\P{H_1}+\P{X\mid T_0\cap T_1}\P{T_1}.
+    \end{align*}
+    Apply expectation to both sides,
+    \begin{align*}
+        \E{X} &= \E{X\mid H_0}\P{H_0}+\E{X\mid T_0}\P{T_0}, \\
+        \E{X\mid H_0} &= \E{X\mid H_0\cap H_1}\P{H_1}+\E{X\mid H_0\cap T_1}\P{T_1}, \\
+        \E{X\mid T_0} &= \E{X\mid T_0\cap H_1}\P{H_1}+\E{X\mid T_0\cap T_1}\P{T_1}.
+    \end{align*}
+    Because the game will end with two heads/tails in a row or start counting over, we have
+    \[
+    \E{X\mid H_0H_1}= \E{X\mid T_0T_1}=2, \qquad \E{X\mid H_0T_1} = 1+\E{X\mid T_0}, \qquad \E{X\mid T_0H_1} = 1+\E{X\mid H_0}.
+    \]
+    \begin{align*}
+        \E{X\mid H_0} &= 2p+(1+\E{X\mid T_0})q, \\
+        \E{X\mid T_0} &= (1+\E{X\mid H_0})p+2q, \\
+        \Rightarrow
+        \E{X\mid H_0} &= \frac{2+q^2}{1-pq}, \\
+        \E{X\mid T_0} &= \frac{2+p^2}{1-pq}, \\
+        \Rightarrow
+        \E{X} &= \frac{2+q^2}{1-pq}p+\frac{2+p^2}{1-pq}q \\
+        &= \frac{2p+q^2p+2q+p^2q}{1-pq} \\
+        &= \frac{2(p+q)+(q+p)pq}{1-pq} \\
+        &= \frac{2+pq}{1-pq}.
+    \end{align*}
+\end{solution}
 
 \begin{problem}
     {Group 2}
@@ -954,6 +989,12 @@
     \end{solution}
 \end{problem}
 
+\begin{solution}
+    {Solution}
+    \includegraphics[width=0.6\textwidth, center]{winlab-ms6Z3OUCPY-s.pdf}
+    And the same for the second case.
+\end{solution}
+
 \begin{problem}
     {Group 3}
     A supermarket has two customers waiting to pay for their purchases at counter I and one customer waiting to pay at counter II. Let $Y_1$ and $Y_2$ denote the numbers of customers who spend more than \$50 on groceries at the respective counters. Suppose that $Y_1$ and $Y_2$ are independent binomial random variables, with the probability that a customer at counter I will spend more than \$50 equal to $.2$ and the probability that a customer at counter II will spend more than \$50 equal to $.3$. Find the
@@ -963,14 +1004,38 @@
     \end{enumerate}
 \end{problem}
 
+\begin{solution}
+    {Solution}
+    \begin{align*}
+        P_{Y_1}(y_1) &= \binom{2}{y_1}0.2^{y_1}0.8^{2-y_1}, \qquad y_1=0,1,2 \\
+        P_{Y_2}(y_2) &= \binom{1}{y_2}0.3^{y_2}0.7^{1-y_2}, \qquad y_2=0,1 \\
+        P_{Y_1,Y_2}(y_1,y_2) &= P_{Y_1}(y_1)P_{Y_2}(y_2) \\
+        &= \binom{2}{y_1}0.2^{y_1}0.8^{2-y_1}\binom{1}{y_2}0.3^{y_2}0.7^{1-y_2}, \qquad y_1=0,1,2 \quad y_2=0,1 \\
+        \P{Y_1+Y_2\leq 1} &= \P{0,0} + \P{1,0} + \P{0,1} \\
+        &= 0.8^2\cdot 0.7 + 2\cdot 0.2\cdot 0.8\cdot 0.7 + 0.8^2\cdot 0.3 \\
+        &= 0.864
+    \end{align*}
+\end{solution}
+
 \begin{problem}
     {Group 4}
     The length of life $Y$ for fuses of a certain type is modeled by the exponential distribution, with rate $\lambda=1/3$ (The measurements are in hundreds of hours.).
     \begin{enumerate}[(a)]
         \item If two such fuses have independent lengths of life $Y_1$ and $Y_2$, find the joint probability density function for $Y_1$ and $Y_2$.\label{item:4a}
-        \item One fuse in \cref{item:4a} is in a primary system, and the other is in a backup system that comes into use only if the primary system fails. The total effective length of life of the two fuses is then $Y_1 + Y_2$. Find $\P{Y_1 + Y2 \leq 1}$.
+        \item One fuse in \cref{item:4a} is in a primary system, and the other is in a backup system that comes into use only if the primary system fails. The total effective length of life of the two fuses is then $Y_1 + Y_2$. Find $\P{Y_1 + Y_2 \leq 1}$.
     \end{enumerate}
 \end{problem}
+
+\begin{solution}
+    {Solution}
+    \begin{align*}
+        f_{Y_1,Y_2}(y_1,y_2)&= f_{Y_1}(y_1)f_{Y_2}(y_2) \\
+        &= \frac{1}{3}e^{-\frac{1}{3}y_1}\frac{1}{3}e^{-\frac{1}{3}y_2} \\
+        &= \frac{1}{9}e^{-\frac{1}{3}(y_1+y_2)} \\
+        \P{Y_1+Y_2\leq 1} &= \int_{0}^{1}\int_{0}^{1-y_1}\frac{1}{9}e^{-\frac{1}{3}(y_1+y_2)}\diff y_2\diff y_1 \\
+        &= 1-\frac{4}{3}e^{-\frac{1}{3}}
+    \end{align*}
+\end{solution}
 
 \begin{problem}
     {Group 5}
@@ -984,8 +1049,19 @@
         \end{enumerate}
     \end{solution}
 \end{problem}
-% \fi
-\iffalse
+
+\begin{solution}
+    {Solution}
+    % The region of \[Y_2 \leq Y_1 \leq Y_2 + 1/4\]
+    \includegraphics[width=0.9\textwidth, center]{plot3.eps}
+
+    The black area is
+    \[
+    1\cdot1\cdot\frac{1}{2}-\frac{3}{4}\cdot\frac{3}{4}\cdot\frac{1}{2}=\frac{7}{32}.
+    \]
+\end{solution}
+\fi
+% \iffalse
 %%%% HW 13
 \begin{problem}
     {Group 1}
@@ -1047,7 +1123,7 @@
         \item Find $\condP{Y1 \leq 3/4}{|Y2 = 1/2}$.
     \end{enumerate}
 \end{problem}
-\fi
+% \fi
 \iffalse
 %%%% HW 14
 \begin{problem}
