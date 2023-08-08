@@ -127,6 +127,13 @@ For continuous random variables, the marginal PDFs $f_X(x)$ and $f_Y(y)$ are pro
 \end{theorem}
 
 \begin{definition}
+    [Correlation]
+    The correlation of random variables $X$ and $Y$ is
+    \[r_{X,Y} = \E{XY}.\]
+    This is a different parameter from the correlation coefficient (\textcolor{red}{and widely used in engineer major}).
+\end{definition}
+
+\begin{definition}
     [Uncorrelatedness]
     Random variables $X$ and $Y$ are uncorrelated if and only if
     \[\Cov[X,Y]=0.\]
@@ -149,13 +156,6 @@ It's easy to show that if $X$ and $Y$ are independent, then
         \item $\Var[aX+bY]=a^2\Var[X]+b^2\Var[Y]$.
     \end{enumerate}
 \end{theorem}
-
-\begin{definition}
-    [Correlation]
-    The correlation of random variables $X$ and $Y$ is
-    \[r_{X,Y} = \E{XY}.\]
-    This is a different parameter from the correlation coefficient (\textcolor{red}{and widely used in engineer major}).
-\end{definition}
 
 \begin{definition}
     [Orthogonality]

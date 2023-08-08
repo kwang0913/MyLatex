@@ -131,13 +131,17 @@
     \end{align*}
 \end{definition}
 
+\begin{theorem}
+    The conditional variance of $W=g(X,Y)$ given $B$ is
+    \[\Var[W\mid B]=\E{W^2\mid B}-\E{W\mid B}^2.\]
+\end{theorem}
+
 \section{Conditioning by a Random Variable}
-\subsection{Conditioning Random Variables by a Random Variable with Fixed Value}
 \begin{definition}
     % [Conditional PMF]
     For any event $Y=y$ such that $P_Y(y)>0$, the conditional \textnormal{PMF} of $X$ given $Y=y$ is
     \[P_{X\mid Y}(x\mid y)=\condP{X=x}{Y=y}=\frac{P_{X,Y}(x,y)}{P_Y(y)}.\]
-    \[P_{Y\mid X}(y\mid x)=\condP{Y=y}{X=x}=\frac{P_{X,Y}(x,y)}{P_X(x)}.\]
+    % \[P_{Y\mid X}(y\mid x)=\condP{Y=y}{X=x}=\frac{P_{X,Y}(x,y)}{P_X(x)}.\]
 \end{definition}
 
 \begin{definition}
@@ -145,7 +149,7 @@
     \label{def:conditional_pdf}
     For any event $Y=y$ such that $f_Y(y)>0$, the conditional \textnormal{PDF} of $X$ given $Y=y$ is
     \[f_{X\mid Y}(x\mid y)=\frac{f_{X,Y}(x,y)}{f_Y(y)}.\]
-    \[f_{Y\mid X}(y\mid x)=\frac{f_{X,Y}(x,y)}{f_X(x)}.\]
+    % \[f_{Y\mid X}(y\mid x)=\frac{f_{X,Y}(x,y)}{f_X(x)}.\]
 \end{definition}
 
 \begin{theorem}
@@ -153,6 +157,7 @@
     \[P_{X\mid Y}(x\mid y)=P_X(x), \qquad P_{Y\mid X}(y\mid x)=P_Y(y).\]
 \end{theorem}
 
+\subsection{Expectation of Conditioning by a Random Variable with Fixed Value}
 \begin{definition}
     % [Conditional Expected Value]
     \label{def:conditional_expected_value}
@@ -169,7 +174,12 @@
 \end{theorem}
 \textbf{Note:} The result of $\E{X\mid Y=y}$ is a function of $y$ and the result of $\E{Y\mid X=x}$ is a function of $x$. When $X$ and $Y$ are independent, the result of $\E{X\mid Y=y}$ is a constant and the result of $\E{Y\mid X=x}$ is a constant. Because when $X$ and $Y$ are independent, changing one variable does not affect the probability distribution of the other.
 
-\subsection{Conditioning Random Variables by a Random Variable}
+\begin{theorem}
+    The conditional variance of $X$ given $Y=y\in S_Y$ is
+    \[\Var[X\mid Y=y]=\E{X^2\mid Y=y}-\E{X\mid Y=y}^2.\]
+\end{theorem}
+
+\subsection{Expectation of Conditioning by a Random Variable}
 \begin{theorem}\label{thm:conditional_expected_value}
     If $Y$ is unspecified, then ``$X\mid Y$'' is a function of both $X$ and $Y$, whose expectation is determined by joint distribution $P_{X,Y}(x,y)$, (equivalently, you can think $Y$ as a partitions).
     \begin{align*}
