@@ -30,7 +30,7 @@
 \declaretheorem[numbered=no,style=remark]{remark, claim}
 
 %%%% Document Information %%%%
-\title{HW 13 Solution}
+\title{HW 14 Solution}
 \author{}
 \date{}
 
@@ -1061,7 +1061,7 @@
     \]
 \end{solution}
 \fi
-% \iffalse
+\iffalse
 %%%% HW 13
 \begin{problem}
     {Group 1}
@@ -1071,6 +1071,28 @@
         \item within five minutes of each other?
     \end{enumerate}
 \end{problem}
+
+\begin{solution}
+    {Solution}
+    Let $X_1$ and $X_2$ be the arrival times of the two calls. Then $X_1$ and $X_2$ are independent and uniformly distributed over the interval $[0,1]$. The joint density of $X_1$ and $X_2$ is
+    \[
+        f_{X_1,X_2}(x_1,x_2) = {
+            \begin{cases}
+                1 & 0\leq x_1\leq 1, 0\leq x_2\leq 1 \\
+                0 & \text{otherwise.}
+            \end{cases}
+        }
+    \]
+    \begin{align*}
+        \P{X_1,X_2\leq 0.5}
+        &= \int_{0}^{0.5}\int_{0}^{0.5}1\diff x_1\diff x_2 \\
+        &= \frac{1}{4}
+    \end{align*}
+    The area of the region where $|X_1-X_2|\leq 1/12$ is
+
+    \includegraphics[width=\textwidth, center]{plot4.eps}
+    and the $\P{|X_1-X_2|\leq 1/12}=1-\frac{1}{2}(\frac{11}{12})^2\times2=\frac{23}{144}$.
+\end{solution}
 
 \begin{problem}
     {Group 2}
@@ -1086,10 +1108,54 @@
     Find the expected value of the proportion of type I impurities in the sample.
 \end{problem}
 
+\begin{solution}
+    {Solution}
+    \begin{align*}
+        \E{Y_1Y_2}
+        &= \int_{0}^{1}\int_{0}^{1}y_1y_2\cdot 2(1-y_1)\diff y_1\diff y_2 \\
+        &= \int_{0}^{1}\int_{0}^{1}2y_1y_2-2y_1^2y_2\diff y_1\diff y_2 \\
+        &= \int_{0}^{1}y_2-\frac{2}{3}y_2\diff y_2 \\
+        &= \frac{1}{2}-\frac{1}{3} \\
+        &= \frac{1}{6}
+    \end{align*}
+\end{solution}
+
 \begin{problem}
     {Group 3}
-    Let the discrete random variables $Y_1$ and $Y_2$ have the joint probability function $P_{Y_1,Y_2}(y_1, y_2) = 1/3$, for $(y_1, y_2) = (-1, 0), (0, 1), (1, 0)$. Find $\Cov(Y1, Y2)$. Notice that $Y_1$ and $Y_2$ are dependent. (Why?) This is another example of uncorrelated random variables that are not independent.
+    Let the discrete random variables $Y_1$ and $Y_2$ have the joint probability function $P_{Y_1,Y_2}(y_1, y_2) = 1/3$, for $(y_1, y_2) = (-1, 0), (0, 1), (1, 0)$. Find $\Cov(Y_1, Y_2)$. Notice that $Y_1$ and $Y_2$ are dependent. (Why?) This is another example of uncorrelated random variables that are not independent.
 \end{problem}
+
+\begin{solution}
+    {Solution}
+    \begin{align*}
+        P_{Y_1}(y_1) &= {
+            \begin{cases}
+                1/3 & y_1=-1, 0, 1 \\
+                0 & \text{otherwise.}
+            \end{cases}
+        }\\
+        P_{Y_2}(y_2) &= {
+            \begin{cases}
+                2/3 & y_2=0 \\
+                1/3 & y_2=1 \\
+                0 & \text{otherwise.}
+            \end{cases}
+        }\\
+        \E{Y_1} 
+        &= -1\cdot\frac{1}{3}+0\cdot\frac{1}{3}+1\cdot\frac{1}{3} \\
+        &= 0 \\
+        \E{Y_2}
+        &= 0\cdot\frac{2}{3}+1\cdot\frac{1}{3} \\
+        &= \frac{1}{3} \\
+        \E{Y_1Y_2}
+        &= -1\cdot 0\cdot\frac{1}{3}+0\cdot 1\cdot\frac{1}{3}+1\cdot 0\cdot\frac{1}{3} \\
+        &= 0 \\
+        \Cov(Y_1,Y_2)
+        &= \E{Y_1Y_2}-\E{Y_1}\E{Y_2} \\
+        &= 0-0\cdot\frac{1}{3} \\
+        &= 0
+    \end{align*}
+\end{solution}
 
 \begin{problem}
     {Group 4}
@@ -1105,26 +1171,69 @@
     \end{solution}
 \end{problem}
 
+\begin{solution}
+    {Solution}
+    \begin{align*}
+        \rho_{1+2Y_1,3+4Y_2} &= \frac{\Cov(1+2Y_1,3+4Y_2)}{\sqrt{\Var(1+2Y_1)}\sqrt{\Var(3+4Y_2)}} \\
+        &= \frac{\Cov(2Y_1,4Y_2)}{\sqrt{\Var(2Y_1)}\sqrt{\Var(4Y_2)}} \\
+        &= \frac{2\cdot 4\Cov(Y_1,Y_2)}{2\cdot 4\sqrt{\Var(Y_1)}\sqrt{\Var(Y_2)}} \\
+        &= \frac{\Cov(Y_1,Y_2)}{\sqrt{\Var(Y_1)}\sqrt{\Var(Y_2)}} \\
+        &= \rho = 0.2 \\
+        \rho_{1+2Y_1,3-4Y_2} &= \frac{\Cov(1+2Y_1,3-4Y_2)}{\sqrt{\Var(1+2Y_1)}\sqrt{\Var(3-4Y_2)}} \\
+        &= \frac{\Cov(2Y_1,-4Y_2)}{\sqrt{\Var(2Y_1)}\sqrt{\Var(-4Y_2)}} \\
+        &= \frac{2\cdot (-4)\Cov(Y_1,Y_2)}{2\cdot 4\sqrt{\Var(Y_1)}\sqrt{\Var(Y_2)}} \\
+        &= -\frac{\Cov(Y_1,Y_2)}{\sqrt{\Var(Y_1)}\sqrt{\Var(Y_2)}} \\
+        &= -\rho = -0.2 \\
+        \rho_{1-2Y_1,3-4Y_2} &= \frac{\Cov(1-2Y_1,3-4Y_2)}{\sqrt{\Var(1-2Y_1)}\sqrt{\Var(3-4Y_2)}} \\
+        &= \frac{\Cov(-2Y_1,-4Y_2)}{\sqrt{\Var(-2Y_1)}\sqrt{\Var(-4Y_2)}} \\
+        &= \frac{(-2)\cdot (-4)\Cov(Y_1,Y_2)}{2\cdot 4\sqrt{\Var(Y_1)}\sqrt{\Var(Y_2)}} \\
+        &= \frac{\Cov(Y_1,Y_2)}{\sqrt{\Var(Y_1)}\sqrt{\Var(Y_2)}} \\
+        &= \rho = 0.2
+    \end{align*}
+\end{solution}
+
 \begin{problem}
     {Group 5}
     Let $Y_1$ and $Y_2$ have a joint density function given by
     \[
-        f_{Y_1,Y_2} (y1, y2) = {
+        f_{Y_1,Y_2} (y_1, y_2) = {
             \begin{cases}
-                3y1 & 0 \leq y2 \leq y1 \leq 1,\\
+                3y_1 & 0 \leq y_2 \leq y_1 \leq 1,\\
                 0 & elsewhere.
             \end{cases}
         }
     \]
     \begin{enumerate}
         \item Find the marginal density functions of $Y_1$ and $Y_2$.
-        \item Find $\condP{Y1 \leq 3/4}{|Y2 \leq 1/2}$.
+        \item Find $\condP{Y_1 \leq 3/4}{Y_2 \leq 1/2}$.
         \item Find the conditional density function of $Y_1$ given $Y_2 = y_2$.
-        \item Find $\condP{Y1 \leq 3/4}{|Y2 = 1/2}$.
+        \item Find $\condP{Y_1 \leq 3/4}{Y_2 = 1/2}$.
     \end{enumerate}
 \end{problem}
-% \fi
-\iffalse
+
+\begin{solution}
+    {Solution}
+    \begin{align*}
+        P_{Y_1}(y_1) &= \int_{0}^{y_1}3y_1\diff y_2 \\
+        &= 3y_1^2 \\
+        P_{Y_2}(y_2) &= \int_{y_2}^{1}3y_1\diff y_1 \\
+        &= \frac{3}{2}(1-y_2^2) \\
+        \condP{Y_1\leq 3/4}{Y_2\leq 1/2}
+        &= \frac{\P{Y_1\leq 3/4,Y_2\leq 1/2}}{\P{Y_2\leq 1/2}} \\
+        &= \frac{\int_{0}^{1/2}\int_{y_2}^{3/4}3y_1\diff y_1\diff y_2}{\int_{0}^{1/2}\frac{3}{2}(1-y_2^2)\diff y_2} \\
+        &= \frac{\frac{23}{64}}{\frac{11}{16}} \\
+        &= \frac{23}{44} \\
+        f_{Y_1\mid Y_2}(y_1\mid y_2)
+        &= \frac{f_{Y_1,Y_2}(y_1,y_2)}{f_{Y_2}(y_2)} \\
+        &= \frac{3y_1}{\frac{3}{2}(1-y_2^2)} \\
+        &= \frac{2y_1}{1-y_2^2} \\
+        \condP{Y_1\leq 3/4}{Y_2=1/2}
+        &= \int_{0}^{3/4}\frac{2y_1}{1-(1/2)^2}\diff y_1 \\
+        &= \frac{3}{4}
+    \end{align*}
+\end{solution}
+\fi
+% \iffalse
 %%%% HW 14
 \begin{problem}
     {Group 1}
@@ -1193,5 +1302,5 @@
         Law of Total Expectation.
     \end{solution}
 \end{problem}
-\fi
+% \fi
 \end{document}
