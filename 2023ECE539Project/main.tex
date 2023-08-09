@@ -53,7 +53,7 @@
   \begin{figure}
     \includegraphics[height=0.5\textheight]{./figs/2d_poly_circle.eps}%
   \end{figure}
-  \eg For the above dataset $\mtx{X}=[\vec{x_1}, \vec{x_2}]$ where column vector $\vec{x_i}\in \R^N$, a linear decision boundary does not exist.
+  \eg For the above dataset $\mtx{X}=[\vec{x}_1, \vec{x}_2, \ldots, \vec{x}_N]$ where $\vec{x}_i\in \R^2$, a linear decision boundary does not exist.
 \end{frame}
 %---------------------------------------------------------
 \begin{frame}
@@ -64,9 +64,9 @@
   \end{figure}
   In this case, the function
   $
-  \phi(\mathbf{X}) = \bracks*{\vec{x_1}\circ\vec{x_1} , \vec{x_2}\circ\vec{x_2} , \sqrt{2}\vec{x_1}\circ\vec{x_2}},
+  \phi(\mathbf{x}_i) = \bracks*{x_{i,1}^2 , x_{i,2}^2 , \sqrt{2}x_{i,1}x_{i,2}},
   $
-  where $\circ$ is the Hadamard product, lifts the samples into $\R^3$ and the samples are linearly separable.
+  lifts the samples into $\R^3$ and the samples are linearly separable.
 \end{frame}
 %---------------------------------------------------------
 \begin{frame}
@@ -75,12 +75,12 @@
   \begin{itemize}
     \item Dual Problem of SVM{
       \begin{align*}
-        \max_{\vec{\alpha}} &\sum_{n=1}^N\alpha_n - \frac{1}{2}\sum_{n=1}^{N}\sum_{m=1}^{N}\alpha_n\alpha_m y_ny_m\angles*{\mathbf{x_n}, \mathbf{x_m}}
+        \max_{\vec{\alpha}} &\sum_{n=1}^N\alpha_n - \frac{1}{2}\sum_{n=1}^{N}\sum_{m=1}^{N}\alpha_n\alpha_m y_ny_m\angles*{\mathbf{x}_n, \mathbf{x}_m}
       \end{align*}
     }
     \item Dual Problem with Lifting {
       \begin{align*}
-        \max_{\vec{\alpha}} &\sum_{n=1}^N\alpha_n - \frac{1}{2}\sum_{n=1}^{N}\sum_{m=1}^{N}\alpha_n\alpha_m y_ny_m\angles*{\phi(\mathbf{x_n}), \phi(\mathbf{x_m})}
+        \max_{\vec{\alpha}} &\sum_{n=1}^N\alpha_n - \frac{1}{2}\sum_{n=1}^{N}\sum_{m=1}^{N}\alpha_n\alpha_m y_ny_m\angles*{\phi(\mathbf{x}_n), \phi(\mathbf{x}_m)}
       \end{align*}
     }
   \end{itemize}
@@ -90,17 +90,17 @@
 \begin{frame}
 \frametitle{Curse of Dimensionality--Type I}
   \begin{align*}
-    \angles*{\phi(\mathbf{x_n}), \phi(\mathbf{x_m})}
-    &= \bracks*{x_{n,1}^2 , x_{n,2}^2 , \sqrt{2}x_{n,1}x_{n,2}}\bracks*{x_{m,1}^2 , x_{m,2}^2 , \sqrt{2}x_{m,1}x_{m,2}}\trn \\
+    \angles*{\phi(\mathbf{x}_n), \phi(\mathbf{x}_m)}
+    &= \bracks*{x_{n,1}^2 , x_{n,2}^2 , \sqrt{2}x_{n,1}x_{n,2}}\trn\bracks*{x_{m,1}^2 , x_{m,2}^2 , \sqrt{2}x_{m,1}x_{m,2}} \\
     &= x_{n,1}^2x_{m,1}^2 + x_{n,2}^2x_{m,2}^2 + 2x_{n,1}x_{n,2}x_{m,1}x_{m,2}
   \end{align*}
 As shown in the given example, the inner product (a constant value) of the lifted vector has computational complexity depends on lifted dimension. For a function lifts the original vector space to a much higher dimension, such a calculation can be computationally thirsty. Alternatively, this can be done as follows, whose computational complexity only depends on the dimension of the original vector space.
   \begin{align*}
-    (\angles*{\mathbf{x_n}, \mathbf{x_m}})^2
-    &= \parens*{\bracks*{x_{n,1} \ x_{n,2}}\bracks*{x_{m,1} \ x_{m,2}}\trn}^2 \\
+    (\angles*{\mathbf{x}_n, \mathbf{x}_m})^2
+    &= \parens*{\bracks*{x_{n,1} , x_{n,2}}\trn\bracks*{x_{m,1} , x_{m,2}}}^2 \\
     &= \parens*{x_{n,1}x_{m,1} + x_{n,2}x_{m,2}}^2 \\
     &= x_{n,1}^2x_{m,1}^2 + x_{n,2}^2x_{m,2}^2 + 2x_{n,1}x_{n,2}x_{m,1}x_{m,2} \\
-    &= \angles*{\phi(\mathbf{x_n}), \phi(\mathbf{x_m})}
+    &= \angles*{\phi(\mathbf{x}_n), \phi(\mathbf{x}_m)}
   \end{align*}
 \end{frame}
 %---------------------------------------------------------
@@ -110,9 +110,9 @@ As shown in the given example, the inner product (a constant value) of the lifte
   \[
     K(\cdot,\cdot) = \angles*{\phi(\cdot),\phi(\cdot)}
   \]
-  The matrix that is formed by stacking the kernel function for all samples is called the \textbf{Kernel Matrix} or \textbf{Gram Matrix} $\mathbf{K}$,
+  The matrix that is formed by stacking the kernel function for all samples is called the \textbf{Kernel Matrix} $\mathbf{K}$, which is a \textbf{Gram Matrix},
   \[
-    \mathbf{K}_{nm} \equiv K(\mathbf{x_n}, \mathbf{x_m}).
+    \mathbf{K}_{nm} \equiv K(\mathbf{x}_n, \mathbf{x}_m).
   \]
   Some kernel functions can lift the original vector space to an infinite dimensional space.
   The algorithms involve kernel trick is called \textbf{Kernel Machines}.
@@ -144,12 +144,12 @@ As shown in the given example, the inner product (a constant value) of the lifte
 \begin{frame}
 \frametitle{Some Prerequisites}
 \begin{alertblock}{Definition: Shift Invariant Kernel (Radial Basis Function (RBF))}
-  A kernel function $K(\vec{x_n}, \vec{x_m})$ is called \textbf{shift invariant} if it can be written as $K(\vec{x_n}, \vec{x_m}) = k(\vec{x_n}-\vec{x_m})$ for some function $k(\cdot)$
+  A kernel function $K(\vec{x}_n, \vec{x}_m)$ is called \textbf{shift invariant} if it can be written as $K(\vec{x}_n, \vec{x}_m) = k(\vec{x}_n-\vec{x}_m)$ for some function $k(\cdot)$
 
-  (\eg $K_{Gaussian}(\vec{x_n},\vec{x_m})=\exp(-\gamma\norm{\vec{x_n}-\vec{x_m}}_2^2)$).
+  (\eg $K_{Gaussian}(\vec{x}_n,\vec{x}_m)=\exp(-\gamma\norm{\vec{x}_n-\vec{x}_m}_2^2)$).
 \end{alertblock}
 \begin{block}{Mercer’s Theorem}
-  A continuous function $K(\vec{x_n}, \vec{x_m})$ is a valid kernel function if and only if the kernel matrix $\mathbf{K}$ is \textbf{positive semi-definite}.
+  A continuous function $K(\vec{x}_n, \vec{x}_m)$ is a valid kernel function if and only if the kernel matrix $\mathbf{K}$ is \textbf{positive semi-definite}.
 \end{block}
 \begin{block}{Bochner's Theorem}
   A continuous function $k(\cdot)$ is \textbf{positive semi-definite} if and only if it is the Fourier transform of a non-negative measure.
@@ -159,34 +159,29 @@ As shown in the given example, the inner product (a constant value) of the lifte
 \begin{frame}
   \frametitle{Random Fourier Features}
   \begin{exampleblock}{Conclusion}
-    A continuous \textbf{shift invariant} kernel $K(\vec{x_n}, \vec{x_m})$, which is \textbf{positive semi-definite} (Mercer's Theorem), is the Fourier transform of a non-negative measure $p(\cdot)$.
+    A continuous \textbf{shift invariant} kernel $K(\vec{x}_n, \vec{x}_m)$, which is \textbf{positive semi-definite} (Mercer's Theorem), is the Fourier transform of a non-negative measure $p(\cdot)$.
     \begin{align}
-      \phi(\vec{x_n})\trn\phi(\vec{x_m})
-      &= K(\vec{x_n}, \vec{x_m}) = k(\vec{x_n}-\vec{x_m}) \\
-      &=\int_{\R^d}p(\vec{\omega})\exp(i\vec{\omega}\trn(\vec{x_n}-\vec{x_m}))\diff(\vec{x_n}-\vec{x_m}) \\
-      &= \mathbb{E}_{\vec{\omega}}\bracks*{\xi_{\vec{\omega}}(\vec{x_n})\coj\xi_{\vec{\omega}}(\vec{x_m})}\label{rffinC}
+      \phi(\vec{x}_n)\trn\phi(\vec{x}_m)
+      &= K(\vec{x}_n, \vec{x}_m) = k(\vec{x}_n-\vec{x}_m) \\
+      &=\int_{\R^d}p(\vec{\omega})\exp(i\vec{\omega}\trn(\vec{x}_n-\vec{x}_m))\diff(\vec{x}_n-\vec{x}_m) \\
+      &= \mathbb{E}_{\vec{\omega}}\bracks*{\xi_{\vec{\omega}}(\vec{x}_n)\coj\xi_{\vec{\omega}}(\vec{x}_m)}\label{rffinC}
     \end{align}
     Here
     $
-    \xi_{\vec{\omega}}(\vec{x})=\exp(i\vec{\omega}\trn(\vec{x}))
+    \xi_{\vec{\omega}}(\vec{x}_i)=\exp(i\vec{\omega}\trn(\vec{x}_i))
     $.
   \end{exampleblock}
 \end{frame}
 %---------------------------------------------------------
 \begin{frame}
   \frametitle{Random Fourier Features}
-  Since both the $p(\cdot)$ and $k(\triangle)$ are real-valued, we can replace $\exp(i\vec{\omega}\trn(\vec{x}))$ with
+  Since both the $p(\cdot)$ and $k(\triangle)$ are real-valued, we can replace $\xi_{\vec{\omega}}(\vec{x}_i)=\exp(i\vec{\omega}\trn(\vec{x}_i))$ with
   $
-  z_{\vec{\omega}}(\vec{x})=
-  \begin{bmatrix}
-    \cos(\vec{\omega}\trn(\vec{x})) \\
-    \sin(\vec{\omega}\trn(\vec{x}))
-  \end{bmatrix}
-  =\sqrt{2}\cos(\vec{\omega}\trn(\vec{x})+b)$. Then eq.~\eqref{rffinC} becomes $\mathbb{E}_{\vec{\omega}}[z_{\vec{\omega}}(\vec{x_n})\trn z_{\vec{\omega}}(\vec{x_m})]$, which means $z_{\vec{\omega}}(\vec{x_n})\trn z_{\vec{\omega}}(\vec{x_m})$ is an unbiased estimator of $\phi(\vec{x_n})\trn\phi(\vec{x_m})$.
+  z_{\vec{\omega}}(\vec{x}_i)=\sqrt{2}\cos(\vec{\omega}\trn(\vec{x}_i)+b)$. Then eq.~\eqref{rffinC} becomes $\mathbb{E}_{\vec{\omega}}[z_{\vec{\omega}}(\vec{x}_n)\trn z_{\vec{\omega}}(\vec{x}_m)]$, which means $z_{\vec{\omega}}(\vec{x}_n)\trn z_{\vec{\omega}}(\vec{x}_m)$ is an unbiased estimator of $\phi(\vec{x}_n)\trn\phi(\vec{x}_m)$.
 
-  Let $\vec{\omega}$ been drawn from $p(\vec{\omega})$ and $b$ been uniformly drawn from $[0, 2\pi]$, the calculation of $\phi(\vec{x_n})\trn\phi(\vec{x_m})$ transforms into a sampling problem.
+  Let $\vec{\omega}$ been drawn from $p(\vec{\omega})$ and $b$ been uniformly drawn from $[0, 2\pi]$, the calculation of $\phi(\vec{x}_n)\trn\phi(\vec{x}_m)$ becomes a sampling problem.
 
-  To further reduce the variance of the estimator, we can randomly draw $s$ samples of $\vec{\omega}$ and $b$, normalize each corresponding $z_{\vec{\omega}}(\vec{x})$ by $\sqrt{s}$, and concatenate them into one vector. Then the inner product $z(\vec{x_n})\trn z(\vec{x_m})=\frac{1}{s}\sum_{j=1}^{s}z_{\vec{\omega}_j}(\vec{x_n})\trn z_{\vec{\omega}_j}(\vec{x_m})$
+  To further reduce the variance of the estimator, we can randomly draw $s$ samples of $\vec{\omega}$ and $b$, normalize each corresponding $z_{\vec{\omega}}(\vec{x}_i)$ by $\sqrt{s}$, and concatenate them into one vector. Then the inner product $z(\vec{x}_n)\trn z(\vec{x}_m)=\frac{1}{s}\sum_{j=1}^{s}z_{\vec{\omega}_j}(\vec{x}_n)\trn z_{\vec{\omega}_j}(\vec{x}_m)$
   % \item <4-> \textbf{Question:} The author samples $\vec{\omega}$ from $\R^d$ and average over $s$ samples in the following algorithm. However, $d\&s$ seems can be arbitrary number based on the above derivation.
 \end{frame}
 %---------------------------------------------------------
@@ -195,11 +190,11 @@ As shown in the given example, the inner product (a constant value) of the lifte
   \begin{algorithm}[H]
     \caption{Random Fourier Features}\label{RFF}
     \begin{algorithmic}
-    \Require A shift invariant kernel $K(\vec{x_n}, \vec{x_m}) = k(\vec{x_n}- \vec{x_m})=k(\triangle)$.
-    \Ensure A randomized feature map $z(\vec{x}): \R^d\rightarrow\R^s$ so that $z(\vec{x_n})\trn z(\vec{x_m})\approx K(\vec{x_n}, \vec{x_m})$.
+    \Require A shift invariant kernel $K(\vec{x}_n, \vec{x}_m) = k(\vec{x}_n- \vec{x}_m)=k(\triangle)$.
+    \Ensure A randomized feature map $z(\cdot): \R^d\rightarrow\R^s$ so that $z(\vec{x}_n)\trn z(\vec{x}_m)\approx K(\vec{x}_n, \vec{x}_m)$.
     \State Compute the Fourier transform $p(\cdot)$ of the kernel $K: p(\vec{\omega})=\frac{1}{2\pi}\int \exp(-i\vec{\omega}\trn\triangle)k(\triangle)\diff\triangle$
     \State Draw $s$ \iid samples $\vec{\omega}_1, \vec{\omega}_2, \ldots, \vec{\omega}_s \in \R^d$ from $p(\vec{\omega})$ and $s$ \iid samples $b_1, b_2, \ldots, b_s \in [0, 2\pi]$.
-    \State Let $z(\vec{x})\equiv \sqrt{\frac{2}{s}}[\cos(\vec{\omega}_1\trn\vec{x}+b_1), \cos(\vec{\omega}_2\trn\vec{x}+b_2), \ldots, \cos(\vec{\omega}_s\trn\vec{x}+b_s)]\trn$
+    \State Let $z(\vec{x}_i)\equiv \sqrt{\frac{2}{s}}[\cos(\vec{\omega}_1\trn\vec{x}_i+b_1), \cos(\vec{\omega}_2\trn\vec{x}_i+b_2), \ldots, \cos(\vec{\omega}_s\trn\vec{x}_i+b_s)]$
     \end{algorithmic}
   \end{algorithm}
 \end{frame}
@@ -227,10 +222,10 @@ As shown in the given example, the inner product (a constant value) of the lifte
     \P{\abs*{\sum_{i=i}^{N}(X_i-\E{X_i})}\geq \epsilon} \leq 2\exp\parens*{-\frac{2\epsilon^2}{\sum_{i=1}^{N}(M_i-m_i)^2}}.
     \]
   \end{block}
-  \begin{exampleblock}{Bound for \emph{any} pair of samples $\vec{x_n}$ and $\vec{x_m}$}
+  \begin{exampleblock}{Bound for \emph{any} pair of samples $\vec{x}_n$ and $\vec{x}_m$}
     Given $z_{\vec{\omega}}$ is bounded random variable between $[-\sqrt{2/s}, \sqrt{2/s}]$, with Hoeffding's Inequality, we have
     \begin{align*}
-      \P{\abs{z(\vec{x_n})\trn z(\vec{x_m})-K(\vec{x_n}, \vec{x_m})}\geq \epsilon} \leq 2\exp\parens*{-\frac{s\epsilon^2}{4}}.
+      \P{\abs{z(\vec{x}_n)\trn z(\vec{x}_m)-K(\vec{x}_n, \vec{x}_m)}\geq \epsilon} \leq 2\exp\parens*{-\frac{s\epsilon^2}{4}}.
     \end{align*}
   \end{exampleblock}
 \end{frame}
@@ -240,7 +235,7 @@ As shown in the given example, the inner product (a constant value) of the lifte
   \begin{exampleblock}{Bound for the \textbf{Kernel Matrix}}
     Let $\mathcal{M}$ be a compact subset of $\R^d$ with diameter $\textnormal{diam}(\mathcal{M})$. Then, for the mapping $z$ defined in Algorithm~\ref{RFF}, we have
     \begin{align*}
-      \P{\sup_{x,y\in\mathcal{M}}\abs{z(\vec{x_n})\trn z(\vec{x_m})-K(\vec{x_n}, \vec{x_m})}\geq \epsilon} \\
+      \P{\sup_{x,y\in\mathcal{M}}\abs{z(\vec{x}_n)\trn z(\vec{x}_m)-K(\vec{x}_n, \vec{x}_m)}\geq \epsilon} \\
       \leq 2^8\parens*{\frac{\sigma_{p(\cdot)}\textnormal{diam}(\mathcal{M})}{\epsilon}}^2\exp\parens*{-\frac{s\epsilon^2}{4(d+2)}}.
     \end{align*}
     The $\sigma_{p(\cdot)}^2=\mathbb{E}_{p(\cdot)}\bracks*{\vec{\omega}\trn\vec{\omega}}$ is the second moment of the Fourier transform of the $K(\cdot,\cdot)$.
