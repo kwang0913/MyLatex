@@ -163,7 +163,7 @@ As shown in the given example, the inner product (a constant value) of the lifte
     \begin{align}
       \phi(\vec{x}_n)\trn\phi(\vec{x}_m)
       &= K(\vec{x}_n, \vec{x}_m) = k(\vec{x}_n-\vec{x}_m) \\
-      &=\int_{\R^d}p(\vec{\omega})\exp(i\vec{\omega}\trn(\vec{x}_n-\vec{x}_m))\diff(\vec{x}_n-\vec{x}_m) \\
+      &=\int_{\R^d}p(\vec{\omega})\exp(i\vec{\omega}\trn(\vec{x}_n-\vec{x}_m))\diff\vec{\omega} \\
       &= \mathbb{E}_{\vec{\omega}}\bracks*{\xi_{\vec{\omega}}(\vec{x}_n)\coj\xi_{\vec{\omega}}(\vec{x}_m)}\label{rffinC}
     \end{align}
     Here
@@ -216,7 +216,7 @@ As shown in the given example, the inner product (a constant value) of the lifte
 %---------------------------------------------------------
 \begin{frame}
   \frametitle{Convergence with Hoeffding's Inequality~\footcite{vershynin_hdp}}
-  \begin{block}{Hoeffding's Inequality}
+  \begin{block}{Theorem: Hoeffding's Inequality}
     Let $X_1, X_2,\cdots, X_N$ be independent random variables. Assume that $X_i \in [m_i, M_i]$ for every $i$. Then, for any $\epsilon > 0$, we have
     \[
     \P{\abs*{\sum_{i=i}^{N}(X_i-\E{X_i})}\geq \epsilon} \leq 2\exp\parens*{-\frac{2\epsilon^2}{\sum_{i=1}^{N}(M_i-m_i)^2}}.

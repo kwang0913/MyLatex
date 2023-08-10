@@ -147,7 +147,7 @@
 \setbeamertemplate{blocks}[rounded][shadow=true]
 
 % block
-\setbeamercolor*{block title}{fg=white, bg=RUred}
+\setbeamercolor*{block title}{fg=white, bg=MediumVioletRed}
 \setbeamercolor*{block body}{fg=black, bg=white}
 % alert block
 \setbeamercolor*{block title alerted}{fg=white, bg=MediumSlateBlue}
