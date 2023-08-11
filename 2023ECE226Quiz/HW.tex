@@ -38,7 +38,7 @@
 \begin{document}
 \maketitle
 
-\iffalse
+% \iffalse
 %%%% HW 1
 \begin{problem}
     {Group 1}
@@ -64,8 +64,8 @@
     {Group 5}
     There are $8$ books on a shelf, of $2$ are paperbacks and $6$ are hardbacks. How many possible selections of $4$ books from this shelf Include at least one paperback?
 \end{problem}
-\fi
-\iffalse
+% \fi
+% \iffalse
 %%%% HW 2
 \begin{problem}
     {Group 1}
@@ -91,8 +91,8 @@
     {Group 5}
     If the probability that student A will fail a certain examination is $0.5$, the probability that student B will fail the examination is $0.2$, and the probability that both student A and student B will fail the examination is $0.1$, what is the probability that at least one of these two students will fail the examination?
 \end{problem}
-\fi
-\iffalse
+% \fi
+% \iffalse
 %%%% HW 3
 \begin{problem}
     {Group 1}
@@ -140,8 +140,8 @@
     \[\P{\text{at least one}\ A_i}=\P{A_1}+\P{A_2}+\P{A_3}-2\P{A_1\cap A_2}.\]
     \textbf{Note:} Venn Diagram is helpful, but we correctly expect something beyond that.
 \end{problem}
-\fi
-\iffalse
+% \fi
+% \iffalse
 %%%% HW 4
 \begin{problem}
     {Group 1}
@@ -179,8 +179,8 @@
     {Group 5}
     A hospital receives $40\%$ of its flu vaccine from Company A and the remainder from Company B. Each shipment contains many vials of vaccine. From Company A, $3\%$ of the vials are ineffective, from Company B, $2\%$ are ineffective. A hospital tests $n=25$ randomly selected vials from one shipment and finds that two are ineffective. What is the conditional probability that the shipment came from Company B?
 \end{problem}
-\fi
-\iffalse
+% \fi
+% \iffalse
 %%%% HW 5
 \begin{problem}
     {Group 1}
@@ -228,8 +228,8 @@
     Let $X\sim\Binomv(n,p)$ and $Y\sim\Binomv(n,1-p)$ represent binomial random variables with parameters $n$ and $p$, show that
     \[\P{X\leq i}+\P{Y\leq n-i-1}=1.\]
 \end{problem}
-\fi
-\iffalse
+% \fi
+% \iffalse
 %%%% HW 6
 \begin{problem}
     {Group 1}
@@ -266,8 +266,8 @@
         \item K is $\Poi(3)$
     \end{enumerate}
 \end{problem}
-\fi
-\iffalse
+% \fi
+% \iffalse
 %%%% HW 7
 \begin{problem}
     {Group 1}
@@ -308,8 +308,8 @@
     {Group 5}
     The annual rainfall (in inches) in a certain region is normally distributed with $\mu = 40$ and $\sigma = 4$. What is the probability that starting with this year, it will take more than $10$ years before a year occurs having a rainfall of more than $50$ inches? Suppose the rainfall in each year is independent of the rainfall in other years and the distribution of rainfall in each year is the same as in the present year.
 \end{problem}
-\fi
-\iffalse
+% \fi
+% \iffalse
 %%%% HW 8
 \begin{problem}
     {Group 1}
@@ -358,8 +358,8 @@
     {Group 5}
     $X$ is a uniform random variable with expected value $\mu_X = 7$ and variance $\Var[X] = 3$. What is the PDF of $X$?
 \end{problem}
-\fi
-\iffalse
+% \fi
+% \iffalse
 %%%% HW 9
 \begin{problem}
     {Group 1}
@@ -528,8 +528,8 @@
     \end{align*}
     When $\Var(Y_1)=\Var(Y_2)$, $\rho=0$.
 \end{solution}
-\fi
-\iffalse
+% \fi
+% \iffalse
 %%%% HW 10
 \begin{problem}
     {Group 1}
@@ -768,8 +768,8 @@
         \Var(W) = \Var(2X+2Y) = 4\Var(X)+4\Var(Y)+8\Cov(X,Y) = 4\cdot 3^2+4\cdot 4^2+8\cdot (-3) = 76
     \]
 \end{solution}
-\fi
-\iffalse
+% \fi
+% \iffalse
 %%%% HW 11
 \begin{problem}
     {Group 1}
@@ -929,8 +929,8 @@
         &= \frac{1}{3}
     \end{align*}
 \end{solution}
-\fi
-\iffalse
+% \fi
+% \iffalse
 %%%% HW 12
 \begin{problem}
     {Group 1}
@@ -1060,8 +1060,8 @@
     1\cdot1\cdot\frac{1}{2}-\frac{3}{4}\cdot\frac{3}{4}\cdot\frac{1}{2}=\frac{7}{32}.
     \]
 \end{solution}
-\fi
-\iffalse
+% \fi
+% \iffalse
 %%%% HW 13
 \begin{problem}
     {Group 1}
@@ -1141,7 +1141,7 @@
                 0 & \text{otherwise.}
             \end{cases}
         }\\
-        \E{Y_1} 
+        \E{Y_1}
         &= -1\cdot\frac{1}{3}+0\cdot\frac{1}{3}+1\cdot\frac{1}{3} \\
         &= 0 \\
         \E{Y_2}
@@ -1232,7 +1232,7 @@
         &= \frac{3}{4}
     \end{align*}
 \end{solution}
-\fi
+% \fi
 % \iffalse
 %%%% HW 14
 \begin{problem}
@@ -1248,9 +1248,22 @@
     \end{solution}
 \end{problem}
 
+\begin{solution}
+    {Solution}
+    Let $N$ be the number of eggs laid by the insect and $Y$ be the number of eggs that hatch. Given $N = n$, $Y$ has a binomial distribution with $n$ trials and success probability $p$. Thus, $\condE{Y}{N = n} = np$. Since $N$ follows as Poisson with parameter $\lambda$, $\E{Y} = \E{\condE{Y}{N}} = \E{Np} = p\lambda$.
+    \begin{align*}
+        \Var{[Y]}
+        &= \E{\Var{[Y\mid N]}}+\Var{[\E{Y\mid N}]} \\
+        &= \E{Np(1-p)}+\Var{[Np]} \\
+        &= \E{N}p(1-p)+p^2\Var{[N]} \\
+        &= \lambda p(1-p)+p^2\lambda \\
+        &= \lambda p
+    \end{align*}
+\end{solution}
+
 \begin{problem}
     {Group 2}
-    Let the random variables $X$ and $Y$ have a joint PDF which is uniform over the triangle with vertices at $(0, 0)$, $(0, 1)$, and $(1. 0)$.
+    Let the random variables $X$ and $Y$ have a joint PDF which is uniform over the triangle with vertices at $(0, 0)$, $(0, 1)$, and $(1, 0)$.
     \begin{enumerate}
         \item Find the joint PDF of $X$ and $Y$.
         \item Find the marginal PDF of $Y$.
@@ -1258,6 +1271,28 @@
         \item Find $\condE{X}{Y = y}$, and use the total expectation theorem to find $\E{X}$.
     \end{enumerate}
 \end{problem}
+
+\begin{solution}
+    {Solution}
+    \begin{align*}
+        f_{X,Y}(x,y) &= {
+            \begin{cases}
+                2 & 0 \leq x \leq 1-y \leq 1 \\
+                0 & \text{otherwise.}
+            \end{cases}
+        } \\
+        f_Y(y) &= \int_{0}^{1-y}2\diff x \\
+        &= 2(1-y) \\
+        f_{X\mid Y}(x\mid y) &= \frac{f_{X,Y}(x,y)}{f_Y(y)} \\
+        &= \frac{2}{2(1-y)} \\
+        &= \frac{1}{1-y} \tag{$\Unif(0,\frac{1}{1-y})$}\\
+        \condE{X}{Y=y} &= \frac{1-y}{2} \\
+        \E{X} &= \E{\condE{X}{Y}} \\
+        &= \int_{0}^{1}\frac{1-y}{2}f_Y{(y)}\diff y \\
+        &= \frac{1}{2}\int_{0}^{1}f_Y(y)\diff y - \frac{1}{2}\int_{0}^{1}yf_Y(y)\diff y\\
+        &= \frac{1}{2}-\frac{1}{2}\E{Y} \\
+    \end{align*}
+\end{solution}
 
 \begin{problem}
     {Group 3}
@@ -1277,6 +1312,28 @@
     \end{enumerate}
 \end{problem}
 
+\begin{solution}
+    {Solution}
+    \begin{align*}
+        \E{X} &= \int_{1}^{3}x\frac{x}{4}\diff x \\
+        &= \frac{13}{6} \\
+        \P{A} &= \int_{2}^{3}\frac{x}{4}\diff x \\
+        &= \frac{5}{8} \\
+        f_{X\mid A}(x) &= \frac{f_X(x)}{\P{A}} \\
+        &= \frac{2}{5}x \\
+        \E{X\mid A} &= \int_{2}^{3}x\frac{2}{5}x\diff x \\
+        &= \frac{38}{15} \\
+        \E{Y} &= \E{X^2} \\
+        &= \int_{1}^{3}x^2\frac{x}{4}\diff x \\
+        &= 5 \\
+        \Var[Y] &= \E{Y^2}-\E{Y}^2 \\
+        &= \E{X^4}-\E{X^2}^2 \\
+        &= \int_{1}^{3}x^4\frac{x}{4}\diff x - \E{X^2}^2 \\
+        &= \frac{91}{3}-25 \\
+        &= \frac{16}{3}
+    \end{align*}
+\end{solution}
+
 \begin{problem}
     {Group 4}
     The random variable $X$ has the PDF
@@ -1294,6 +1351,18 @@
     \end{enumerate}
 \end{problem}
 
+\begin{solution}
+    {Solution}
+    \begin{align*}
+        \int_{1}^{2}cx^{-2}\diff x &= 1 \\
+        c &= 2 \\
+        \P{A} &= \int_{1.5}^{2}\frac{2}{x^2}\diff x \\
+        &= \frac{1}{3} \\
+        f_{X\mid A}(x) &= \frac{f_X(x)}{\P{A}} \\
+        &= 6x^{-2}
+    \end{align*}
+\end{solution}
+
 \begin{problem}
     {Group 5}
     A miner is trapped in a mine containing $3$ doors. The first door leads to a tunnel that will take him to safety after $3$ hours of travel. The second door leads to a tunnel that will return him to the mine after $5$ hours of travel. The third door leads to a tunnel that will return him to the mine after $7$ hours. If we assume that the miner is at all times equally likely to choose any one of the doors, what is the expected length of time until he reaches safety?
@@ -1302,5 +1371,20 @@
         Law of Total Expectation.
     \end{solution}
 \end{problem}
+
+\begin{solution}
+    {Solution}
+    Let $X$ be the time until the miner reaches safety. Let $D$ be the door that the miner chooses. Then
+    \begin{align*}
+        \E{X} &= \E{\condE{X}{D}} \\
+        &= \E{X\mid D=1}\P{D=1}+\E{X\mid D=2}\P{D=2}+\E{X\mid D=3}\P{D=3} \\
+        &= 3\cdot\frac{1}{3}+[5+\E{X}]\cdot\frac{1}{3}+[7+\E{X}]\cdot\frac{1}{3} \\
+        \Rightarrow
+        3\E{X} &= 15 + 2\E{X} \\
+        \Rightarrow
+        \E{X} &= 15
+    \end{align*}
+
+\end{solution}
 % \fi
 \end{document}

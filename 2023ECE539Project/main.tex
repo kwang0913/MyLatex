@@ -124,17 +124,22 @@ As shown in the given example, the inner product (a constant value) of the lifte
       \begin{align*}
         \mathcal{L}(\vec{w})=\argmin_{\vec{w}}(\vec{y}-\phi(\mtx{X})\vec{w})\trn(\vec{y}-\phi(\mtx{X})\vec{w}) + \lambda\vec{w}\trn\vec{w}.
       \end{align*}
-    The normal equation of KRR is
-    \begin{align*}
-      \vec{w} &= (\phi(\mtx{X})\trn\phi(\mtx{X})+\lambda\mathbf{I}_k)^{-1}\phi(\mtx{X})\trn\vec{y} \\
-      &= (\mathbf{K}+\lambda\mathbf{I}_k)^{-1}\phi(\mtx{X})\trn\vec{y}.
-    \end{align*}
-    Solving this problem requires $\Theta(k^3)$ time and $\Theta(k^2)$ memory.
+    The normal equation of KRR is (using matrix inversion lemma)
+    \begin{align}
+      \vec{w} &= (\phi(\mtx{X})\trn\phi(\mtx{X})+\lambda\mathbf{I}_k)^{-1}\phi(\mtx{X})\trn\vec{y} \label{illproblem} \\
+      &= \phi(\mtx{X})\trn(\lambda\mtx{I}_N+\phi(\mtx{X})\phi(\mtx{X})\trn)^{-1}\vec{y} \label{inversion}\\
+      &= \phi(\mtx{X})\trn(\lambda\mtx{I}_N+\mathbf{K})^{-1}\vec{y}.
+    \end{align}
+    Eq.~\eqref{illproblem} is problematic since $k\rightarrow\infty$. Common approach solves eq.~\eqref{inversion} with $O(N^3)$ time and $O(N^2)$ memory. This is not scalable in modern big data era, where $N\rightarrow\infty$.
+    % Computing $\mathbf{K}$ requires $O(N^2d)$ time. Inference with $\mathbf{K}$ requires $O(Nd)$ time.
 \end{frame}
 %---------------------------------------------------------
 \begin{frame}
   \frametitle{Motivation}
-  Can we find a way to construct the \textbf{Kernel Matrix}, which is equivalent to lifting $\mathbf{X}$ to $\R^s$ with $d < s\ll k$, while not sacrifices model performance?
+  Can we find a \textbf{Kernel Function} $K(\cdot, \cdot)$, which is equivalent to lifting $\mathbf{X}$ to $\R^s$ with $d < s\ll k$, while not sacrifices model performance?
+
+  In such a case, we can solve eq.~\eqref{illproblem} instead of eq.~\eqref{inversion}, where the algorithm complexity dependents on $s$, where $s\ll N$.
+  % which only needs $s$ samples with $s\ll N$
 \end{frame}
 %---------------------------------------------------------
 
@@ -143,17 +148,17 @@ As shown in the given example, the inner product (a constant value) of the lifte
 %---------------------------------------------------------
 \begin{frame}
 \frametitle{Some Prerequisites}
-\begin{alertblock}{Definition: Shift Invariant Kernel (Radial Basis Function (RBF))}
+\begin{block}{Definition: Shift Invariant Kernel (Radial Basis Function (RBF))}
   A kernel function $K(\vec{x}_n, \vec{x}_m)$ is called \textbf{shift invariant} if it can be written as $K(\vec{x}_n, \vec{x}_m) = k(\vec{x}_n-\vec{x}_m)$ for some function $k(\cdot)$
 
   (\eg $K_{Gaussian}(\vec{x}_n,\vec{x}_m)=\exp(-\gamma\norm{\vec{x}_n-\vec{x}_m}_2^2)$).
-\end{alertblock}
-\begin{block}{Mercer’s Theorem}
+\end{block}
+\begin{alertblock}{Mercer’s Theorem}
   A continuous function $K(\vec{x}_n, \vec{x}_m)$ is a valid kernel function if and only if the kernel matrix $\mathbf{K}$ is \textbf{positive semi-definite}.
-\end{block}
-\begin{block}{Bochner's Theorem}
+\end{alertblock}
+\begin{alertblock}{Bochner's Theorem}
   A continuous function $k(\cdot)$ is \textbf{positive semi-definite} if and only if it is the Fourier transform of a non-negative measure.
-\end{block}
+\end{alertblock}
 \end{frame}
 %---------------------------------------------------------
 \begin{frame}
@@ -216,12 +221,12 @@ As shown in the given example, the inner product (a constant value) of the lifte
 %---------------------------------------------------------
 \begin{frame}
   \frametitle{Convergence with Hoeffding's Inequality~\footcite{vershynin_hdp}}
-  \begin{block}{Theorem: Hoeffding's Inequality}
+  \begin{alertblock}{Theorem: Hoeffding's Inequality}
     Let $X_1, X_2,\cdots, X_N$ be independent random variables. Assume that $X_i \in [m_i, M_i]$ for every $i$. Then, for any $\epsilon > 0$, we have
     \[
     \P{\abs*{\sum_{i=i}^{N}(X_i-\E{X_i})}\geq \epsilon} \leq 2\exp\parens*{-\frac{2\epsilon^2}{\sum_{i=1}^{N}(M_i-m_i)^2}}.
     \]
-  \end{block}
+  \end{alertblock}
   \begin{exampleblock}{Bound for \emph{any} pair of samples $\vec{x}_n$ and $\vec{x}_m$}
     Given $z_{\vec{\omega}}$ is bounded random variable between $[-\sqrt{2/s}, \sqrt{2/s}]$, with Hoeffding's Inequality, we have
     \begin{align*}
@@ -253,16 +258,16 @@ As shown in the given example, the inner product (a constant value) of the lifte
       \textbf{Fourier + LS} &
       \textbf{SVM} \\ \hline
     \begin{tabular}[c]{@{}l@{}}CPU\\ regression\\ 6,500 instances; 21 dims\end{tabular} &
-      \begin{tabular}[c]{@{}l@{}}3.6\%\\ 20 secs\\ k = 300\end{tabular} &
+      \begin{tabular}[c]{@{}l@{}}3.6\%\\ 20 secs\\ s = 300\end{tabular} &
       \begin{tabular}[b]{@{}l@{}}5.5\%\\ 51 secs\end{tabular} \\ \hline
     \begin{tabular}[c]{@{}l@{}}Census\\ regression\\ 18,000 instances; 119 dims\end{tabular} &
-      \begin{tabular}[c]{@{}l@{}}5\%\\ 36 secs\\ k = 500\end{tabular} &
+      \begin{tabular}[c]{@{}l@{}}5\%\\ 36 secs\\ s = 500\end{tabular} &
       \begin{tabular}[b]{@{}l@{}}8.8\%\\ 7.5 mins\end{tabular} \\ \hline
     \begin{tabular}[c]{@{}l@{}}Adult\\ classification\\ 32,000 instances; 123 dims\end{tabular} &
-      \begin{tabular}[c]{@{}l@{}}14.9\%\\ 9 secs\\ k = 500\end{tabular} &
+      \begin{tabular}[c]{@{}l@{}}14.9\%\\ 9 secs\\ s = 500\end{tabular} &
       \begin{tabular}[b]{@{}l@{}}14.8\%\\ 73 mins\end{tabular} \\ \hline
     \begin{tabular}[c]{@{}l@{}}KDDCUP99\\ classification\\ 4,900,000 instances; 127 dims\end{tabular} &
-      \begin{tabular}[c]{@{}l@{}}7.3\%\\ 1.5 mins\\ k = 50\end{tabular} &
+      \begin{tabular}[c]{@{}l@{}}7.3\%\\ 1.5 mins\\ s = 50\end{tabular} &
       \begin{tabular}[b]{@{}l@{}}6.2\% (18\%)\\ 1.4 secs (20 secs)\end{tabular} \\ \hline
     \end{tabular}
     \caption{Comparison of testing error and training time between ridge regression with random features and Support Vector Machine. For classification tasks, the percent of testing points incorrectly predicted is reported. For regression tasks, the RMS error normalized
