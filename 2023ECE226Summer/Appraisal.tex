@@ -1,0 +1,86 @@
+\documentclass{article}
+\usepackage[
+    % letterpaper,
+    margin=1in,
+    % headheight=13.6pt,
+]{geometry}
+
+%%%% Page Header and Foot %%%%
+\usepackage{fancyhdr}
+\fancypagestyle{plain}{
+\fancyhf{}
+\fancyhead[L]{ECE 14:332:226}
+\fancyhead[C]{\textbf{Probability And Random Processes}}
+\fancyhead[R]{Summer 2023}
+\fancyfoot[L]{}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{}
+}
+\pagestyle{plain}
+
+%%%% Load Format %%%%
+\input{../Formats/Format.tex}
+\input{../Formats/Macro.tex}
+\addbibresource{bib.bib}
+
+%%%% Theorem Style %%%%
+\declaretheorem[numbered=no, style=definition]{axiom}
+\declaretheorem[numberwithin=section,style=definition]{definition}
+\declaretheorem[sibling=definition]{theorem, lemma, corollary, proposition, conjecture}
+\declaretheorem[numbered=no,style=remark]{remark, claim}
+
+%%%% Document Information %%%%
+\title{Project Appraisal}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+    The purpose of the appraisal is to help the audiences focus on the key concepts of the presented project. For simplicity, the appraisal is in the form of multiple choices and fill-in-the-blank. The appraisal is used as the evidence of presentation evaluation.
+\end{abstract}
+
+\begin{problem}
+    {Beta Distribution}{}
+    \begin{enumerate}
+        \item Do you understand the derivation of the Beta distribution? \myrule{}
+        \item What is the $\alpha$ and $\beta$ of the following Beta distribution Plot? \myrule{}{
+            \includegraphics[width=0.9\textwidth]{beta.eps}
+        }
+        \item Do you feel you understand more about the Bayesian Theorem? \myrule{}
+    \end{enumerate}
+\end{problem}
+
+\begin{problem}
+    {Bertrand Paradox}{}
+    Consider an equilateral triangle inscribed in a circle. Suppose a chord of the circle is chosen at random. What is the probability that the chord is longer than a side of the triangle?
+    Fill in the blank with the probability of each approach in Bertrand's Paradox.
+    \begin{enumerate}[(a)]
+        \item Choose a random radius of the circle and then choose a random point on this radius for the midpoint of the chord. \myrule{}
+        \item Choose two random points on the circle's circumference, and use these as the endpoints of the chord. \myrule{}
+        \item Choose a random point inside the circle and draw the chord with this as one endpoint and the circle center as the other endpoint. \myrule{}
+        \item Which approach do you think is the most reasonable? \myrule{}
+        \item Do you think there is a better approach? \myrule{}
+    \end{enumerate}
+\end{problem}
+
+\begin{problem}
+    {Monte Carlo}{}
+    \begin{enumerate}
+        \item Do you understand the concept of Monte Carlo simulation? \myrule{}
+        \item Do you understand how $\pi$ is calculate by Monte Carlo simulation? \myrule{}
+        \item Do you understand how Monte Carlo differ from other simulation methods? \\ \myrule{}
+    \end{enumerate}
+\end{problem}
+
+\begin{problem}
+    {Copula}{}
+    \begin{enumerate}
+        \item In which condition can we use copula to calculate the joint distribution of random variables? \myrule{}
+        \item Do you think you understand the concept of copula? \myrule{}
+        \item Do you see the limitation of copula? \myrule{}
+    \end{enumerate}
+\end{problem}
+
+\end{document}

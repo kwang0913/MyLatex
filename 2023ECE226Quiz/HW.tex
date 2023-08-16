@@ -30,7 +30,7 @@
 \declaretheorem[numbered=no,style=remark]{remark, claim}
 
 %%%% Document Information %%%%
-\title{HW 14 Solution}
+\title{HW}
 \author{}
 \date{}
 
@@ -742,9 +742,9 @@
     \begin{align*}
         r_{N,K}
         &= \E{NK} \\
-        &= \sum_{n=1}^{\infty}\sum_{k=1}^{n}nk\cdot\frac{(1-p)^{n-1}p}{n} \\
-        &= \sum_{n=1}^{\infty}(1-p)^{n-1}p\sum_{k=1}^{n}k \\
-        &= \sum_{n=1}^{\infty}(1-p)^{n-1}p\frac{n(n+1)}{2} \\
+        &= \E{\sum_{n=1}^{\infty}\sum_{k=1}^{n}nk\cdot\frac{(1-p)^{n-1}p}{n}} \\
+        &= \E{\sum_{n=1}^{\infty}(1-p)^{n-1}p\sum_{k=1}^{n}k} \\
+        &= \E{\sum_{n=1}^{\infty}(1-p)^{n-1}p\frac{n(n+1)}{2}} \\
         &= \E{\frac{N(N+1)}{2}} \\
         &= \frac{1}{2}\E{N^2}+\frac{1}{2}\E{N} \\
         &= \frac{2-p}{2p^2}+\frac{1}{2p} = \frac{1}{p^2}

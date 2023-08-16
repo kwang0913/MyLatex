@@ -120,18 +120,24 @@ As shown in the given example, the inner product (a constant value) of the lifte
 %---------------------------------------------------------
 \begin{frame}
   \frametitle{Curse of Dimensionality--Type II}
-  Another famous kernel machine is kernel ridge regression (KRR). With $\vec{y}\in R^N$, $\mtx{X}\in\R^{N\times d}$, and $\phi_{d\rightarrow k}(\cdot):\R^d\rightarrow\R^k$, the loss function is
-      \begin{align*}
-        \mathcal{L}(\vec{w})=\argmin_{\vec{w}}(\vec{y}-\phi(\mtx{X})\vec{w})\trn(\vec{y}-\phi(\mtx{X})\vec{w}) + \lambda\vec{w}\trn\vec{w}.
-      \end{align*}
-    The normal equation of KRR is (using matrix inversion lemma)
-    \begin{align}
-      \vec{w} &= (\phi(\mtx{X})\trn\phi(\mtx{X})+\lambda\mathbf{I}_k)^{-1}\phi(\mtx{X})\trn\vec{y} \label{illproblem} \\
-      &= \phi(\mtx{X})\trn(\lambda\mtx{I}_N+\phi(\mtx{X})\phi(\mtx{X})\trn)^{-1}\vec{y} \label{inversion}\\
-      &= \phi(\mtx{X})\trn(\lambda\mtx{I}_N+\mathbf{K})^{-1}\vec{y}.
-    \end{align}
-    Eq.~\eqref{illproblem} is problematic since $k\rightarrow\infty$. Common approach solves eq.~\eqref{inversion} with $O(N^3)$ time and $O(N^2)$ memory. This is not scalable in modern big data era, where $N\rightarrow\infty$.
-    % Computing $\mathbf{K}$ requires $O(N^2d)$ time. Inference with $\mathbf{K}$ requires $O(Nd)$ time.
+  Another famous kernel machine is kernel ridge regression (KRR). With $\vec{y}\in R^N$, $\mtx{X}\in\R^{N\times d}$, and $\phi_{d\rightarrow k}(\cdot):\R^d\rightarrow\R^k$,
+  % the loss function is
+  %     \begin{align*}
+  %       \mathcal{L}(\vec{w})=\argmin_{\vec{w}}(\vec{y}-\phi(\mtx{X})\vec{w})\trn(\vec{y}-\phi(\mtx{X})\vec{w}) + \lambda\vec{w}\trn\vec{w}.
+  %     \end{align*}
+  the normal equation of KRR is (using matrix inversion lemma)
+  \begin{align}
+    \vec{w} &= (\phi(\mtx{X})\trn\phi(\mtx{X})+\lambda\mathbf{I}_k)^{-1}\phi(\mtx{X})\trn\vec{y} \label{illproblem} \\
+    &= \phi(\mtx{X})\trn(\lambda\mtx{I}_N+\phi(\mtx{X})\phi(\mtx{X})\trn)^{-1}\vec{y} \label{inversion}\\
+    &= \phi(\mtx{X})\trn(\lambda\mtx{I}_N+\mathbf{K})^{-1}\vec{y}.
+  \end{align}
+  For any input $\vec{x^*}$, the prediction is (let $\vec{\alpha}=(\lambda\mtx{I}_N+\mathbf{K})^{-1}\vec{y}$)
+  \begin{align}
+    \phi(\vec{x^*})\trn\vec{w}
+    &= \sum_{i=1}^{N}K(\phi(\vec{x^*}), \phi(\vec{x}_i))\vec{\alpha}_i.
+  \end{align}
+  Eq.~\eqref{illproblem} is problematic since $k\rightarrow\infty$. Common approach solves eq.~\eqref{inversion} with $O(N^3)$ time and $O(N^2)$ memory. This is not scalable in modern big data era, where $N\rightarrow\infty$.
+  % Computing $\mathbf{K}$ requires $O(N^2d)$ time. Inference with $\mathbf{K}$ requires $O(Nd)$ time.
 \end{frame}
 %---------------------------------------------------------
 \begin{frame}
