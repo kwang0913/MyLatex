@@ -1,0 +1,125 @@
+\documentclass[11pt]{../../formats/RU}
+\input{../../Formats/Macro.tex}
+\graphicspath{{../../Formats/}}
+
+%Theorem style
+\declaretheorem[numbered=no, style=definition]{axiom}
+\declaretheorem[numberwithin=section,style=definition]{definition}
+\declaretheorem[sibling=definition]{theorem, lemma, corollary, proposition, conjecture}
+\declaretheorem[numbered=no,style=remark]{remark, claim}
+
+%Information to be included in the title page:
+\title[14:332:226]{Course Introduction}
+% \subtitle{beyond the Gaussian kernel, a precise phase transition, and the corresponding double descent}
+\author[Kai] % (optional, for multiple authors)
+{Kailong Wang\inst{1}
+%\and Someone Else\inst{2}
+}
+\institute[Rutgers] % (optional)
+{
+    \inst{1}%
+    % Ph.D.\ of ECE\\
+    Rutgers University
+    % \and
+    % \inst{2}%
+    % Faculty of Statistics\\
+    % Very Famous University
+}
+\date[] % (optional)
+{}
+
+
+
+\begin{document}
+\frame{\titlepage}
+%---------------------------------------------------------
+%This block of code is for the table of contents after
+%the title page
+\begin{frame}
+\frametitle{Table of Contents}
+\tableofcontents
+\end{frame}
+%---------------------------------------------------------
+
+
+\section{About This Course}
+\begin{frame}
+\frametitle{What is Probability?}
+\begin{itemize}
+    \item <1-> Probability is the study of randomness (\aka Classical Interpretation).
+    \begin{itemize}
+        \item <2-> What is the probability that a fair coin lands heads up?
+        \item <3-> What is the probability that a fair coin lands heads up \textbf{twice} in a row?
+        \item <4-> What is the longest run of heads in an 1000-step sequence of a-fair-coin tosses?
+        \item <5-> What is the probability that a coin lands heads up \textbf{twice} in a row \textbf{given} that the 1000-step longest run of heads in a sequence of coin tosses is 10?
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{What is Probability?}
+\begin{itemize}
+    \item<1-> Probability is the study of uncertainty (\aka Objective/Frequency Interpretation).
+    \begin{itemize}
+        \item <2-> The probability that a student can graduate from the Rutgers University is $84\%$.
+        \item <3-> The probability of seeing the sunrise tomorrow is $100\%$.
+    \end{itemize}
+    \item <4-> Probability is the study of belief (\aka Subjective/Bayesian Interpretation).
+    \begin{itemize}
+        \item <5-> Before 2016, what was the probability that you think Donald Trump would be the next President of the United States?
+        \item <6-> Before 2016, what was the probability that you think Brexit would happen?
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+% \begin{frame}
+% \frametitle{Probability in Mathematics}
+% The mathematical theory of probability is developed since $17$-th century and covered in this course without regard to the controversy surrounding the different interpretations of the term probability. This theory is correct and can be usefully applied, regardless of which interpretation of probability is used in a particular problem. The theories and techniques that will be presented should serve as valuable guides and tools in almost all aspects of the design and analysis of effective experimentation.
+% \end{frame}
+
+\begin{frame}
+\frametitle{Probability in Mathematics}
+\begin{table}[]
+    \centering
+    \begin{tabularx}{\textwidth}{|X|X|l|}
+    \hline
+    Fundamental Concept & Generalized Concept & Purpose               \\ \hline \hline
+    Logic Theory        & Category Theory     & Reasoning \\ \hline
+    Number Theory            & Algebra (Linear Algebra, Abstract Algebra) &   Representation \\ \hline
+    Discrete (Counting, Combinatorics) & Continuous (Real Analysis and Measure Theory (\textcolor{red}{Probability}))     &  Calculation     \\ \hline
+    Geometric           & Topology            &  Structure \\ \hline
+    \end{tabularx}
+    % \caption{}
+    % \label{tab:my-table}
+\end{table}
+\end{frame}
+
+\section{About this Class}
+\begin{frame}
+\frametitle{The Goal of This Class---The basic}
+\begin{itemize}
+    \item Introduce the basic concepts and techniques of probability theory.
+    \item Illustrate the applications of probability to the analysis of experiments.
+    \item The course is designed for students who have had some exposure to probability, but who have not had any formal course in probability.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{The Goal of This Class---The realistic}
+\begin{itemize}
+    \item Help students to develop the ability to think probabilistically and prepare them for further study in other engineer courses (\aka Get an ``A'').
+    \item Help students to prepare for the job interview questions and certifications and be competitive in the job market (\aka Get an ``A'').
+    \item Help students build interests in probability and be ready for further study in graduate school (\aka Get an ``A'').
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{The Goal of This Class---The Ultimate}
+\begin{itemize}
+    \item The students have knowledge and confidence to make informed decision with understanding of the uncertainty. (\Eg Gambling, Insurance, Lottery, Stock,  etc.)
+    \item The students have potential to mitigate the intuitions of probability in the definition of the ``truth'' and ``reality''. (\Eg Law, Medicine, Physics, etc.)
+    \item Increase the probability that the students can achieve what I couldn't imagine.
+\end{itemize}
+\end{frame}
+
+\end{document}

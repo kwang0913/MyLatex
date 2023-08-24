@@ -1,0 +1,64 @@
+\chapter{Combinatorics, Set Theory, and Probability}
+
+\section{Counting Methods}
+% (\textbf{Essentially the outcomes in each experiment (i.e., sample space) are equiprobable})
+\begin{enumerate}
+    \item Basic Principle:~$n_1\times n_2\times \ldots$
+    \item Ordered Sampling without Replacement---Permutation (or Arrangement): \[{}_n A_k=\frac{n!}{(n-k)!}.\]
+    \item Ordered Sampling with Replacement: \[n^k.\]
+    \item Unordered Sampling without Replacement---Combination: \[{}_n C_k=\binom{n}{k}=\frac{n!}{k!(n-k)!}=\binom{n}{n-k}.\]
+    \item Unordered Sampling with Replacement: \[\binom{n+k-1}{k}.\]
+    \item Combination is Permutation without order. Combination is also called n choose k.
+    \item Multiple Combination:{
+        \begin{enumerate}
+            \item $\binom{n}{k_1,k_2,\ldots,k_m}=\frac{n!}{k_1!k_2!\ldots k_m!}$ where $n=\sum_{i=1}^{m}k_i$.
+            \item For the two cases situation, $n=k_1+k_2\Rightarrow \binom{n}{k_1k_2}=\frac{n!}{k_1!k_2!}\iff\binom{n}{k_1}\iff\binom{n}{k_2}$.
+        \end{enumerate}
+        }
+\end{enumerate}
+
+\section{From Set to Probability}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|}
+        \hline
+        \textbf{Set Theory} & \textbf{Probability} \\
+        \hline
+        \hline
+        Element & Outcome \\
+        \hline
+        Subset  & Event   \\
+        \hline
+        Universal Set & Sample Space ($\Omega$) \\
+        \hline
+    \end{tabular}
+\end{table}
+\begin{enumerate}
+    \item Here are the common Set Operations: $A \cup B, A \cap B, A^{\mathsf{c}}$.
+    \item A probability $\P{\cdot}$ is a function that maps events in the sample space to real numbers such that $\P{\emptyset}=0$, $\P{\text{Event}}\geq 0$, and $\P{\Omega}=1$, where $\emptyset$ is null set has no element (\ie, event has no outcome).
+    \item $\P{A \cup B} = \P{A}+\P{B}-\P{AB}$, where $\P{AB}=\P{A\cap B}$.
+    \item Union Bound: $\P{A\cup B}\leq \P{A}+\P{B}$. And $\P{\cup_{i=1}^N A_i}\leq \sum_{i=1}^{N}\P{A_i}$ for more than two sets.
+\end{enumerate}
+\begin{axiom}
+    [Axioms of Probability]
+    The three axioms of probability are:
+    \begin{enumerate}
+        \item $0\leq \P{A} \leq 1$ for any event $A$.
+        \item $\P{\Omega}=1$.
+        \item If $A_i$ are Mutually Exclusive, then $\P{\cup_{i=1}^{N}A_i}=\sum_{i=1}^{N}\P{A_i}$.
+    \end{enumerate}
+\end{axiom}
+
+\section{Venn Diagram}
+
+\section{Set Properties and Corresponding Probability Properties}
+\begin{enumerate}
+    \item Mutually Exclusive: $A \cap B = \emptyset \Rightarrow \P{A \cap B}=0$, which implies $\P{A \cup B} = \P{A}+\P{B}$.
+    % \item Pairwise Mutually Exclusive: $A_i \cap A_j = \emptyset$ for $i\neq j$.
+    \item Collectively Exhaustive: $\cup_{i=1}^{N}A_i = \Omega \Rightarrow \P{\cup_{i=1}^{N}A_i} = 1$.
+    \item Partitions (\ie, Mutually Exclusive \& Collectively Exhaustive): $\P{\cup_{i=1}^N A_i}=\sum_{i=1}^{N}\P{A_i}=1$.
+    \item All outcomes constitute a partition.
+    \item $A$ and $A\complement$ constitute a partition.
+    \item If $B_i$ are Collectively Exhaustive, then $\P{A\cap(\cup_{i=1}^N B_i)}=\P{A\Omega}=\P{A}$
+    \item For any $B$, $\P{A}=\P{A\cap(B\cup B\complement)}=\P{A\cap B}+\P{A\cap B\complement}$
+\end{enumerate}

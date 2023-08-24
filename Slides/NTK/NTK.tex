@@ -1,0 +1,180 @@
+\documentclass[10pt]{../../formats/RU}
+\input{../../Formats/Macro.tex}
+\graphicspath{{../../Formats/}}
+
+%Theorem style
+\declaretheorem[numbered=no, style=definition]{axiom}
+\declaretheorem[numberwithin=section,style=definition]{definition}
+\declaretheorem[sibling=definition]{theorem, lemma, corollary, proposition, conjecture}
+\declaretheorem[numbered=no,style=remark]{remark, claim}
+
+%Information to be included in the title page:
+\title[Neural Tangent Kernel]{Neural Tangent Kernel: Convergence and Generalization in Neural Networks~\footcite{Jacot2020}
+}
+\author[Kai] % (optional, for multiple authors)
+{Kailong Wang\inst{$\dagger$}
+%\and Someone Else\inst{2}
+}
+\institute[Rutgers] % (optional)
+{
+    \inst{$\dagger$}%
+    % Ph.D.\ of ECE\\
+    Rutgers University
+    % \and
+    % \inst{2}%
+    % Faculty of Statistics\\
+    % Very Famous University
+}
+\date[\today] % (optional)
+{
+    % ECE 539 HDP,
+    \today
+}
+
+%Bib Resource
+\addbibresource{../../Markdown/Paper/My Library.bib}
+
+%Document begins
+\begin{document}
+\frame{\titlepage}
+
+\begin{frame}
+    \frametitle{On the equivalence of Neural Network and Kernel Machine}
+    \begin{itemize}
+        \item On the equivalence at initialization---Infinity width Multi-Layer Perceptron (MLP) initialize with Gaussian weights and biases is equivalent to a Gaussian Process.\footcite{Lee2018}
+        \item On the equivalence at training---Infinity width MLP with ReLU activation under squared loss trained by gradient descent is equivalent to a Gaussian Process.\footcite{Jacot2020}
+        \item On the equivalence at training---Infinite width MLP with ReLU activation under soft margin loss trained by subgradient descent is equivalent to a support vector machine.~\footcite{Chen2021}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Table of Contents}
+\tableofcontents
+\end{frame}
+
+
+\section{Notations}
+\begin{frame}
+    {The Architecture of a Multi-Layer Perceptron (MLP)}
+    \includegraphics[width=\textwidth, center]{simple_nn.png}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Notations---Parameters Space}
+    \begin{itemize}
+        \item $L$: the depth of the network (\aka the number of layers). \Eg $0$ is the input layer, $L$ is the output layer.
+        \item $N^{(L)}$: the width of the network (\aka the number of neurons in each layer). \Eg $N^{(0)}$ is the dimension of the input, $N^{(L)}$ is the dimension of the output.
+        \item $P$: the total number of parameters, which is $\sum_{l=1}^L N^{(l-1)}N^{(l)}$.
+        \item The parameters between each layer are denoted as $W^{(l)}\in\R^{N^{(l-1)}\times N^{(l)}}$ and $b^{(l)}\in\R^{N^{(l)}}$, which are initialized as \iid $\Gaus(0,1)$.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Notations---Function Space}
+    \begin{itemize}
+        \item $\sigma$: the activation function. \Eg $\sigma(x) = \max\{0, x\}$ is the ReLU.
+        \item $\mathcal{F}$: the function space of the MLP. \Eg $\mathcal{F} = \{f:\R^{N^{(0)}}\to\R^{N^{(L)}}\}$.
+        \item $\tilde{f}_{\theta}^{(l)}(x):\R^{(l-1)}\rightarrow\R^{(l)}$: the pre-activations
+        \item $f_{\theta}^{(l)}(x):\R^{(l)}\rightarrow\R^{(l)}$: the post-activations
+        \item Clearly, we have $\theta\in\R^P$ and {
+            \begin{align*}
+                f_{\theta}^{(0)}(\vec{x}) &= \vec{x} \\
+                \tilde{f}_{\theta}^{(l)}(\vec{x}) &= W^{(l)}\trn f_{\theta}^{(l-1)}(\vec{x}) + b^{(l)} \\
+                f_{\theta}^{(l)}(\vec{x}) &= \sigma(\tilde{f}_{\theta}^{(l)}(\vec{x}))
+            \end{align*}
+        }
+    \end{itemize}
+\end{frame}
+
+\section{Neural Tangent Kernel (NTK)}
+\begin{frame}
+    \frametitle{Gradient Descent---Parameter Space}
+    For a task with input $x\in\R^{n\times N^{(0)}}$ and output $y\in\R^{n\times N^{(L)}}$, the total loss $\mathcal{L}$ is defined with per-sample loss $\ell$
+    \[\mathcal{L}(\theta)=\argmin_{\theta} \frac{1}{n}\sum_{i=1}^{n}\ell(\mathcal{F}(\vec{x}_i), y_i).\]
+    According to the chain rule, the gradient of the loss is
+    \[\triangledown_{\theta}\mathcal{L}(\theta)=\frac{1}{n}\sum_{i=1}^{n}\triangledown_{\theta}\mathcal{F}(\vec{x}_i)\triangledown_{\mathcal{F}}\ell(\mathcal{F},y_i).\]
+    If we let the gradient descent update the parameters with infinitisimal step size, then the gradient descent can be approximated as a derivative on the time dimension $t$
+    \[\frac{\diff \theta}{\diff t} = -\triangledown_{\theta}\mathcal{L}(\theta)=-\frac{1}{n}\sum_{i=1}^{n}\triangledown_{\theta}\mathcal{F}(\vec{x}_i)\triangledown_{\mathcal{F}}\ell(\mathcal{F},y_i).\]
+\end{frame}
+
+\begin{frame}
+    \frametitle{Gradient Descent---Function Space}
+    Then for any pair $(\vec{x^*},\vec{x}_i)$, the output of the network slowly evolves as
+    \[\frac{\diff \mathcal{F}(\vec{x^*})}{\diff t}=\frac{\diff \mathcal{F}(\vec{x^*})}{\diff \theta}\frac{\diff \theta}{\diff t}=-\frac{1}{n}\sum_{i=1}^{n}\triangledown_{\theta}\mathcal{F}(\vec{x^*})\trn\triangledown_{\theta}\mathcal{F}(\vec{x}_i)\triangledown_{\mathcal{F}}\ell(\mathcal{F},y_i).\]
+    And the inner product of the gradient defines the Neural Tangent Kernel (NTK), which is also called kernel gradient
+    \[K(\vec{x^*},x_i) = \triangledown_{\theta}\mathcal{F}(\vec{x^*})\trn\triangledown_{\theta}\mathcal{F}(\vec{x}_i)\]
+    With random features~\footcite{Rahimia} of $p$ (where $p\ll P$) samples of function space $\mathcal{F}_k^{p}$,
+    % the paper claims
+    these functions define a linear parametrization: $\R^P\rightarrow\mathcal{F}$ and
+    the NTK can be approximated as
+    \[K(\vec{x^*},\vec{x}_i) \approx \E{f_k^{p}(\vec{x^*})\trn f_k^{p}(\vec{x}_i)}.\]
+\end{frame}
+
+\begin{frame}
+    \frametitle{The good and the bad}
+    Recall the knowledge of Convex Optimization, the gradient descent converges to the global minimum of the convex loss function. For NTK,
+    \begin{itemize}
+        \item The Good: For the MLP trained by gradient descent, the network output slowly evolves along the (negative) kernel gradient with respect to the neural tangent kernel (NTK) during training.
+        \item The Bad: The MLP (not to mention other NN architectures) is usually non-convex and the linear parametrization does not exist. Which leads to unstable NTK at initialization and during training.
+    \end{itemize}
+    Question: Can we prove the NTK is deterministic and staying constant, for example in an asymptotic manner?
+
+\end{frame}
+
+\section{Bridge the Gap}
+\begin{frame}
+    \frametitle{NTK becomes deterministic at initialization~\footcite{Lee2018}}
+    \begin{alertblock}
+        {Theorem: Neural Network as Gaussian Process}
+        For a network of depth $L$ at initialization, with a Lipschitz nonlinearity $\sigma$, and in the limit as the layers width $n_1, n_2, \ldots, n_L \rightarrow\infty$, the NTK $\Theta^{(L)}$ converges in probability to a deterministic limiting kernel:
+        \[\Theta^{(L)}\rightarrow\Theta^{(L)}_{\infty}\otimes I_{N_L}.\]
+        The scalar kernel $\Theta^{(L)}_{\infty}:\R^{N_0}\times\R^{N_0}\rightarrow\R$ is defined recursively as
+        \begin{align*}
+            \Theta^{(1)}_{\infty}(\vec{x^*},\vec{x}_i) &= \Sigma^{(1)}_{\infty}(\vec{x^*},\vec{x}_i) \\
+            \Theta^{(L+1)}_{\infty}(\vec{x^*},\vec{x}_i) &= \Theta^{(L+1)}_{\infty}(\vec{x^*},\vec{x}_i)\dot{\Sigma}^{(L+1)}_{\infty}(\vec{x^*},\vec{x}_i)+\Sigma^{(L+1)}_{\infty}(\vec{x^*},\vec{x}_i) \\
+            \dot{\Sigma}^{(L+1)}_{\infty}(\vec{x^*},\vec{x}_i)&=\mathbb{E}_{f\sim\Gaus(0,\Sigma^{(L)})}\bracks*{\dot{\sigma}(f(\vec{x^*}))\dot{\sigma}(f(\vec{x}_i))}
+        \end{align*}
+    \end{alertblock}
+\end{frame}
+
+\begin{frame}
+    {The NTK is constant during training}
+    Previously, we have shown that (omit the inputs for simplicity)
+    \[\frac{\diff \mathcal{F}_{\theta}}{\diff t}=-\alpha\mathbf{K}_{\infty}\triangledown_{f}\mathcal{L}.\]
+    To track the evolution of $\theta$ in time, we can consider it as a function of time $t$. With Taylor expansion, we have~\footcite{Lee2020}
+    \begin{align*}
+        \mathcal{F}_{\theta}(t)&=\mathcal{F}_{\theta}(0)+\triangledown_{\theta}\mathcal{F}_{\theta}(0)\bracks*{\theta(t)-\theta(0)} \\
+        \theta(t)-\theta(0)&=-\alpha\triangledown_{\theta}\mathcal{F}_{\theta}\trn\triangledown_{f}\mathcal{L} \\
+        \mathcal{F}_{\theta}(t)-\mathcal{F}_{\theta}(0)
+        &=-\alpha\triangledown_{\theta}\mathcal{F}_{\theta}(0)\trn\triangledown_{\theta}\mathcal{F}(\mtx{X};\theta(0))\triangledown_f\mathcal{L} \\
+        \frac{\diff \mathcal{F}_{\theta}(t)}{\diff t}
+        &= -\alpha K(\theta(0))\triangledown_f\mathcal{L} \\
+        &=-\alpha\mathbf{K}_{\infty}\triangledown_{f}\mathcal{L}
+    \end{align*}
+    % This shows the same NTK is preserved during training.~\footcite{Lee2020}
+\end{frame}
+
+\begin{frame}
+    {The light that is Shed by the NTK}
+    \begin{itemize}
+        \item With the equivalence of the NTK and the Gaussian Process, Bayesian Inference can be applied to explain the generalization of the neural network.
+        \item For the same reason, the computation technique of Bayesian Inference (\eg MCMC) can be applied to the neural network.
+        \item Since NTK is the gradient defined on the function space, calculus of variations can be applied to the neural network.
+        \item Other analytic tools such as Spectrum Analysis or Random Matrix can be applied to find tighter bounds.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    {The Undiscovered Area}
+    \begin{itemize}
+        \item Empirical results shows that the Neural Network optimized by NTK does not achieve State-of-the-Art (SOTA) performance.
+        \item The condition of the equivalence of NTK and Gaussian Process is too strong, which might not be practical.
+        \item The NTK of other architectures (\eg CNN, RNN) is not well studied (Has been majorly solved in 2023).
+    \end{itemize}
+\end{frame}
+% \begin{frame}
+%     \frametitle{Reference}
+%     \printbibliography
+% \end{frame}
+
+\end{document}

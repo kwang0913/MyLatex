@@ -1,0 +1,67 @@
+\documentclass{article}
+\usepackage[
+    % letterpaper,
+    margin=1in,
+    % headheight=13.6pt,
+]{geometry}
+
+%%%% Page Header and Foot %%%%
+\usepackage{fancyhdr}
+\fancypagestyle{plain}{
+\fancyhf{}
+\fancyhead[L]{ECE 14:332:226}
+\fancyhead[C]{\textbf{Probability And Random Processes}}
+\fancyhead[R]{Summer 2023}
+\fancyfoot[L]{}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{}
+}
+\pagestyle{plain}
+
+%%%% Load Format %%%%
+\input{../../Formats/Format.tex}
+\input{../../Formats/Macro.tex}
+\addbibresource{bib.bib}
+
+%%%% Theorem Style %%%%
+\declaretheorem[numbered=no, style=definition]{axiom}
+\declaretheorem[numberwithin=section,style=definition]{definition}
+\declaretheorem[sibling=definition]{theorem, lemma, corollary, proposition, conjecture}
+\declaretheorem[numbered=no,style=remark]{remark, claim}
+
+%%%% Document Information %%%%
+\title{Project: Monte Carlo Simulation}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+    In this semester, we are going to learn how to use moment generating function (MGF) to computer the moment of joint random variables. Under the case of independence, the MGF of joint random variables can be simplified to the product of the MGF of each random variable. However, in the case of dependent random variables, the calculation is not straightforward anymore. In this project, we are going to study Monte Carlo simulation, which can be used to estimate the moment of dependent random variables and also have a larger application.
+\end{abstract}
+
+Monte Carlo methods involve a broad class of computational algorithms that rely on repeated random sampling to obtain numerical results. The basic concept is to use randomness to solve problems that might be deterministic in principle, especially when the dimensionality of the problem makes deterministic algorithms unfeasible. By generating suitable random inputs and observing the resulting random outputs, Monte Carlo methods estimate the expected result.
+
+Here are two applications of Monte Carlo Methods:
+\begin{enumerate}
+    \item \textbf{Risk Analysis in Finance:} In financial risk analysis, Monte Carlo simulations can be used to compute the value at risk (VaR) of a portfolio. The future returns of the assets in the portfolio are modeled with random variables, and the portfolio's change in value is computed many times. This builds a distribution of possible portfolio values, from which the VaR can be estimated.
+    \item \textbf{Physics and Engineering:} Monte Carlo methods are widely used in physics for simulating complex systems of particles, such as in computational fluid dynamics and heat transfer simulations. Here, the movements of billions of individual particles could be modeled as random processes, and their collective behavior can be estimated through repeated simulations. This would be impossible to calculate deterministically.
+\end{enumerate}
+
+Here are some limitations that Monte Carlo Methods have:
+\begin{enumerate}
+    \item If the event you're modeling has a low probability of occurring, you might have to simulate it many, many times to observe the event even once. This requirement can make Monte Carlo simulations infeasible for rare events.
+    \item The results are dependent on the quality of the random number generator. If the random number generator is flawed, the simulation results can be misleading.
+    \item Monte Carlo methods require that the underlying probability distributions are known and can be sampled from, which may not be the case in complex real-world situations.
+\end{enumerate}
+
+In this project, there are three concepts need to be covered:
+\begin{enumerate}
+    \item An introduction of the algorithms of Monte Carlo simulation. There are many variants of Monte Carlo simulation. You can choose the one you are comfortable with.
+    \item Estimating $\pi$ or solving integral using Monte Carlo simulation.
+    \item Using ``Quicksort'' algorithm to demonstrate the difference between Monte Carlo simulation and Las Vegas algorithm.
+\end{enumerate}
+
+The study of Monte Carlo can be quite overwhelming. The team who chooses this topic is not limited to the above three concepts. You can choose any topic related to Monte Carlo simulation and present it to the class as long as there are three concepts in total.
+
+\end{document}

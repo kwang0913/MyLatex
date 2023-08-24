@@ -81,7 +81,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Putting the background image in the frames
 \usebackgroundtemplate{
-\parbox[c][\paperheight][c]{\paperwidth}{\centering\transparent{0.1}\includegraphics[height=0.8\paperheight]{../formats/RULogos/RU_SHIELD_BLACK.eps}}
+\parbox[c][\paperheight][c]{\paperwidth}{\centering\transparent{0.1}\includegraphics[height=0.8\paperheight]{/RULogos/RU_SHIELD_BLACK.eps}}
 }
 
 % \logo{\includegraphics[scale=0.075]{../formats/RULogos/RU_SHIELD_CMYK_RED.eps}}
@@ -107,7 +107,7 @@
 \setbeamertemplate{headline}{%
 \begin{minipage}[c][0.09\paperheight]{\paperwidth}
     \begin{minipage}{0.25\paperwidth}
-        ~\includegraphics[height=0.081\paperheight]{../formats/RULogos/RU_SHIELD_CMYK_RED.eps}
+        ~\includegraphics[height=0.081\paperheight]{/RULogos/RU_SHIELD_CMYK_RED.eps}
     \end{minipage}
     \begin{minipage}{0.75\paperwidth}
         \insertnavigation{0.75\paperwidth}

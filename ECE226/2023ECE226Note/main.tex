@@ -1,0 +1,58 @@
+\documentclass{report}
+\usepackage[
+    % letterpaper,
+    margin=1in,
+    % headheight=13.6pt,
+]{geometry}
+
+%%%% Page Header and Foot %%%%
+\usepackage{fancyhdr}
+\fancypagestyle{plain}{
+\fancyhf{}
+\fancyhead[L]{ECE 14:332:226}
+\fancyhead[C]{\textbf{Probability And Random Processes}}
+\fancyhead[R]{Rutgers University}
+\fancyfoot[L]{}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{}
+}
+\pagestyle{plain}
+
+%%%% Load Format %%%%
+\input{../../Formats/Format.tex}
+\input{../../Formats/Macro.tex}
+\allowdisplaybreaks
+
+%%%% Theorem Style %%%%
+\declaretheorem[numbered=no, style=plain]{axiom, lemma}
+\declaretheorem[numberwithin=chapter,style=definition]{definition}
+\declaretheorem[sibling=definition]{theorem, corollary, proposition, conjecture}
+\declaretheorem[numbered=no,style=remark]{remark, claim}
+
+%%%% Document Information %%%%
+\title{}
+\author{}
+\date{}
+
+%%%% Start Document %%%%
+% \geometry{
+%     letterpaper,
+%     top=1in,
+%     bottom=1in,
+%     inner=0.75in,
+%     outer=0.75in
+% }
+\begin{document}
+% \maketitle
+\tableofcontents
+
+\input{collection/chapter1.tex}
+\input{collection/chapter2.tex}
+\input{collection/chapter3.tex}
+\input{collection/chapter4.tex}
+\input{collection/chapter5.tex}
+\input{collection/chapter7.tex}
+\input{collection/chapter6.tex}
+\input{collection/chapter8.tex}
+
+\end{document}

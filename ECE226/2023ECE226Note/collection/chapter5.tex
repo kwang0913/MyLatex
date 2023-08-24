@@ -1,0 +1,264 @@
+\chapter{Joint Random Variables}
+
+\section{Joint CDF}
+\begin{definition}[Joint CDF]
+    The joint CDF of random variables $X$ and $Y$ is
+    \[F_{X,Y}(x,y) = \P{X\leq x, Y\leq y}.\]
+\end{definition}
+
+The joint CDF is a \textbf{complete} probability model for any pair of random variables $X$ and $Y$.
+
+\begin{theorem}
+    For any pair of random variables, $X$ and $Y$, the following properties hold:
+    \begin{enumerate}
+        \item $0 \leq F_{X,Y}(x,y) \leq 1$,
+        \item $F_{X,Y}(\infty,\infty)=1$,
+        \item $F_{X,Y}(-\infty,y)=F_{X,Y}(x,-\infty)=0$,
+        \item $F_{X,Y}(x,y)$ is non-decreasing in $x$ and $y$.
+    \end{enumerate}
+\end{theorem}
+
+\begin{definition}
+    [Marginal CDF]
+    \[F_X(x)=F_{X,Y}(x,\infty) \qquad F_Y(y)=F_{X,Y}(\infty,y)\].
+\end{definition}
+
+\section{Joint PMF}
+\begin{definition}[Joint PMF]
+    The joint PMF of random variables $X$ and $Y$ is
+    \[P_{X,Y}(x,y) = \P{X=x, Y=y}.\]
+\end{definition}
+
+The joint PMF is a \textbf{complete} probability model for any pair of discrete random variables $X$ and $Y$.
+
+\begin{theorem}
+    For discrete random variables $X$ and $Y$ and any set $B$ in the $X$, $Y$ plane, the probability of the event
+    % $\set{(X,Y)\in B}$
+    is
+    \[\P{\set{B}}=\sum_{(x,y)\in B}P_{X,Y}(x,y).\]
+\end{theorem}
+
+Apparently, the joint PMF is non-negative and sums to one.
+\[\sum_{x\in S_X}\sum_{y\in S_Y}P_{X,Y}(x,y)=1.\]
+
+\begin{definition}
+    [Marginal PMF]
+    For discrete random variables $X$ and $Y$ with joint \textnormal{PMF} $P_{X,Y}(x,y)$,
+    \[P_X(x)=\sum_{y\in S_Y}P_{X,Y}(x,y), \qquad P_Y(y)=\sum_{x\in S_X}P_{X,Y}(x,y).\]
+\end{definition}
+For discrete random variables, the marginal PMF $P_X(x)$ and $P_Y(y)$ are probability models for the individual random variables $X$ and $Y$, but they only provide an \textbf{incomplete} probability model for the pair of random variables $X$ and $Y$.
+
+\section{Joint PDF}
+\begin{definition}[Joint PDF]
+    The joint CDF of continuous random variables $X$ and $Y$ is a function $f_{X,Y}(x,y)$ with the property
+    \[F_{X,Y}(u,v)=\int_{-\infty}^{u}\int_{-\infty}^{v}f_{X,Y}(x,y)\diff x \diff y.\]
+\end{definition}
+
+Apparently, we can then derive the joint PDF as follows,
+\[f_{X,Y}(x,y)=\frac{\partial^2}{\partial x \partial y}F_{X,Y}(x,y).\]
+The joint PDF is a \textbf{complete} probability model for any pair of continuous random variables $X$ and $Y$.
+
+\begin{theorem}
+    The probability that the continuous random variables $(X,Y)$ are in any set $A$
+    \[\P{\set{A}}=\iint\limits_A f_{X,Y}(x,y)\diff x\diff y.\]
+\end{theorem}
+
+The joint PDF is non-negative and integrates to one.
+\[\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}f_{X,Y}(x,y)\diff x\diff y=1.\]
+
+\begin{definition}
+    [Marginal PDF]\label{def:marginal_pdf}
+    For continuous random variables $X$ and $Y$ with joint \textnormal{PDF} $f_{X,Y}(x,y)$,
+    \[f_X(x)=\int_{-\infty}^{\infty}f_{X,Y}(x,y)\diff y, \qquad f_Y(y)=\int_{-\infty}^{\infty}f_{X,Y}(x,y)\diff x.\]
+\end{definition}
+For continuous random variables, the marginal PDFs $f_X(x)$ and $f_Y(y)$ are probability models for the individual random variables $X$ and $Y$, but they only provide an \textbf{incomplete} probability model for the pair of random variables $X$ and $Y$.
+
+\section{Expected Value}
+\begin{theorem}[Expected Value of a Function of Two Random Variables]
+    The function of two random variables (\ie, $g(X,Y)$) is also a random variable, then the expected value of $g(X,Y)$ is
+    \begin{align}
+        \E{g(X,Y)} &= \sum_{x\in S_X}\sum_{y\in S_Y}g(x,y)P_{X,Y}(x,y); \tag{Discrete}\\
+        \E{g(X,Y)} &= \int_{-\infty}^{\infty}\int_{-\infty}^{\infty}g(x,y)f_{X,Y}(x,y)\diff x\diff y. \tag{Continuous}
+    \end{align}
+\end{theorem}
+
+\begin{theorem}\label{thm:linearity}
+    The expectation of a linear combination of several functions can be easily derived as follows,
+    \[\E{\sum_{i=1}^{n}a_i g_i(X,Y)}=\sum_{i=1}^{n}a_i\E{g_i(X,Y)}.\]
+\end{theorem}
+
+\begin{corollary}
+    [Sum of two random variables]\label{cor:linearity}
+    For random variables $X$ and $Y$,
+    \[\E{X+Y}=\E{X}+\E{Y}.\]
+\end{corollary}
+\textbf{Note:} The \cref{cor:linearity} states that the expectation of sum of random variables does not need the joint probability model of all random variables. However, this is not true for the variance.
+
+\begin{corollary}
+    [The variance of the sum of two random variables]\label{thm:variance_of_sum}
+    \[\Var[aX+bY]=a^2\Var[X]+b^2\Var[Y]+2ab\E{(X-\mu_X)(Y-\mu_Y)}.\]
+\end{corollary}
+
+% \textcolor{red}{In the following contents, we will assume random variables (e.g., $X$) as a function of random variables.}
+
+\section{Covariance, Correlation and Independent}
+\begin{definition}[Covariance]
+    The covariance of two random variables $X$ and $Y$ is
+    \[\sigma_{xy}=\Cov[X,Y]=\E{(X-\E{X})(Y-\E{Y})}=\E{XY}-\E{X}\E{Y}.\]
+\end{definition}
+
+\begin{definition}[Correlation Coefficient]
+    The correlation coefficient of two random variables $X$ and $Y$ is
+    \[\rho_{xy}=\Corr[X,Y]=\frac{\Cov[X,Y]}{\sqrt{\Var[X]\Var[Y]}}=\frac{\sigma_{xy}}{\sigma_x\sigma_y}.\]
+\end{definition}
+\textbf{Note:} Correlation coefficient is a dimensionless quantity. There are other definitions of correlation coefficient, but this is the most common one.
+
+\begin{theorem}
+    If $X$ and $Y$ are random variables such that $Y=aX+b$,
+    \[\rho_{X,Y}={
+        \begin{cases}
+            -1, & a<0\\
+            0, & a=0\\
+            1, & a>0
+        \end{cases}
+    }\]
+    which also implies
+    \[-1\leq \rho_{xy}\leq 1.\]
+\end{theorem}
+
+\begin{definition}
+    [Correlation]
+    The correlation of random variables $X$ and $Y$ is
+    \[r_{X,Y} = \E{XY}.\]
+    This is a different parameter from the correlation coefficient (\textcolor{red}{and widely used in engineer major}).
+\end{definition}
+
+\begin{definition}
+    [Uncorrelatedness]
+    Random variables $X$ and $Y$ are uncorrelated if and only if
+    \[\Cov[X,Y]=0.\]
+\end{definition}
+
+\begin{definition}[Independence]
+    Random variables $X$ and $Y$ are independent if and only if
+    \begin{align}
+        P_{X,Y}(x,y) &=P_X(x)P_Y(y); \tag{Discrete}\\
+        f_{X,Y}(x,y) &=f_X(x)f_Y(y). \tag{Continuous}
+    \end{align}
+\end{definition}
+It's easy to show that if $X$ and $Y$ are independent, then
+\[F_{X,Y}(x,y)=\P{X\leq x, Y\leq y}=\P{X\leq x}\P{Y\leq y}=F_X(x)F_Y(y).\]
+
+\begin{theorem}
+    If Random variables $X$ and $Y$ are independent
+    \begin{enumerate}
+        \item $\E{XY}=\E{X}\E{Y}$, so that $\Cov[X, Y]=0$,
+        \item $\Var[aX+bY]=a^2\Var[X]+b^2\Var[Y]$.
+    \end{enumerate}
+\end{theorem}
+
+\begin{definition}
+    [Orthogonality]
+    If $r_{X,Y}=\E{XY}=0$, then $X$ and $Y$ are orthogonal.
+\end{definition}
+
+\begin{theorem}
+    The relationship between uncorrelatedness, independence and orthogonality
+    \begin{enumerate}
+        \item Uncorrelatedness means changing the value of one random variable does not affect the \textbf{mean} of the other random variable.
+        \item Independence means changing the value of one random variable does not affect the probability distribution (\ie, mean, variance and other moments as well) of the other random variable.
+        \item Uncorrelated is linear independent. But independent includes both linear and nonlinear independent. Thus, uncorrelatedness does not imply independence. \eg, $X\sim \Unif[-1,1]$ and $Y=X^2$.
+        \item Orthogonality is a different concept from uncorrelatedness and independence. From the perspective of Linear Algebra, orthogonality is a concept regarding angle between random variables, while independence and uncorrelatedness are concepts regarding the length (or projection) of random variables.
+        \item Independence and Uncorrelatedness are preferred for easier calculation of the variance of linear combination of random variables.
+        \item Joint Gaussian Random Variables has a preferred property: uncorrelatedness $\iff$ independence. This is the fundamental of a lot of (I would say more than 85\%) stochastic modeling, machine learning, etc.
+    \end{enumerate}
+\end{theorem}
+
+
+\section{Bivariate Gaussian Random Variables}
+\begin{definition}
+    [Bivariate Gaussian Random Variables]
+    Random variables $X$ and $Y$ are bivariate Gaussian if and only if their joint PDF is given by the following equation,
+    \[f_{X,Y}(x,y)=\frac{1}{2\pi\sigma_x\sigma_y\sqrt{1-\rho^2}}\exp\left\{-\frac{1}{2(1-\rho^2)}\left[\left(\frac{x-\mu_x}{\sigma_x}\right)^2-2\rho\left(\frac{x-\mu_x}{\sigma_x}\right)\left(\frac{y-\mu_y}{\sigma_y}\right)+\left(\frac{y-\mu_y}{\sigma_y}\right)^2\right]\right\}.\]
+    Where $\mu_x=\E{X}$, $\mu_y=\E{Y}$, $\sigma_x^2=\Var[X]$, $\sigma_y^2=\Var[Y]$, and $\rho=\Corr[X,Y]$.
+\end{definition}
+
+\begin{theorem}
+    If $X$ and $Y$ are bivariate Gaussian, then $X$ is the $\mathsf{N}(\mu_X, \sigma_X)$ and $Y$ is the $\mathsf{N}(\mu_Y, \sigma_Y)$.
+\end{theorem}
+
+\begin{theorem}
+    Bivariate Gaussian Random Variables are uncorrelated if and only if they are independent.
+\end{theorem}
+
+\begin{theorem}
+    If $X$ and $Y$ are bivariate Gaussian, and $W_1$ and $W_2$ are given by linear independent equations,
+    \[W_1=a_1X+b_1Y, \qquad W_2=a_2X+b_2Y,\]
+    then $W_1$ and $W_2$ are bivariate Gaussian random variables such that
+    \begin{align*}
+        \E{W_i} &= a_i\mu_X+b_i\mu_Y, \\
+        \Var[W_i] &= a_i^2\sigma_X^2+b_i^2\sigma_Y^2+2a_ib_i\sigma_X\sigma_Y\rho, \\
+        \Cov[W_1,W_2] &= a_1a_2\sigma_X^2+b_1b_2\sigma_Y^2+(a_1b_2+a_2b_1)\sigma_X\sigma_Y\rho.
+    \end{align*}
+\end{theorem}
+
+% \section{Multivariate Probability Model}
+% \begin{definition}
+%     [Multivariate Joint CDF]
+%     The Joint CDF of $n$ random variables $X_1, X_2, \dots, X_n$ is
+%     \[F_{X_1,X_2,\dots,X_n}(x_1,x_2,\dots,x_n)=\P{X_1\leq x_1, X_2\leq x_2, \dots, X_n\leq x_n}.\]
+% \end{definition}
+
+% \begin{definition}
+%     [Multivariate Joint PMF]
+%     The Joint PMF of $n$ discrete random variables $X_1, X_2, \dots, X_n$ is
+%     \[P_{X_1,X_2,\dots,X_n}(x_1,x_2,\dots,x_n)=\P{X_1=x_1, X_2=x_2, \dots, X_n=x_n}.\]
+% \end{definition}
+
+% \begin{definition}
+%     [Multivariate Joint PDF]
+%     The Joint PDF of $n$ continuous random variables $X_1, X_2, \dots, X_n$ is
+%     \[f_{X_1,X_2,\dots,X_n}(x_1,x_2,\dots,x_n) = \frac{\partial^n F_{X_1,X_2,\dots,X_n}(x_1,x_2,\dots,x_n)}{\partial x_1 \partial x_2 \cdots \partial x_n}.\]
+% \end{definition}
+
+% \begin{theorem} The Multivariate Random Variables have the following properties:
+%     \begin{enumerate}
+%         \item $P_{X_1,X_2,\dots,X_n}(x_1,x_2,\dots,x_n)\geq 0$,
+%         \item $\sum_{x_1\in S_{X_1}}\sum_{x_2\in S_{X_2}}\cdots\sum_{x_n\in S_{X_n}}P_{X_1,X_2,\dots,X_n}(x_1,x_2,\dots,x_n)=1$,
+%         \item $f_{X_1,X_2,\dots,X_n}(x_1,x_2,\dots,x_n)\geq 0$,
+%         \item $\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}\cdots\int_{-\infty}^{\infty}f_{X_1,X_2,\dots,X_n}(x_1,x_2,\dots,x_n)\diff x_1\diff x_2\cdots\diff x_n=1$.
+%         \item $F_{X_1,X_2,\dots,X_n}(u_1,u_2,\dots,u_n)= \int_{-\infty}^{u_1}\int_{-\infty}^{u_2}\cdots\int_{-\infty}^{u_n}f_{X_1,X_2,\dots,X_n}(x_1,x_2,\dots,x_n)\diff x_1\diff x_2\cdots\diff x_n$.
+%     \end{enumerate}
+% \end{theorem}
+
+% \begin{theorem}
+%     The probability of an event $A$ expressed in terms of the random variables $X_1, X_2, \dots, X_n$ is
+%     \begin{align*}
+%         &\text{Discrete:}& \P{\set{A}} &= \sum_{(x_1,x_2,\dots,x_n)\in A}P_{X_1,X_2,\dots,X_n}(x_1,x_2,\dots,x_n); \\
+%         &\text{Continuous:}& \P{\set{A}} &= \int_{(x_1,x_2,\dots,x_n)\in A}f_{X_1,X_2,\dots,X_n}(x_1,x_2,\dots,x_n)\diff x_1\diff x_2\cdots\diff x_n.
+%     \end{align*}
+% \end{theorem}
+
+% \begin{theorem}
+%     The marginal \textnormal{PMF/PDF} of $X_1, X_2, \dots, X_n$ is
+%     \begin{align*}
+%         &\text{Discrete:}& P_{X_1}(x_1) &= \sum_{x_2\in S_{X_2}}\cdots\sum_{x_n\in S_{X_n}}P_{X_1,X_2,\dots,X_n}(x_1,x_2,\dots,x_n); \\
+%         &\text{Continuous:}& f_{X_1}(x_1) &= \int_{-\infty}^{\infty}\int_{-\infty}^{\infty}\cdots\int_{-\infty}^{\infty}f_{X_1,X_2,\dots,X_n}(x_1,x_2,\dots,x_n)\diff x_2\cdots\diff x_n.
+%     \end{align*}
+% \end{theorem}
+
+% \begin{theorem}
+%     [N Independent Random Variables] If $X_1, X_2, \dots, X_n$ are independent, then
+%     \begin{align*}
+%         &\text{Discrete:}& P_{X_1,X_2,\dots,X_n}(x_1,x_2,\dots,x_n) &= \prod_{i=1}^{n}P_{X_i}(x_i); \\
+%         &\text{Continuous:}& f_{X_1,X_2,\dots,X_n}(x_1,x_2,\dots,x_n) &= \prod_{i=1}^{n}f_{X_i}(x_i).
+%     \end{align*}
+% \end{theorem}
+
+% \begin{theorem}
+%     [N Independent and Identically Distributed Random Variables] If $X_1, X_2, \dots, X_n$ are independent and identically distributed (\iid), then
+%     \begin{align*}
+%         &\text{Discrete:}& P_{X_1,X_2,\dots,X_n}(x_1,x_2,\dots,x_n) &= \prod_{i=1}^{n}P_{X}(x_i); \\
+%         &\text{Continuous:}& f_{X_1,X_2,\dots,X_n}(x_1,x_2,\dots,x_n) &= \prod_{i=1}^{n}f_{X}(x_i).
+%     \end{align*}
+% \end{theorem}
