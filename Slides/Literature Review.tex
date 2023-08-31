@@ -1,0 +1,199 @@
+\documentclass{article}
+\usepackage[
+    % letterpaper,
+    margin=1in,
+    % headheight=13.6pt,
+]{geometry}
+
+%%%% Page Header and Foot %%%%
+\usepackage{fancyhdr}
+\fancypagestyle{plain}{
+\fancyhf{}
+\fancyhead[L]{}
+\fancyhead[C]{}
+\fancyhead[R]{}
+\fancyfoot[L]{}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{}
+}
+\pagestyle{plain}
+
+%%%% Load Format %%%%
+\input{../Formats/format.tex}
+\input{../Formats/Macro.tex}
+% \allowpagebreaks
+%%%% Document Information %%%%
+\title{Literature Review}
+\author{Kailong Wang}
+\date{}
+
+\addbibresource{../../Markdown/Paper/My Library.bib}
+
+%%%% Start Document %%%%
+\begin{document}
+\maketitle
+
+\section{Parameters}
+\begin{itemize}
+    \item $p_i$: Number of Parameters
+    \item $m$: Number of Samples
+\end{itemize}
+
+\section{Naming}
+\begin{itemize}
+    \item HDP: High Dimensional Probability
+    \item NTK: Neural Tangent Kernel
+    \item MLP: Multi-Layer Perceptron, \aka Fully Connected (FC) Neural Network
+    \item ResNet: Residual Neural Network, MLP with skip connections
+\end{itemize}
+
+\section{Convergence and Generalization of Wide Neural Network}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{0.1\textwidth}|p{0.6\textwidth}|p{0.3\textwidth}|}
+\hline
+Paper & Key Result & Condition Setup \\
+\hline
+\cite{Allen-Zhu}        & Convergence in Polynomial Time with Polynomial Size of Data & Two or Three Layer MLP with SGD \\
+\hline
+\cite{Bietti}& ReLU networks is not Lipschitz but holds weaker H\"{o}lder smoothness           & CNN or MLP with ReLU activation \\
+\hline
+% \cite{Cao}& Generalization Bound of wide and deep Network derived with NTK &  \\
+% \hline
+\cite{Nitanda}        & Tighter and less conditioned bound. & 2 layer MLP under less over-parameterized condition, ReLU, SGD \\
+\hline
+\cite{Arora2019}        & Analyze CNN with NTK and an algorithm designed for CNN inspired by NTK. & MLP, CNN, ReLU, SGD \\
+\hline
+\end{tabular}
+\end{table}
+
+\section{Convergence and Generalization of Deep Neural Network}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{0.1\textwidth}|p{0.6\textwidth}|p{0.3\textwidth}|}
+\hline
+Paper & Key Result & Condition Setup \\
+\hline
+\cite{Hayoua,Hayou,Littwin2020,Huang2020}        & NTK does not work under finite width infinity depth NN architecture. However, NTK does work under ResNet architecture. Initialization matters more for deep network. & MLP, ResNet, ReLU, SGD \\
+\hline
+\cite{Huang}        & An ordinary differential equations point of view & CNN, ReLU, SGD \\
+\hline
+\cite{Lee}        &  & MLP, CNN, ReLU, SGD \\
+\hline
+\end{tabular}
+\end{table}
+
+\section{Convergence and Generalization of Wide Deep Neural Network}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{0.1\textwidth}|p{0.6\textwidth}|p{0.3\textwidth}|}
+\hline
+Paper & Key Result & Condition Setup \\
+\hline
+\cite{Adlam}        & Triple Descent Phenomenon & Single Layer MLP, $p_1 \ll m \ll p_2 \ll m^2 \ll p_3$ \\
+\hline
+\cite{Hanin2020,Cao}        & When both depth and width are finite, the convergence and generalization is determined by the ratio of $p/m$ &  \\
+\hline
+\end{tabular}
+\end{table}
+
+\section{Spectral Analysis of NTK}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{0.1\textwidth}|p{0.6\textwidth}|p{0.3\textwidth}|}
+\hline
+Paper & Key Result & Condition Setup \\
+\hline
+\cite{Belfer}        & The Spectrum of ResNTK shows stable frequencies while FC-NTK has spike frequencies & The eigenfunctions of ResNTK are (scaled) spherical harmonics and that its eigenvalues decay with frequency $k$ at the rate of $k^{-p}$. \\
+\hline
+\cite{Bordelon}            & NTK fail to learn high spectral modes unless the sample size $p$ is sufficiently large  &\\
+\hline
+\cite{Karp}        & NTK fail to filter out high frequency noise and thus fail to reconstruct the signal, while CNN shows robust performance under such a case. & MLP, CNN, ReLU, SGD \\
+\hline
+\cite{Tancik2020,Yang2022}        & RFF, NTK and Neural Value Approximation & one line code to help RFF and NTK capture high frequency feature \\
+\hline
+\cite{Karakida2020}        & FIM, eigenspace, etc &  \\
+\hline
+\end{tabular}
+\end{table}
+
+A common agreement is that the NTK fail to capture high frequency feature at the initial setup.
+
+\section{Researches inspired by NTK}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{0.1\textwidth}|p{0.6\textwidth}|p{0.3\textwidth}|}
+\hline
+Paper & Key Result & Condition Setup \\
+\hline
+\cite{Cai,Jacot2020b}        & A second order optimization method to train NN inspired by NTK &  \\
+\hline
+\cite{Damian}            & In the transfer learning setup, the model convergence does not depends on input dimension but the feature dimension.  &\\
+\hline
+\cite{Deng}            & Using NTK analyzes the generalization bound of robust optimization &\\
+\hline
+\cite{Lisicki,Zhou,Kassraie2022,Jia2022}        & NTK enables Gaussian Process and Bayesian Inference in designing Neural Network based bandit algorithm. & contextual bandit algorithm, reinforcement learning \\
+\hline
+\cite{Long}        & How the intermediate parameter looks like after train the Neural Network with NTK. &  \\
+\hline
+\cite{Lou}        & Explains the feature representation capability with NTK. & MLP, ReLU, SGD \\
+\hline
+\cite{Tirer}        & Explain the superior performance of ResNet over MLP by analyzing NTK. & MLP, ResNet, ReLU, SGD \\
+\hline
+\cite{Wei}        & NTK under $L_2$ regularizer. & MLP, ReLU, SGD \\
+\hline
+\cite{Wu}        & NTK for Domain Adaptation. & \\
+\hline
+\cite{Goumiri2020}        & Reinforcement with NTK and Gaussian Process & \\
+\hline
+\cite{Chen2021a,Geifman2020}        & NTK is similar to the Laplace Kernel &  \\
+\hline
+\end{tabular}
+\end{table}
+
+\section{Other Kernel}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{0.1\textwidth}|p{0.6\textwidth}|p{0.3\textwidth}|}
+\hline
+Paper & Key Result & Condition Setup \\
+\hline
+\cite{Han}        & A new type of random features as a kernel function &  \\
+\hline
+\cite{Shankar}            & Composition Kernel  &\\
+\hline
+\cite{Woodruff}        & Another sampling based kernel function &  \\
+\hline
+\end{tabular}
+\end{table}
+
+\section{Proofs of NTK}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{0.1\textwidth}|p{0.6\textwidth}|p{0.3\textwidth}|}
+\hline
+Paper & Key Result & Condition Setup \\
+\hline
+\cite{Jacot2020}        & The first proof, a function space perspective &  \\
+\hline
+\cite{Simon}            & Reverse Proof of NTK &\\
+\hline
+\cite{Lee2020}        & Parameter Space Perspective &  \\
+\hline
+\cite{Xu}        & Random Kernel Function converges to NTK in expectation with high Probability. & MLP, ReLU, SGD \\
+\hline
+\cite{Chizat2020,Geiger2020,Ghorbani}        & Under infinity width architecture, NN's parameters almost remaining unchanging during training. This is called lazy training. &  \\
+\hline
+\end{tabular}
+\end{table}
+
+\clearpage
+\printbibliography
+\end{document}
