@@ -1,0 +1,47 @@
+\documentclass{article}
+\usepackage[
+    letterpaper,
+    top=1in,
+    bottom=1in,
+    inner=0.75in,
+    outer=0.75in,
+    % margin=1in,
+]{geometry}
+
+%%%% Page Header and Foot %%%%
+\usepackage{fancyhdr}
+\fancypagestyle{plain}{
+\fancyhf{}
+\fancyhead[L]{266:711:685}
+\fancyhead[C]{\textbf{Convex Analysis and Optimization}}
+\fancyhead[R]{Rutgers University}
+\fancyfoot[L]{}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{}
+}
+\pagestyle{plain}
+
+%%%% Load Format %%%%
+\input{../Formats/Format.tex}
+\input{../Formats/Macro.tex}
+\allowdisplaybreaks
+
+%%%% Theorem Style %%%%
+\declaretheorem[numbered=no, style=plain]{axiom, lemma}
+\declaretheorem[numberwithin=section,style=definition]{definition}
+\declaretheorem[sibling=definition]{theorem, corollary, proposition, conjecture}
+\declaretheorem[numbered=no,style=remark]{remark, claim}
+
+%%%% Document Information %%%%
+\title{Homework 1}
+\author{Kailong Wang}
+\date{\today}
+
+%%%% Start Document %%%%
+\begin{document}
+\maketitle
+% \tableofcontents
+
+
+
+\end{document}
