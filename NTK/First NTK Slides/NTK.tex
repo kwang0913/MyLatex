@@ -1,6 +1,6 @@
-\documentclass[10pt]{../../formats/RU}
-\input{../../Formats/Macro.tex}
-\graphicspath{{../../Formats/}}
+\documentclass[10pt]{../Formats/RU}
+\input{../Formats/Macro.tex}
+\graphicspath{{../Formats}}
 
 %Theorem style
 \declaretheorem[numbered=no, style=definition]{axiom}
@@ -32,7 +32,7 @@
 }
 
 %Bib Resource
-\addbibresource{../../Markdown/Paper/My Library.bib}
+\addbibresource{../../../Markdown/Paper/My Library.bib}
 
 %Document begins
 \begin{document}
@@ -41,8 +41,8 @@
 \begin{frame}
     \frametitle{On the equivalence of Neural Network and Kernel Machine}
     \begin{itemize}
-        \item On the equivalence at initialization---Infinity width Multi-Layer Perceptron (MLP) initialize with Gaussian weights and biases is equivalent to a Gaussian Process.\footcite{Lee2018}
-        \item On the equivalence at training---Infinity width MLP with ReLU activation under squared loss trained by gradient descent is equivalent to a Gaussian Process.\footcite{Jacot2020}
+        \item On the equivalence at initialization---Infinity width Multi-Layer Perceptron (MLP) initialize with Gaussian weights and biases is equivalent to a Gaussian Process.~\footcite{Lee2018}
+        \item On the equivalence at training---Infinity width MLP with ReLU activation under squared loss trained by gradient descent is equivalent to a Gaussian Process.~\footcite{Jacot2020}
         \item On the equivalence at training---Infinite width MLP with ReLU activation under soft margin loss trained by subgradient descent is equivalent to a support vector machine.~\footcite{Chen2021}
     \end{itemize}
 \end{frame}

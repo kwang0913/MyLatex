@@ -22,8 +22,8 @@
 \pagestyle{plain}
 
 %%%% Load Format %%%%
-\input{../Formats/Format.tex}
-\input{../Formats/Macro.tex}
+\input{Formats/Format.tex}
+\input{Formats/Macro.tex}
 \allowdisplaybreaks
 
 %%%% Theorem Style %%%%
@@ -41,7 +41,93 @@
 \begin{document}
 \maketitle
 % \tableofcontents
+\begin{problem}
+    {Q1: Affine images and preimages of convex sets.}
+    Let $A\in \R^{m\times n}, b\in\R^m, C\subset\R^n, D\subset\R^m$ be convex sets. Show that following sets are convex.
+    \begin{enumerate}[(a)]
+        \item The image of $C$ under the affine map $x\mapsto Ax+b$. That is {
+            \[
+                \{Ax+b\mid x\in C\}\subset\R^m.
+            \]
+        }
+        \item The preimage of $D$ under the affine map $x\mapsto Ax+b$. That is {
+            \[
+                \{x\mid Ax+b\in D\}\subset\R^n.
+            \]
+        }
+    \end{enumerate}
+\end{problem}
 
+\begin{solution}
+    {Solution}
+    \begin{enumerate}[(a)]
+        \item  {
+            \begin{proof}
+                Let $x_1,x_2\in C$ and $\lambda\in[0,1]$, then we have {
+                \begin{align*}
+                    \lambda(Ax_1+b)+(1-\lambda)(Ax_2+b) &= A(\lambda x_1+(1-\lambda)x_2)+b\\
+                    &\in A(C)+b.
+                \end{align*}
+                }
+            Thus, the image of $C$, $A(C)+b$ is convex.
+            \end{proof}
+        }
+        \item {
+            \begin{proof}
+                Let $y_1,y_2\in A^{-1}(D-b)$ so that $Ay_1+b\in D, Ay_2+b\in D$ and $\lambda\in[0,1]$, then we have {
+                \begin{align*}
+                    A(\lambda y_1+(1-\lambda)y_2)+b &= \lambda(Ay_1+b)+(1-\lambda)(Ay_2+b)\\
+                    &\in \lambda D+(1-\lambda)D\\
+                    &= D.
+                \end{align*}
+            }
+            Thus, The preimages of $D$, $A^{-1}(D-b)$ is convex.
+            \end{proof}
+        }
+    \end{enumerate}
+\end{solution}
 
+\begin{problem}
+    {Q2: Affine functions.}
+    Suppose that $f:\R^n\rightarrow\R\backslash\{-\infty,\infty\}$ always obey the convex function relation at equality, that is,
+    \begin{equation}
+        \label{eq:convex}
+        f(\lambda x+(1-\lambda)y) \leq \lambda f(x)+(1-\lambda)f(y),\quad \forall x,y\in\R^n,\lambda\in[0,1].
+    \end{equation}
+    Show that
+    \begin{enumerate}[(a)]
+        \item If \cref{eq:convex} holds as stated for all $\lambda\in[0,1]$, it in fact holds for all $\lambda\in\R$.
+        \item Any $f$ for which \cref{eq:convex} holds must be of the form $f(x)=\angles*{a,x}+b$ for $\lambda\in\R^n,b\in\R$ (that is, $f$ is an inner product with some fixed vector plus a constant).
+        \item Any function of this form has the property \cref{eq:convex}.
+    \end{enumerate}
+    \textit{Hint:} given $f$ satisfying the condition above, show that $g:x\mapsto f(x)\rightarrow f(0)$ is linear. You may then use (without proof, although the proof is very easy) that a linear function $g: \R^n \rightarrow \R$ must be of the form $x \mapsto \angles*{a,x}$ for some $a \in \R^n$.
+\end{problem}
+
+\begin{solution}
+    {Solution}
+    \begin{proof}
+        \begin{enumerate}[(a)]
+            \item Let $\lambda\in\R$, then we have {
+                \begin{align*}
+                    f(\lambda x+(1-\lambda)y) &= f(\lambda x+(1-\lambda)y)\\
+                    &\leq \lambda f(x)+(1-\lambda)f(y)\\
+                    &= \lambda f(x)+(1-\lambda)f(y)\\
+                    &\leq \lambda f(x)+(1-\lambda)f(y).
+                \end{align*}
+            }
+            Thus, \cref{eq:convex} holds for all $\lambda\in\R$.
+            \item Let $x=0$, then we have $f(0)\leq \lambda f(x)+(1-\lambda)f(y)$, which implies $f(0)\leq (1-\lambda)f(y)$. Let $\lambda=0$, then we have $f(0)\leq f(y)$. Thus, $f(0)\leq f(y)$ for all $y\in\R^n$. Let $y=0$, then we have $f(x)\leq \lambda f(x)+(1-\lambda)f(0)$, which implies $(1-\lambda)f(0)\geq f(x)$. Let $\lambda=0$, then we have $f(0)\geq f(x)$. Thus, $f(0)\geq f(x)$ for all $x\in\R^n$. Therefore, $f(0)=f(x)$ for all $x\in\R^n$. Let $y=0$, then we have $f(\lambda x)\leq \lambda f(x)+(1-\lambda)f(0)=\lambda f(x)+(1-\lambda)f(x)=f(x)$. Thus, $f(\lambda x)\leq f(x)$ for all $x\in\R^n$. Let $x=0$, then we have $f(\lambda x)\leq f(0)=f(x)$. Thus, $f(\lambda x)\leq f(x)$ for all $x\in\R^n$. Therefore, $f(\lambda x)=f(x)$ for all $x\in\R^n$. Thus, $f$ is a constant function. Let $f(x)=b$, then we have $f(x)=\angles*{0,x}+b$. Thus, $f(x)=\angles*{a,x}+b$ for $\lambda\in\R^n,b\in\R$.
+            \item Let $f(x)=\angles*{a,x}+b$ for $\lambda\in\R^n,b\in\R$, then we have {
+                \begin{align*}
+                    f(\lambda x+(1-\lambda)y) &= \angles*{a,\lambda x+(1-\lambda)y}+b\\
+                    &= \lambda\angles*{a,x}+(1-\lambda)\angles*{a,y}+b\\
+                    &= \lambda(\angles*{a,x}+b)+(1-\lambda)(\angles*{a,y}+b)\\
+                    &= \lambda f(x)+(1-\lambda)f(y).
+                \end{align*}
+            }
+            Thus, $f$ has the property \cref{eq:convex}.
+        \end{enumerate}
+    \end{proof}
+\end{solution}
 
 \end{document}

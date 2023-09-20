@@ -1,6 +1,6 @@
-\documentclass[10pt]{../../formats/RU}
-\input{../../Formats/Macro.tex}
-\graphicspath{{../../Formats/}}
+\documentclass[10pt]{../Formats/RU}
+\input{../Formats/Macro.tex}
+\graphicspath{{../Formats}}
 
 %Theorem style
 \declaretheorem[numbered=no, style=definition]{axiom}
@@ -30,7 +30,7 @@
   % ECE 539 HDP,
   \today}
 
- \addbibresource{bib.bib}
+\addbibresource{bib.bib}
 
 
 \begin{document}
@@ -59,7 +59,7 @@
 %---------------------------------------------------------
 \begin{frame}
   \frametitle{Lifting}
-  One idea is \textbf{LIFTING} the samples into a high dimensional space in which the samples are linearly separable.
+  One idea is \textbf{LIFTING} samples into a high dimensional space in which the samples are linearly separable.
   \begin{figure}
     \includegraphics[height=0.45\textheight]{./figs/3d_poly_circle.eps}%
   \end{figure}
@@ -154,7 +154,7 @@ As shown in the given example, the inner product (a constant value) of the lifte
 \section{Random Fourier Features (RFF)}
 %---------------------------------------------------------
 \begin{frame}
-\frametitle{Some Prerequisites}
+\frametitle{Some Preliminaries}
 \begin{block}{Definition: Shift Invariant Kernel (Radial Basis Function (RBF))}
   A kernel function $K(\vec{x}_n, \vec{x}_m)$ is called \textbf{shift invariant} if it can be written as $K(\vec{x}_n, \vec{x}_m) = k(\vec{x}_n-\vec{x}_m)$ for some function $k(\cdot)$
 
