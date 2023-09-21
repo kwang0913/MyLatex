@@ -96,7 +96,7 @@
     \end{equation}
     Show that
     \begin{enumerate}[(a)]
-        \item If \cref{eq:convex} holds as stated for all $\lambda\in[0,1]$, it in fact holds for all $\lambda\in\R$.
+        \item If \cref{eq:convex} holds as stated for all $\lambda\in[0,1]$, it in fact holds for all $\lambda\in\R$.\label{item:convex}
         \item Any $f$ for which \cref{eq:convex} holds must be of the form $f(x)=\angles*{a,x}+b$ for $\lambda\in\R^n,b\in\R$ (that is, $f$ is an inner product with some fixed vector plus a constant).
         \item Any function of this form has the property \cref{eq:convex}.
     \end{enumerate}
@@ -105,29 +105,167 @@
 
 \begin{solution}
     {Solution}
-    \begin{proof}
-        \begin{enumerate}[(a)]
-            \item Let $\lambda\in\R$, then we have {
+    \begin{enumerate}[(a)]
+        \item {
+            \begin{proof}
+                To extend \cref{eq:convex} to $\lambda\in\R^n$, we need to show that \cref{eq:convex} holds for $\lambda\in(-\infty,0)\cup(1,\infty)$.
+
+                First, let $x,y\in\R^n$, and for $\lambda\in(-1,0)$ let $\alpha=-\lambda\in(0,1)$. Then we have
+                \[
+                    f(\alpha x+(1-\alpha)y) \leq \alpha f(x)+(1-\alpha)f(y),
+                \]
+                which shows convexity for $\lambda\in(-1,0)$.
+                Similarly, for $\lambda\in(1,\infty)$ let $\alpha=\frac{1}{\lambda}\in(0,1)$, and for $\lambda\in(-\infty,-1)$ let $\alpha=-\frac{1}{\lambda}\in(0,1)$, we can prove \cref{item:convex} holds for $\lambda\in(1,\infty)$ and $\lambda\in(-\infty,-1)$ respectively.
+            \end{proof}
+        }
+        \item {
+            \begin{proof}
+                Let's define $g:\R^n\rightarrow\R$ as $g(x)=f(x)-f(0)$, then we have $g(0)=f(0)-f(0)=0$. For any $x,y\in\R^n$ and $\lambda\in\R$ (as proved above), we have
                 \begin{align*}
-                    f(\lambda x+(1-\lambda)y) &= f(\lambda x+(1-\lambda)y)\\
-                    &\leq \lambda f(x)+(1-\lambda)f(y)\\
-                    &= \lambda f(x)+(1-\lambda)f(y)\\
-                    &\leq \lambda f(x)+(1-\lambda)f(y).
+                    g(\lambda x+(1-\lambda)y) &= f(\lambda x+(1-\lambda)y)-f(0)\\
+                    &\leq \lambda f(x)+(1-\lambda)f(y)-f(0)\\
+                    &= \lambda(f(x)-f(0))+(1-\lambda)(f(y)-f(0))\\
+                    &= \lambda g(x)+(1-\lambda)g(y).
                 \end{align*}
-            }
-            Thus, \cref{eq:convex} holds for all $\lambda\in\R$.
-            \item Let $x=0$, then we have $f(0)\leq \lambda f(x)+(1-\lambda)f(y)$, which implies $f(0)\leq (1-\lambda)f(y)$. Let $\lambda=0$, then we have $f(0)\leq f(y)$. Thus, $f(0)\leq f(y)$ for all $y\in\R^n$. Let $y=0$, then we have $f(x)\leq \lambda f(x)+(1-\lambda)f(0)$, which implies $(1-\lambda)f(0)\geq f(x)$. Let $\lambda=0$, then we have $f(0)\geq f(x)$. Thus, $f(0)\geq f(x)$ for all $x\in\R^n$. Therefore, $f(0)=f(x)$ for all $x\in\R^n$. Let $y=0$, then we have $f(\lambda x)\leq \lambda f(x)+(1-\lambda)f(0)=\lambda f(x)+(1-\lambda)f(x)=f(x)$. Thus, $f(\lambda x)\leq f(x)$ for all $x\in\R^n$. Let $x=0$, then we have $f(\lambda x)\leq f(0)=f(x)$. Thus, $f(\lambda x)\leq f(x)$ for all $x\in\R^n$. Therefore, $f(\lambda x)=f(x)$ for all $x\in\R^n$. Thus, $f$ is a constant function. Let $f(x)=b$, then we have $f(x)=\angles*{0,x}+b$. Thus, $f(x)=\angles*{a,x}+b$ for $\lambda\in\R^n,b\in\R$.
-            \item Let $f(x)=\angles*{a,x}+b$ for $\lambda\in\R^n,b\in\R$, then we have {
+                This shows $g$ is a linear function. From the hint, we can represent $g$ as $g(x)=\angles*{a,x}$ for some $a\in\R^n$. Thus, $f(x)=\angles*{a,x}+b$ where $b=f(0)$.
+            \end{proof}
+        }
+        \item {
+            \begin{proof}
+                If $f(x)=\angles*{a,x}+b$, then for any $x,y\in\R^n$ and $\lambda\in[0,1]$
                 \begin{align*}
                     f(\lambda x+(1-\lambda)y) &= \angles*{a,\lambda x+(1-\lambda)y}+b\\
                     &= \lambda\angles*{a,x}+(1-\lambda)\angles*{a,y}+b\\
                     &= \lambda(\angles*{a,x}+b)+(1-\lambda)(\angles*{a,y}+b)\\
-                    &= \lambda f(x)+(1-\lambda)f(y).
+                    &\leq \lambda f(x)+(1-\lambda)f(y).
                 \end{align*}
-            }
-            Thus, $f$ has the property \cref{eq:convex}.
-        \end{enumerate}
-    \end{proof}
+            \end{proof}
+        }
+    \end{enumerate}
+\end{solution}
+
+\begin{problem}
+    {Q3: Convex hulls.}
+    Show that for any set $X\subseteq\R^n$, the convex hull $conv(X)$ of $X$ (the intersection of all convex sets containing $X$) is equal to the set of all convex combinations of points in $X$.
+
+    \textit{Hint:} Define $Y$ to be the set of all convex combinations of points from $X$, that is,
+    \[
+        Y=\braces*{\sum_{i=1}^m\lambda_ix_i\mid m\geq1, \lambda_i>0,\sum_{i=1}^m\lambda_i=1},
+    \]
+    and then prove that both $Y\subseteq conv(X)$ (which may be accomplished by showing that it is convex and contains $X$), and $conv(X)\subseteq Y$ (which may be accomplished by showing that every convex set containing $X$ also contains $Y$).
+\end{problem}
+
+\begin{solution}
+    {Solution}
+    \begin{enumerate}
+        \item $Y\subseteq conv(X)$ {
+            \begin{proof}
+                Let $y_1, y_2\in Y$. By definition of $Y$,
+                \begin{align*}
+                    y_1 &= \sum_{i=1}^{m_1}\alpha_ix_i, \qquad \sum_{i=1}^{m_1}\alpha_i=1,\\
+                    y_2 &= \sum_{j=1}^{m_2}\beta_jx_j, \qquad \sum_{j=1}^{m_2}\beta_j=1.
+                \end{align*}
+                For any $\lambda\in[0,1]$, consider the point $y=\lambda y_1+(1-\lambda)y_2$. Then
+                \begin{align*}
+                    y&=\lambda\sum_{i=1}^{m_1}\alpha_ix_i+(1-\lambda)\sum_{j=1}^{m_2}\beta_jx_j\\
+                    &=\sum_{i=1}^{m_1}(\lambda\alpha_i)x_i+\sum_{j=1}^{m_2}((1-\lambda)\beta_j)x_j\\
+                    \text{where}\\
+                    &\sum_{i=1}^{m_1}\lambda\alpha_i+\sum_{j=1}^{m_2}(1-\lambda)\beta_j\\
+                    &=\lambda\sum_{i=1}^{m_1}\alpha_i+(1-\lambda)\sum_{j=1}^{m_2}\beta_j\\
+                    &=\lambda+(1-\lambda)\\
+                    &=1.
+                \end{align*}
+                Clearly, $y\in Y$, which shows $Y$ is convex. Also, every point $x_i\in X$ is in $Y$ with $\lambda_i=1$, which shows $X\subseteq Y$. Since $Y$ is convex and contains $X$, then it must contain $conv(X)$ as $conv(X)$ is the intersection of all convex sets containing $X$.
+            \end{proof}
+        }
+        \item $conv(X)\subseteq Y$ {
+            \begin{proof}
+                Let $Z$ be any convex set containing $X$. We want to show that $Z$ also contains $Y$. Take any $y\in Y$, since $Z$ is convex and contains $X$, $Z$ must contain $y$, the convex combination of points in $X$. Thus, $Z$ contains $Y$. Since arbitrary $Z$ contains $Y$, $conv(X)$ must contain $Y$ as $conv(X)$ is the intersection of all convex sets containing $X$. Therefore, $conv(X)\subseteq Y$.
+            \end{proof}
+        }
+    \end{enumerate}
+\end{solution}
+
+\begin{problem}
+    {Q4: Affine sets and hulls.}
+    The scalars $\lambda_i$ in this problem may take negative values.
+    \begin{enumerate}[(a)]
+        \item The textbook defines a set $X\subseteq\R^n$ as being affine if it is of the form $S+x=\braces*{s+x\mid s\in S}$ for some $x\in\R^n$ and linear subspace $S$ of $\R^n$. Show that $X$ is affine according to this definition if and only if $X$ is
+        \begin{equation*}
+            \begin{rcases}
+                & x_1, x_2, \ldots, x_m \in X \\
+                & \lambda_1, \lambda_2, \ldots, \lambda_m \in \R \\
+                & \sum_{i=1}^m \lambda_i = 1
+            \end{rcases}
+            \Rightarrow \sum_{i=1}^{m}\lambda_i x_i\in X
+        \end{equation*}
+        \textit{Hint:} For the ``if'', take any $x\in X$ and show that the set $S=X-x=\braces*{x'-x\mid x'\in X}$ is a linear subspace of $\R^n$.
+        \item In the text, the \textit{affine hull} $aff(Y)$ of a set $Y$ is defined to be the intersection of all affine sets containing $Y$. Show that
+        \[
+            aff(Y)=\braces*{\sum_{i=1}^m\lambda_iy_i\mid m\geq1, \lambda_i\in\R, \sum_{i=1}^m\lambda_i=1, y_i\in Y},
+        \]
+        that is, the affine hull of $Y$ is the set of all affine combinations of points in $Y$.
+    \end{enumerate}
+\end{problem}
+
+\begin{solution}
+    {Solution}
+    \begin{enumerate}[(a)]
+        \item {
+            \begin{itemize}
+                \item ``if'' {
+                    \begin{proof}
+                        Assume that the condition holds for $X$. We want to show that $X$ is affine by showing $S$ is a linear subspace of $\R^n$. Take any $x\in X$ and let $S=X-x$, we have
+                        \begin{enumerate}[(1)]
+                            \item $0\in S$ because $x'-x=0$ for $x'=x$ and $x'\in X$.
+                            \item For $s_1, s_2,\ldots,s_m\in S$, $\sum_{i=1}^{m}\lambda_i s_i=\sum_{i=1}^{m}\lambda_i(x_i-x)=(\sum_{i=1}^{m}\lambda_i x_i)-x\in S$ for $\sum_{i=1}^{m}\lambda_i=1$.
+                            \item For any $s\in S$ and any scalar $\lambda$, $\lambda s=\lambda(x'-x)=[\lambda(x')+(1-\lambda)x]-x\in S$.
+                        \end{enumerate}
+                        Thus, $S$ is a linear subspace of $\R^n$, which shows $X$ is affine.
+                    \end{proof}
+                }
+                \item ``only if'' {
+                    \begin{proof}
+                        Suppose $X$ is affine as $X=S+x$ for some $x\in\R^n$ and some linear subspace $S$ of $\R^n$, we want to show that when the conditions hold, $\sum_{i=1}^{m}\lambda_i x_i\in X$. Since $X=S+x$, for any point $x_i=s_i+x$, we have
+                        \[
+                            \sum_{i=1}^{m}\lambda_i x_i=\sum_{i=1}^{m}\lambda_i(s_i+x)=\sum_{i=1}^{m}\lambda_i s_i+\sum_{i=1}^{m}\lambda_i x=\sum_{i=1}^{m}\lambda_i s_i+x\in X.
+                        \]
+                    \end{proof}
+                }
+            \end{itemize}
+        }
+        \item The proof of this is similar to Q3 without condition $\sum_{i=1}^{m}\lambda_i=1$.
+    \end{enumerate}
+\end{solution}
+
+\begin{problem}
+    {Q5: Arithmetic-Geometric Mean Inequality.}
+    Show that if $\lambda_1, \lambda_2, \ldots, \lambda_m$ are positive scalars with $\sum_{i=1}^{m}\lambda_i=1$, then for every set of positive scalars $x_1, x_2, \ldots, x_m$, we have
+    \[
+        \prod_{i=1}^{m}x_i^{\lambda_i}\leq\sum_{i=1}^{m}\lambda_ix_i,
+    \]
+    with equality if and only if $x_1=x_2=\cdots=x_m$.
+
+    \textit{Hint:} Show that $-\ln x$ is a strictly convex function on $(0,\infty)$.
+\end{problem}
+
+\begin{solution}
+    {Solution}
+    Consider the function $f(x)=-\ln x$, then $f''(x)=\frac{1}{x^2}>0$ for $x>0$. Thus, $f(x)$ is strictly convex on $(0,\infty)$. By Jensen's inequality, we have {
+        \begin{align*}
+            -\ln\braces*{\sum_{i=1}^{m}\lambda_ix_i}
+            &= f\braces*{\sum_{i=1}^{m}\lambda_ix_i}\\
+            &\leq \sum_{i=1}^{m}\lambda_i f(x_i)\\
+            &= \sum_{i=1}^{m}\lambda_i(-\ln x_i)\\
+            &= -\ln\braces*{\prod_{i=1}^{m}x_i^{\lambda_i}} \\
+            \Rightarrow
+            e^{-\ln\braces*{\sum_{i=1}^{m}\lambda_ix_i}}
+            &\leq e^{-\ln\braces*{\prod_{i=1}^{m}x_i^{\lambda_i}}}\\
+            \Rightarrow
+            \sum_{i=1}^{m}\lambda_ix_i &\geq \prod_{i=1}^{m}x_i^{\lambda_i}.
+        \end{align*}
+    }
+    Since $f(x)$ is strictly convex, the equality holds if and only if $x_1=x_2=\cdots=x_m$.
 \end{solution}
 
 \end{document}
