@@ -253,14 +253,14 @@
     {Solution}
     Consider the function $f(x)=-\ln x$, then $f''(x)=\frac{1}{x^2}>0$ for $x>0$. Thus, $f(x)$ is strictly convex on $(0,\infty)$. By Jensen's inequality, we have {
         \begin{align*}
-            -\ln\braces*{\sum_{i=1}^{m}\lambda_ix_i}
-            &= f\braces*{\sum_{i=1}^{m}\lambda_ix_i}\\
+            -\ln\parens*{\sum_{i=1}^{m}\lambda_ix_i}
+            &= f\parens*{\sum_{i=1}^{m}\lambda_ix_i}\\
             &\leq \sum_{i=1}^{m}\lambda_i f(x_i)\\
             &= \sum_{i=1}^{m}\lambda_i(-\ln x_i)\\
-            &= -\ln\braces*{\prod_{i=1}^{m}x_i^{\lambda_i}} \\
+            &= -\ln\parens*{\prod_{i=1}^{m}x_i^{\lambda_i}} \\
             \Rightarrow
-            e^{-\ln\braces*{\sum_{i=1}^{m}\lambda_ix_i}}
-            &\leq e^{-\ln\braces*{\prod_{i=1}^{m}x_i^{\lambda_i}}}\\
+            \exp\braces*{-\ln\parens*{\sum_{i=1}^{m}\lambda_ix_i}}
+            &\leq \exp\braces*{-\ln\parens*{\prod_{i=1}^{m}x_i^{\lambda_i}}}\\
             \Rightarrow
             \sum_{i=1}^{m}\lambda_ix_i &\geq \prod_{i=1}^{m}x_i^{\lambda_i}.
         \end{align*}
