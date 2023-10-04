@@ -47,18 +47,93 @@
     \[
         g_d(\alpha) = \frac{f(x+\alpha d)-f(x)}{\alpha}
     \]
-    is nondecreasing.
+    is non-decreasing.
 \end{problem}
 
+\begin{solution}
+    {Solution}
+    Since $f$ is convex, we have
+    \begin{align}
+        f(\lambda x + (1-\lambda)y) \leq \lambda f(x) + (1-\lambda)f(y). \quad \forall x, y \in \R^n, \lambda \in [0, 1] \label{eq:convex}
+    \end{align}
+    To show that $g_d(\alpha)$ is non-decreasing, we need to show
+    \[\alpha_1 \leq \alpha_2 \Rightarrow g_d(\alpha_1) \leq g_d(\alpha_2). \quad \forall \alpha_1, \alpha_2 \in (0, \infty)\]
+    Let $\lambda=\frac{\alpha_1}{\alpha_2}\in[0,1]$ (because $\alpha_1 \leq \alpha_2$), then
+    \begin{align*}
+        f(x+\alpha_1d) = f(\frac{\alpha_1}{\alpha_2}(x+\alpha_2d) + (1-\frac{\alpha_1}{\alpha_2})x)
+        &\leq \frac{\alpha_1}{\alpha_2}f(x+\alpha_2d) + (1-\frac{\alpha_1}{\alpha_2})f(x) &&\text{by \cref{eq:convex}}\\
+        \Rightarrow \alpha_2f(x+\alpha_1d)
+        &\leq \alpha_1f(x+\alpha_2d) + (\alpha_2-\alpha_1)f(x) &&\text{multiply $\alpha_2$ on both sides}\\
+        \Rightarrow \alpha_2f(x+\alpha_1d) - \alpha_2f(x)
+        &\leq \alpha_1f(x+\alpha_2d) - \alpha_1f(x) &&\text{subtract $\alpha_2f(x)$ on both sides}\\
+        \Rightarrow \frac{f(x+\alpha_1d)-f(x)}{\alpha_1}
+        &\leq \frac{f(x+\alpha_2d)-f(x)}{\alpha_2} &&\text{some algebra}\\
+        \Rightarrow g_d(\alpha_1) &\leq g_d(\alpha_2).
+    \end{align*}
+    Therefore, $g_d(\alpha)$ is non-decreasing.
+\end{solution}
+
 \begin{problem}
-    {Q2: Nonconvex Projections (similar to exercise $2.11$ in the text).}
-    Let $C\subset\R^n$ be a nonempty closed set (but possibly not convex), and consider any point $x\in\R^n$.
+    {Q2: Non-convex Projections (similar to exercise $2.11$ in the text).}
+    Let $C\subset\R^n$ be a non-empty closed set (but possibly not convex), and consider any point $x\in\R^n$.
     \begin{enumerate}[(a)]
         \item Show that the function $g(w)\dot{=}\norm{w-x}$ must have a nonempty, compact set of minima over $C$. Denote this set by $P_C(x)$.
         \item Show that $\dist_C(x)\dot{=}\inf_{w\in C}\norm{w-x}$ is an everywhere finite-valued and continuous function of $x\in\R^n$. (If you like, you can show that it is Lipschitz continuous with modulus $1$, which implies continuity.)
         \item Give an example showing that if $C$ is not convex, $\dist_C$ need not be convex.
     \end{enumerate}
 \end{problem}
+
+\begin{solution}
+    {Solution}
+    \begin{enumerate}[(a)]
+        \item {
+            \begin{proof}
+            To show that the function $g(w)=\norm{w-x}$ must have a nonempty, compact set of minima over the closed set $C$, we can use the fact that $C$ is nonempty and closed.
+            \begin{enumerate}[(i)]
+                \item If $x\in C$, then {
+                    \begin{align*}
+                        \min_{w\in C} g(w)
+                        & =\norm{w-x} \\
+                        &=0. \qquad \forall w=x\in C
+                    \end{align*}
+                }
+                Therefore, $P_C(x)=\set{x}$, which is nonempty and compact.
+                \item If $x\notin C$, then $g(w)=\norm{w-x}>0$ for all $w\in C$. We can then prove by contradiction. Assume that $g(w)=\norm{w-x}$ does not have any minimum points within $C$. This means that for any point $w\in C$, there exists a sequence of points $\set{w_n}$ such that
+                \[g(w_n)\leq g(w)\]
+                for all $n$ (\ie $w_n$ gets arbitrary close to $x$). Since $C$ is closed, the limit of this sequence, denoted as \[w^*=\lim_{n\rightarrow\infty}w_n,\] must also be in $C$ because the limit of a sequence in a closed set belongs to that set. Moreover, since $g(w)$ is continuous, we have \[\lim_{n\rightarrow\infty}g(w_n) = g(w^*).\]
+                But this would imply that $g(w^*)=0$ (because $g(w_n)$ gets arbitrary close to $0$), which means $w^*=x$. However, since $x\notin C$, we have a contradiction. Therefore, $g(w)$ must have a nonempty, compact set of minima over $C$ (at least one minimum point).
+            \end{enumerate}
+        \end{proof}
+        }
+        \item {
+            \begin{proof}
+                We show $\dist_C(x)$ is everywhere finiteness and continuous as follows:
+                \begin{enumerate}[(i)]
+                    \item \textbf{Finiteness:} For any $x\in \R^n$, we have $\norm{w-x}\geq 0$ for all $w\in C$ since the norm is always non-negative. Given that $C$ is nonempty and closed, there exists some $w'\in C$, for any $x\in \R^n$, such that $\norm{w'-x}\geq 0$. And because $g(w)$ is nonempty and compact, the $\norm{w'-x}$ is finite. Since the infimum of a set of finite non-negative value is also finite non-negative, $\dist_C(x)$ must also be finite non-negative.
+                    \item \textbf{Continuity:} Given two points $x, y\in \R^n$, let $w^*$ be the point in $C$ that achieves the infimum for $x$ (\ie $\norm{w^*-x}=\dist_C(x)$). Then
+                    \begin{align*}
+                        \dist_C(y)
+                        &\leq \norm{w^* - y} \\
+                        &= \norm{(w^* - x) + (x - y)} \\
+                        &\leq \norm{w^* - x} + \norm{x - y} && \text{(by triangle inequality)} \\
+                        &= \dist_C(x) + \norm{x - y}
+                    \end{align*}
+                    By symmetry, we can also show that $\dist_C(x)\leq\dist_C(y)+\norm{x-y}$. Therefore, we have $|\dist_C(x)-\dist_C(y)|\leq \norm{x-y}$. This means that $\dist_C(x)$ is Lipschitz continuous with modulus $1$, which implies continuity.
+                \end{enumerate}
+            \end{proof}
+        }
+        \item Consider two disjoint closed balls in $\R^2$, {
+            \begin{align*}
+                B_1 &= \set{w \mid \norm{w-(0, 0)}\leq 1} \\
+                B_2 &= \set{w \mid \norm{w-(4, 0)}\leq 1}.
+            \end{align*}
+        } Let $C=B_1\cup B_2$. $C$ is not convex since the line segment between any point in $B_1$ and any point in $B_2$ is not entirely contained in $C$. Consider three points: $x_1=(0,0)$, $x_2=(4,0)$, and $x_{mid}=(2,0)$. Clearly, $\dist_C(x_1)=\dist_C(x_2)=0$, and $\dist_C(x_{mid})=1$. Since
+        \[
+            \dist_C(x_{mid}) = \dist_C(\frac{1}{2}x_1+\frac{1}{2}x_2) =1 \geq 0 =\frac{1}{2}\dist_C(x_1) + \frac{1}{2}\dist_C(x_2),
+        \]
+        $\dist_C(x)$ is not convex.
+    \end{enumerate}
+\end{solution}
 
 \begin{problem}
     {Q3}
@@ -69,15 +144,49 @@
             +\infty & \text{if } x\notin X
         \end{cases}
     \end{align*}
-    \begin{enumerate}
+    \begin{enumerate}[(a)]
         \item Show that if $X$ is a closed set, $\delta_X$ is a closed function.
         \item Show that if $X$ is a convex set, $\delta_X$ is a convex function.
     \end{enumerate}
 \end{problem}
 
+\begin{solution}
+    {Solution}
+    \begin{enumerate}[(a)]
+        \item {
+            \begin{proof}
+                To show that $\delta_X$ is a closed function, we need to show that the epigraph of $\delta_X$ is a closed set. The epigraph of $\delta_X$ is defined as
+                \[
+                    \epi(\delta_X) = \set{(x, \alpha) \mid \alpha \geq \delta_X(x)}.
+                \]
+                Since $X$ is a closed set, we have $\delta_X(x)=0$ for all $x\in X$ and $\delta_X(x)=+\infty$ for all $x\notin X$. Therefore, the epigraph of $\delta_X$ can be written as
+                \[
+                    \epi(\delta_X) = \set{(x, \alpha) \mid \alpha \geq 0, x\in X} \cup \set{(x, \alpha) \mid \alpha \geq +\infty, x\notin X}.
+                \]
+                The first set is the product of a closed set and a closed interval, which is closed. The second set is an empty set $\emptyset$. Therefore, $\epi(\delta_X)$ is a union of a closed set and an empty set, which is closed. This means that $\delta_X$ is a closed function.
+            \end{proof}
+        }
+        \item {
+            \begin{proof}
+                To show that $\delta_X$ is a convex function, we need to show that \[\delta_X(\lambda x_1+(1-\lambda)x_2)\leq\lambda\delta_X(x_1)+(1-\lambda)\delta_X(x_2) \quad \forall x_1, x_2\in \R^n, \lambda\in[0,1]\]
+                \begin{enumerate}[(i)]
+                    \item If $x_1, x_2\in X$, then $\delta_X(x_1)=\delta_X(x_2)=0$. Therefore, with $X$ is a convex set, we have \[\delta_X(\lambda x_1+(1-\lambda)x_2)=0\leq 0=\lambda\delta_X(x_1)+(1-\lambda)\delta_X(x_2).\]
+                    \item If either $x_1$ or $x_2$ (or both) is not in $X$, then the right side of the inequality becomes infinite. Therefore, the inequality holds trivially.
+                \end{enumerate}
+                This concludes that $\delta_X$ is a convex function.
+            \end{proof}
+        }
+    \end{enumerate}
+\end{solution}
+
 \begin{problem}
     {Q4}
     Suppose $K\subset\R^n$ is a nonempty closed convex cone and $y\notin K$. Using the separating hyperplane theorem, show that there exists a vector $a\in \R^n$ such that $\angles*{a,x}\leq 0$ for all $x\in K$ and $\angles*{a,y}>0$ (this is equivalent to showing that there is a hyperplane separating $y$ from $K$ that passes through the origin).
 \end{problem}
+
+\begin{solution}
+    {Solution}
+    Since $K$ is a nonempty closed convex cone and $y\notin K$, we have $K\cap\set{y}=\emptyset$. Therefore, by the separating hyperplane theorem, there exists a vector $a\in \R^n$ such that $\angles*{a,x}\leq 0$ for all $x\in K$ and $\angles*{a,y}>0$. This is equivalent to showing that there is a hyperplane separating $y$ from $K$ that passes through the origin. This concludes the proof.
+\end{solution}
 
 \end{document}
