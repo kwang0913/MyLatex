@@ -1,0 +1,226 @@
+\documentclass{article}
+\usepackage[
+    letterpaper,
+    top=1in,
+    bottom=1in,
+    inner=0.75in,
+    outer=0.75in,
+    % margin=1in,
+]{geometry}
+
+%%%% Page Header and Foot %%%%
+\usepackage{fancyhdr}
+\fancypagestyle{plain}{
+\fancyhf{}
+\fancyhead[L]{266:711:685}
+\fancyhead[C]{\textbf{Convex Analysis and Optimization}}
+\fancyhead[R]{Rutgers University}
+\fancyfoot[L]{}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{}
+}
+\pagestyle{plain}
+
+%%%% Load Format %%%%
+\input{Formats/Format.tex}
+\input{Formats/Macro.tex}
+\allowdisplaybreaks
+
+%%%% Theorem Style %%%%
+\declaretheorem[numbered=no, style=plain]{axiom, lemma}
+\declaretheorem[numberwithin=section,style=definition]{definition}
+\declaretheorem[sibling=definition]{theorem, corollary, proposition, conjecture}
+\declaretheorem[numbered=no,style=remark]{remark, claim}
+
+%%%% Document Information %%%%
+\title{Homework 3}
+\author{Kailong Wang}
+\date{\today}
+
+%%%% Start Document %%%%
+\begin{document}
+\maketitle
+
+\begin{problem}
+    {Q1: Polar Cone Operations. Problems 3.4(a) - (c)}
+    Show the following:
+    \begin{enumerate}[(a)]
+        \item For any nonempty cones $C_i\subset \R^{n_i}$, $i=1,2,\ldots,m$, we have \[\parens*{C_1 \times C_2 \times \cdots \times C_m}^*=C_1^*\times C_2^* \times \cdots \times C_m^*.\]
+        \item For any collection of nonempty cones $\set{C_i\mid i\in I}$, we have \[\parens*{\cup_{i\in I}C_i}^*=\cap_{i\in I}C_i^*.\]
+        \item For any two nonempty cones $C_1$ and $C_2$, we have \[\parens*{C_1+C_2}^*=C_1^*\cap C_2^*.\]
+    \end{enumerate}
+    Hint: to show $C^*=K$, the simplest general strategy is usually to show that $\angles{x,y}\leq 0$ for all $x\in C$ and $y\in K$, establishing $K\subseteq C^*$, and then show that if $z\notin K$, then there exists some $x\in C$ with $\angles{x,z}>0$, implying that $z\notin C^*$, and thus $C^*=K$ since $z\notin K$ was arbitrary.
+\end{problem}
+
+\begin{solution}
+    {Solution}
+    \begin{enumerate}[(a)]
+        \item {
+            \begin{proof}
+                Let $C=\parens*{C_1 \times C_2 \times \cdots \times C_m}^*$ and $C' = C_1^*\times C_2^* \times \cdots \times C_m^*$. We will show that $C=C'$ by showing that $C\subseteq C'$ and $C'\subseteq C$.
+                \begin{enumerate}[(i)]
+                    \item {
+                        Let $x\in C$. Then for all $y\in C_1\times C_2\times\cdots\times C_m$, we have $\angles{x,y}\leq 0$. Equivalently, that is $\sum_{i=1}^{m}x_i y_i\leq0$ where $y_i\in C_i$ for all $i\in\set{1,2,\ldots,m}$. Since $C_i$ are cones and $0$ belongs to their closure,  then $\angles{x_i,y_i}\leq 0$ for all $i\in\set{1,2,\ldots,m}$ by letting all $y_k\rightarrow 0$, $i\neq k$. Thus $x_i\in C_i^*$ for all $i\in\set{1,2,\ldots,m}$. Therefore, $x\in C'$ and then $C\subseteq C'$.
+                    }
+                    \item {
+                        Let $x\in C'$. Then $x=(x_1,x_2,\ldots,x_m)$ where $x_i\in C_i^*$ for all $i\in\set{1,2,\ldots,m}$. Let $y\in C_1\times C_2\times\cdots\times C_m$. Then $y=(y_1,y_2,\ldots,y_m)$ where $y_i\in C_i$ for all $i\in\set{1,2,\ldots,m}$. Then $\angles{x_i,y_i}\leq 0$ for all $i\in\set{1,2,\ldots,m}$. Thus $\angles{x,y}\leq 0$. Therefore, $x\in C$ and then $C'\subseteq C$.
+                    }
+                \end{enumerate}
+                % Therefore $C=C'$. Thus $C=\parens*{C_1 \times C_2 \times \cdots \times C_m}^*=C_1^*\times C_2^* \times \cdots \times C_m^*$.
+            \end{proof}
+        }
+        \item {
+            \begin{proof}
+                Let $C=\parens*{\cup_{i\in I}C_i}^*$ and $C'=\cap_{i\in I}C_i^*$. We will show that $C=C'$ by showing that $C\subseteq C'$ and $C'\subseteq C$.
+                \begin{enumerate}[(i)]
+                    \item {
+                        Let $x\in C$. Then for all $y\in \cup_{i\in I}C_i$, we have $\angles{x,y}\leq 0$. Equivalently, that is $\angles{x,y_i}\leq0$ where $y\in C_i$ for all $i\in I$. Thus, $x\in C_i^*$ for all $i\in I$. Therefore, $x\in C'$ and then $C\subseteq C'$.
+                    }
+                    \item {
+                        Let $x\in C'$. Then $x\in C_i^*$ for all $i\in I$. Let $y\in \cup_{i\in I}C_i$. Then $y_i\in C_i$ for $i\in I$. Then $\angles{x,y_i}\leq 0$. Thus $\angles{x,y}\leq 0$. Therefore, $x\in C$ and then $C'\subseteq C$.
+                    }
+                \end{enumerate}
+                % Therefore $C=C'$. Thus $C=\parens*{\cup_{i\in I}C_i}^*=\cap_{i\in I}C_i^*$.
+            \end{proof}
+        }
+        \item {
+            \begin{proof}
+                Let $C=\parens*{C_1+C_2}^*$ and $C'=C_1^*\cap C_2^*$. We will show that $C=C'$ by showing that $C\subseteq C'$ and $C'\subseteq C$.
+                \begin{enumerate}[(i)]
+                    \item {
+                        Let $x\in C$. Then for all $y\in C_1+C_2$, we have $\angles{x,y}\leq 0$. Equivalently, that is $\angles{x,y_1+y_2}\leq0$ where $y_1\in C_1$ and $y_2\in C_2$. Thus, $\angles{x,y_1}+\angles{x,y_2}\leq 0$. Since $C_1$ and $C_2$ are cones and $0$ belongs to their closure, following the same logic in (a), $\angles{x,y_1}\leq 0$ and $\angles{x,y_2}\leq 0$. Thus $x\in C_1^*$ and $x\in C_2^*$. Therefore, $x\in C'$ and then $C\subseteq C'$.
+                    }
+                    \item {
+                        Let $x\in C'$. Then $x\in C_1^*$ and $x\in C_2^*$. Let $y\in C_1+C_2$. Then $y=y_1+y_2$ where $y_1\in C_1$ and $y_2\in C_2$. Then $\angles{x,y_1}\leq 0$ and $\angles{x,y_2}\leq 0$. Thus $\angles{x,y_1+y_2}\leq 0$. Therefore, $\angles{x,y}\leq 0$. Therefore, $x\in C$ and then $C'\subseteq C$.
+                    }
+                \end{enumerate}
+                % Therefore $C=C'$. Thus $C=\parens*{C_1+C_2}^*=C_1^*\cap C_2^*$.
+            \end{proof}
+        }
+    \end{enumerate}
+    I didn't follow the hint. Please let me know my mistakes if this proof doesn't work. Thanks!
+\end{solution}
+
+\begin{problem}
+    {Q2: Cone Separation}
+    Suppose $K\in\R^n$ is a nonempty closed convex cone. Show that if $z\in \R^n$ and $z\notin K$, then there exists $a\in K^*$ with $\angles*{a,z}>0$.
+\end{problem}
+
+\begin{solution}
+    {Solution}
+    \begin{proof}
+        Using \textbf{Separating Hyperplane Theorem}, if $K$ is a nonempty closed convex cone and $z\notin K$, then by the theorem, there exists a hyperplane that can separate $z$ from $K$. This means there exists $a\neq 0$ such that $\angles*{a, x}\leq 0$ for all $x\in K$ and $\angles*{a, z}>0$. By definition of polar cone, $a\in K^*$. Thus, there exists $a\in K^*$ with $\angles*{a,z}>0$.
+    \end{proof}
+\end{solution}
+
+\begin{problem}
+    {Q3: Sums of Convex Cones}
+    Show that if $C_1, C_2\subseteq \R^n$ are convex cones, then $C_1+C_2$ is a convex cone.
+\end{problem}
+
+\begin{solution}
+    {Solution}
+    \begin{proof}
+    We will show that $C_1+C_2$ is a convex cone by showing that $C_1+C_2$ is a cone and $C_1+C_2$ is convex.
+    \begin{enumerate}[(a)]
+        \item Convexity. {
+                Let $x,y\in C_1+C_2$ and $\theta\in[0,1]$. Then $x=x_1+x_2$ and $y=y_1+y_2$ where $x_1,y_1\in C_1$ and $x_2,y_2\in C_2$. Then $\theta x+(1-\theta)y=\theta x_1+(1-\theta)y_1+\theta x_2+(1-\theta)y_2$. Since $C_1$ and $C_2$ are convex, $\theta x_1+(1-\theta)y_1\in C_1$ and $\theta x_2+(1-\theta)y_2\in C_2$, which implies $\theta x+(1-\theta)y\in C_1+C_2$. Therefore, $C_1+C_2$ is convex.
+        }
+        \item Coneness. {
+            % \begin{proof}
+                Let $x\in C_1+C_2$ and $\theta\geq 0$. Then $x=x_1+x_2$ where $x_1\in C_1$ and $x_2\in C_2$. Then $\theta x=\theta x_1+\theta x_2$. Since $C_1$ and $C_2$ are cones, $\theta x_1\in C_1$ and $\theta x_2\in C_2$, which implies $\theta x\in C_1+C_2$. Therefore, $C_1+C_2$ is a cone.
+            % \end{proof}
+        }
+    \end{enumerate}
+\end{proof}
+\end{solution}
+
+\begin{problem}
+    {Q4}
+    Show that if $C_1, C_2 \R^m$ are closed convex cones, then $\parens*{C_1\cap C_2}^*=\cl \parens*{C_1^*+C_2^*}$.
+
+    Note: this is the main result of problem 3.4(d).
+
+    Hint: to show that $z\notin\cl(C_1^*+C_2^*)$ implies $z\notin \parens*{C_1\cap C_2}^*$, use problem 2, problem 1(c), and the polar cone theorem.
+\end{problem}
+
+\begin{solution}
+    {Solution}
+    \begin{proof}
+        We need to show that $\cl \parens*{C_1^*+C_2^*} \subseteq \parens*{C_1\cap C_2}^*$ and $z\notin\cl(C_1^*+C_2^*)$ implies $z\notin \parens*{C_1\cap C_2}^*$.
+        \begin{enumerate}[(i)]
+            \item {
+                For any $y\in \cl(C_1^*+C_2^*)$, there exists $y_1\in C_1^*$ and $y_2\in C_2^*$ such that for any $\epsilon>0$, $\norm{y-(y_1+y_2)}<\epsilon$. Let $x\in C_1\cap C_2$, we have $\angles*{y, x}=\angles*{y_1+y_2, x}+\angles*{y-(y_1+y_2), x}$. Because $y_1$ is in the polar of $C_1$ and $y_2$ is in the polar of $C_2$, $\angles*{y_1, x}\leq 0$ and $\angles*{y_2, x}\leq 0$, which implies $\angles*{y_1+y_2, x}\leq 0$. Using Cauchy-Schwarz inequality, $\angles*{y-(y_1+y_2), x}\leq \norm{y-(y_1+y_2)}\norm{x}<\epsilon\norm{x}$. Since $\epsilon$ is arbitrary, $\angles*{y-(y_1+y_2), x}\leq 0$. Thus, $\angles*{y, x}\leq 0$. Therefore, $y\in \parens*{C_1\cap C_2}^*$ and then $\cl(C_1^*+C_2^*)\subseteq \parens*{C_1\cap C_2}^*$.
+            }
+            \item {
+                If $z\notin\cl(C_1^*+C_2^*)$, by the cone separation theorem, there exists an $x$ such that \[\angles{x,z}>0, \qquad \angles*{x,p}\leq 0\] for all $p\in \cl(C_1^*+C_2^*)$. The second condition implies that $x\in(\cl(C_1^*+C_2^*))^*=(C_1^*+C_2^*)^*=C_1^{**}\cap C_2^{**}=C_1\cap C_2$. Then the first condition implies, $z\in C_1\cap C_2$ which means $z\notin\cl(C_1\cap C_2)^*$.
+            }
+        \end{enumerate}
+        Thus we complete the proof.
+        % Therefore $C=C'$. Thus $C=\parens*{C_1\cap C_2}^*=\cl \parens*{C_1^*+C_2^*}$.
+    \end{proof}
+\end{solution}
+
+\begin{problem}
+    {Q5}
+    Let $A$ be an $m\times n$ real matrix, and $C\subseteq \R^m$ be a closed convex cone. Define \[K=\set{x\in\R^n\mid Ax\in C} \qquad P=\set{A\trn y\mid y\in C^*}.\]
+    \begin{enumerate}[(a)]
+        \item Show that $K$ is a closed convex cone.
+        \item Show that $K^*=\cl P$. Hint: to show that $z\notin \cl P$ implies $z\notin K^*$, use problem 2.
+        \item Show that $P^*=K$ (by using the polar cone theorem).
+    \end{enumerate}
+\end{problem}
+
+\begin{solution}
+    {Solution}
+    \begin{enumerate}[(a)]
+        \item {
+            \begin{proof}
+                To show that $K$ is a closed convex cone, we need to prove the convexity, closedness and coneness of $K$.
+                \begin{enumerate}[(i)]
+                    \item Coneness. Given any $x\in K$, $Ax\in C$, and $\lambda\geq0$, since $C$ is a cone, $A\lambda x=\lambda Ax\in C$. Thus, $\lambda x\in K$ and $K$ is a cone.
+                    \item Convexity. Given $x_1, x_2 \in K$, $Ax_1, Ax_2 \in C$, since $C$ is a convex set, for any $\lambda\in[0, 1]$, we have \[\lambda Ax_1+(1-\lambda)Ax_2=A(\lambda x_1+(1-\lambda)x_2)=A\cdot\lambda x_1+A\cdot(1-\lambda)x_2.\] Thus, $\lambda x_1+(1-\lambda)x_2\in K$ and $K$ is a convex set.
+                    \item Closedness. Since $C$ is a closed set, $Ax$ is a continuous function. Thus, $K=A^{-1}Ax$ is a closed set.
+                \end{enumerate}
+            \end{proof}
+        }
+        \item {
+            \begin{proof}
+                % We will show that $K^*=\cl P$ by showing that $K^*\subseteq \cl P$ and $\cl P\subseteq K^*$.
+                Given $z\in K^*$, for all $x\in K$, we have \[\angles*{z,x}\leq 0, \qquad \forall x, s.t. Ax\in C.\] By definition of polar cone $C^*$, $y\in C^*$ if and only if $\angles*{y, Ax}\leq 0$. Hence, for the same $x$, \[\angles*{A\trn y, x}\leq 0.\] If $z$ is an element in $A\trn y\in P$. Since $P$ is not necessarily closed, we have $z\in \cl P$, which is $K^*\subseteq \cl P$. If $z\notin \cl P$, by the cone separation theorem, there exists $x\in (\cl P)^*=P^*$ such that $\angles*{x, z}>0$, and $\angles*{x, p}\leq 0$ for all $p\in \cl P$. Given that $P=\set{A\trn y \mid y\in C^*}$, we can write the second condition as $\angles*{x, A\trn y} \leq 0$ for all $y\in C^*$. This is equivalent to $\angles*{y, Ax}\leq 0$. This implies $Ax\in C$ and $x\in K$. Since $\angles*{x, z}>0$ and $x\in K$, we have $z\in K$ and so the $z\notin K^*$. Then the proof is completed by the hint.
+            \end{proof}
+        }
+        \item {
+            \begin{proof}
+                The polar cone theorem states that for a convex cone $C$, $C^{**}=C$ and $(\cl C)^*=C^*$. From (b), $K^*=\cl P\Rightarrow (K^*)^*=P^*\Rightarrow K=P^*$. Thus, $P^*=K$.
+            \end{proof}
+        }
+    \end{enumerate}
+\end{solution}
+
+\begin{problem}
+    {Q6}
+    A cone $K$ is called \textit{self-dual} if $K^*=-K$. Show that the following cones are self-dual:
+    \begin{enumerate}[(a)]
+        \item The non-negative orthant $\set{x\in\R^n\mid x\geq 0}$.
+        \item The \textit{Lorentz cone} (also called the ``ice cream cone'') in $\R^{n+1}$, defined as follows: \[K=\set{(x,w)\in \R^n\times\R\mid w\geq\norm{x}}.\]
+    \end{enumerate}
+\end{problem}
+
+\begin{solution}
+    {Solution}
+    \begin{enumerate}[(a)]
+        \item {
+            \begin{proof}
+                Let $K=\set{x\in\R^n\mid x\geq 0}$. Then $K^*=\set{y\in\R^n\mid \angles*{x,y}\leq 0, \forall x\in K}$. Since $x\geq 0$, $\angles*{x,y}\leq 0$ for all $y\leq 0$. Thus, $K^*=\set{y\in\R^n\mid y\leq 0}$. Therefore, $K^*=-K$ and $K$ is self-dual.
+            \end{proof}
+        }
+        \item {
+            \begin{proof}
+                Let $K=\set{(x,w)\in \R^n\times\R\mid w\geq\norm{x}}$. Then $K^*=\set{(y,z)\in \R^n\times\R\mid \angles*{(x,w),(y,z)}\leq 0, \forall (x,w)\in K}$. If $x=0$, then $w\geq \norm{x}=0$ and $\angles*{(x,w),(y,z)} = x\trn y+wz \leq 0$ implies $z\leq 0$. If $x\neq 0$, let $u=\frac{x}{\norm{x}}$ be unit vector, $\angles*{(x,w),(y,z)} = x\trn y+wz \leq 0 \Rightarrow u\trn y+z\leq 0$. To make the inequality hold, there must be $y=0$ and $z\leq 0$ since $u$ represents all directions. Thus, $K^*=\set{(0,z)\in \R^n\times\R\mid z\leq 0}$. Therefore, $K^*=-K$ and $K$ is self-dual.
+            \end{proof}
+        }
+    \end{enumerate}
+\end{solution}
+
+\end{document}
