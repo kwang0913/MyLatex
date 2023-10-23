@@ -1,0 +1,101 @@
+\documentclass{article}
+\usepackage[
+    letterpaper,
+    top=1in,
+    bottom=1in,
+    inner=0.75in,
+    outer=0.75in,
+    % margin=1in,
+]{geometry}
+
+%%%% Page Header and Foot %%%%
+\usepackage{fancyhdr}
+\fancypagestyle{plain}{
+\fancyhf{}
+\fancyhead[L]{266:711:685}
+\fancyhead[C]{\textbf{Convex Analysis and Optimization}}
+\fancyhead[R]{Rutgers University}
+\fancyfoot[L]{}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{}
+}
+\pagestyle{plain}
+
+%%%% Load Format %%%%
+\input{Formats/Format.tex}
+\input{Formats/Macro.tex}
+\allowdisplaybreaks
+
+%%%% Theorem Style %%%%
+\declaretheorem[numbered=no, style=plain]{axiom, lemma}
+\declaretheorem[numberwithin=section,style=definition]{definition}
+\declaretheorem[sibling=definition]{theorem, corollary, proposition, conjecture}
+\declaretheorem[numbered=no,style=remark]{remark, claim}
+
+%%%% Document Information %%%%
+\title{Homework 4}
+\author{Kailong Wang}
+\date{\today}
+
+%%%% Start Document %%%%
+\begin{document}
+\maketitle
+
+\begin{problem}
+    {Q1}
+    Recall That $N_C$ denotes the normal cone map of the set $C$. Show that if $U$ is a linear subspace of $\R^n$, then $N_U(x)=U^{\bot}$ for all $x\in U$, where $U^{\bot}$ denotes the subspace orthogonal to $U$ (by definition, $N_U(x)=\emptyset$ if $x\notin I$).
+\end{problem}
+
+\begin{problem}
+    {Q2}
+    In the proof of the existence of subgradients and of the Rockafellar-Moreau theorem, we used portions of the following result: for a proper convex function $f:\R^n\rightarrow \R\cup\set{\infty}$, one has \[\ri\epi f=\set{(x,z)\mid x\in\ri\dom f, z>f(x)}.\] In this problem, we will prove this result, using the prolongation principle. Let $R$ denote the set on the right-hand side of the above equation. Note that you can use some form of the prolongation principle in each of the three parts of this question.
+    \begin{enumerate}[(a)]
+        \item Show that for any $x\in\dom f$ , then $(x,f(x))$ cannot be in $\ri\epi f$.
+        \item Show that a point $(x,z)\in\epi f$ that has $x\notin \ri\dom f$ cannot be in $\ri\epi f\subseteq R$.
+        \item Show that any $(x,z)\in R$ is also in $\ri\epi f$, and hence, in view of the previous results, that $\ri\epi f=R$. This may be done by showing that for any $(x',z')\in\epi f$, there exists $\delta>0$ such that $(x,z)+\delta((x,z)-(x',z'))\in\epi f$. Hint: you should need to use another fact we proved earlier, that a convex function is continuous relative to $\dom f$ at all points of $\ri\dom f$, that is, if $x\in \ri\dom f$, then for any $\tau>0$, there exists an $\epsilon>0$ such that $x'\in\dom f$ and $\norm{x'-x}<\epsilon$ together imply $\abs{f(x')-f(x)}<\tau$. For example, it should be possible to show that for small enough $\tau$, one has $z+\tau(z-z')>(z+f(x))/2$ but $f(x+\tau(x-x'))<(z+f(x))/2$.
+    \end{enumerate}
+\end{problem}
+
+\begin{problem}
+    {Q3}
+    In this problem, we will prove the following "almost industrial strength" generalization of Proposition 4.2.5(a): let $\R^m\rightarrow(-\infty,+\infty]$ be a proper convex function and let $A$ be an $m\times n$ matrix. Define $g(x)=f(Ax)$, which is also a convex function. Then, for all $x\in \R^n$,
+    \begin{equation}
+        \partial g(x)\supseteq A\trn\partial f(Ax).\label{eq:1}
+    \end{equation}
+    Furthermore, if $\ri\dom f\cap\im A\neq\emptyset$, that is, there exists some point in $\bar{z}\in\ri\dom f$ that may be expressed as $\bar{z}=A\bar{x}$ for some $\bar(x)\in\R^n$, then for any $x\in\R^n$,
+    \begin{equation}
+        \partial g(x)=A\trn\partial f(Ax).\label{eq:2}
+    \end{equation}
+    \begin{enumerate}[(a)]
+        \item Prove~\cref{eq:1}.
+        \item Define $U=\set{(x,z)\in\R^n\times\R^m\mid z=Ax}$, which is a linear subspace of $\R^n\times\R^m$, along with the following functions $\R^n\times\R^m\rightarrow(-\infty,+\infty]$: {
+            \begin{align*}
+                F_1(x,z)&=f(z) \\
+                F_2(x,z)&=\begin{cases}
+                    0, & z=Ax \\
+                    +\infty, & z\neq Ax
+                \end{cases} \\
+                F(x,z)&=F_1(x,z)+F_2(x,z)=\begin{cases}
+                    f(z), & z=Ax \\
+                    +\infty, & z\neq Ax
+                \end{cases}
+            \end{align*}
+        }
+        Show that $F_1$, $F_2$ and $F$ defined in this manner are convex and that $d\in\partial g(x)$ implies $(d,0)\in\partial F(x,Ax)$.
+        \item Show that {
+            \begin{align*}
+                \partial F_1(x,z) &= \set{0}\times\partial f(z) \\
+                \partial F_2(x,z) &= \begin{cases}
+                    \set{(A\trn w,-w)\mid w\in\R^m}, & z=Ax \\
+                    \emptyset, & z\neq Ax
+                \end{cases}
+            \end{align*}
+        }
+        You may use the elementary linear-algebra fact that for any $p\times q$ matrix $M$, the subspace orthogonal to the subspace $\set{y\in\R^q\mid My=0}$ is $\set{M\trn w\mid w\in\R^q}$.
+        \item For the reminder of this problem, assume $\ri\dom f \cap \im A\neq\emptyset$. Show that, in this case, $\ri\dom F_1$ and $\ri \dom F_2$ must intersect.
+        \item Find an expression for $\partial F(x,z)=\partial(F_1+F_2)(x,z).$ You may use version of the Moreau-Rockafellar theorem, which asserts that if $\ri\dom f_1\cap\ri\dom f_2\neq\emptyset$, then $\partial(f_1+f_2)(x)=\partial f_1(x)+\partial f_2(x)$ for all $x\in\R^n$.
+        \item Combine the above results to show that $\partial g(x)=A\trn\partial f(Ax)$.
+    \end{enumerate}
+\end{problem}
+
+\end{document}
