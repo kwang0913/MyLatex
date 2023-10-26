@@ -43,32 +43,89 @@
 
 \begin{problem}
     {Q1}
-    Recall That $N_C$ denotes the normal cone map of the set $C$. Show that if $U$ is a linear subspace of $\R^n$, then $N_U(x)=U^{\bot}$ for all $x\in U$, where $U^{\bot}$ denotes the subspace orthogonal to $U$ (by definition, $N_U(x)=\emptyset$ if $x\notin I$).
+    Recall That $N_C$ denotes the normal cone map of the set $C$. Show that if $U$ is a linear subspace of $\R^n$, then $N_U(x)=U^{\bot}$ for all $x\in U$, where $U^{\bot}$ denotes the subspace orthogonal to $U$ (by definition, $N_U(x)=\emptyset$ if $x\notin U$).
 \end{problem}
+
+\begin{solution}
+    {Solution}
+    \begin{proof}
+        To show that $N_U(x)=U^{\bot}$, we need to show that $N_U(x)\subseteq U^{\bot}$ and $U^{\bot}\subseteq N_U(x)$.
+        \begin{itemize}
+            \item $N_U(x)\subseteq U^{\bot}$: {
+                    Let $y\in N_U(x)$, then we have $y\trn(x-u)\leq 0$ for all $u\in U$. Since $U$ is a linear subspace, we have $0\in U$. Thus, $y\trn(x-0)\leq 0$, which implies $y\trn x\leq 0$. Since $y\trn x\leq 0$ for all $y\in N_U(x)$, we have $x\in U^{\bot}$. Thus, $N_U(x)\subseteq U^{\bot}$.
+            }
+            \item $U^{\bot}\subseteq N_U(x)$: {
+                    Let $y\in U^{\bot}$, then we have $y\trn u=0$ for all $u\in U$. Since $U$ is a linear subspace, we have $x-u\in U$. Thus, $y\trn(x-u)\leq 0$ for all $u\in U$. Thus, $y\in N_U(x)$. Thus, $U^{\bot}\subseteq N_U(x)$.
+            }
+        \end{itemize}
+    \end{proof}
+\end{solution}
 
 \begin{problem}
     {Q2}
-    In the proof of the existence of subgradients and of the Rockafellar-Moreau theorem, we used portions of the following result: for a proper convex function $f:\R^n\rightarrow \R\cup\set{\infty}$, one has \[\ri\epi f=\set{(x,z)\mid x\in\ri\dom f, z>f(x)}.\] In this problem, we will prove this result, using the prolongation principle. Let $R$ denote the set on the right-hand side of the above equation. Note that you can use some form of the prolongation principle in each of the three parts of this question.
+    In the proof of the existence of subgradients and of the Rockafellar-Moreau theorem, we used portions of the following result: for a proper convex function $f:\R^n\rightarrow \R\cup\set{+\infty}$, one has \[\ri\epi f=\set{(x,z)\mid x\in\ri\dom f, z>f(x)}.\] In this problem, we will prove this result, using the prolongation principle. Let $R$ denote the set on the right-hand side of the above equation. Note that you can use some form of the prolongation principle in each of the three parts of this question.
     \begin{enumerate}[(a)]
-        \item Show that for any $x\in\dom f$ , then $(x,f(x))$ cannot be in $\ri\epi f$.
-        \item Show that a point $(x,z)\in\epi f$ that has $x\notin \ri\dom f$ cannot be in $\ri\epi f\subseteq R$.
-        \item Show that any $(x,z)\in R$ is also in $\ri\epi f$, and hence, in view of the previous results, that $\ri\epi f=R$. This may be done by showing that for any $(x',z')\in\epi f$, there exists $\delta>0$ such that $(x,z)+\delta((x,z)-(x',z'))\in\epi f$. Hint: you should need to use another fact we proved earlier, that a convex function is continuous relative to $\dom f$ at all points of $\ri\dom f$, that is, if $x\in \ri\dom f$, then for any $\tau>0$, there exists an $\epsilon>0$ such that $x'\in\dom f$ and $\norm{x'-x}<\epsilon$ together imply $\abs{f(x')-f(x)}<\tau$. For example, it should be possible to show that for small enough $\tau$, one has $z+\tau(z-z')>(z+f(x))/2$ but $f(x+\tau(x-x'))<(z+f(x))/2$.
+        \item Show that for any $x\in\dom f$, then $(x,f(x))$ cannot be in $\ri\epi f$.
+        \item Show that a point $(x,z)\in\epi f$ that has $x\notin \ri\dom f$ cannot be in $\ri\epi f\subseteq \R$. Together with the previous result, this allows us to conclude that $\ri\epi f\subseteq \R$.
+        \item Show that any $(x,z)\in \R$ is also in $\ri\epi f$, and hence, in view of the previous results, that $\ri\epi f= \R$. This may be done by showing that for any $(x',z')\in\epi f$, there exists $\delta>0$ such that $(x,z)+\delta((x,z)-(x',z'))\in\epi f$. Hint: you should need to use another fact we proved earlier, that a convex function is continuous relative to $\dom f$ at all points of $\ri\dom f$, that is, if $x\in \ri\dom f$, then for any $\tau>0$, there exists an $\epsilon>0$ such that $x'\in\dom f$ and $\norm{x'-x}<\epsilon$ together imply $\abs{f(x')-f(x)}<\tau$. For example, it should be possible to show that for small enough $\delta$, one has $z+\delta(z-z')>(z+f(x))/2$ but $f(x+\delta(x-x'))<(z+f(x))/2$.
     \end{enumerate}
 \end{problem}
 
+\begin{solution}
+    {Solution}
+    \begin{enumerate}[(a)]
+        \item {
+                \begin{proof}
+                    Assume $(x,f(x))\in\ri\epi f$, then there exists $\epsilon>0$ such that $B((x,f(x)),\epsilon)\subseteq\epi f$. Since $f$ is a proper convex function, we have $f(x)\neq\infty$. Consider the point $(x, f(x)-\frac{\epsilon}{2})$, though it is within the ball, it is clearly not in $\epi f$ since the second component is strictly less than $f(x)$. This is contradicted to the original assumption. Thus, $(x,f(x))\notin\epi f$.
+                \end{proof}
+        }
+        \item {
+            \begin{proof}
+                If $x\notin \ri\dom f$, then by the prolongation principle, there is a direction $d\in\R^n$ such that $x+\lambda d\notin \dom f$ for all $\lambda>0$. Therefore, for any $z'$ and arbitrary small  $\lambda>0$, $(x+\lambda d, z')\notin \epi f$, implying $(x,z)$ is not in the relative interior of $\epi f$.
+            \end{proof}
+        }
+        \item {
+            \begin{proof}
+                Let $(x, z) \in R$, by definition, we know $x \in \ri\dom f$ and $z > f(x)$.
+
+                To prove $(x,z) \in \ri\epi f$, we must show that for every $(x', z') \in \epi f$, there exists a $\delta > 0$ such that
+                \[(x, z) + \delta((x, z) - (x', z')) \in \epi f.\]
+
+                The point halfway between $(x, z)$ and $(x', z')$ is
+                \[ \left( \frac{x + x'}{2}, \frac{z + z'}{2} \right). \]
+                Due to the convexity of $f$, this lies strictly above the graph of $f$ at $x$.
+
+                For $x \in \ri\dom f$, by continuity of convex functions, for any $\tau > 0$, there exists $\epsilon > 0$ such that if $\|x' - x\| < \epsilon$ and $x' \in \dom f$, then $|f(x') - f(x)| < \tau$.
+
+                Choose $\tau = \frac{z - f(x)}{2}$. By continuity, there exists $\epsilon > 0$ ensuring that
+                \[ f(x') < f(x) + \tau \]
+                whenever $\|x' - x\| < \epsilon$. Given our choice of $\tau$, this means
+                \[ f(x') < \frac{z + f(x)}{2} \]
+                for $\|x' - x\| < \epsilon$.
+
+                Choose $\delta$ small enough that the point
+                \[ (x, z) + \delta((x, z) - (x', z')) \]
+                is within an $\epsilon$-distance from $x$ in its first coordinate, and lies below the midway point of $(x, z)$ and $(x', z')$ in its second coordinate. This ensures that this point lies strictly above the graph of $f$.
+
+                Thus, for any $(x', z') \in \epi f$, there exists a $\delta > 0$ such that $(x, z) + \delta((x, z) - (x', z')) \in \epi f$, proving that any $(x, z) \in R$ is also in $\ri\epi f$. \hfill $\square$
+            \end{proof}
+        }
+    \end{enumerate}
+\end{solution}
+
 \begin{problem}
     {Q3}
-    In this problem, we will prove the following "almost industrial strength" generalization of Proposition 4.2.5(a): let $\R^m\rightarrow(-\infty,+\infty]$ be a proper convex function and let $A$ be an $m\times n$ matrix. Define $g(x)=f(Ax)$, which is also a convex function. Then, for all $x\in \R^n$,
+    In this problem, we will prove the following "almost industrial strength" generalization of Proposition 4.2.5(a): let $\R^m\rightarrow\R\cup\set{+\infty}$ be a proper convex function and let $A$ be an $m\times n$ matrix. Define $g(x)=f(Ax)$, which is also a convex function. Then, for all $x\in \R^n$,
     \begin{equation}
         \partial g(x)\supseteq A\trn\partial f(Ax).\label{eq:1}
     \end{equation}
-    Furthermore, if $\ri\dom f\cap\im A\neq\emptyset$, that is, there exists some point in $\bar{z}\in\ri\dom f$ that may be expressed as $\bar{z}=A\bar{x}$ for some $\bar(x)\in\R^n$, then for any $x\in\R^n$,
+    Furthermore, if $\ri\dom f\cap\im A\neq\emptyset$, that is, there exists some point in $\bar{z}\in\ri\dom f$ that may be expressed as $\bar{z}=A\bar{x}$ for some $\bar{x}\in\R^n$, then for any $x\in\R^n$,
     \begin{equation}
         \partial g(x)=A\trn\partial f(Ax).\label{eq:2}
     \end{equation}
     \begin{enumerate}[(a)]
         \item Prove~\cref{eq:1}.
-        \item Define $U=\set{(x,z)\in\R^n\times\R^m\mid z=Ax}$, which is a linear subspace of $\R^n\times\R^m$, along with the following functions $\R^n\times\R^m\rightarrow(-\infty,+\infty]$: {
+        \item Define $U=\set{(x,z)\in\R^n\times\R^m\mid z=Ax}$, which is a linear subspace of $\R^n\times\R^m$, along with the following functions $\R^n\times\R^m\rightarrow\R\cup\set{+\infty}$: {
             \begin{align*}
                 F_1(x,z)&=f(z) \\
                 F_2(x,z)&=\begin{cases}
@@ -97,5 +154,101 @@
         \item Combine the above results to show that $\partial g(x)=A\trn\partial f(Ax)$.
     \end{enumerate}
 \end{problem}
+
+\begin{solution}
+    {Solution}
+    \begin{enumerate}[(a)]
+        \item {
+            \begin{proof}
+                Let's take any $v\in\partial f(Ax)$. By the definition of subgradients, we have
+                \[
+                    f(y)\geq f(Ax)+v\trn(y-Ax) \quad \forall y\in\R^m.
+                \]
+                Let $y=Ax+Az$, then we have
+                \[
+                    f(Ax+Az)\geq f(Ax)+v\trn(Ax+Az-Ax)=f(Ax)+v\trn(Az).
+                \]
+                Notice that the left side is $g(x+z)$, and the function on the right involves $z$ which is the perturbation in $x$.
+                \[
+                    g(x+z)\geq g(x)+v\trn Az \quad \forall z\in\R^n.
+                \]
+                This is the definition of the subgradients of $g$ at $x$, thus, we have $A\trn v\in\partial g(x)$. Since $v$ is arbitrary, we have $\partial g(x)\supseteq A\trn\partial f(Ax)$.
+            \end{proof}
+        }
+        \item {
+            \begin{proof}
+                The proof is as follow:
+                \begin{itemize}
+                    \item \textbf{\( F_1 \) is convex:}
+                    \( F_1(x,z) \) is convex since \( f \) is given to be a proper convex function.
+
+                    \item \textbf{\( F_2 \) is convex:}
+                    Consider any two points \( (x_1, z_1) \) and \( (x_2, z_2) \) in \( \mathbb{R}^n \times \mathbb{R}^m \) and any \( \lambda \in (0,1) \).
+                    \begin{itemize}
+                        \item If \( z_1 = Ax_1 \) and \( z_2 = Ax_2 \), then the line segment between \( (x_1, Ax_1) \) and \( (x_2, Ax_2) \) is entirely contained in the set \( \{ (x,z) \mid z = Ax \} \), and hence \( F_2 \) is zero along this segment.
+
+                        \item If either \( z_1 \neq Ax_1 \) or \( z_2 \neq Ax_2 \), then \( F_2 \) takes the value \( +\infty \) at one or both of these points, and it is trivially convex as \( \infty \leq \infty \).
+                    \end{itemize}
+
+                    \item \textbf{\( F \) is convex:}
+                    \( F \) is the sum of \( F_1 \) and \( F_2 \), and the sum of two convex functions is also convex.
+
+                    \item \textbf{\( d \in \partial g(x) \) implies \( (d, 0) \in \partial F(x, Ax) \):}
+                    By the definition of subgradients and function \( g \), we have:
+                    \[ g(x+h) \geq g(x) + d^\top h \text{ for all } h \in \mathbb{R}^n. \]
+                    Given \( g(x) = f(Ax) \), this can be rewritten as:
+                    \[ f(A(x+h)) \geq f(Ax) + d^\top h. \]
+                    Considering the definition of \( F \), we can express this inequality as:
+                    \[ F(x+h, A(x+h)) \geq F(x, Ax) + d^\top h. \]
+                    Given the definition of the subgradients for functions of two variables, this means:
+                    \[ (d, 0) \in \partial F(x, Ax) \]
+                \end{itemize}
+            \end{proof}
+        }
+        \item {
+            \begin{proof}
+                The proof is as follow:
+                \begin{itemize}
+                    \item Since $F_1$ is only dependent on $z$, its subgradients with respect to $x$ will simply be $0$. With respect to $z$, the subgradients will be the same as the subgradients of $f$ at $z$. Thus, we have $\partial F_1(x,z)=\set{0}\times\partial f(z)$.
+                    \item {
+                        \begin{itemize}
+                            \item When $z=Ax$: To find the subgradients of $F_2$, we want to find all vectors $(d,w)$ such that: \[F_2(x+h,z+k)\geq F_2(x,z)+\angles{d,h}+\angles{w,k}\] for all $(h,k)$. Given that $F_2(x,z)=0$ for $z=Ax$, the inequality becomes \[F_2(x+h,z+k)\geq \angles{d,h}+\angles{w,k}.\] Considering perturbing $z$ slightly by some $k$ such that $z+k\neq A(x+h)$. In this case $F_2(x+h,z+k)=+\infty$, thus, the inequality holds for all $(d,w)$. Thus, only need to deal with $z+k = A(x+h)$. Now the inequality becomes \[0\geq \angles{d,h}+\angles{w,k}.\] Given $k=A(x+h)-Ax=Ah$, the inequalitycan be written as: \[0\geq \angles{d,h}+\angles{w,Ah}.\] For this to hold for all $h$, $d$ must be orthogonal to $A$ and $w$ must be orthogonal to the nullspace of $A\trn$. Using the hint, we have \[d=A\trn w\] for some $w\in\R^m$. Next for any $h$: \[k=Ah\Rightarrow -k=-Ah.\] Thus $w$ should be the negative of any vector in $\R^m$ to ensure the orthogonality condition. Thus, we have $\partial F_2(x,z)=\set{(A\trn w,-w)\mid w\in\R^m}$.
+                            \item When $z\neq Ax$: In this case, $F_2(x,z)=+\infty$. Thus, the subgradients are empty.
+                        \end{itemize}
+                    }
+                \end{itemize}
+            \end{proof}
+        }
+        \item {
+            \begin{proof}
+                $\ri\dom F_1$ is the set of all $z$ such that $f(z)<+\infty$, which means it is the relative interior of the domain of $f$, \ie $ri\dom f$. $\ri\dom F_2$ is the set of all $z$ such that $z=Ax$ for some $x$, which means it is the image of $A$, \ie $im A$. Given that $\ri\dom f\cap\im A\neq\emptyset$, there exists some $\bar{z}\in\ri\dom f$ such that $\bar{z}=A\bar{x}$ for some $\bar{x}\in\R^n$. Therefore, $\bar{z}$ belongs to both $\ri\dom F_1$ and $\ri\dom F_2$, which means $\ri\dom F_1$ and $\ri\dom F_2$ must intersect.
+            \end{proof}
+        }
+        \item {
+            \begin{proof}
+                The Moreau-Rockafellar theorem states that if $\ri\dom f_1\cap\ri\dom f_2\neq\emptyset$, then $\partial(f_1+f_2)(x)=\partial f_1(x)+\partial f_2(x)$ for all $x\in\R^n$. Since $\ri\dom F_1$ and $\ri\dom F_2$ intersect, we have $\partial F(x,z)=\partial(F_1+F_2)(x,z)=\partial F_1(x,z)+\partial F_2(x,z)$. Thus, we have
+                \begin{itemize}
+                    \item When $z=Ax$: {
+                        \begin{align*}
+                            \partial F(x,z)&=\set{0}\times\partial f(z)+\set{(A\trn w,-w)\mid w\in\R^m} \\
+                            &=\set{(A\trn w,v-w)\mid w\in\R^m, v\in\partial f(z)}.\\
+                        \end{align*}
+                    }
+                    \item When $z\neq Ax$: {
+                        \begin{align*}
+                            \partial F(x,z)&=\emptyset+\emptyset \\
+                            &=\emptyset.
+                        \end{align*}
+                    }
+                \end{itemize}
+            \end{proof}
+        }
+        \item {
+            \begin{proof}
+                To find $\partial g(x)$, we use the property that any $d$ in $\partial g(x)$ must satisfy $(d,0)\in\partial F(x,Ax)$. Given $F(x,z)=F_1(x,z)+F_2(x,z)$, $F(x,Ax)=F_1(x,Ax)+F_2(x,Ax)=f(Ax)=g(x)$. Thus, for any $d\in\partial g(x)$, the corresponding $(d,0)\in\partial F(x,Ax)$ must have the form $(A\trn w, v-w)$ where $w\in\R^m$ and $v\in\partial f(Ax)$. But the second coordinate is $0$, which implies $v=w\Rightarrow (d,0)=(A\trn w,0)$. This means $d=A\trn w$ for some $w\in\partial f(Ax)$. In other words: \[d\in A\trn\partial f(Ax).\] This is $\partial g(x)\subseteq A\trn\partial f(Ax)$. Combining the results from (a), we have $\partial g(x)=A\trn\partial f(Ax)$.
+            \end{proof}
+        }
+    \end{enumerate}
+\end{solution}
 
 \end{document}
