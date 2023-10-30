@@ -1,0 +1,121 @@
+\documentclass{article}
+\usepackage[
+    letterpaper,
+    top=1in,
+    bottom=1in,
+    inner=0.75in,
+    outer=0.75in,
+    % margin=1in,
+]{geometry}
+
+%%%% Page Header and Foot %%%%
+\usepackage{fancyhdr}
+\fancypagestyle{plain}{
+\fancyhf{}
+\fancyhead[L]{266:711:685}
+\fancyhead[C]{\textbf{Convex Analysis and Optimization}}
+\fancyhead[R]{Rutgers University}
+\fancyfoot[L]{}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{}
+}
+\pagestyle{plain}
+
+%%%% Load Format %%%%
+\input{Formats/Format.tex}
+\input{Formats/Macro.tex}
+\allowdisplaybreaks
+
+%%%% Theorem Style %%%%
+\declaretheorem[numbered=no, style=plain]{axiom, lemma}
+\declaretheorem[numberwithin=section,style=definition]{definition}
+\declaretheorem[sibling=definition]{theorem, corollary, proposition, conjecture}
+\declaretheorem[numbered=no,style=remark]{remark, claim}
+
+%%%% Document Information %%%%
+\title{Midterm 1}
+\author{Kailong Wang}
+\date{\today}
+
+%%%% Start Document %%%%
+\begin{document}
+\maketitle
+
+\begin{problem}
+    {Q1: Normal cones to level sets.}
+    Suppose $h:\R^n\rightarrow\R$ is a continuously differentiable convex function, and consider the level set $L(0,h)=\set{x\in\R^n\mid h(x)<0}$. Assuming that there exists some point $\bar{x}\in\R^n$ with $h(\bar{x})<0$, prove that, for any $x\in L(0,h)$, the normal cone $N_{L(0,h)}(x)$ to $L(0,h)$ at $x$ is given by the formula
+    \begin{align*}
+        N_{L(0,h)}(x)=\set{\alpha\nabla h(x)\mid \alpha\geq 0, \alpha h(x)=0}
+        \begin{cases}
+            \emptyset & \text{if } h(x)>0 \\
+            \set{\alpha\nabla h(x)\mid \alpha\geq 0} & \text{if } h(x)=0\\
+            \set{0} & \text{if } h(x)<0
+        \end{cases}
+    \end{align*}
+\end{problem}
+
+\begin{problem}
+    {Q2: Optimality conditions for convex problems with ``mixed'' constraint sets.}
+    Consider an optimization problem of the form
+    \begin{equation}
+        \begin{aligned}
+            \min & \quad f(x) \\
+            \st & \quad Ax=b \\
+            & \quad h_j(x)\leq 0 \qquad j=1,2,\dots,r \\
+            & \quad x\in X
+        \end{aligned}
+        \label{eq:optimization}
+    \end{equation}
+    where
+    \begin{itemize}
+        \item $f:\R^n\rightarrow\R\cup\set{+\infty}$ is a convex function
+        \item $A$ is an $m\times n$ matrix and $b\in\R^m$
+        \item For $j=1,2,\dots,r$, $h_j:\R^n\rightarrow\R$ is a differentiable convex function
+        \item $X$ is a convex set. 
+    \end{itemize}
+    Let $a_i$ denote row $i$ of $A$, $i=1,2,dots,m$ represented as a column vector. Suppose that there exists a point $\bar{x}\in\R^n$ with the following properties:
+    \begin{itemize}
+        \item $\bar{x}\in\ri\dom f$
+        \item $A\bar{x}=b$
+        \item For $j=1,2,\dots,r$, $h_j(\bar{x})<0$
+        \item $\bar{x}\in\ri X$.
+    \end{itemize}
+    Show that for $x^*\in\R^n$ to be a solution of~\cref{eq:optimization}, it is necessary and sufficient that there exist $\lambda^*\in\R^m$ and $\mu^*\in\R^r$ such that
+    \begin{align*}
+        \partial f(x^*)+\sum_{i=1}^{m}\lambda^*_i a_i+\sum_{j=1}^{r}\mu^*_j\nabla h_j(x^*)+N_X(x^*) &\ni 0\\
+        \sum_{j=1}^{r}\mu^*_j h_j(x^*) &= 0 \\
+        Ax^* &= b \\
+        h_j(x^*) &\leq 0 \qquad j=1,2,\dots,r \\
+        \mu^*_j &\geq 0 \qquad j=1,2,\dots,r.
+    \end{align*}
+\end{problem}
+
+\begin{problem}
+    {Q3: Optimality conditions for convex cone programming.}
+    Below, suppose $K\subseteq\R^m$ be a nonempty closed convex cone, $A$ is an $m\times n$ matrix, and $b\in\R^m$, and let $Z=\set{x\in\R^n\mid Ax-b\in K}$. Assume that $Z$ is nonempty.
+    \begin{enumerate}[(a)]
+        \item Show that for any $x\in K$, \[F_K(x)=\set{z-\alpha x\mid z\in K, \alpha\geq 0}.\]
+        \item Show that for any $x\in K$, \[N_K(x)=\set{y\in K^*\mid \angles*{x,y}=0}.\]
+        Hint: you may use the results of homework 3, problem 1(c) and 4(c).
+        \item Show that, for $x\in Z$, \[N_Z(x)=\cl\set{A\trn\lambda\mid\lambda\in K^*,\angles{Ax-b,\lambda}=0}.\]
+        Hint: you may use the results of homework 3, problem 4.
+        \item Show that $\ri Z \supseteq\set{x\in\R^n\mid Ax-b\in\ri K}.$
+        \item Let $f:\R^n\rightarrow\R\cup\set{+\infty}$ be a convex function, suppose that the cone $A\trn K^*=\set{A\trn\lambda\mid\lambda\in K^*}$ is closed, and consider the problem{
+            \begin{equation}
+                \begin{aligned}
+                    \min & \quad f(x) \\
+                    \st & \quad Ax-b\in K.
+                \end{aligned}
+                \label{eq:cone}
+            \end{equation}
+        }
+        Further suppose that there exists some point $\bar{x}\in\ri\dom f$ such that $A\bar{x}-b\in\ri K$. Show that, in order for $x^*\in\R^n$ to solve~\cref{eq:cone}, it is necessary and sufficient that there exists $\lambda^*\in \R^m$ such that
+        \begin{align*}
+            \partial f(x^*)+A\trn\lambda^*\ni 0 \\
+            \lambda^*\in K^* \\
+            \angles{Ax^*-b,\lambda^*}=0.
+        \end{align*}
+    \end{enumerate}
+\end{problem}
+
+\end{document}
