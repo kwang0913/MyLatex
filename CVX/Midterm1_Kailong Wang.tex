@@ -49,13 +49,28 @@
         \begin{cases}
             \emptyset & \text{if } h(x)>0 \\
             \set{\alpha\nabla h(x)\mid \alpha\geq 0} & \text{if } h(x)=0\\
-            \set{0} & \text{if } h(x)<0
+            \set{\bm{0}} & \text{if } h(x)<0
         \end{cases}
     \end{align*}
 \end{problem}
 
+\begin{solution}
+    {Solution}
+    \begin{proof}
+        % By definition of Normal Cone, we have \[N_{L(0,h)}(x)=\set{v\mid \angles{v, y-x}\leq 0, \forall y\in L(0,h)}.\]
+        We prove the statement by cases.
+        \begin{enumerate}
+            \item If $h(x)>0$, then $x\notin L(0,h)$, so $N_{L(0,h)}(x)=\emptyset$, which is trivial.
+            \item If $h(x)=0$, $x$ lies on the boundary of $L(0, h)$. The function $h$ being continuously differentiable and convex implies that at $x$, the gradient $\nabla h(x)$ points in a direction that is normal to the level set $L(0, h)$ (since the normal cone is the polar cone of tangent cone of level set at $x$). By convexity, we have \[h(y)\geq h(x)+\angles{\nabla h(x), y-x}, \qquad \forall y\in L(0, h).\] With $h(y)<0$ (definition of level set) and $h(x)=0$ (case assumption), we have \[\angles{\nabla h(x), y-x}<0.\] This means the vector $\nabla h(x)$ is an outward normal to the level set at $x$. Since $h$ does not increase in the direction inside the level set, the normal cone at $x$ consists of all non-negative scalar multiples of $\nabla h(x)$, \ie \[N_{L(0,h)}(x)=\set{\alpha\nabla h(x)\mid \alpha\geq 0}.\]
+            \item If $h(x)<0$, the $x\in\ri L(0, h)$. The normal cone at a point in the relative interior of a convex set is just the zero vector. Because there are directions in every neighborhood around $x$ that stay within $L(0, h)$, and therefore no ``outside'' direction is associated with a decrease from $x$ within level set. Thus, \[N_{L(0,h)}(x)=\set{\bm{0}}.\]
+        \end{enumerate}
+    \end{proof}
+    Question: Is the necessity of the assumption $h(\bar{x})<0$ for some $\bar{x}$ to guarantee that the level set $L(0,h)$ is nonempty?
+\end{solution}
+
 \begin{problem}
-    {Q2: Optimality conditions for convex problems with ``mixed'' constraint sets.}
+    {Q2}
+    {\bf (Optimality conditions for convex problems with ``mixed'' constraint sets.)}
     Consider an optimization problem of the form
     \begin{equation}
         \begin{aligned}
@@ -71,9 +86,9 @@
         \item $f:\R^n\rightarrow\R\cup\set{+\infty}$ is a convex function
         \item $A$ is an $m\times n$ matrix and $b\in\R^m$
         \item For $j=1,2,\dots,r$, $h_j:\R^n\rightarrow\R$ is a differentiable convex function
-        \item $X$ is a convex set. 
+        \item $X$ is a convex set.
     \end{itemize}
-    Let $a_i$ denote row $i$ of $A$, $i=1,2,dots,m$ represented as a column vector. Suppose that there exists a point $\bar{x}\in\R^n$ with the following properties:
+    Let $a_i$ denote row $i$ of $A$, $i=1,2,\dots,m$ represented as a column vector. Suppose that there exists a point $\bar{x}\in\R^n$ with the following properties:
     \begin{itemize}
         \item $\bar{x}\in\ri\dom f$
         \item $A\bar{x}=b$
@@ -90,15 +105,43 @@
     \end{align*}
 \end{problem}
 
+\begin{solution}
+    {Solution}
+    \begin{proof}
+        Solving~\cref{eq:optimization} is equivalent to solving the following cvx problem:
+        \begin{enumerate}
+            \item $f_1(x)=f(x)$
+            \item $f_2(x)=\delta_L(x)=\begin{cases}
+                0, & Ax = b \\
+                +\infty, & \text{otherwise}
+            \end{cases}$
+            \item $f_3(x)=\delta_X(x)=\begin{cases}
+                0, & x\in X \\
+                +\infty, & \text{otherwise}
+            \end{cases}$
+            \item $f_4(x)=\delta_{h_j}(x)=\begin{cases}
+                0, & h_j(x)\leq 0\\
+                +\infty, & \text{otherwise}
+            \end{cases}$, j=1,2,\dots,r 
+        \end{enumerate}
+        Let $x^*$ be an optimal solution to the optimization problem. For $h_j(x^*)=0$, we can use the result from the previous question and have normal cone $N_{L(0,h_j)}(x^*)=\set{\mu_j^*\nabla h_j(x^*)\mid \mu_j^*\geq 0}$. For $h_j(x^*)<0$, we will have $\mu_j^*=\bm{0}$ since we can't have a positive multiplier for a strictly feasible constraint. These contribute to the condition of $f_4(x)$ \[\sum_{j=1}^{r}\mu^*_j h_j(x^*) = 0; \qquad h_j(x^*) \leq 0 \quad j=1,2,\dots,r; \qquad \mu^*_j \geq 0 \quad j=1,2,\dots,r.\]
+
+        % The condition of $Ax^*=b$ is trivial since if the equality does not hold, the problem is infeasible.
+        With the proposition that we have proved in the class, we know that solving $\partial(f_1+f_2+f_3)(x)\ni\partial f_1(x)+\partial f_2(x) + \partial f_3(x)$ with condition $Ax=b$ implies \[\exists \lambda^*\in\R^m, x^*\in\R^n \qquad \partial f(x^*) + A\trn\lambda^* + N_X(x^*) \ni 0.\]
+
+        Combine the above results (since $\bar{x}\in\ri\dom f_1\cap\ri\dom f_2\cap\ri\dom f_3\cap\ri\dom f_4\neq\emptyset$), we have (using Rockafellar-Moreau theorem) \[\partial f(x^*)+\sum_{i=1}^{m}\lambda^*_i a_i+\sum_{j=1}^{r}\mu^*_j\nabla h_j(x^*)+N_X(x^*) \ni 0,\] which completes the proof.
+    \end{proof}
+\end{solution}
+
 \begin{problem}
     {Q3: Optimality conditions for convex cone programming.}
-    Below, suppose $K\subseteq\R^m$ be a nonempty closed convex cone, $A$ is an $m\times n$ matrix, and $b\in\R^m$, and let $Z=\set{x\in\R^n\mid Ax-b\in K}$. Assume that $Z$ is nonempty.
+    Below, suppose $K\subseteq\R^m$ be a nonempty closed convex cone,
     \begin{enumerate}[(a)]
         \item Show that for any $x\in K$, \[F_K(x)=\set{z-\alpha x\mid z\in K, \alpha\geq 0}.\]
         \item Show that for any $x\in K$, \[N_K(x)=\set{y\in K^*\mid \angles*{x,y}=0}.\]
-        Hint: you may use the results of homework 3, problem 1(c) and 4(c).
-        \item Show that, for $x\in Z$, \[N_Z(x)=\cl\set{A\trn\lambda\mid\lambda\in K^*,\angles{Ax-b,\lambda}=0}.\]
-        Hint: you may use the results of homework 3, problem 4.
+        Hint: you may use the results of homework 3, problem 1(c) and 5(c).
+        \item  $A$ is an $m\times n$ matrix, and $b\in\R^m$, and let $Z=\set{x\in\R^n\mid Ax-b\in K}$. Assume that $Z$ is nonempty. Show that, for $x\in Z$, \[N_Z(x)=\cl\set{A\trn\lambda\mid\lambda\in K^*,\angles{Ax-b,\lambda}=0}.\]
+        Hint: you may use the results of homework 3, problem 5.
         \item Show that $\ri Z \supseteq\set{x\in\R^n\mid Ax-b\in\ri K}.$
         \item Let $f:\R^n\rightarrow\R\cup\set{+\infty}$ be a convex function, suppose that the cone $A\trn K^*=\set{A\trn\lambda\mid\lambda\in K^*}$ is closed, and consider the problem{
             \begin{equation}
@@ -111,11 +154,88 @@
         }
         Further suppose that there exists some point $\bar{x}\in\ri\dom f$ such that $A\bar{x}-b\in\ri K$. Show that, in order for $x^*\in\R^n$ to solve~\cref{eq:cone}, it is necessary and sufficient that there exists $\lambda^*\in \R^m$ such that
         \begin{align*}
-            \partial f(x^*)+A\trn\lambda^*\ni 0 \\
-            \lambda^*\in K^* \\
-            \angles{Ax^*-b,\lambda^*}=0.
+            \partial f(x^*)+A\trn\lambda^* &\ni 0 \\
+            \lambda^* & \in K^* \\
+            \angles{Ax^*-b,\lambda^*} & =0.
         \end{align*}
     \end{enumerate}
 \end{problem}
+
+\begin{solution}
+    {Solution}
+    \begin{enumerate}[(a)]
+        \item {
+            \begin{proof}
+                By definition 4.6.1, given $x\in K$, we have \[F_K(x)=\set{y\in\R^m\mid x+\alpha y\in K, \forall \alpha\in[0,\bar{\alpha}], \bar{\alpha}>0},\] where $y$ is a feasible direction. Here, to show that \[F_K(x)=\set{z-\alpha x\mid z\in K, \alpha\geq 0},\] we need to show $y=z-\alpha x$ is a feasible direction and every feasible direction can be represented as $y=z-\alpha x$.
+
+                Let $y=z-\alpha x$ where $z\in K$ and $\alpha\geq 0$. Consider $x+ty$ for $t>0$, \[x+ty=x+t(z-\alpha x)=x+tz-t\alpha x=(1-t\alpha)x+tz.\] Since $K$ is a convex cone, it is closed under positive linear combinations. For sufficiently samll $t$, $1-t\alpha$ remains positive, and hence $(1-t\alpha)x+tz$ is a positive linear combination of points in $K$, which means $x+ty\in K$ for all sufficiently small $t>0$. Therefore, $y$ is a feasible direction at $x$.
+
+                Let $y$ be any feasible directions in $F_K(x)$. By definition, for all small $t>0$, $x+ty\in K$. By the convexity of $K$, the line segment connecting $x$ and $x+ty$ must entirely lie in $K$. For a sufficiently small $t$, this implies that $y$ can be represented as \[y=\frac{1}{t}(x+ty)-\frac{1}{t}x\Rightarrow(x+ty)-x=z-x,\] where $z=x+ty\in K$. We can set $\alpha=1$ to match the form required. So, $y=z-\alpha x$ with $x\in K$ and $\alpha=1\geq 0$.
+            \end{proof}
+        }
+        \item {
+            \begin{proof}
+                The proof contains two parts.
+                \begin{enumerate}
+                    \item $N_K(x)\subseteq\set{y\in K^*\mid \angles{x,y}=0}$. Take any $y\in N_K(x)$. By definition of the normal cone, for all $z\in K$ \[\angles{y, z-x}\leq 0.\] Since $K$ is a cone, for $\lambda>0$, $\lambda x$ is also in $K$. Replace $z$  by $\lambda x$ and get \[\angles{y, \lambda x-x}\leq 0,\] which simplifies to \[\lambda\angles{y,x}-\angles{y,x}\leq 0 \Rightarrow (\lambda-1)\angles{y, x}\leq 0.\] Since $\lambda$ is arbitrary, we must have $\angles{y, x}=0$. Besides, $\angles{y,x}\leq 0$ implies $y\in K^*$. Therefore, $N_K(x)\subseteq\set{y\in K^*\mid \angles{x,y}=0}$.
+                    \item $\set{y\in K^*\mid \angles{x,y}=0}\subseteq N_K(x)$. By the definition of $K^*$, we have that for every $y\in K^*$ and for every $z\in K$, \[\angles{y,z}\leq 0.\] And given $\angles{y, x}=0$, we have \[\angles{y, z-x}=\angles{y, z}-\angles{y, x}\leq 0-0 =0,\] which implies $y\in N_K(x)$. Therefore, $\set{y\in K^*\mid \angles{x,y}=0}\subseteq N_K(x)$.
+                \end{enumerate}
+                The two parts together prove the statement.
+            \end{proof}
+        }
+        \item {
+            \begin{proof}
+                For vector $v$ that is in $N_Z(x)$, it must have \[\angles{v, z-x}\leq 0 \qquad \forall z\in Z.\] To use the definition of $Z$, we have \[\angles{v, z-x}=\angles{A\trn v,Az-Ax}=\angles{A\trn v, (Az-b)-(Ax-b)}.\] For $v$ to be in the normal cone $N_Z(x)$, the last inner product should be non-positive for all $Az-b\in K$, which means that $A\trn v$ must be in the normal cone to $K$ at the point $Ax-b$, \ie $A\trn v\in N_K(Ax-b)$. With the previous question, we can related $N_K(Ax-b)$ to $K^*$ by \[N_K(Ax-b)=\set{\lambda\in K^*\mid \angles{Ax-b, \lambda}=0}.\] So, a vector $v\in N_Z(x)$ must correspond to a $\lambda$ in the dual cone $K^*$ such that $A\trn\lambda$ has a zero inner product with $Ax-b$, hence $v=A\trn\lambda$ for some $\lambda$ satisfying $\angles{Ax-b, \lambda}=0$. To account for the fact that the normal cone $N_Z(x)$ is a closed set, we take the closure of the set $\set{A\trn\lambda\mid\lambda\in K^*,\angles{Ax-b,\lambda}=0}$ since the image under a linear transformation of a closed set is not necessarily closed. Therefore, \[N_Z(x)=\cl\set{A\trn\lambda\mid\lambda\in K^*,\angles{Ax-b,\lambda}=0}.\]
+            \end{proof}
+        }
+        \item {
+            \begin{proof}
+                Let \( x_0 \) be such that \( Ax_0 - b \in \text{ri}(K) \). By the prolongation principle, for every point \( \bar{y} \in K \), there exists \( \delta > 1 \) such that
+                \[ Ax_0 - b + (\delta - 1)(Ax_0 - b - \bar{y}) \in K. \]
+
+                Now, let \( x \) be any point in \( Z \), implying \( Ax - b \in K \).
+                Taking \( \bar{y} = Ax - b \), the prolongation principle gives us
+                \begin{align*}
+                    Ax_0 - b + (\delta - 1)((Ax_0 - b) - (Ax - b)) &\in K \\
+                    \Rightarrow A(x_0 + (\delta - 1)(x_0 - x))-b &\in K.
+                \end{align*}
+                showing that
+                \[ x_0 + (\delta - 1)(x_0 - x) \in Z. \]
+                Since this is true for any \( x \in Z \), \( x_0 \) must be in \( \text{ri}(Z) \).
+
+                We conclude that
+                \[ \text{ri}\, Z \supseteq \{x \in \mathbb{R}^n \mid Ax - b \in \text{ri}\, K\}. \]
+            \end{proof}
+        }
+        \item {
+            \begin{proof}
+                Solving~\cref{eq:cone} is equivalent to minimizing $f_1+f_2$ where:
+                \begin{enumerate}
+                    \item $f_1(x)=f(x)$
+                    \item $f_2(x)=\delta_K(Ax-b)=\begin{cases}
+                        0, & Ax-b\in K \\
+                        +\infty, & \text{otherwise}
+                    \end{cases}$
+                \end{enumerate}
+                The range of $f_1$ and $f_2$ are
+                \begin{enumerate}
+                    \item $\ri\dom f_1=\ri\dom f$
+                    \item $\ri\dom f_2=\ri Z$ ($Z$ is in the same form in the previous question)
+                \end{enumerate}
+                The condition says $\bar{x}\in\ri\dom f_1\cap\ri K\neq\emptyset$. So $\partial(f_1+f_2)(x)=\partial f_1(x)+\partial f_2(x)$. Given $x^*$ is optimal, we have
+                \begin{align*}
+                    0& \in\partial(f_1+f_2)(x^*) \\
+                    \Rightarrow
+                    0& \in\partial f_1(x^*)+\partial f_2(x^*) \\
+                    \Rightarrow
+                    0& \in\partial f(x^*)+N_Z(x^*) \\
+                    \Rightarrow
+                    0& \in\partial f(x^*)+A\trn\lambda^* \qquad \text{for some }\lambda^*\in K^*
+                \end{align*}
+                With $A\trn\lambda^*$ is closed (from statement), combining $N_Z(x)=\cl\set{A\trn\lambda\mid\lambda\in K^*,\angles{Ax-b,\lambda}=0}$ from previous result, we finish the proof.
+            \end{proof}
+        }
+    \end{enumerate}
+\end{solution}
 
 \end{document}
