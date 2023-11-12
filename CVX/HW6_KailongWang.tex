@@ -1,0 +1,110 @@
+\documentclass{article}
+\usepackage[
+    letterpaper,
+    top=1in,
+    bottom=1in,
+    inner=0.75in,
+    outer=0.75in,
+    % margin=1in,
+]{geometry}
+
+%%%% Page Header and Foot %%%%
+\usepackage{fancyhdr}
+\fancypagestyle{plain}{
+\fancyhf{}
+\fancyhead[L]{266:711:685}
+\fancyhead[C]{\textbf{Convex Analysis and Optimization}}
+\fancyhead[R]{Rutgers University}
+\fancyfoot[L]{}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{}
+}
+\pagestyle{plain}
+
+%%%% Load Format %%%%
+\input{Formats/Format.tex}
+\input{Formats/Macro.tex}
+\allowdisplaybreaks
+
+%%%% Theorem Style %%%%
+\declaretheorem[numbered=no, style=plain]{axiom, lemma}
+\declaretheorem[numberwithin=section,style=definition]{definition}
+\declaretheorem[sibling=definition]{theorem, corollary, proposition, conjecture}
+\declaretheorem[numbered=no,style=remark]{remark, claim}
+
+%%%% Document Information %%%%
+\title{HW $6$}
+\author{Kailong Wang}
+\date{\today}
+
+%%%% Start Document %%%%
+\begin{document}
+\maketitle
+
+\begin{problem}
+    {Q1}
+    For each of the following choices of $f:\R\rightarrow \R\cup\set{+\infty}$, compute the convex conjugate function $f^*$:
+    \begin{enumerate}[(a)]
+        \item $f(x)=\frac{1}{2}x^2$.
+        \item For $a ,b\in\R$, $a<b$, ${
+            f(x)=\delta_{[a, b]}= \begin{cases}
+                0 & x\in [a, b],\\
+                +\infty & \text{otherwise}.
+            \end{cases}
+            }$
+        \item $f(x)=e^x$.
+    \end{enumerate}
+\end{problem}
+
+\begin{problem}
+    {Q2}
+    A function $f:\R^n\rightarrow\R\cup\set{+\infty}$ is said to be positively homogeneous if
+    \begin{align*}
+        f(0) &= 0 \\
+        f(\alpha x) &= \alpha f(x) \quad \forall \alpha > 0, x\in\R^n.
+    \end{align*}
+    (Note that some definitions omit the condition $f(0) = 0$, which we include here to accord with our notion of a cone as always containing the point $0$.)
+    \begin{enumerate}[(a)]
+        \item For any proper function $f:\R^n\rightarrow\R\cup\set{+\infty}$, show that $\epi f$ is a cone in $\R^{n+1}$ \iff $f$ is positively homogeneous.
+        \item Consider any nonempty set $X\subseteq\R^n$. The \textit{support function} of $X$ is the convex conjugate ($\delta_X^*$) of the indicator function \[\delta_X = \begin{cases}
+            0 & x\in X,\\
+            +\infty & \text{otherwise}.
+        \end{cases}\]
+        Show that \[\delta_X^*(y)=\sup_{x\in X}\set{\angles*{x, y}},\] and this function is positively homogeneous.
+        \item Show conversely that, given any positively homogeneous function $f$, its convex conjugate $f^*$ is the indicator function of some closed convex set $C$.
+        \item Given a cone $K$, show that $\delta_K^* = \delta_{K^*}$. That is, the conjugate of the indicator function of a $K$ is the indicator function of its polar.
+    \end{enumerate}
+\end{problem}
+
+\begin{problem}
+    {Q3}
+    Consider the standard primal linear programming problem
+    \begin{align*}
+        \min_{x\in\R^n}\quad & c\trn x \\
+        \st\quad & Ax=b \\
+        & x\geq 0.
+    \end{align*}
+    Model this problem as $\min f(x)+g(Mx)$, where
+    \[
+    f(x)\dot{=}
+    \begin{cases}
+        c\trn x & x\geq 0\\
+        +\infty & \text{otherwise}
+    \end{cases}
+    \qquad
+    M\dot{=}A
+    \qquad
+    g(z)\dot{=}
+    \begin{cases}
+        0 & z=b\\
+        +\infty & \text{otherwise},
+    \end{cases}
+    \]
+    where $A$ is any $m\times n$ matrix and $b\in\R^m$. Show that the corresponding Fenchel dual is equivalent to the standard dual programming problem
+    \begin{align*}
+        \max_{u\in\R^m}\quad & b\trn u \\
+        \st\quad & A\trn u\leq c \\
+    \end{align*}
+    in the sense that any solution $y^*$ of the Fenchel dual is equal to $-u^*$ is some optimal solution to the standard dual linear programming problem.
+\end{problem}
+\end{document}
