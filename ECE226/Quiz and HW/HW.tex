@@ -200,7 +200,7 @@
 
 \begin{problem}
     {Group 2}
-    Show that the variance of $\Binomv(n,p)$ is
+    Show that the variance of $\Binv(n,p)$ is
     \[\Var(X)=np(1-p).\]
 \end{problem}
 
@@ -225,7 +225,7 @@
 
 \begin{problem}
     {Group 5}
-    Let $X\sim\Binomv(n,p)$ and $Y\sim\Binomv(n,1-p)$ represent binomial random variables with parameters $n$ and $p$, show that
+    Let $X\sim\Binv(n,p)$ and $Y\sim\Binv(n,1-p)$ represent binomial random variables with parameters $n$ and $p$, show that
     \[\P{X\leq i}+\P{Y\leq n-i-1}=1.\]
 \end{problem}
 % \fi
@@ -261,9 +261,9 @@
     {Group 5}
     Find $\P{K<\E{K}}$ when
     \begin{enumerate}
-        \item K is $\Geomv(1/3)$
-        \item K is $\Binomv(6, 1/2)$
-        \item K is $\Poi(3)$
+        \item K is $\Geov(1/3)$
+        \item K is $\Binv(6, 1/2)$
+        \item K is $\Poiv(3)$
     \end{enumerate}
 \end{problem}
 % \fi
@@ -480,7 +480,7 @@
 
 \begin{solution}
     {Solution}
-    $X-Y\sim \Gaus(\mu_X-\mu_Y,\sqrt{\sigma_X^2+\sigma_Y^2})$, $X+Y\sim \Gaus(\mu_X+\mu_Y,\sqrt{\sigma_X^2+\sigma_Y^2})$.
+    $X-Y\sim \Gauv(\mu_X-\mu_Y,\sqrt{\sigma_X^2+\sigma_Y^2})$, $X+Y\sim \Gauv(\mu_X+\mu_Y,\sqrt{\sigma_X^2+\sigma_Y^2})$.
     \begin{align*}
         &\P{X-Y>x} = \P{X+Y>a} \\
         \Rightarrow
@@ -553,7 +553,7 @@
 
 \begin{solution}
     {Solution}
-    It's easy to show that $X\sim\Gaus(0, 1)$ which is a standard normal random variable.
+    It's easy to show that $X\sim\Gauv(0, 1)$ which is a standard normal random variable.
     \begin{align*}
         \P{X>1}
         &= 1- \P{X\leq 1} = 1-\Phi(1) \\
@@ -773,9 +773,9 @@
 %%%% HW 11
 \begin{problem}
     {Group 1}
-    The expectation of $\Geomv(p)$ can be proved by conditional expectation as follows:
+    The expectation of $\Geov(p)$ can be proved by conditional expectation as follows:
     \begin{proof}
-        For $X\sim\Geomv(p)$,
+        For $X\sim\Geov(p)$,
         \begin{align*}
             \E{X}
             &= \condE{X}{X=1}\P{X=1}+\condE{X}{X>1}\P{X>1}\\
@@ -784,7 +784,7 @@
             \E{X} &= \frac{1}{p}.
         \end{align*}
     \end{proof}
-    Following the same logic, derive the Variance of $\Geomv(p)$.
+    Following the same logic, derive the Variance of $\Geov(p)$.
 \end{problem}
 
 \begin{solution}
@@ -1285,7 +1285,7 @@
         &= 2(1-y) \\
         f_{X\mid Y}(x\mid y) &= \frac{f_{X,Y}(x,y)}{f_Y(y)} \\
         &= \frac{2}{2(1-y)} \\
-        &= \frac{1}{1-y} \tag{$\Unif(0,\frac{1}{1-y})$}\\
+        &= \frac{1}{1-y} \tag{$\Univ(0,\frac{1}{1-y})$}\\
         \condE{X}{Y=y} &= \frac{1-y}{2} \\
         \E{X} &= \E{\condE{X}{Y}} \\
         &= \int_{0}^{1}\frac{1-y}{2}f_Y{(y)}\diff y \\

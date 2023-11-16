@@ -20,7 +20,7 @@ The joint CDF is a \textbf{complete} probability model for any pair of random va
 
 \begin{definition}
     [Marginal CDF]
-    \[F_X(x)=F_{X,Y}(x,\infty) \qquad F_Y(y)=F_{X,Y}(\infty,y)\].
+    \[F_X(x)=F_{X,Y}(x,\infty) \qquad F_Y(y)=F_{X,Y}(\infty,y).\]
 \end{definition}
 
 \section{Joint PMF}
@@ -167,34 +167,34 @@ It's easy to show that if $X$ and $Y$ are independent, then
     \begin{enumerate}
         \item Uncorrelatedness means changing the value of one random variable does not affect the \textbf{mean} of the other random variable.
         \item Independence means changing the value of one random variable does not affect the probability distribution (\ie, mean, variance and other moments as well) of the other random variable.
-        \item Uncorrelated is linear independent. But independent includes both linear and nonlinear independent. Thus, uncorrelatedness does not imply independence. \eg, $X\sim \Unif[-1,1]$ and $Y=X^2$.
+        \item Uncorrelated is linear independent. But independent includes both linear and nonlinear independent. Thus, uncorrelatedness does not imply independence. \eg, $X\sim \Univ[-1,1]$ and $Y=X^2$.
         \item Orthogonality is a different concept from uncorrelatedness and independence. From the perspective of Linear Algebra, orthogonality is a concept regarding angle between random variables, while independence and uncorrelatedness are concepts regarding the length (or projection) of random variables.
         \item Independence and Uncorrelatedness are preferred for easier calculation of the variance of linear combination of random variables.
-        \item Joint Gaussian Random Variables has a preferred property: uncorrelatedness $\iff$ independence. This is the fundamental of a lot of (I would say more than 85\%) stochastic modeling, machine learning, etc.
+        \item Joint Gauvsian Random Variables has a preferred property: uncorrelatedness $\iff$ independence. This is the fundamental of a lot of (I would say more than 85\%) stochastic modeling, machine learning, etc.
     \end{enumerate}
 \end{theorem}
 
 
-\section{Bivariate Gaussian Random Variables}
+\section{Bivariate Gauvsian Random Variables}
 \begin{definition}
-    [Bivariate Gaussian Random Variables]
-    Random variables $X$ and $Y$ are bivariate Gaussian if and only if their joint PDF is given by the following equation,
+    [Bivariate Gauvsian Random Variables]
+    Random variables $X$ and $Y$ are bivariate Gauvsian if and only if their joint PDF is given by the following equation,
     \[f_{X,Y}(x,y)=\frac{1}{2\pi\sigma_x\sigma_y\sqrt{1-\rho^2}}\exp\left\{-\frac{1}{2(1-\rho^2)}\left[\left(\frac{x-\mu_x}{\sigma_x}\right)^2-2\rho\left(\frac{x-\mu_x}{\sigma_x}\right)\left(\frac{y-\mu_y}{\sigma_y}\right)+\left(\frac{y-\mu_y}{\sigma_y}\right)^2\right]\right\}.\]
     Where $\mu_x=\E{X}$, $\mu_y=\E{Y}$, $\sigma_x^2=\Var[X]$, $\sigma_y^2=\Var[Y]$, and $\rho=\Corr[X,Y]$.
 \end{definition}
 
 \begin{theorem}
-    If $X$ and $Y$ are bivariate Gaussian, then $X$ is the $\mathsf{N}(\mu_X, \sigma_X)$ and $Y$ is the $\mathsf{N}(\mu_Y, \sigma_Y)$.
+    If $X$ and $Y$ are bivariate Gauvsian, then $X$ is the $\mathsf{N}(\mu_X, \sigma_X)$ and $Y$ is the $\mathsf{N}(\mu_Y, \sigma_Y)$.
 \end{theorem}
 
 \begin{theorem}
-    Bivariate Gaussian Random Variables are uncorrelated if and only if they are independent.
+    Bivariate Gauvsian Random Variables are uncorrelated if and only if they are independent.
 \end{theorem}
 
 \begin{theorem}
-    If $X$ and $Y$ are bivariate Gaussian, and $W_1$ and $W_2$ are given by linear independent equations,
+    If $X$ and $Y$ are bivariate Gauvsian, and $W_1$ and $W_2$ are given by linear independent equations,
     \[W_1=a_1X+b_1Y, \qquad W_2=a_2X+b_2Y,\]
-    then $W_1$ and $W_2$ are bivariate Gaussian random variables such that
+    then $W_1$ and $W_2$ are bivariate Gauvsian random variables such that
     \begin{align*}
         \E{W_i} &= a_i\mu_X+b_i\mu_Y, \\
         \Var[W_i] &= a_i^2\sigma_X^2+b_i^2\sigma_Y^2+2a_ib_i\sigma_X\sigma_Y\rho, \\

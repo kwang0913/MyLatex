@@ -165,35 +165,35 @@ Start with a continuous random variable $X$ with CDF $F_X(x)$. The probability o
 \end{enumerate}
 
 
-\section{Gaussian Random Variables}
-% \begin{theorem}[Gaussian Integral]
+\section{Gauvsian Random Variables}
+% \begin{theorem}[Gauvsian Integral]
 %     \[\int_{-\infty}^{\infty}e^{-x^2}\diff x=\sqrt{\pi}.\]
 % \end{theorem}
-We have seen the continuous counterpart of Discrete Uniform, Geometric and Pascal random variables. It is natural to ask what is the continuous counterpart of Binomial random variable. The answer is Gaussian random variable. We will show how to derive the Gaussian random variable from Binomial random variable in \cref{sec:CLT}. But first, let's start from the \textnormal{PDF}.
+We have seen the continuous counterpart of Discrete Uniform, Geometric and Pascal random variables. It is natural to ask what is the continuous counterpart of Binomial random variable. The answer is Gauvsian random variable. We will show how to derive the Gauvsian random variable from Binomial random variable in \cref{sec:CLT}. But first, let's start from the \textnormal{PDF}.
 
-\begin{definition}[Gaussian Random Variable]
-    $X$ is a $\mathsf{Gaussian}(\mu, \sigma)$ random variable if the \textnormal{PDF} of $X$ is
+\begin{definition}[Gauvsian Random Variable]
+    $X$ is a $\mathsf{Gauvsian}(\mu, \sigma)$ random variable if the \textnormal{PDF} of $X$ is
     \[f_X(x)=\frac{1}{\sqrt{2\pi\sigma^2}}\exp(-\frac{(x-\mu)^2}{2\sigma^2}).\]
     $X$ is also called $\mathsf{Normal}(\mu,\sigma)$ random variable. We will use $\mathsf{N}(\mu, \sigma)$ in the following content.
 \end{definition}
 
-\begin{theorem}[The Expectation and Variance of $X\sim\Gaus(\mu,\sigma)$]
+\begin{theorem}[The Expectation and Variance of $X\sim\Gauv(\mu,\sigma)$]
     \[\E{X} = \mu, \qquad \Var[X] = \sigma^2.\]
 \end{theorem}
 
 \begin{theorem}
-    If $X$ is $\Gaus(\mu,\sigma)$, $Y=aX+b$ is $\Gaus(a\mu+b,a\sigma)$.
+    If $X$ is $\Gauv(\mu,\sigma)$, $Y=aX+b$ is $\Gauv(a\mu+b,a\sigma)$.
 \end{theorem}
 
 \begin{definition}[Standard Normal Random Variable]
-    The $\Gaus(\mu,\sigma)$ with $\mu=0, \sigma=1$ is called standard normal random variable $Z\sim\Gaus(0,1)$. The PDF is,
+    The $\Gauv(\mu,\sigma)$ with $\mu=0, \sigma=1$ is called standard normal random variable $Z\sim\Gauv(0,1)$. The PDF is,
     \[f_X(x)=\frac{1}{\sqrt{2\pi}}\exp(-\frac{x^2}{2}).\]
     And the CDF is
     \[\Phi(z)=\int_{-\infty}^{z}\frac{1}{\sqrt{2\pi}}\exp(-\frac{x^2}{2})\diff x.\]
 \end{definition}
 
 \begin{theorem}
-    If $X$ is $\Gaus(\mu,\sigma)$, the \emph{CDF} of $X$ is
+    If $X$ is $\Gauv(\mu,\sigma)$, the \emph{CDF} of $X$ is
     \[F_X(x)=\Phi\parens*{\frac{x-\mu}{\sigma}}.\]
     The probability that $X$ is in the interval \emph{$(a,b)$} is
     \[\P{a<X\leq b}=\Phi\parens*{\frac{b-\mu}{\sigma}}-\Phi\parens*{\frac{a-\mu}{\sigma}}.\]

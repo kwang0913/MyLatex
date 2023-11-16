@@ -20,10 +20,10 @@
     If $W=aX$ where $a>0$ is a constant, then
     \[F_W(w)=F_X(w/a) \qquad f_W(w)=\frac{1}{a}f_X(\frac{w}{a}).\]
     \begin{enumerate}
-        \item If $X$ is $\Unif(b,c)$, then $W$ is $\Unif(ab,ac)$.
+        \item If $X$ is $\Univ(b,c)$, then $W$ is $\Univ(ab,ac)$.
         \item If $X$ is $\Expv(\lambda)$, then $W$ is $\Expv(\lambda/a)$.
-        \item If $X$ is $\Erlang(k,\lambda)$, then $W$ is $\Erlang(k,\lambda/a)$.
-        \item If $X$ is $\Gaus(\mu,\sigma)$, then $W$ is $\Gaus(a\mu,a\sigma)$.
+        \item If $X$ is $\Erlv(k,\lambda)$, then $W$ is $\Erlv(k,\lambda/a)$.
+        \item If $X$ is $\Gauv(\mu,\sigma)$, then $W$ is $\Gauv(a\mu,a\sigma)$.
     \end{enumerate}
 \end{theorem}
 
@@ -33,7 +33,7 @@
 \end{theorem}
 
 \begin{theorem}
-    Let $U$ be a $\Unif(0,1)$ random variable and let $F(x)$ denote a \textnormal{CDF} with an inverse $F^{-1}(u)$ defined for $0<u<1$. Then $X=F^{-1}(U)$ is a random variable with \textnormal{CDF} $F_X(x)=F(x)$.
+    Let $U$ be a $\Univ(0,1)$ random variable and let $F(x)$ denote a \textnormal{CDF} with an inverse $F^{-1}(u)$ defined for $0<u<1$. Then $X=F^{-1}(U)$ is a random variable with \textnormal{CDF} $F_X(x)=F(x)$.
 \end{theorem}
 
 \subsection{Functions of Joint Continuous Random Variables}
@@ -119,12 +119,12 @@ It is quite intuitive to consider an experimental random variable as the linear 
     Geometric($p$)              & $\frac{pe^t}{1-(1-p)e^t}$                  \\ \hline
     Pascal($k$,$p$)             & $\left(\frac{pe^t}{1-(1-p)e^t}\right)^k$   \\ \hline
     Poisson($\alpha$)           & $e^{\alpha(e^t-1)}$                        \\ \hline
-    Discrete Uniform($k$,$l$)   & $\frac{e^{kt}-e^{(l+1)t}}{e^t-1}$          \\ \hline
+    Discrete Univorm($k$,$l$)   & $\frac{e^{kt}-e^{(l+1)t}}{e^t-1}$          \\ \hline
     Constant($c$)               & $e^{ct}$                                   \\ \hline
-    Continuous Uniform($k$,$l$) & $\frac{e^{kt}-e^{lt}}{t(l-k)}$             \\ \hline
+    Continuous Univorm($k$,$l$) & $\frac{e^{kt}-e^{lt}}{t(l-k)}$             \\ \hline
     Exponential($\lambda$)      & $\frac{\lambda}{\lambda-t}$                \\ \hline
-    Erlang($n$,$\lambda$)       & $\left(\frac{\lambda}{\lambda-t}\right)^n$ \\ \hline
-    Gaussian($\mu$,$\sigma$)    & $e^{\mu t+\frac{1}{2}\sigma^2t^2}$         \\ \hline
+    Erlv($n$,$\lambda$)       & $\left(\frac{\lambda}{\lambda-t}\right)^n$ \\ \hline
+    Gauvsian($\mu$,$\sigma$)    & $e^{\mu t+\frac{1}{2}\sigma^2t^2}$         \\ \hline
     \end{tabular}
     \caption{Common MGF}
 \end{table}
@@ -209,7 +209,7 @@ It is quite intuitive to consider an experimental random variable as the linear 
 
 \textbf{Note:} In some cases theoretical treatments of problems in terms of cumulants are simpler than those using moments. In particular, when two or more random variables are statistically independent, the $n$-th-order cumulant of their sum is equal to the sum of their $n$-th-order cumulants, which is preferred over the product of their $n$-th-order moments.
 
-\textbf{Note:} The third and higher-order cumulants of a \textbf{Gaussian} distribution are zero, and it is the only distribution with this property.
+\textbf{Note:} The third and higher-order cumulants of a \textbf{Gauvsian} distribution are zero, and it is the only distribution with this property.
 
 \begin{theorem}
     [The First Three Cumulants]
@@ -255,8 +255,8 @@ In this part of the lecture, we will see a sequence of essentially random or unp
     [Central Limit Theorem]\label{thm:CLT}
     Given $X_1, X_2,\ldots$ a sequence of \iid random variables with expected value $\mu_X$ and variance $\sigma_X^2$, the \textnormal{CDF} of $Z_n=(\sum_{i=1}^{n}X_i-n\mu_X)/\sqrt{n\sigma_X^2}$ has the property
     \[\lim_{n\rightarrow \infty}F_{Z_n}(z)=\Phi(z).\]
-    That is the \textbf{CDF} of ``sum of standardized \iid random variables (not necessary Gaussian)'' converges to the standard Gaussian random variable as $n\rightarrow\infty$. Alternatively, we can express it as
-    \[\lim_{n\rightarrow \infty}\frac{n(\bar{X}-\mu_X)}{\sqrt{n}\sigma_X}\sim \Gaus(0, 1).\]
+    That is the \textbf{CDF} of ``sum of standardized \iid random variables (not necessary Gauvsian)'' converges to the standard Gauvsian random variable as $n\rightarrow\infty$. Alternatively, we can express it as
+    \[\lim_{n\rightarrow \infty}\frac{n(\bar{X}-\mu_X)}{\sqrt{n}\sigma_X}\sim \Gauv(0, 1).\]
 \end{theorem}
 
 \begin{proof}
@@ -265,7 +265,7 @@ In this part of the lecture, we will see a sequence of essentially random or unp
         &= \E{\exp\braces*{\sum_{i=1}^{n} it\cdot \frac{X_i-\mu_X}{\sqrt{n\sigma_X^2}}}} \\
         &= \braces*{\E{\exp\braces*{it\cdot \frac{X_i-\mu_X}{\sqrt{n\sigma_X^2}}}}}^n \\
         &= \braces*{1-\frac{t^2}{2n}+o\parens*{\frac{t^2}{2n}}}^n \\
-        &\rightarrow \exp\braces*{-\frac{1}{2}t^2} \sim \Gaus(0,1).
+        &\rightarrow \exp\braces*{-\frac{1}{2}t^2} \sim \Gauv(0,1).
     \end{align*}
 \end{proof}
 
@@ -278,7 +278,7 @@ In this part of the lecture, we will see a sequence of essentially random or unp
 
 \begin{theorem}
     [De Moivre-Laplace Theorem]\label{thm:DeMoivreLaplace}
-    For a binomial random variable $X\sim \Binomv(n,p)$,
+    For a binomial random variable $X\sim \Binv(n,p)$,
     \[\P{x_1\leq X\leq x_2}\approx \P{x_1-0.5\leq X\leq x_2+0.5}\approx \Phi\parens*{\frac{x_2+0.5-np}{\sqrt{np(1-p)}}}-\Phi\parens*{\frac{x_1-0.5-np}{\sqrt{np(1-p)}}}.\]
 \end{theorem}
 
