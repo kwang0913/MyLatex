@@ -97,10 +97,10 @@
     Show that
     \begin{enumerate}[(a)]
         \item If \cref{eq:convex} holds as stated for all $\lambda\in[0,1]$, it in fact holds for all $\lambda\in\R$.\label{item:convex}
-        \item Any $f$ for which \cref{eq:convex} holds must be of the form $f(x)=\angles*{a,x}+b$ for $\lambda\in\R^n,b\in\R$ (that is, $f$ is an inner product with some fixed vector plus a constant).
+        \item Any $f$ for which \cref{eq:convex} holds must be of the form $f(x)=\ip*{a,x}+b$ for $\lambda\in\R^n,b\in\R$ (that is, $f$ is an inner product with some fixed vector plus a constant).
         \item Any function of this form has the property \cref{eq:convex}.
     \end{enumerate}
-    \textit{Hint:} given $f$ satisfying the condition above, show that $g:x\mapsto f(x)\rightarrow f(0)$ is linear. You may then use (without proof, although the proof is very easy) that a linear function $g: \R^n \rightarrow \R$ must be of the form $x \mapsto \angles*{a,x}$ for some $a \in \R^n$.
+    \textit{Hint:} given $f$ satisfying the condition above, show that $g:x\mapsto f(x)\rightarrow f(0)$ is linear. You may then use (without proof, although the proof is very easy) that a linear function $g: \R^n \rightarrow \R$ must be of the form $x \mapsto \ip*{a,x}$ for some $a \in \R^n$.
 \end{problem}
 
 \begin{solution}
@@ -127,16 +127,16 @@
                     &= \lambda(f(x)-f(0))+(1-\lambda)(f(y)-f(0))\\
                     &= \lambda g(x)+(1-\lambda)g(y).
                 \end{align*}
-                This shows $g$ is a linear function. From the hint, we can represent $g$ as $g(x)=\angles*{a,x}$ for some $a\in\R^n$. Thus, $f(x)=\angles*{a,x}+b$ where $b=f(0)$.
+                This shows $g$ is a linear function. From the hint, we can represent $g$ as $g(x)=\ip*{a,x}$ for some $a\in\R^n$. Thus, $f(x)=\ip*{a,x}+b$ where $b=f(0)$.
             \end{proof}
         }
         \item {
             \begin{proof}
-                If $f(x)=\angles*{a,x}+b$, then for any $x,y\in\R^n$ and $\lambda\in[0,1]$
+                If $f(x)=\ip*{a,x}+b$, then for any $x,y\in\R^n$ and $\lambda\in[0,1]$
                 \begin{align*}
-                    f(\lambda x+(1-\lambda)y) &= \angles*{a,\lambda x+(1-\lambda)y}+b\\
-                    &= \lambda\angles*{a,x}+(1-\lambda)\angles*{a,y}+b\\
-                    &= \lambda(\angles*{a,x}+b)+(1-\lambda)(\angles*{a,y}+b)\\
+                    f(\lambda x+(1-\lambda)y) &= \ip*{a,\lambda x+(1-\lambda)y}+b\\
+                    &= \lambda\ip*{a,x}+(1-\lambda)\ip*{a,y}+b\\
+                    &= \lambda(\ip*{a,x}+b)+(1-\lambda)(\ip*{a,y}+b)\\
                     &\leq \lambda f(x)+(1-\lambda)f(y).
                 \end{align*}
             \end{proof}

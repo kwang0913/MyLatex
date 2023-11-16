@@ -49,7 +49,7 @@
         \item For any collection of nonempty cones $\set{C_i\mid i\in I}$, we have \[\parens*{\cup_{i\in I}C_i}^*=\cap_{i\in I}C_i^*.\]
         \item For any two nonempty cones $C_1$ and $C_2$, we have \[\parens*{C_1+C_2}^*=C_1^*\cap C_2^*.\]
     \end{enumerate}
-    Hint: to show $C^*=K$, the simplest general strategy is usually to show that $\angles{x,y}\leq 0$ for all $x\in C$ and $y\in K$, establishing $K\subseteq C^*$, and then show that if $z\notin K$, then there exists some $x\in C$ with $\angles{x,z}>0$, implying that $z\notin C^*$, and thus $C^*=K$ since $z\notin K$ was arbitrary.
+    Hint: to show $C^*=K$, the simplest general strategy is usually to show that $\ip{x,y}\leq 0$ for all $x\in C$ and $y\in K$, establishing $K\subseteq C^*$, and then show that if $z\notin K$, then there exists some $x\in C$ with $\ip{x,z}>0$, implying that $z\notin C^*$, and thus $C^*=K$ since $z\notin K$ was arbitrary.
 \end{problem}
 
 \begin{solution}
@@ -60,10 +60,10 @@
                 Let $C=\parens*{C_1 \times C_2 \times \cdots \times C_m}^*$ and $C' = C_1^*\times C_2^* \times \cdots \times C_m^*$. We will show that $C=C'$ by showing that $C\subseteq C'$ and $C'\subseteq C$.
                 \begin{enumerate}[(i)]
                     \item {
-                        Let $x\in C$. Then for all $y\in C_1\times C_2\times\cdots\times C_m$, we have $\angles{x,y}\leq 0$. Equivalently, that is $\sum_{i=1}^{m}x_i y_i\leq0$ where $y_i\in C_i$ for all $i\in\set{1,2,\ldots,m}$. Since $C_i$ are cones and $0$ belongs to their closure,  then $\angles{x_i,y_i}\leq 0$ for all $i\in\set{1,2,\ldots,m}$ by letting all $y_k\rightarrow 0$, $i\neq k$. Thus $x_i\in C_i^*$ for all $i\in\set{1,2,\ldots,m}$. Therefore, $x\in C'$ and then $C\subseteq C'$.
+                        Let $x\in C$. Then for all $y\in C_1\times C_2\times\cdots\times C_m$, we have $\ip{x,y}\leq 0$. Equivalently, that is $\sum_{i=1}^{m}x_i y_i\leq0$ where $y_i\in C_i$ for all $i\in\set{1,2,\ldots,m}$. Since $C_i$ are cones and $0$ belongs to their closure,  then $\ip{x_i,y_i}\leq 0$ for all $i\in\set{1,2,\ldots,m}$ by letting all $y_k\rightarrow 0$, $i\neq k$. Thus $x_i\in C_i^*$ for all $i\in\set{1,2,\ldots,m}$. Therefore, $x\in C'$ and then $C\subseteq C'$.
                     }
                     \item {
-                        Let $x\in C'$. Then $x=(x_1,x_2,\ldots,x_m)$ where $x_i\in C_i^*$ for all $i\in\set{1,2,\ldots,m}$. Let $y\in C_1\times C_2\times\cdots\times C_m$. Then $y=(y_1,y_2,\ldots,y_m)$ where $y_i\in C_i$ for all $i\in\set{1,2,\ldots,m}$. Then $\angles{x_i,y_i}\leq 0$ for all $i\in\set{1,2,\ldots,m}$. Thus $\angles{x,y}\leq 0$. Therefore, $x\in C$ and then $C'\subseteq C$.
+                        Let $x\in C'$. Then $x=(x_1,x_2,\ldots,x_m)$ where $x_i\in C_i^*$ for all $i\in\set{1,2,\ldots,m}$. Let $y\in C_1\times C_2\times\cdots\times C_m$. Then $y=(y_1,y_2,\ldots,y_m)$ where $y_i\in C_i$ for all $i\in\set{1,2,\ldots,m}$. Then $\ip{x_i,y_i}\leq 0$ for all $i\in\set{1,2,\ldots,m}$. Thus $\ip{x,y}\leq 0$. Therefore, $x\in C$ and then $C'\subseteq C$.
                     }
                 \end{enumerate}
                 % Therefore $C=C'$. Thus $C=\parens*{C_1 \times C_2 \times \cdots \times C_m}^*=C_1^*\times C_2^* \times \cdots \times C_m^*$.
@@ -74,10 +74,10 @@
                 Let $C=\parens*{\cup_{i\in I}C_i}^*$ and $C'=\cap_{i\in I}C_i^*$. We will show that $C=C'$ by showing that $C\subseteq C'$ and $C'\subseteq C$.
                 \begin{enumerate}[(i)]
                     \item {
-                        Let $x\in C$. Then for all $y\in \cup_{i\in I}C_i$, we have $\angles{x,y}\leq 0$. Equivalently, that is $\angles{x,y_i}\leq0$ where $y\in C_i$ for all $i\in I$. Thus, $x\in C_i^*$ for all $i\in I$. Therefore, $x\in C'$ and then $C\subseteq C'$.
+                        Let $x\in C$. Then for all $y\in \cup_{i\in I}C_i$, we have $\ip{x,y}\leq 0$. Equivalently, that is $\ip{x,y_i}\leq0$ where $y\in C_i$ for all $i\in I$. Thus, $x\in C_i^*$ for all $i\in I$. Therefore, $x\in C'$ and then $C\subseteq C'$.
                     }
                     \item {
-                        Let $x\in C'$. Then $x\in C_i^*$ for all $i\in I$. Let $y\in \cup_{i\in I}C_i$. Then $y_i\in C_i$ for $i\in I$. Then $\angles{x,y_i}\leq 0$. Thus $\angles{x,y}\leq 0$. Therefore, $x\in C$ and then $C'\subseteq C$.
+                        Let $x\in C'$. Then $x\in C_i^*$ for all $i\in I$. Let $y\in \cup_{i\in I}C_i$. Then $y_i\in C_i$ for $i\in I$. Then $\ip{x,y_i}\leq 0$. Thus $\ip{x,y}\leq 0$. Therefore, $x\in C$ and then $C'\subseteq C$.
                     }
                 \end{enumerate}
                 % Therefore $C=C'$. Thus $C=\parens*{\cup_{i\in I}C_i}^*=\cap_{i\in I}C_i^*$.
@@ -88,10 +88,10 @@
                 Let $C=\parens*{C_1+C_2}^*$ and $C'=C_1^*\cap C_2^*$. We will show that $C=C'$ by showing that $C\subseteq C'$ and $C'\subseteq C$.
                 \begin{enumerate}[(i)]
                     \item {
-                        Let $x\in C$. Then for all $y\in C_1+C_2$, we have $\angles{x,y}\leq 0$. Equivalently, that is $\angles{x,y_1+y_2}\leq0$ where $y_1\in C_1$ and $y_2\in C_2$. Thus, $\angles{x,y_1}+\angles{x,y_2}\leq 0$. Since $C_1$ and $C_2$ are cones and $0$ belongs to their closure, following the same logic in (a), $\angles{x,y_1}\leq 0$ and $\angles{x,y_2}\leq 0$. Thus $x\in C_1^*$ and $x\in C_2^*$. Therefore, $x\in C'$ and then $C\subseteq C'$.
+                        Let $x\in C$. Then for all $y\in C_1+C_2$, we have $\ip{x,y}\leq 0$. Equivalently, that is $\ip{x,y_1+y_2}\leq0$ where $y_1\in C_1$ and $y_2\in C_2$. Thus, $\ip{x,y_1}+\ip{x,y_2}\leq 0$. Since $C_1$ and $C_2$ are cones and $0$ belongs to their closure, following the same logic in (a), $\ip{x,y_1}\leq 0$ and $\ip{x,y_2}\leq 0$. Thus $x\in C_1^*$ and $x\in C_2^*$. Therefore, $x\in C'$ and then $C\subseteq C'$.
                     }
                     \item {
-                        Let $x\in C'$. Then $x\in C_1^*$ and $x\in C_2^*$. Let $y\in C_1+C_2$. Then $y=y_1+y_2$ where $y_1\in C_1$ and $y_2\in C_2$. Then $\angles{x,y_1}\leq 0$ and $\angles{x,y_2}\leq 0$. Thus $\angles{x,y_1+y_2}\leq 0$. Therefore, $\angles{x,y}\leq 0$. Therefore, $x\in C$ and then $C'\subseteq C$.
+                        Let $x\in C'$. Then $x\in C_1^*$ and $x\in C_2^*$. Let $y\in C_1+C_2$. Then $y=y_1+y_2$ where $y_1\in C_1$ and $y_2\in C_2$. Then $\ip{x,y_1}\leq 0$ and $\ip{x,y_2}\leq 0$. Thus $\ip{x,y_1+y_2}\leq 0$. Therefore, $\ip{x,y}\leq 0$. Therefore, $x\in C$ and then $C'\subseteq C$.
                     }
                 \end{enumerate}
                 % Therefore $C=C'$. Thus $C=\parens*{C_1+C_2}^*=C_1^*\cap C_2^*$.
@@ -103,13 +103,13 @@
 
 \begin{problem}
     {Q2: Cone Separation}
-    Suppose $K\in\R^n$ is a nonempty closed convex cone. Show that if $z\in \R^n$ and $z\notin K$, then there exists $a\in K^*$ with $\angles*{a,z}>0$.
+    Suppose $K\in\R^n$ is a nonempty closed convex cone. Show that if $z\in \R^n$ and $z\notin K$, then there exists $a\in K^*$ with $\ip*{a,z}>0$.
 \end{problem}
 
 \begin{solution}
     {Solution}
     \begin{proof}
-        Using \textbf{Separating Hyperplane Theorem}, if $K$ is a nonempty closed convex cone and $z\notin K$, then by the theorem, there exists a hyperplane that can separate $z$ from $K$. This means there exists $a\neq 0$ such that $\angles*{a, x}\leq 0$ for all $x\in K$ and $\angles*{a, z}>0$. By definition of polar cone, $a\in K^*$. Thus, there exists $a\in K^*$ with $\angles*{a,z}>0$.
+        Using \textbf{Separating Hyperplane Theorem}, if $K$ is a nonempty closed convex cone and $z\notin K$, then by the theorem, there exists a hyperplane that can separate $z$ from $K$. This means there exists $a\neq 0$ such that $\ip*{a, x}\leq 0$ for all $x\in K$ and $\ip*{a, z}>0$. By definition of polar cone, $a\in K^*$. Thus, there exists $a\in K^*$ with $\ip*{a,z}>0$.
     \end{proof}
 \end{solution}
 
@@ -150,10 +150,10 @@
         We need to show that $\cl \parens*{C_1^*+C_2^*} \subseteq \parens*{C_1\cap C_2}^*$ and $z\notin\cl(C_1^*+C_2^*)$ implies $z\notin \parens*{C_1\cap C_2}^*$.
         \begin{enumerate}[(i)]
             \item {
-                For any $y\in \cl(C_1^*+C_2^*)$, there exists $y_1\in C_1^*$ and $y_2\in C_2^*$ such that for any $\epsilon>0$, $\norm{y-(y_1+y_2)}<\epsilon$. Let $x\in C_1\cap C_2$, we have $\angles*{y, x}=\angles*{y_1+y_2, x}+\angles*{y-(y_1+y_2), x}$. Because $y_1$ is in the polar of $C_1$ and $y_2$ is in the polar of $C_2$, $\angles*{y_1, x}\leq 0$ and $\angles*{y_2, x}\leq 0$, which implies $\angles*{y_1+y_2, x}\leq 0$. Using Cauchy-Schwarz inequality, $\angles*{y-(y_1+y_2), x}\leq \norm{y-(y_1+y_2)}\norm{x}<\epsilon\norm{x}$. Since $\epsilon$ is arbitrary, $\angles*{y-(y_1+y_2), x}\leq 0$. Thus, $\angles*{y, x}\leq 0$. Therefore, $y\in \parens*{C_1\cap C_2}^*$ and then $\cl(C_1^*+C_2^*)\subseteq \parens*{C_1\cap C_2}^*$.
+                For any $y\in \cl(C_1^*+C_2^*)$, there exists $y_1\in C_1^*$ and $y_2\in C_2^*$ such that for any $\epsilon>0$, $\norm{y-(y_1+y_2)}<\epsilon$. Let $x\in C_1\cap C_2$, we have $\ip*{y, x}=\ip*{y_1+y_2, x}+\ip*{y-(y_1+y_2), x}$. Because $y_1$ is in the polar of $C_1$ and $y_2$ is in the polar of $C_2$, $\ip*{y_1, x}\leq 0$ and $\ip*{y_2, x}\leq 0$, which implies $\ip*{y_1+y_2, x}\leq 0$. Using Cauchy-Schwarz inequality, $\ip*{y-(y_1+y_2), x}\leq \norm{y-(y_1+y_2)}\norm{x}<\epsilon\norm{x}$. Since $\epsilon$ is arbitrary, $\ip*{y-(y_1+y_2), x}\leq 0$. Thus, $\ip*{y, x}\leq 0$. Therefore, $y\in \parens*{C_1\cap C_2}^*$ and then $\cl(C_1^*+C_2^*)\subseteq \parens*{C_1\cap C_2}^*$.
             }
             \item {
-                If $z\notin\cl(C_1^*+C_2^*)$, by the cone separation theorem, there exists an $x$ such that \[\angles{x,z}>0, \qquad \angles*{x,p}\leq 0\] for all $p\in \cl(C_1^*+C_2^*)$. The second condition implies that $x\in(\cl(C_1^*+C_2^*))^*=(C_1^*+C_2^*)^*=C_1^{**}\cap C_2^{**}=C_1\cap C_2$. Then the first condition implies, $z\in C_1\cap C_2$ which means $z\notin\cl(C_1\cap C_2)^*$.
+                If $z\notin\cl(C_1^*+C_2^*)$, by the cone separation theorem, there exists an $x$ such that \[\ip{x,z}>0, \qquad \ip*{x,p}\leq 0\] for all $p\in \cl(C_1^*+C_2^*)$. The second condition implies that $x\in(\cl(C_1^*+C_2^*))^*=(C_1^*+C_2^*)^*=C_1^{**}\cap C_2^{**}=C_1\cap C_2$. Then the first condition implies, $z\in C_1\cap C_2$ which means $z\notin\cl(C_1\cap C_2)^*$.
             }
         \end{enumerate}
         Thus we complete the proof.
@@ -187,7 +187,7 @@
         \item {
             \begin{proof}
                 % We will show that $K^*=\cl P$ by showing that $K^*\subseteq \cl P$ and $\cl P\subseteq K^*$.
-                Given $z\in K^*$, for all $x\in K$, we have \[\angles*{z,x}\leq 0, \qquad \forall x, s.t. Ax\in C.\] By definition of polar cone $C^*$, $y\in C^*$ if and only if $\angles*{y, Ax}\leq 0$. Hence, for the same $x$, \[\angles*{A\trn y, x}\leq 0.\] If $z$ is an element in $A\trn y\in P$. Since $P$ is not necessarily closed, we have $z\in \cl P$, which is $K^*\subseteq \cl P$. If $z\notin \cl P$, by the cone separation theorem, there exists $x\in (\cl P)^*=P^*$ such that $\angles*{x, z}>0$, and $\angles*{x, p}\leq 0$ for all $p\in \cl P$. Given that $P=\set{A\trn y \mid y\in C^*}$, we can write the second condition as $\angles*{x, A\trn y} \leq 0$ for all $y\in C^*$. This is equivalent to $\angles*{y, Ax}\leq 0$. This implies $Ax\in C$ and $x\in K$. Since $\angles*{x, z}>0$ and $x\in K$, we have $z\in K$ and so the $z\notin K^*$. Then the proof is completed by the hint.
+                Given $z\in K^*$, for all $x\in K$, we have \[\ip*{z,x}\leq 0, \qquad \forall x, s.t. Ax\in C.\] By definition of polar cone $C^*$, $y\in C^*$ if and only if $\ip*{y, Ax}\leq 0$. Hence, for the same $x$, \[\ip*{A\trn y, x}\leq 0.\] If $z$ is an element in $A\trn y\in P$. Since $P$ is not necessarily closed, we have $z\in \cl P$, which is $K^*\subseteq \cl P$. If $z\notin \cl P$, by the cone separation theorem, there exists $x\in (\cl P)^*=P^*$ such that $\ip*{x, z}>0$, and $\ip*{x, p}\leq 0$ for all $p\in \cl P$. Given that $P=\set{A\trn y \mid y\in C^*}$, we can write the second condition as $\ip*{x, A\trn y} \leq 0$ for all $y\in C^*$. This is equivalent to $\ip*{y, Ax}\leq 0$. This implies $Ax\in C$ and $x\in K$. Since $\ip*{x, z}>0$ and $x\in K$, we have $z\in K$ and so the $z\notin K^*$. Then the proof is completed by the hint.
             \end{proof}
         }
         \item {
@@ -212,12 +212,12 @@
     \begin{enumerate}[(a)]
         \item {
             \begin{proof}
-                Let $K=\set{x\in\R^n\mid x\geq 0}$. Then $K^*=\set{y\in\R^n\mid \angles*{x,y}\leq 0, \forall x\in K}$. Since $x\geq 0$, $\angles*{x,y}\leq 0$ for all $y\leq 0$. Thus, $K^*=\set{y\in\R^n\mid y\leq 0}$. Therefore, $K^*=-K$ and $K$ is self-dual.
+                Let $K=\set{x\in\R^n\mid x\geq 0}$. Then $K^*=\set{y\in\R^n\mid \ip*{x,y}\leq 0, \forall x\in K}$. Since $x\geq 0$, $\ip*{x,y}\leq 0$ for all $y\leq 0$. Thus, $K^*=\set{y\in\R^n\mid y\leq 0}$. Therefore, $K^*=-K$ and $K$ is self-dual.
             \end{proof}
         }
         \item {
             \begin{proof}
-                Let $K=\set{(x,w)\in \R^n\times\R\mid w\geq\norm{x}}$. Then $K^*=\set{(y,z)\in \R^n\times\R\mid \angles*{(x,w),(y,z)}\leq 0, \forall (x,w)\in K}$. If $x=0$, then $w\geq \norm{x}=0$ and $\angles*{(x,w),(y,z)} = x\trn y+wz \leq 0$ implies $z\leq 0$. If $x\neq 0$, let $u=\frac{x}{\norm{x}}$ be unit vector, $\angles*{(x,w),(y,z)} = x\trn y+wz \leq 0 \Rightarrow u\trn y+z\leq 0$. To make the inequality hold, there must be $y=0$ and $z\leq 0$ since $u$ represents all directions. Thus, $K^*=\set{(0,z)\in \R^n\times\R\mid z\leq 0}$. Therefore, $K^*=-K$ and $K$ is self-dual.
+                Let $K=\set{(x,w)\in \R^n\times\R\mid w\geq\norm{x}}$. Then $K^*=\set{(y,z)\in \R^n\times\R\mid \ip*{(x,w),(y,z)}\leq 0, \forall (x,w)\in K}$. If $x=0$, then $w\geq \norm{x}=0$ and $\ip*{(x,w),(y,z)} = x\trn y+wz \leq 0$ implies $z\leq 0$. If $x\neq 0$, let $u=\frac{x}{\norm{x}}$ be unit vector, $\ip*{(x,w),(y,z)} = x\trn y+wz \leq 0 \Rightarrow u\trn y+z\leq 0$. To make the inequality hold, there must be $y=0$ and $z\leq 0$ since $u$ represents all directions. Thus, $K^*=\set{(0,z)\in \R^n\times\R\mid z\leq 0}$. Therefore, $K^*=-K$ and $K$ is self-dual.
             \end{proof}
         }
     \end{enumerate}
