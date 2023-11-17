@@ -1,0 +1,61 @@
+\documentclass[10pt]{../../Formats/RU}
+\input{../../Formats/Macro.tex}
+\graphicspath{{../../Formats}}
+
+%Theorem style
+\declaretheorem[numbered=no, style=definition]{axiom}
+\declaretheorem[numberwithin=section,style=definition]{definition}
+\declaretheorem[sibling=definition]{theorem, lemma, corollary, proposition, conjecture}
+\declaretheorem[numbered=no,style=remark]{remark, claim}
+
+%Information to be included in the title page:
+\title[Example]{Example}
+\author[Initial] % (optional, for multiple authors)
+{My Name\inst{1}
+%\and Someone Else\inst{2}
+}
+\institute[University] % (optional)
+{
+    \inst{1}%
+    % Ph.D.Candidate\ of ECE\\
+    Some University
+    % \and
+    % \inst{2}%
+    % Faculty of Statistics\\
+    % Very Famous University
+}
+\date[\today] % (optional)
+{
+Something, \\
+\today}
+
+% \addbibresource{bib.bib}
+
+
+\begin{document}
+\frame{\titlepage}
+%---------------------------------------------------------
+%This block of code is for the table of contents after
+%the title page
+\begin{frame}
+\frametitle{Table of Contents}
+\tableofcontents
+\end{frame}
+%---------------------------------------------------------
+\section{Example}
+\begin{frame}
+    \frametitle{Example}
+    \begin{itemize}
+        \item Example
+    \end{itemize}
+\end{frame}
+
+% \section{Reference}
+%---------------------------------------------------------
+\begin{frame}[allowframebreaks]
+    \frametitle{Reference}
+    \printbibliography
+\end{frame}
+%---------------------------------------------------------
+
+\end{document}
