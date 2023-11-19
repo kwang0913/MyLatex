@@ -56,6 +56,48 @@
     \end{enumerate}
 \end{problem}
 
+\begin{solution}
+    {Solution}
+    We want to find \[f^* = g(\lambda) = \sup_{x\in\dom(f)}\set{\ip*{\lambda, x}-f(x)}.\]
+    \begin{enumerate}[(a)]
+        \item {
+            \begin{align*}
+                g(\lambda) 
+                &= \sup_{x\in\dom(f)}\set{\ip*{\lambda, x}-\frac{1}{2}x^2} \\
+                \frac{\diff g}{\diff x} &= \lambda - x \tag{\text{Let $x=\lambda$ to maximize $g(\lambda)$}}\\
+                g(\lambda) &= \frac{1}{2}\lambda^2
+            \end{align*}
+        }
+        \item {
+            \begin{align*}
+                g(\lambda) 
+                &= \sup_{x\in\dom(f)}\set{\ip*{\lambda, x}-\delta_{[a, b]}(x)} \\
+                &= \begin{cases}
+                    \sup_{x\in\dom(f)}\set{\ip*{\lambda, x}} & x\in[a, b] \\
+                    \sup_{x\in\dom(f)} \set{-\infty} & \text{otherwise}
+                \end{cases} \\
+                \frac{dg}{dx} &= \begin{cases}
+                    \lambda & x\in[a, b] \\
+                    0 & \text{otherwise}
+                \end{cases} \\
+                g(\lambda) &= \begin{cases}
+                    b\lambda & \lambda\geq 0 \\
+                    a\lambda & \lambda\leq 0 \\
+                    0 & \lambda=0
+                \end{cases}
+            \end{align*}
+        }
+        \item {
+            \begin{align*}
+                g(\lambda)
+                &= \sup_{x\in\dom(f)}\set{\ip*{\lambda, x}-e^x} \\
+                \frac{\diff g}{\diff x} &= \lambda - e^x \tag{\text{Let $x=\ln\lambda$ to maximize $g(\lambda)$}}\\
+                g(\lambda) &= \lambda\ln\lambda - \lambda
+            \end{align*}
+        }
+    \end{enumerate}
+\end{solution}
+
 \begin{problem}
     {Q2}
     A function $f:\R^n\rightarrow\R\cup\set{+\infty}$ is said to be positively homogeneous if
@@ -75,6 +117,61 @@
         \item Given a cone $K$, show that $\delta_K^* = \delta_{K^*}$. That is, the conjugate of the indicator function of a $K$ is the indicator function of its polar.
     \end{enumerate}
 \end{problem}
+
+\begin{solution}
+    {Solution}
+    \begin{enumerate}[(a)]
+        \item {
+            \begin{proof}
+                We finish the proof by showing sufficiency and necessity.
+                \begin{enumerate}[(i)]
+                    \item {
+                        If $\epi f$ is a cone in $\R^{n+1}$, then $\forall (x, f(x))\in\epi f$, we have $(\alpha x, \alpha f(x))\in\epi f$ for all $\alpha>0$. \\
+                        With the definition of $\epi f$, we have $f(\alpha x)\leq \alpha f(x)$. \\
+                        Since $f$ is proper, we have $f(\alpha x)\geq \alpha f(x)$. \\
+                        Therefore, $f(\alpha x) = \alpha f(x)$, which means $\epi f$ is positively homogeneous.
+                    }
+                    \item {
+                        If $f$ is positively homogeneous, we have $f(\alpha x) = \alpha f(x) \leq \alpha f(x)$ for all $\alpha>0$, which means $(\alpha x, \alpha f(x))\in\epi f$. \\
+                        Since $\alpha$ is arbitrary, $\epi f$ is a cone by definition.
+                    }
+                \end{enumerate}
+            \end{proof}
+        }
+        \item {
+            \begin{proof}
+                We have shown the $\delta_X^*(y)=\sup_{x\in X}\set{\ip*{x, y}}$ in Q1. We only need to prove $\delta_X^*$ is positively homogeneous. \\
+                \begin{align*}
+                    \delta_X^*(\alpha y) 
+                    &= \sup_{x\in X}\set{\ip*{x, \alpha y}} \\
+                    &= \sup_{x\in X}\set{\alpha\ip*{x, y}} \\
+                    &= \alpha\sup_{x\in X}\set{\ip*{x, y}} \\
+                    &= \alpha\delta_X^*(y)
+                \end{align*}
+            \end{proof}
+        }
+        \item {
+            \begin{proof}
+                Based on definition, we have $f^*(y) = \sup_{x\in\R^n}\set{\ip*{x, y}-f(x)}$. Construct a set $C$ which is $C = \set{y\in\R^n\mid \ip*{x, y}\leq f(x), \forall x\in\R^n}$.
+                \begin{enumerate}[(i)]
+                    \item For $y\in C$, we have $\ip*{x, y}\leq f(x)$ for all $x\in\R^n$ and thus $\ip*{x, y}-f(x)\leq 0$. By positively homogeneous $f(0)=0$, and we know $\ip*{0, y}=0$. So $0$ is attainable in the supremum. Therefore, $f^*(y) = \sup_{x\in\R^n}\set{\ip*{x, y}-f(x)}= 0$.
+                    \item For $y\notin C$, there exists $x\in\R^n$ such that $\ip*{x, y}>f(x)$. Since $f$ is positively homogeneous, we have $\ip*{\alpha x, y}>f(\alpha x)=\alpha f(x)$ for all $\alpha>0$. Therefore, $\ip*{\alpha x, y}-f(\alpha x)=\alpha (\ip*{x, y}-f(x))$. This means for a given $y\notin C$, we can scale $x$ by arbitrary $\alpha\geq 0$ and the supremum will be unbounded. Therefore, $f^*(y)=\sup_{x\in\R^n}\set{\ip*{x, y}-f(x)}=+\infty$.
+                \end{enumerate}
+                The above two terms show the $f^*$ is the indicator function of $C$. Now we need to show $C$ is closed and convex to finish the proof.
+                \begin{enumerate}[resume*]
+                    \item For any $y_1, y_2\in C$ and $\lambda\in[0,1]$, we have $\ip*{x, \lambda y_1+(1-\lambda)y_2}\leq\lambda f(x)+(1-\lambda)f(x)$ for all $x\in\R^n$. Therefore, $\lambda y_1+(1-\lambda)y_2\in C$ and $C$ is convex. The continuity of $\ip*{\cdot, \cdot}$ implies $C$ is closed.
+                \end{enumerate}
+            \end{proof}
+        }
+        \item {
+            \begin{proof}
+                We have $\delta_K^*=\sup_{x\in K}\set{\ip*{x, y}}$ from Q2(b).\\
+                For $y\in K^*$, it satisfies $\ip*{x, y}\leq 0, \forall x\in K$, which matches $\delta_K^*(y)=\sup_{x\in K}\set{\ip*{x, y}}=0$. \\
+                For $y\notin K^*$, there exists $x\in K$ such that $\ip*{x, y}>0$. Since $K$ is a cone, we have $\ip*{\alpha x, y}=\alpha\ip*{x, y}$ for all $\alpha>0$. Therefore, $\ip*{\alpha x, y}$ is unbounded and matches $\delta_K^*(y)=\sup_{x\in K}\set{\ip*{x, y}}=+\infty$. \\
+            \end{proof}
+        }
+    \end{enumerate}
+\end{solution}
 
 \begin{problem}
     {Q3}
@@ -101,11 +198,36 @@
     \end{cases}
     \]
     where $A$ is any $m\times n$ matrix and $b\in\R^m$. Show that the corresponding Fenchel dual is equivalent to the standard dual programming problem
-    \begin{align*}
-        \max_{u\in\R^m}\quad & b\trn u \\
-        \st\quad & A\trn u\leq c \\
-    \end{align*}
-    in the sense that any solution $y^*$ of the Fenchel dual is equal to $-u^*$ is some optimal solution to the standard dual linear programming problem.
+    \begin{align}
+        \label{eq:standard_dual}
+        \begin{split}
+            \max_{u\in\R^m}\quad & b\trn u \\
+            \st\quad & A\trn u\leq c \\
+        \end{split}
+    \end{align}
+    in the sense that any solution $y^*$ of the Fenchel dual is equal to $-u^*$, where $u^*$ is some optimal solution to the standard dual linear programming problem.
 \end{problem}
+
+\begin{solution}
+    {Solution}
+    \begin{proof}
+        Solving $\sup_{x\geq 0}\set{\ip*{x, y}-f(x)}$ and get \[f^*(y)=\begin{cases}
+            0 & y\leq c \\
+            +\infty & \text{otherwise.}
+        \end{cases}\]
+        Since $g(z)$ is an indicator function, using the result of Q2(b), we have \[g^*(w)=w\trn b.\]
+        The Fenchel dual problem is
+        \begin{align*}
+            \max_{w\in\R^m}&\set{-f^*(-w)-g^*(w)} \\
+            \max_{w\in\R^m}&\set{-f^*(-w)-w\trn b} \\
+            \Rightarrow&
+            \begin{cases}
+                -w\trn b & -w\leq c \\
+                -\infty & \text{otherwise.}
+            \end{cases}
+        \end{align*}
+        Let $-u=w$, we get the standard dual problem~\cref{eq:standard_dual}. Note the $w$ here is corresponding to $y$ of Fenchel dual problem in the question statement.
+    \end{proof}
+\end{solution}
 
 \end{document}
