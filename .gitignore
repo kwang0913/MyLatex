@@ -8,3 +8,4 @@
 !*.cls
 !*.ipynb
 **/Formats/
+**/Temp/
