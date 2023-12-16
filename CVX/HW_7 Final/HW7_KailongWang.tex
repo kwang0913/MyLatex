@@ -1,0 +1,158 @@
+\documentclass{article}
+\usepackage[
+    letterpaper,
+    top=1in,
+    bottom=1in,
+    inner=0.75in,
+    outer=0.75in,
+    % margin=1in,
+]{geometry}
+
+%%%% Page Header and Foot %%%%
+\usepackage{fancyhdr}
+\fancypagestyle{plain}{
+\fancyhf{}
+\fancyhead[L]{266:711:685}
+\fancyhead[C]{\textbf{Convex Analysis and Optimization}}
+\fancyhead[R]{Rutgers University}
+\fancyfoot[L]{}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{}
+}
+\pagestyle{plain}
+
+%%%% Load Format %%%%
+\input{../../Formats/Format.tex}
+\input{../../Formats/Macro.tex}
+\allowdisplaybreaks
+
+%%%% Theorem Style %%%%
+\declaretheorem[numbered=no, style=plain]{axiom, lemma}
+\declaretheorem[numberwithin=section,style=definition]{definition}
+\declaretheorem[sibling=definition]{theorem, corollary, proposition, conjecture}
+\declaretheorem[numbered=no,style=remark]{remark, claim}
+
+%%%% Document Information %%%%
+\title{Final Exam}
+\author{Kailong Wang}
+\date{\today}
+
+%%%% Start Document %%%%
+\begin{document}
+\maketitle
+
+\begin{problem}
+    {A primal-dual identity allowing $c\neq 1$.}
+    At the end of the last class of the semester, I mentioned the identity
+    \[(\forall r\in\R^n) \qquad \prox_h(r)+\prox_{h^*}(r)=r\]
+    for any closed proper convex function $h: \R^n\rightarrow\R\cup\set{+\infty}$. For such a function $h$ and an arbitrary positive scalar $c$, prove the more general identity
+    \[(\forall r\in\R^n) \qquad \prox_{ch}(r)+c\prox_{(1/c)h^*}(\frac{1}{c}r)=r,\]
+    which reduces to the identity shown in class when $c=1$.
+\end{problem}
+
+\begin{problem}
+    {General conic augmented Lagrangian.}
+    Consider the convex optimization problem
+    \begin{align}
+        \label{eq:1}
+        \begin{aligned}
+            &\min && f(x) \\
+            &\st && Ax-b \in K,
+        \end{aligned}
+    \end{align}
+    where $f:\R^n\rightarrow\R\cup\set{+\infty}$ is closed proper convex, $A$ is an $m\times n$ matrix, $b\in\R^m$, and $k\subseteq \R^m$ is a nonempty closed convex cone. Define the dualizing parameterization for this problem to be
+    \begin{align}
+        \label{eq:2}
+        F(x, u) = {
+            \begin{cases}
+                f(x) & Ax-b+u\in K \\
+                +\infty & \text{otherwise}.
+            \end{cases}
+        }
+    \end{align}
+    In this problem, you will demonstrate that with $F$ defined in this manner, the augmented Lagrangian method takes the form
+    \begin{align}
+        x^{k+1} & \in \argmin_{x\in\R^n} \braces*{f(x) + \frac{1}{2c_k}\bracks*{\dist_K\parens*{p^k+c_k\parens*{Ax-b}}}^2} \label{eq:3} \\
+        p^{k+1} &= \proj_{K^*}\parens*{p^k+c_k\parens*{Ax^{k+1}-b}}. \label{eq:4}
+    \end{align}
+    Throughout this assignment, we use the following notation: if $C$ is any nonempty closed convex set, $\proj_C(v)$ denotes projection from $v$ onto $C$
+    \[\proj_C(v)=\argmin_{w\in C}\braces*{\norm*{w-v}},\]
+    and $\dist_C(v)$ denotes distance from $v$ to $C$
+    \[\dist_C(v)=\inf_{w\in C}\braces*{\norm*{w-v}}=\norm*{\proj_C(v)-v}.\]
+    And $K^*$ denotes the polar of $K$.
+    \begin{enumerate}[(a)]
+        \item Derive an expression (in terms of $f$, $A$, $b$, and $K^*$) for the Lagrangian $L(x, p)$ for the form of $F$ given above.
+        \item Let $C\subseteq \R^m$ be any nonempty closed convex cone, and $v\in\R^m$. Show that $w=\proj_C(v)$ if and only if $w\in C$, $v-w\in C^*$, and $\ip*{v-w, w} = 0$ (equivalently, $\ip*{v, w}=\norm*{w}^2$). Hint: refer to Homework 5 Problem 3(b).
+        \item For $C\subseteq \R^m$ still defined to be any closed convex cone, show that for any vector $v\in\R^m$ and scalar $\alpha \geq 0$, one has $\proj_C(\alpha v)=\alpha \proj_C(v)$.
+        \item Show that for any closed convex cone $C\in\R^m$ and vector $v\in\R^m$, one has $\proj_{C^*}(v)=v-\proj_C(v)$.
+        \item Show that for any scalar $c>0$ and $l,t\in\R^m$, the solution to the problem $\min\set{\norm{l-cu}^2\mid u+t\in K}$ is $u=\proj_K(t+\frac{1}{c}l)-t$.
+        \item Using Proposition 3.8 and formulas (3.23)-(3.24) of the class notes, show that the augmented Lagrangian method corresponding to the $F$ given in~\cref{eq:2} is~\cref{eq:3,eq:4} above. Note: in answering, it may be helpful to refer to the earlier parts of this problem.
+        \item Drawing again upon the Proposition 3.8 from the notes, show that when one executes algorithm~\cref{eq:3,eq:4} for an instance of problem~\cref{eq:1} possessing a dual optimal solution, $\braces{p^k}$ converges to a dual solution, $\lim_{k\rightarrow\infty}\braces{\dist_K(Ax-b)}=0$, and $\lim\sup_{k\rightarrow\infty}f(x^k)\leq\inf\set{f(x)\mid x\in\R^n, Ax+b\in K}$.
+    \end{enumerate}
+\end{problem}
+
+\begin{problem}
+    {Another way to embed Fenchel duality into the parametric duality framework.}
+    Consider two closed proper convex functions $f:\R^n\rightarrow\R\cup\set{+\infty}$ and $g:\R^m\rightarrow\R\cup\set{+\infty}$, and an $m\times n$ matrix $M$. Page 67 of the class notes shows one way of modeling the problem $\min_{x\in\R^n}\braces{f(x)+g(Mx)}$ within the gramework of parametric duality: making the decision variables $(x,z)\in\R^n\R^m$, changing the objective to $f(x)+g(z)$ and including a constraint $Mx-z=0$. This problem will explore a different approach to accomplishing the same thing bny defining $F:\R^n\times\R^m\rightarrow\R\cup\set{+\infty}$ through $F(x,u)=f(x)+g(Mx+u)$.
+    \begin{enumerate}[(a)]
+        \item Prove that this choice of $F$ is closed proper convex (and that this is true even if $f+g\circ M$ is not proper, that is, $f(x)+g(Mx)=+\infty$ for all $x\in\R^n$).
+        \item Find an explicit expression for the corresponding Lagrangian $L(x,p)$ in terms of $f$, $M$, and the conjugate function $g^*$ of $g$. Be sure to completely describe all the cases in which $L(x,p)=\pm\infty$.
+        \item Prove that the resulting dual function $\phi^*:p\mapsto D(0,p)$ is the same as the dual function obtained on page 67 of the notes, and is also equal to $-Q(p)$, where $Q$ is the Fenchel dual problem obtained in (1.11) on page 12 of the notes.
+        \item Show that, with $F(x,u)=f(x)+g(Mx+u)$, the abstract augmented Lagrangian method (3.17)-(3.18) in Proposition 3.8 of the notes (page 59), reduces to the same algorithm as (3.46)-(3.47) on page 67.
+    \end{enumerate}
+\end{problem}
+
+\begin{problem}
+    {The ADMM with indicators of affine sets.}
+    A very common application of the ADMM for problems of the form $\min_{x\in\R^n}\braces{f(x)+g(Mx)}$ is when $g$ is the indicator function of an affine set $S+d$, where $S\subset\R^m$ is a linear subspace and $d\in\R^m$ (when $d=0$, the set in question is just the linear subspace $S$). This special case is equivalent to minimizing $f(x)$ subject to the constraint that $Mx\in S+d$, or equivalently $Mx-d\in S$. This problem will explore the special properties of the ADMM in this context.
+    \begin{enumerate}[(a)]
+        \item Give a formula for the normal cone map $N_{S+d}$ of the set $S+d$, which is also the subgradient map of the indicator function $\delta_{S+d}$, proving that your formula is correct (your answer should involve the subspaces $S^{\bot}\subseteq\R^m$ orthogonal to $S$).
+        \item In terms of the projection operator $\proj_S$ from $\R^m$ to $S$ and/or the projection operator $\proj_{S^{\bot}}=\mathrm{Id}-\proj_S$ from $\R^m$ to $S^{\bot}$, state and justify a procedure for computing the projection $\proj_{S+d}(y)$ of a given point $y\in\R^m$ onto $S+d$.
+        \item Prove that for any $y\in\R^m$ and $w\in S^{\bot}$,$\proj_{S+d}(y+w)=\proj_{S+d}(y)$.
+        \item For an arbitrary $f:\R^n\rightarrow\R\cup\set{+\infty}$ and $m\times n$ matrix $M$, consider using the ADMM to solve minimize $f(x)+\delta_{S+d}(Mx)$. Show that if the starting Lagrange multiplier estimates $p^0$ lie in $S^{\bot}$, then all the subsequent Lagrange multiplier estimates $p^k$ also lie in $S^{\bot}$, and the algorithm takes the form
+        \begin{align*}
+            x^{k+1} &\in \argmin_{x\in\R^n}\braces*{f(x)+\ip*{p^k,Mx}+\frac{c}{2}\norm*{Mx-z^k}^2} \\
+            z^{k+1} &= \proj_{S+d}(Mx^{k+1}) \\
+            p^{k+1} &= p^k+c(Mx^{k+1}-z^{k+1}).
+        \end{align*}
+    \end{enumerate}
+\end{problem}
+
+\begin{problem}
+    {Multi-block decomposition through the ADMM.}
+    The principal use of the ADMM specialization discussed in the previous problem is to induce decomposition for block-separable problems and similar settings. As an example, consider problems of the form (3.4) in the class notes,
+    \begin{alignat*}{9}
+        &\min \quad&& f_1(x_1)&&+&&f_2(x_2)&&+&&\cdots&&+&&f_l(x_l)& \\
+        &\st  && A_1x_1&&+&&A_2x_2&&+&&\cdots&&+&&A_lx_l&=b,
+    \end{alignat*}
+    where $b\in\R^m$, the overall the decision vector $x$ is a concatenation of subvectors $(x_1,x_2,\ldots,x_l) \in \R^{n_1} \times \R^{n_2} \times \cdots \times \R^{n_l}$ and, for each $i=1,2,\ldots,n$, one has that $f_i:\R^{n_i}\rightarrow\R\cup\set{+\infty}$ is a closed proper convex function and $A_i$ is an $m\times n_i$ matrix. It was shown in class and in the notes that Lagrangian decomposition algorithms achieve decomposition for such problems but augmented Lagrangian do not, due to the cross terms in the quadratic penalty $\norm*{\sum_{i=1^l}A_ix_i-b}^2$. Consider modeling problems in the form (3.4) in Fenchel-Rockafellar form, starting as follows:
+    \[f(x)=f(x_1,x_2,\ldots,x_l)=\sum_{i=1}^lf_i(x_i)\qquad M=\begin{bmatrix}
+        A_1 &&& \\
+        & A_2 && \\
+        && \ddots & \\
+        &&& A_l
+    \end{bmatrix}.\]
+    Note that $M$ has $n=\sum_{i=1}^{n} n_i$ columns and $lm$ rows. Consider vectors $z=Mx$ of length $lm$ to be written as consisting of $l$ subvectors $(z_1, z_2, \ldots, z_l)$, each of length $m$. Finally, define $g:\R^{lm}\rightarrow\R\cup\set{+\infty}$ by
+    \[g(z)=g(z_1,z_2,\ldots,z_l)=\begin{cases}
+        0 & \text{if } z_1+z_2+\cdots+z_l=b \\
+        +\infty & \text{otherwise}.
+    \end{cases}\]
+    \begin{enumerate}[(a)]
+        \item Show that $x$ is a minimizer of $f(x)+g(Mx)$ with the setup above if and only if it is a minimizer of the block-separable problem (3.4).
+        \item Show that applying the ADMM to this setup is equivalent to the recursion pattern below, where
+        \begin{itemize}
+            \item $c>0$ is a fixed scalar,
+            \item $p^k\in\R^m$ for each iteration $k\geq 0$
+            \item $z_i^k\in\R^m$ for each $i=1,2,\ldots,l$ and iteration $k\geq 0$
+            \item $x_i^k\in\R^{n_i}$ for each $i=1,2,\ldots,l$ and iteration $k\geq 0$.
+        \end{itemize}
+        \begin{align*}
+            x_i^{k+1} &\in \argmin_{x_i\in\R^{n_i}}\braces*{f_i(x_i)+\ip*{p^k,A_ix_i}+\frac{c}{2}\norm*{A_ix_i-z_i^k}^2} \quad \forall i=1,2,\ldots,l\\
+            z_i^{k+1} &= A_ix_i^{k+1}+\frac{1}{l}\parens*{b-\sum_{j=1}^lA_jx_j^{k+1}} \quad \forall i=1,2,\ldots,l \\
+            p^{k+1} &= p^k+\frac{c}{l}\parens*{\sum_{i=1}^lA_ix_i^{k+1}-b}.
+        \end{align*}
+        You may find it helpful to use various parts of the preceding problem, along with the basic linear algebra fact that if $B$ is a $p\times q$ matrix, the orthogonal complement of the subspace $\ker B \dot{=}\set{u\in\R^q\mid Bu=0}$ is $\set{B^{\top}v\mid v\in\R^p}$.
+    \end{enumerate}
+\end{problem}
+
+\end{document}
