@@ -50,6 +50,31 @@
     which reduces to the identity shown in class when $c=1$.
 \end{problem}
 
+\begin{solution}
+    {Solution}
+    \begin{proof}
+        With the definition from (3.12) of the class notes, we have
+        \begin{align*}
+            \prox_{h}(r)&=\argmin_{x\in\R^n}\braces*{h(x)+\frac{1}{2}\norm*{x-r}^2} \\
+            \prox_{h^*}(r)&=\argmin_{x\in\R^n}\braces*{h^*(x)+\frac{1}{2}\norm*{x-r}^2}. \\
+            \prox_{h}(r)+\prox_{h^*}(r)&=\argmin_{x\in\R^n}\braces*{h(x)+h^*(x)+\norm*{x-r}^2} \\
+            &\Rightarrow x=r.
+        \end{align*}
+        Since $0\in \partial\{h(x)+h^*(x)\}$ and take derivative to solve $\norm{x-r}^2$. For the general case,
+        \begin{align*}
+            \prox_{ch}(r)
+            &= \argmin_{x\in\R^n}\braces*{ch(x)+\frac{1}{2}\norm*{x-r}^2} \\
+            &= \argmin_{x\in\R^n}\braces*{h(x)+\frac{1}{2c}\norm*{x-r}^2} \\
+            c \prox_{(1/c)h^*}(\frac{1}{c}r)
+            &= c \argmin_{x\in\R^n}\braces*{\frac{1}{c}h^*(x)+\frac{1}{2}\norm*{x-\frac{1}{c}r}^2} \\
+            &= \argmin_{x\in\R^n}\braces*{h^*(x)+\frac{c}{2}\norm*{x-r}^2} \\
+            \prox_{ch}(r)+c \prox_{(1/c)h^*}(\frac{1}{c}r)
+            &= \argmin_{x\in\R^n}\braces*{h(x)+\frac{1}{2c}\norm*{x-r}^2+h^*(x)+\frac{c}{2}\norm*{x-r}^2} \\
+            &\Rightarrow \frac{\diff}{\diff x}\braces*{\frac{1}{2c}\norm*{x-r}^2+\frac{c}{2}\norm*{x-r}^2} \Rightarrow x=r.
+        \end{align*}
+    \end{proof}
+\end{solution}
+
 \begin{problem}
     {General conic augmented Lagrangian.}
     Consider the convex optimization problem
@@ -91,9 +116,74 @@
     \end{enumerate}
 \end{problem}
 
+\begin{solution}
+    {Solution}
+    \begin{enumerate}[(a)]
+        \item {
+            \begin{align*}
+                L(x, p)
+                &= \inf_{u\in\R^m} \braces*{F(x,u)-\ip*{u,p}} \\
+                &= f(x)+\ip*{p, Ax-b}+\delta_K^*(p) \\
+                &= f(x)+\ip*{p, Ax-b}+\delta_{K^*}(p).
+            \end{align*}
+        }
+        \item {We prove this by showing the two directions.
+            \begin{proof}
+                Suppose $w$ satisfies the conditions: $w\in C$, $v-w\in C^*$, and $\ip{v-w, w}=0$. Then for any $u\in C$, we have $\ip{v-w, u}\leq 0$ by the definition of polar cone. Using the Pythagorean Theorem, $\norm{v-u}^2=\norm{v-w}^2+\norm{w-u}^2+2\ip{v-w, u-w}\Rightarrow\norm{v-u}^2\geq\norm{v-w}^2$ with equality if and only if $u=w$. Therefore, $w$ minimizes the distance to $v$ over all $u\in C$, which means $w=\proj_C(v)$.
+
+                Now suppose $w=\proj_C(v)$. By the definition of projection, $w\in C$. For any $u\in C$, the function $\phi(u)=\norm{v-u}^2$ is minimized at $u=w$, which means the derivative of $\phi$ at $w$ must be $0$ in any direction inside $C$. Expanding $\phi(u)=\norm{v}^2+\norm{u}^2-2\ip{v, u}$ and $-2(v-w)$ must be orthogonal to $C$ at $w$ to satisfy the derivative condition. Therefore, $-2(v-w)\in C^*$, which means $\ip{v-w, w}=0$ and $v-w$ lies in the polar cone $C^*$.
+
+                The two directions are proved.
+            \end{proof}
+        }
+        \item {
+            \begin{align*}
+                \proj_C(\alpha v)
+                &= \argmin_{w\in C}\norm{w-\alpha v} \\
+                &= \argmin_{w\in C}\norm{\frac{w}{\alpha}-v}\cdot \alpha \\
+                &= \alpha \argmin_{u\in C}\norm{u-v} \\
+                &= \alpha \proj_C(v).
+            \end{align*}
+            The fact $u\in C$ because $C$ is a cone.
+        }
+        \item {
+            Considering $\proj_C(v)=\argmin_{x\in C}\norm{x-v}$ has similar form as $\prox$, $\proj_C(v)+\proj_{C^*}(v)=v$ follows the same logic as Q1. Therefore, $\proj_{C^*}(v)=v-\proj_C(v)$.
+        }
+        \item {
+            Let $v=u+t\in K$, then $\norm{l-cu}^2=\norm{l-c(v-t)}^2=\norm{cv-(ct+l)}^2$. Based on the definition of projection, $\argmin_{v\in K}\norm{cv-(ct+l)}^2 \Leftrightarrow v=\proj_{K}(ct+l)/c$. Then $u=\proj_{K}(ct+l)/c-t=\proj_{K}(t+\frac{1}{c}l)-t$ using Q2c.
+        }
+        \item {
+            Proposition 3.8 of the class notes shows
+            \begin{align*}
+                (x^{k+1}, u^{k+1})
+                &\in\argmin_{x\in\R^n, u\in\R^m}\braces*{F(x, u)+\frac{1}{2c_k}\norm*{p^k-c_ku}^2} \\
+                &\Rightarrow \min_{x\in\R^n, u\in\R^m}\braces*{F(x,u)-\ip*{p^k, u}+\frac{c_k}{2}\norm*{u}^2} \\
+                &= \min_{x\in\R^n}\braces*{\min_{u\in\R^m}\braces*{F(x,u)-\ip*{p^k, u}+\frac{c_k}{2}\norm*{u}^2}}.
+            \end{align*}
+            From Q2e, we have $u=\proj_{K}(t+\frac{1}{c}l)-t=\proj_{K}(Ax-b+\frac{p^k}{c_k})-(Ax-b)=\proj_{K}(c_k(Ax-b)+p^k)-(Ax-b)$. The former argument lets $t=Ax-b$ and the later argument uses Q2c. Then by the definition of $\dist$,
+            \begin{align*}
+                (x^{k+1}, u^{k+1})
+                &\in\argmin_{x\in\R^n, u\in\R^m}\braces*{F(x, u)+\frac{1}{2c_k}\norm*{\proj_{K}(c_k(Ax-b)+p^k)-(Ax-b)}^2} \\
+                \Rightarrow x^{k+1} & \in \argmin_{x\in\R^n} \braces*{f(x) + \frac{1}{2c_k}\bracks*{\dist_K\parens*{p^k+c_k\parens*{Ax-b}}}^2}.
+            \end{align*}
+            The inner minimization is achieved.
+            The $p^{k+1} = \proj_{K^*}\parens*{p^k+c_k\parens*{Ax^{k+1}-b}}$ is proved with Q2d.
+        }
+        \item The convergence of $\set{p^k}$ can be proved with Lemma 3.7 by setting $r\leftarrow p^k$ and $c\leftarrow c^k$. The conclusion of the lemma is that $\prox_{c_k\phi^*}(p^k)=p^k-c_ku^{k+1}$ have $p^{k+1}=\prox_{c_k\phi^*}(p^k)$. Then when there exists a minimizer of $\phi^*$, the PMA guarantees that $\set{p^k}$ must converge to it. When the dual optimal solution exists, we have
+        \[p^{k+1}-p^k=-c_ku^{k+1}\Rightarrow c_ku^{k+1}=p^k-p^{k+1}.\]
+        When $\set{c_k}$ is bounded away from $0$, $\lim_{k\rightarrow\infty}u^{k+1}=\lim_{k\rightarrow\infty}\braces*{\dist_K(Ax-b)}=0$. Now fix the iteration number $k$ and suppose the $(x^{k+1},u^{k+1})$ is a minimizer (optimal solution), then
+        \[F(x^{k+1}, u^{k+1})-\ip{p^k, u^{k+1}}+\frac{c_k}{2}\norm{u^{k+1}}^2\leq F(x, 0)-\ip{p^k, 0}+\frac{c_k}{2}\norm{0}^2=F(x,0).\]
+        The second and third term of the left-hand side converges to $0$ as explained above, we apply the $\lim\sup$ operator to the inequality and get
+        \[\lim\sup_{k\rightarrow\infty}F(x^{k+1},u^{k+1})\leq\inf\set{F(x,0)\mid x\in\R^n, Ax+b\in K},\]
+        where $F(x^{k+1},u^{k+1})=f(x^{k+1})$ and $F(x,0)=f(x)$ then finish the proof.
+
+        Note: Since it is asked for dual optimal solution, I was wandering maybe I should work around $F^*(0,p)$ instead of $F(x,0)$.
+    \end{enumerate}
+\end{solution}
+
 \begin{problem}
     {Another way to embed Fenchel duality into the parametric duality framework.}
-    Consider two closed proper convex functions $f:\R^n\rightarrow\R\cup\set{+\infty}$ and $g:\R^m\rightarrow\R\cup\set{+\infty}$, and an $m\times n$ matrix $M$. Page 67 of the class notes shows one way of modeling the problem $\min_{x\in\R^n}\braces{f(x)+g(Mx)}$ within the gramework of parametric duality: making the decision variables $(x,z)\in\R^n\R^m$, changing the objective to $f(x)+g(z)$ and including a constraint $Mx-z=0$. This problem will explore a different approach to accomplishing the same thing bny defining $F:\R^n\times\R^m\rightarrow\R\cup\set{+\infty}$ through $F(x,u)=f(x)+g(Mx+u)$.
+    Consider two closed proper convex functions $f:\R^n\rightarrow\R\cup\set{+\infty}$ and $g:\R^m\rightarrow\R\cup\set{+\infty}$, and an $m\times n$ matrix $M$. Page 67 of the class notes shows one way of modeling the problem $\min_{x\in\R^n}\braces{f(x)+g(Mx)}$ within the gramework of parametric duality: making the decision variables $(x,z)\in\R^n\times \R^m$, changing the objective to $f(x)+g(z)$ and including a constraint $Mx-z=0$. This problem will explore a different approach to accomplishing the same thing by defining $F:\R^n\times\R^m\rightarrow\R\cup\set{+\infty}$ through $F(x,u)=f(x)+g(Mx+u)$.
     \begin{enumerate}[(a)]
         \item Prove that this choice of $F$ is closed proper convex (and that this is true even if $f+g\circ M$ is not proper, that is, $f(x)+g(Mx)=+\infty$ for all $x\in\R^n$).
         \item Find an explicit expression for the corresponding Lagrangian $L(x,p)$ in terms of $f$, $M$, and the conjugate function $g^*$ of $g$. Be sure to completely describe all the cases in which $L(x,p)=\pm\infty$.
@@ -101,6 +191,56 @@
         \item Show that, with $F(x,u)=f(x)+g(Mx+u)$, the abstract augmented Lagrangian method (3.17)-(3.18) in Proposition 3.8 of the notes (page 59), reduces to the same algorithm as (3.46)-(3.47) on page 67.
     \end{enumerate}
 \end{problem}
+
+\begin{solution}
+    {Solution}
+    \begin{enumerate}[(a)]
+        \item {
+            \begin{proof}
+                Since $f$ and $g$ are closed functions, their epigraphs are closed and the summation of two closed functions are closed.
+
+                \begin{align*}
+                    F(\lambda(x_1, u_1)+(1-\lambda)(x_2, u_2))
+                    &= F(\lambda x_1+(1-\lambda)x_2, \lambda u_1+(1-\lambda)u_2) \\
+                    &= f(\lambda x_1+(1-\lambda)x_2)+g(M(\lambda x_1+(1-\lambda)x_2)+\lambda u_1+(1-\lambda)u_2) \\
+                    &\leq \lambda f(x_1)+\lambda g(Mx_1+u_1)+(1-\lambda)f(x_2)+(1-\lambda)g(Mx_2+u_2) \\
+                    &= \lambda F(x_1, u_1)+(1-\lambda)F(x_2, u_2),
+                \end{align*}
+                which shows convexity.
+
+                We can prove the proper function using prove by contradiction.  Suppose $F(x, u)=f(x)+g(Mx+u)=+\infty$ for all $(x, u)\in\R^n\times\R^m$. Since $f$ and $g$ are proper, there exist $x_0\in \R^n$ and $z_0\in\R^m$ such that $f(x_0)$ and $g(z_0)$ are finite. Let $u_0=z_0-Mx_0$, then $f(x_0)+g(Mx_0+u_0)=f(x_0)+g(z_0)$ is finite, which contradicts the assumption. Therefore, $F$ is proper.
+            \end{proof}
+        }
+        \item The Lagrangian associated with the minimization problem is \[L(x, p) = F(x,u)-p\trn (Mx+u)=f(x)+g(Mx+u)-p\trn (Mx+u).\] The conjugate function is \[g^*=\sup_{u\in\R^m}\braces*{p\trn (Mx+u)-g(Mx+u)}.\] Then the Lagrangian can be expressed as $L(x, p) = f(x)+g^*(x)$. $L(x,p)=+\infty$  if either $f(x)$ or $g^*(x)$ is $+\infty$. $L(x,p)=-\infty$ never occurs since $f$ and $g^*$ are proper.
+        \item {
+            The dual function of the form
+            \begin{align*}
+                D(0,p)
+                &= \inf_{x\in\R^n, u\in\R^m}\braces*{f(x)+g(Mx+u)-p\trn (Mx+u)} \\
+                &= \inf_{x\in\R^n} \braces*{f(x)+g(Mx)-p\trn Mx}+\inf_{u\in\R^m}\braces*{g(u)-p\trn u} \\
+                &= \inf_{x\in\R^n} \braces*{f(x)+g(Mx)-p\trn Mx}+\inf_{u\in\R^m}\braces*{g(u)-\ip*{p, u}} \\
+                &= -(\sup_{x\in\R^n}\braces*{-f(x)-g(Mx)+\ip{M\trn p,x}}+\sup_{u\in\R^m}\braces*{-g(u)+\ip*{p, u}}) \\
+                &= -(f^*(-M\trn p)+g^*(p)) \\
+                &= -Q(p).
+            \end{align*}
+        }
+        \item {
+            \begin{align*}
+                (x^{k+1}, u^{k+1}) &\in \argmin_{x\in\R^n, u\in\R^m}\braces*{F(x, u)-\ip{p^k, u}+\frac{c_k}{2}\norm{u}^2} \\
+                &\Leftrightarrow \argmin_{x\in\R^n, u\in\R^m}\braces*{f(x)+g(Mx+u)-(p^k)\trn (Mx+u)} \\
+                p^{k+1} &= p^k-c_ku^{k+1} \\
+                &= p^k-c_k(Mx^{k+1}+u^{k+1}) \\
+                \Rightarrow
+                x^{k+1} &\in \argmin_{x\in\R^n}\braces*{f(x)+(p^k)\trn Mx} \\
+                u^{k+1} &\in \argmin_{u\in\R^m}\braces*{g(Mx+u)-(p^k)\trn (Mx+u)} \\
+                p^{k+1} &= p^k-c_k(Mx^{k+1}+u^{k+1}) \\
+                &\text{substituting the setup into the augmented Lagrangian method} \\
+                x^{k+1} &\in \argmin_{x\in\R^n}\braces*{f(x)+g(Mx+u)-(p^k)\trn (Mx+u)+\frac{c_k}{2}\norm{Mx+u}^2} \\
+                p^{k+1} &= p^k-c_k(Mx^{k+1}+u^{k+1}) 
+            \end{align*}
+        }
+    \end{enumerate}
+\end{solution}
 
 \begin{problem}
     {The ADMM with indicators of affine sets.}
@@ -118,6 +258,17 @@
     \end{enumerate}
 \end{problem}
 
+\begin{solution}
+    {Solution}
+    \begin{enumerate}[(a)]
+        \item The normal cone at a point $y$ in a set $C$ in $\R^m$ is defined as \[N_C(y)=\set{v\in\R^m \mid \ip{v, z-y}\leq 0, \forall z\in C}.\]
+        For the set $S+d$, where $S$ is a linear subspace of $\R^m$ and $d$ is a vector in $\R^m$, the normal cone is $N_{S+d}(y)$ at a point $y\in S+d$ is the set of all vectors orthogonal to $S$. Thus, $N_{S+d}(y)=S^{\bot}$, the orthogonal complement of $S$. We first see that a vector $v$ belongs to $N_{S+d}(y)$ if and only if $\ip{v, z-y}\leq 0$ for all $z\in S+d$. Since $S$ is a linear subspace, for any $z\in S+d$, $z-y\in S$. Therefore, $v$ is orthogonal to every vector S, which means $v\in S^{\bot}$.
+        \item To project a point $y\in\R^m$ onto the set $S+d$, we can do following procedures. First, translate $y$ by $-d$ to align with the subspace $S$, which yield $y'=y-d$. Next, project $y'$ onto $S$, thus $\proj_S(y')=\proj_S(y-d)$. Finally, translate the result of the projection back by d to align with the original set $S+d$. Therefore, $\proj_{S+d}(y)=\proj_S(y-d)+d$. I got this inspired by figure 3.5 on page 75.
+        \item From Q4b, we have shown that $\proj_{S+d}(z)=\proj_S(z-d)+d$. We first project $y+w$ onto $S+d$ and get $\proj_{S+d}(y+w)=\proj_S((y+w)-d)+d$. Decompose $y+w-d$, it is readily to see that $y-d\in S$ and $w\in S^{\bot}$. Since the projection of a vector onto $S$ only depends on the component in $S$, then $\proj_S((y+w)-d)=\proj_S(y-d)$. Therefore, $\proj_{S+d}(y+w)=\proj_S(y-d)+d=\proj_{S+d}(y)$.
+        \item Observing the given algorithm, we notice that $z^{k+1}=\proj_{S+d}(Mx^{k+1})$ implies $z^{k+1}-d\in S$ and $Mx^{k+1}-z^{k+1}\in S$ since $z^{k+1} \in S+d$. Then $p^{k+1}=p^k+c(Mc^{k+1}-z^{k+1})$ has $p^k\in S^{\bot}$ and $Mx^{k+1}-z^{k+1}\in S$, which update $p^{k+1}$ within $S^{\bot}$. This is because $S^{\bot}$ is closed under addition with elements from $S$ due to orthogonality. Therefore, $p^{k+1}\in S^{\bot}$ if $p^0\in S^{\bot}$.
+    \end{enumerate}
+\end{solution}
+
 \begin{problem}
     {Multi-block decomposition through the ADMM.}
     The principal use of the ADMM specialization discussed in the previous problem is to induce decomposition for block-separable problems and similar settings. As an example, consider problems of the form (3.4) in the class notes,
@@ -125,7 +276,7 @@
         &\min \quad&& f_1(x_1)&&+&&f_2(x_2)&&+&&\cdots&&+&&f_l(x_l)& \\
         &\st  && A_1x_1&&+&&A_2x_2&&+&&\cdots&&+&&A_lx_l&=b,
     \end{alignat*}
-    where $b\in\R^m$, the overall the decision vector $x$ is a concatenation of subvectors $(x_1,x_2,\ldots,x_l) \in \R^{n_1} \times \R^{n_2} \times \cdots \times \R^{n_l}$ and, for each $i=1,2,\ldots,n$, one has that $f_i:\R^{n_i}\rightarrow\R\cup\set{+\infty}$ is a closed proper convex function and $A_i$ is an $m\times n_i$ matrix. It was shown in class and in the notes that Lagrangian decomposition algorithms achieve decomposition for such problems but augmented Lagrangian do not, due to the cross terms in the quadratic penalty $\norm*{\sum_{i=1^l}A_ix_i-b}^2$. Consider modeling problems in the form (3.4) in Fenchel-Rockafellar form, starting as follows:
+    where $b\in\R^m$, the overall the decision vector $x$ is a concatenation of subvectors $(x_1,x_2,\ldots,x_l) \in \R^{n_1} \times \R^{n_2} \times \cdots \times \R^{n_l}$ and, for each $i=1,2,\ldots,n$, one has that $f_i:\R^{n_i}\rightarrow\R\cup\set{+\infty}$ is a closed proper convex function and $A_i$ is an $m\times n_i$ matrix. It was shown in class and in the notes that Lagrangian decomposition algorithms achieve decomposition for such problems but augmented Lagrangian do not, due to the cross terms in the quadratic penalty $\norm*{\sum_{i=1}^lA_ix_i-b}^2$. Consider modeling problems in the form (3.4) in Fenchel-Rockafellar form, starting as follows:
     \[f(x)=f(x_1,x_2,\ldots,x_l)=\sum_{i=1}^lf_i(x_i)\qquad M=\begin{bmatrix}
         A_1 &&& \\
         & A_2 && \\
@@ -147,12 +298,20 @@
             \item $x_i^k\in\R^{n_i}$ for each $i=1,2,\ldots,l$ and iteration $k\geq 0$.
         \end{itemize}
         \begin{align*}
-            x_i^{k+1} &\in \argmin_{x_i\in\R^{n_i}}\braces*{f_i(x_i)+\ip*{p^k,A_ix_i}+\frac{c}{2}\norm*{A_ix_i-z_i^k}^2} \quad \forall i=1,2,\ldots,l\\
-            z_i^{k+1} &= A_ix_i^{k+1}+\frac{1}{l}\parens*{b-\sum_{j=1}^lA_jx_j^{k+1}} \quad \forall i=1,2,\ldots,l \\
+            x_i^{k+1} &\in \argmin_{x_i\in\R^{n_i}}\braces*{f_i(x_i)+\ip*{p^k,A_ix_i}+\frac{c}{2}\norm*{A_ix_i-z_i^k}^2} \qquad \forall i=1,2,\ldots,l\\
+            z_i^{k+1} &= A_ix_i^{k+1}+\frac{1}{l}\parens*{b-\sum_{j=1}^lA_jx_j^{k+1}} \qquad \forall i=1,2,\ldots,l \\
             p^{k+1} &= p^k+\frac{c}{l}\parens*{\sum_{i=1}^lA_ix_i^{k+1}-b}.
         \end{align*}
         You may find it helpful to use various parts of the preceding problem, along with the basic linear algebra fact that if $B$ is a $p\times q$ matrix, the orthogonal complement of the subspace $\ker B \dot{=}\set{u\in\R^q\mid Bu=0}$ is $\set{B^{\top}v\mid v\in\R^p}$.
     \end{enumerate}
 \end{problem}
+
+\begin{solution}
+    {Solution}
+    To show the proof, let's first state the problem (3.4) in the form of Fenchel-Rockafellar form.
+
+    For the giving optimization problem, 
+    
+\end{solution}
 
 \end{document}
