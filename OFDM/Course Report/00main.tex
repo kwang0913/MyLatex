@@ -1,0 +1,74 @@
+\documentclass{article}
+\usepackage[
+    letterpaper,
+    top=1in,
+    bottom=1in,
+    inner=0.75in,
+    outer=0.75in,
+    % margin=1in,
+]{geometry}
+
+%%%% Page Header and Foot %%%%
+\usepackage{fancyhdr}
+\fancypagestyle{plain}{
+\fancyhf{}
+\fancyhead[L]{Rutgers University}
+\fancyhead[C]{16:332:545 Digital Communications}
+\fancyhead[R]{Spring 2024}
+\fancyfoot[L]{}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{}
+}
+\pagestyle{plain}
+
+%%%% Load Format %%%%
+\input{../../Formats/Format.tex}
+\input{../../Formats/Macro.tex}
+\allowdisplaybreaks
+
+%%%% Theorem Style %%%%
+\declaretheorem[numbered=no, style=plain]{axiom, lemma}
+\declaretheorem[numberwithin=section,style=definition]{definition}
+\declaretheorem[sibling=definition]{theorem, corollary, proposition, conjecture}
+\declaretheorem[numbered=no,style=remark]{remark, claim}
+
+%%%% Document Information %%%%
+\title{Project on OFDM Communications}
+\author{Kailong Wang}
+\date{\today}
+
+\addbibresource{bib.bib}
+
+%%%% Start Document %%%%
+\begin{document}
+\maketitle
+
+\begin{abstract}
+    Orthogonal Frequency Division Multiplexing (OFDM)~\cite{5307460} is a popular modulation scheme in modern wireless communications. It achieves high symbol rates while being robust to frequency-selective fading and intersymbol interference. This project discusses the OFDM technique and evaluates its performance with simulations. The project consists of following parts as required:
+    \begin{enumerate}[(i)]
+        \item A description of the OFDM modulation and demodulation process.
+        \item A discussion of the advantages and disadvantages of OFDM technique.
+        \item The usage of pilot symbols for channel estimation in OFDM system.
+        \item Numerical results to evaluates the OFDM scheme.
+    \end{enumerate}
+\end{abstract}
+
+\section{Modulation and Demodulation}
+\label{sec:modulation}
+\input{01sec1.tex}
+
+\section{Advantages and Disadvantages}
+\input{02sec2.tex}
+
+\section{Pilot Symbols for Channel Estimation}
+\input{03sec3.tex}
+
+\section{Numerical Results}
+\input{04sec4.tex}
+
+\section{Conclusion}
+
+\clearpage
+\printbibliography
+
+\end{document}

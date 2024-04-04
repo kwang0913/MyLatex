@@ -1,0 +1,163 @@
+The OFDM modulation and demodulation look trivial but some non-trivial features are hidden in the process and worth to mention explicitly.
+
+\subsection{Orthogonality, Symbol Rate and Guard Interval/Cyclic Prefix}
+To guarantee each narrowband symbol would not interfere others, the subcarriers in OFDM are designed to be orthogonal to each other. This means that the cross-correlation between any two subcarriers is zero. This property also guarantee the maximum number of subcarriers to be transmitted simultaneously. To achieve this, the subcarriers are spaced at $\triangle f=\frac{1}{T}$ Hz, where $T$ is the OFDM symbol duration. This can be proved as follows.
+\begin{proof}
+    Let $f_i=i\triangle f$ and $f_j=j\triangle f$ be the frequencies of two subcarriers, the cross-correlation between them is
+    \begin{align*}
+        \ip{e^{j2\pi f_i t}, e^{j2\pi f_j t}}
+        &= \frac{1}{T}\int_{0}^{T} (e^{j2\pi f_i t}) (e^{j2\pi f_j t})^* \diff t \\
+        &= \frac{1}{T}\int_{0}^{T} e^{j2\pi (f_i - f_j) t} \diff t \\
+        &= \frac{1}{T}\int_{0}^{T} e^{j2\pi (i - j)\triangle f t} \diff t \\
+        &= \frac{\sin(\pi T(i-j)\triangle f)}{\pi T(i-j)\triangle f}e^{j\pi T(i-j)\triangle f}. \\
+        \Re[\ip{e^{j2\pi f_i t}, e^{j2\pi f_j t}}]
+        &= \frac{\sin(\pi T(i-j)\triangle f)}{\pi T(i-j)\triangle f}\cos(j\pi T(i-j)\triangle f) \\
+        &= \frac{\sin(2\pi T(i-j)\triangle f)}{2\pi T(i-j)\triangle f} \\
+        &= \sinc(2T(i-j)\triangle f).
+    \end{align*}
+    To make the cross-correlation zero, we need to have $2T(i-j)\triangle f = k$ for some integer $k$ when $m\neq n$. This implies that $T\cdot\triangle f=1$.
+\end{proof}
+With the orthogonality of the subcarriers, the OFDM is able to transmit $N$ information symbols (\ie QAM, PSK, \etc) in parallel in each duration $T$, resulting in high OFDM symbol rate, $R_s=\frac{N}{T}$ symbols per second. And hence the duration $T$ can be longer than other modulation schemes when the same amount of information is transmitted.
+The longer duration $T$ gives OFDM rooms to add the guard interval in between each OFDM symbol. By setting the length of the guard interval to be longer than the channel delay spread, the OFDM system can combat the intersymbol interference caused by the multipath delay. The guard interval is usually implemented as the cyclic prefix as described above.
+
+\subsection{Circular Convolution, Circulant Matrices and Intersymbol Interference (ISI)}
+The cyclic prefix leads to circular convolution between the channel impulse response and the transmitted signal. We show this mathematical fact and its properties as follows. The content is based on~\cite{91291216} and the proof is modified with the content in~\cite{2024Apr}.
+
+We use the same notation as defined above. We first show that the cyclic prefix of $y[n]$ can be safely discard. Suppose the channel delay spread is the same as the length of the cyclic prefix $L$. Then the received signal $y[n]$ can be written as
+\begin{equation}
+    \label{eq:circ_conv}
+    \begin{bmatrix}
+        y_{N-1} \\ y_{N-2} \\ \vdots \\ y_1 \\ y_0
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        h_0 & h_1 & \cdots & h_{L} & 0 & \cdots & 0 & 0 & \cdots & 0 \\
+        0 & h_0 & \cdots & h_{L-1} & h_{L} & \cdots & 0 & 0 & \cdots & 0 \\
+        \vdots & \vdots & \ddots & \vdots & \vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
+        0 & 0 & \cdots & 0 & 0 & \cdots & h_0 & h_1 & \cdots & 0 \\
+        0 & 0 & \cdots & 0 & 0 & \cdots & 0 & h_0 & \cdots & h_{L}
+    \end{bmatrix}
+    \begin{bmatrix}
+        x_{N-1} \\ x_{N-2} \\ \vdots \\ x_1 \\ x_0 \\ x_{-1} \\ \vdots \\ x_{-L}
+    \end{bmatrix}
+    +
+    \begin{bmatrix}
+        w_{N-1} \\ w_{N-2} \\ \vdots \\ w_1 \\ w_0
+    \end{bmatrix}
+\end{equation}
+where $h_l$ is the channel impulse response of the $l$-th channel. The above matrices show that discarding the cyclic prefix at the receiver does not affect the received signal $y[n]$. It is also clear that the above representation will remain valid as long as the channel delay spread is less than the length of the cyclic prefix, since setting the $h_l$ to be zero will not affect the above representation. But longer delay spread will violate that. This mathematical fact also tells that the ISI of OFDM symbols is eliminated by discarding the cyclic prefix in the OFDM system.
+
+With some algebra, the above representation can be written as
+\begin{equation}
+    \label{eq:circ_conv2}
+    \begin{bmatrix}
+        y_{N-1} \\ y_{N-2} \\ \vdots \\ y_1 \\ y_0
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        h_0 & h_1 & \cdots & h_{L-2} & h_{L-1} & h_{L} & 0 & \cdots & 0 & 0 \\
+        0 & h_0 & \cdots & h_{L-3} & h_{L-2} & h_{L-1} & h_{L} & \cdots & 0 & 0 \\
+        \vdots & \vdots & \ddots & \vdots & \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\
+        h_2 & h_3 & \cdots & h_{L} & 0 & 0 & 0 & \cdots & h_0 & h_1 \\
+        h_1 & h_2 & \cdots & h_{L-1} & h_{L} & 0 & 0 & \cdots & 0 & h_0
+    \end{bmatrix}
+    \begin{bmatrix}
+        x_{N-1} \\ x_{N-2} \\ \vdots \\ x_1 \\ x_0
+    \end{bmatrix}
+    +
+    \begin{bmatrix}
+        w_{N-1} \\ w_{N-2} \\ \vdots \\ w_1 \\ w_0
+    \end{bmatrix}
+\end{equation}
+\begin{equation}
+    \mtx{y} = \mtx{H}\mtx{x} + \mtx{w}.
+\end{equation}
+The~\cref{eq:circ_conv} is the actual signal at the receiver while the~\cref{eq:circ_conv2} is an analytical equivalent, which is circular convolution. The matrix $\mtx{H}$ is an $N\times N$ matrix induced from an $N\times(N+L)$ matrix and is a special type of matrix called circulant matrix. Hence, the $\mtx{H}$ can be expressed as
+\begin{equation}
+    \label{eq:circ_mat}
+    \mtx{H} = h_0\mtx{I}+h_1\mtx{P}+h_2\mtx{P}^2+\cdots+h_L\mtx{P}^L,
+\end{equation}
+where $\mtx{P}$ is an $N\times N$ permutation matrix
+\begin{equation}
+    \mtx{P} = \begin{bmatrix}
+        0 & 1 & 0 & \cdots & 0 & 0 \\
+        0 & 0 & 1 & \cdots & 0 & 0 \\
+        \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\
+        0 & 0 & 0 & \cdots & 0 & 1 \\
+        1 & 0 & 0 & \cdots & 0 & 0
+    \end{bmatrix}.
+\end{equation}
+
+The~\cref{eq:circ_mat} tells us the eigenvectors of $\mtx{P}$ is the eigenvectors of $\mtx{H}$ since $\mtx{H}$ is a polynomial of $\mtx{P}$. It is also safe to hypothesis that the eigenvectors of $\mtx{H}$ are related to Fourier basis since $\mtx{H}$ is sort of periodic. Substituting~\cref{eq:circ_mat} in to $\det(\mtx{P}-\lambda\mtx{I})=0$ and evaluating different $N$, we can verify our hypothesis and find the orthonormal eigenvector matrix of $\mtx{H}$
+\begin{equation}
+    \mtx{F} = \frac{1}{\sqrt{N}}
+    \begin{bmatrix}
+        1 & 1 & 1 & \cdots & 1 \\
+        1 & \omega & \omega^2 & \cdots & \omega^{N-1} \\
+        1 & \omega^2 & \omega^4 & \cdots & \omega^{2(N-1)} \\
+        \vdots & \vdots & \vdots & \ddots & \vdots \\
+        1 & \omega^{N-1} & \omega^{2(N-1)} & \cdots & \omega^{(N-1)(N-1)}
+    \end{bmatrix}
+\end{equation}
+\begin{equation}
+    \omega = e^{-j2\pi\frac{1}{N}}.
+\end{equation}
+
+The matrix $\mtx{F}$ is the same as the discrete Fourier transform matrix. It provides the following properties:
+\begin{enumerate*}[(i)]
+    \item $\mtx{F}^{-1} = \mtx{F}\coj$;
+    \item $\mtx{F}\coj\mtx{F}=\mtx{F}\mtx{F}\coj=\mtx{I}$;
+    \item $\mtx{H}=\mtx{F}\Lambda\mtx{F}\coj=\mtx{F}\coj\Lambda\mtx{F}$ where $\Lambda$ is a diagonal matrix with the eigenvalues of $\mtx{H}$, \ie the frequency domain samples of the channel transfer function.
+\end{enumerate*}
+And leads to the following result of the demodulated OFDM symbol
+\begin{equation}
+    \label{eq:demod}
+    \begin{aligned}
+        \mtx{Y}
+        &= \mtx{F}\mtx{y} \\
+        &= \mtx{F}(\mtx{H}\mtx{x}+\mtx{w}) \\
+        &= \mtx{F}(\mtx{F}\coj\Lambda\mtx{F}\mtx{F}\coj\mtx{X}+\mtx{w}) \\
+        &= \Lambda\mtx{X} + \mtx{F}\mtx{w}.
+    \end{aligned}
+\end{equation}
+The~\cref{eq:demod} states that the orthogonality of the subcarriers is preserved in the demodulated OFDM symbols.
+
+\subsection{Equalization and Frequency-Selective Fading}
+The~\cref{eq:demod} reveals a simple equalization scheme for the OFDM system. The equalization can be done by multiplying the demodulated OFDM symbols by the inverse of the channel transfer function.
+\begin{equation}
+    \mtx{X} = \Lambda^{-1}\mtx{Y}.
+\end{equation}
+This is called zero-forcing equalization. It is simple but doesn't work well when the channel transfer function has zeros or offsets at the frequency domain samples. In this case, the equalization will amplify the noise at the zeros. Besides, even when the offsets are not existed, the zero-forcing equalization doesn't benefit Signal to Noise Ratio (SNR). The minimum mean square error (MMSE) equalization, adaptive equalization, \etc are better approaches.
+
+The existence of offsets in the channel transfer function is referred to frequency selective fading and caused by multipath propagation. This can be illustrated as follows. The channel impulse response can be expressed as
+\begin{equation}
+    h(t) = \sum_{l=0}^{L-1}h_l\delta(t-\tau_l),
+\end{equation}
+When $L=0$, the channel transfer function (the Fourier transform of $h_0$) is flat across whole bandwidth and the channel is said to be flat fading.
+\begin{equation}
+    \mtx{F}h_0(t-\tau_0) = h_0\cdot\mtx{F}\delta(t-\tau_0) = h_0\cdot e^{j2\pi f\tau_0}.
+\end{equation}
+When $L>0$, \aka multipath propagation, the channel transfer function becomes
+\begin{equation}
+    \begin{aligned}
+        \mtx{F}h(t)
+        &= \mtx{F}\sum_{l=0}^{L-1}h_l\delta(t-\tau_l) \\
+        &= \sum_{l=0}^{L-1}h_l\mtx{F}\delta(t-\tau_l) \\
+        &= \sum_{l=0}^{L-1}h_l e^{j2\pi f\tau_l}.
+    \end{aligned}
+\end{equation}
+If $\abs{f\tau_{l_i}-f\tau_{l_j}}=\frac{4k-1}{2}$ for some integer $k$, then $\sgn(e^{j2\pi f\tau_{l_i}})=-\sgn(e^{j2\pi f\tau_{l_j}})$ and cause offsets in the channel transfer function. Frankly, the wideband signals suffer more from the frequency selective fading than narrowband signals because the wideband signals will have more frequency offsets across the bandwidth, while the narrowband signals can be considered flat because the bandwidth may locate in between the frequency offsets (\aka coherent bandwidth). The OFDM system is wideband but it is robust to frequency-selective fading because the subcarriers are spaced at $\triangle f=\frac{1}{T}$ Hz. This spacing is usually much smaller than the coherence bandwidth of the channel. Therefore, the channel can be considered flat over each subcarrier. This allows the OFDM system to use a simple equalizer (\ie zero-forcing) to combat the frequency-selective fading.
+
+\subsection{Peak to Average Power Ratio and Doppler Shift}
+We have explored many advantages of the OFDM system above and need to cover its weakness. Historically, the computation overhead of Discrete Fourier Transform (DFT) could be one but has been perfectly solved by Fast Fourier Transform (FFT). The high Peak to Average Power Ratio (PAPR) and sensitivity to Doppler Shift are two remaining issues.
+
+The high PAPR is a common issue in the OFDM system. The OFDM system employs a large number of subcarriers in each OFDM symbol duration and has independent information symbols on each subcarrier. The independence means that the phases and amplitudes of the subcarriers can align at certain time instances, resulting high peak power. The high peak power requires the power amplifier to have a large dynamic range, which is expensive and inefficient. The high PAPR also causes the signal to be distorted by the power amplifier, which degrades the system performance.
+
+Another issue is that OFDM is sensitive to Doppler Shift. The Doppler Shift in the channel will cause frequency shift in the received signal. This will reduce the SNR because the matched filter is designed to match the carrier frequency. The OFDM suffers more from the Doppler Shift because the OFDM system has a large bandwidth and the Doppler Shift can cause the subcarriers to shift out of the subcarrier spacing. This will cause the orthogonality of the subcarriers to be violated and the intercarrier interference (ICI) to be introduced. From the matrix analysis perspective, the $\Lambda$ in~\cref{eq:demod} will not be diagonal under the Doppler Shift. The Doppler Shift can be compensated in many ways.
+\begin{enumerate}[(i)]
+    \item Increase the subcarrier spacing to reduce the sensitivity to the Doppler Shift. But this will reduce the symbol rate and the system capacity.
+    \item Use equalization to improve the SNR. However, equalization does not work well when the Doppler Shift is large. Besides, the equalization needs to know the channel transfer function, which is not always viable in the system or cannot be accurately estimated in the fast time-varying channel.
+    \item Error Correction Coding (ECC) can be used to improve the system robustness. However, the ECC will introduce additional overhead and reduce the system capacity.
+    \item New modulation schemes such as the Orthogonal Time Frequency Space (OTFS), which designs the waveform to be invariant to the Doppler Shift by using delay-Doppler domain signal representation. However, OTFS is not easy to be equalized as OFDM and the system complexity is higher than OFDM. The delay-Doppler domain channel estimation is also challenging.
+\end{enumerate}
+

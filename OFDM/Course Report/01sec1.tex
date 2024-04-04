@@ -1,0 +1,24 @@
+In designing the digital communication system, the complex physical environment (channel) limits the communication capacity and challenges the robustness of the system. A short duration, high symbol rate signal is not robust to multipath environment, which is the common situation, while a long duration , low symbol rate signal cannot satisfy modern communication demand. Thanks to the Uncertainty Principle~\cite{BibEntry2021Dec}, which states the long duration signal has a narrow bandwidth, if the total bandwidth can be used to transmit multiple narrow bandwidth signals simultaneously, the communication capacity can be improved without sacrificing the robustness. The Orthogonal Frequency Division Multiplexing (OFDM) technique is designed to achieve this goal.
+In this section we describe the modulation and demodulation process of Orthogonal Frequency Division Multiplexing (OFDM) system.
+
+The Modulation of the OFDM system can be summarized as follows:
+\begin{enumerate}[(i)]
+    \item A message is encoded into a bit stream with length $N\log_2M$, where $N$ is the number of narrowband subcarriers and $M$ is the modulation order.
+    \item The bit stream is mapped into $N$ complex information symbols using a modulation scheme such as M-PSK, M-QAM, \etc. The resulting symbol sequence can be expressed as $[X_{0}, X_{1}, \ldots, X_{N-1}]$.
+    \item This sequence passes through a serial-to-parallel converter to form a block as $X = [[X_{0}], [X_{1}], \ldots, [X_{N-1}]]$.
+    \item Using the Inverse Fast Fourier Transform (IFFT), the block $X$ is converted into time domain $x = [[x_0], [x_1], \allowbreak \ldots, [x_{N-1}]]$, where
+    \[ x_n = \sum_{i=0}^{N-1}X_i e^{j2\pi\frac{i}{N}n} \qquad n=0,1,\ldots,N-1. \]
+    \item The cyclic prefix is added by copying the last $L$ samples of $x$ and appending them to the beginning of $x$, where $L$ is the length of the cyclic prefix. This block passes through a parallel-to-serial converter, and then converts the digital samples, $x[n] = [x_{N-L}, x_{N-L+1}, \ldots, x_{N-1}, x_0, x_1, \ldots, x_{N-1}]$, to an analog baseband signal $x(t)$ by a Digital to Analog Converter (DAC).
+\end{enumerate}
+
+The signal $x(t)$ is upconverted to the carrier frequency $f_c$ and transmitted over the channel. Suppose the channel is Linear Time Invariant (LTI), it would have the effect as a filter which can be characterized by Finite Impulse Response (FIR) $h(t)$. The channel also corrupts the signal with Additive White Gaussian Noise (AWGN) $w(t)$. The received signal is downconverted to baseband, passes through a low pass filter to remove the high frequency component (noise), and sampled by the Analog to Digital Converter (ADC), resulting digital samples $y[n] = x[n] \circledast h[n] +  w[n]$, which can be expressed as $[y_{N-L}, y_{N-L+1}, \ldots, y_{N-1}, y_0, y_1, \ldots, y_{N-1}]$. Operator $\circledast$ is convolution.
+
+The Demodulation of the OFDM system can be summarized as follows:
+\begin{enumerate}[(i)]
+    \item The digital samples $y[n]$ contains $N+L$ elements. The cyclic prefix is removed by discarding the first $L$ elements. After a serial-to-parallel converter, the resulting block is $y = [[y_0], [y_1], \ldots, [y_{N-1}]]$.
+    \item Using the Fast Fourier Transform (FFT), the block $y$ is converted into frequency domain $Y = [[Y_{0}], [Y_{1}], \ldots, [Y_{N-1}]]$, where
+    \[ Y_i = \sum_{n=0}^{N-1}y_n e^{-j2\pi i\frac{n}{N}} \qquad i=0,1,\ldots,N-1. \]
+    \item Each element in the block is a complex information symbol. After a parallel-to-serial converter, the symbol sequence can be expressed as $[Y_{0}, Y_{1}, \ldots, Y_{N-1}]$.
+    \item These symbols are demodulated by the corresponding $M$-ordered demodulation scheme to recover the original bit stream with length $N\log_2M$.
+    \item The recovered bit stream is decoded to the original message.
+\end{enumerate}
