@@ -127,7 +127,7 @@ The~\cref{eq:demod} reveals a simple equalization scheme for the OFDM system. Th
 \begin{equation}
     \mtx{X} = \Lambda^{-1}\mtx{Y}.
 \end{equation}
-This is called zero-forcing equalization. It is simple but doesn't work well when the channel transfer function has zeros or offsets at the frequency domain samples. In this case, the equalization will amplify the noise at the zeros. Besides, even when the offsets are not existed, the zero-forcing equalization doesn't benefit Signal to Noise Ratio (SNR). The minimum mean square error (MMSE) equalization, adaptive equalization, \etc are better approaches.
+This is zero-forcing equalization. It is simple but doesn't work well when the channel transfer function has zeros or offsets at the frequency domain samples. In this case, the equalization will amplify the noise at the zeros. Besides, even when the offsets are not existed, the zero-forcing equalization doesn't benefit Signal to Noise Ratio (SNR). The minimum mean square error (MMSE) equalization, adaptive equalization, \etc are better approaches.
 
 The existence of offsets in the channel transfer function is referred to frequency selective fading and caused by multipath propagation. This can be illustrated as follows. The channel impulse response can be expressed as
 \begin{equation}
@@ -169,7 +169,7 @@ The probability of PAPR exceeding certain threshold $P_0$ is
     \label{eq:papr_prob}
     \P{\text{PAPR}>P_0} = 1 - (1-e^{-P_0})^N.
 \end{equation}
-The~\cref{eq:papr_prob} states the PAPR will exceed certain threshold with high probability when $N$ is large. And the~\cref{eq:papr} states the PAPR can be as large as $N$.
+The~\cref{eq:papr_prob} states the PAPR will exceed certain threshold with high probability when $N$ is large. And the~\cref{eq:papr} states the PAPR can be as large as $N$. The high PAPR can be compensated by clipping the OFDM signal above some threshold, using spread spectrum to reduce the peak power, \etc.
 
 
 Another issue is that OFDM is sensitive to Doppler Shift. The Doppler Shift in the channel will cause frequency shift in the received signal. This will reduce the SNR because the matched filter is designed to match the carrier frequency. The OFDM suffers more from the Doppler Shift because the OFDM system has a large bandwidth and the Doppler Shift can cause the subcarriers to shift out of the subcarrier spacing. This will cause the orthogonality of the subcarriers to be violated and the intercarrier interference (ICI) to be introduced. From the matrix analysis perspective, the $\Lambda$ in~\cref{eq:demod} will not be diagonal under the Doppler Shift. The Doppler Shift can be compensated in many ways.
