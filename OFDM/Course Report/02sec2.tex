@@ -15,10 +15,19 @@ To guarantee each narrowband symbol would not interfere others, the subcarriers 
         &= \frac{\sin(2\pi T(i-j)\triangle f)}{2\pi T(i-j)\triangle f} \\
         &= \sinc(2T(i-j)\triangle f).
     \end{align*}
-    To make the cross-correlation zero, we need to have $2T(i-j)\triangle f = k$ for some integer $k$ when $m\neq n$. This implies that $T\cdot\triangle f=1$.
+    To make the cross-correlation zero, we need to have $2T(i-j)\triangle f = k$ for some integer $k$ when $i\neq j$. This implies that $T\cdot\triangle f=1$.
 \end{proof}
+The~\cref{fig:orthogonality} shows the cross-correlation between two subcarriers with different spacing. The cross-correlation is zero when the subcarriers are spaced at $\triangle f=\frac{1}{T}$ Hz.
+
 With the orthogonality of the subcarriers, the OFDM is able to transmit $N$ information symbols (\ie QAM, PSK, \etc) in parallel in each duration $T$, resulting in high OFDM symbol rate, $R_s=\frac{N}{T}$ symbols per second. And hence the duration $T$ can be longer than other modulation schemes when the same amount of information is transmitted.
 The longer duration $T$ gives OFDM rooms to add the guard interval in between each OFDM symbol. By setting the length of the guard interval to be longer than the channel delay spread, the OFDM system can combat the intersymbol interference caused by the multipath delay. The guard interval is usually implemented as the cyclic prefix as described above.
+
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=\linewidth]{Orthogonality.eps}
+    \caption{Subcarriers = $64$, CP = $16$, SNR = $20$ dB.}
+    \label{fig:orthogonality}
+\end{figure}
 
 \subsection{Circular Convolution, Circulant Matrices and Intersymbol Interference (ISI)}
 The cyclic prefix leads to circular convolution between the channel impulse response and the transmitted signal. We show this mathematical fact and its properties as follows. The content is based on~\cite{91291216} and the proof is modified with the content in~\cite{2024Apr}.
@@ -146,7 +155,14 @@ When $L>0$, \aka multipath propagation, the channel transfer function becomes
         &= \sum_{l=0}^{L-1}h_l e^{j2\pi f\tau_l}.
     \end{aligned}
 \end{equation}
-If $\abs{f\tau_{l_i}-f\tau_{l_j}}=\frac{4k-1}{2}$ for some integer $k$, then $\sgn(e^{j2\pi f\tau_{l_i}})=-\sgn(e^{j2\pi f\tau_{l_j}})$ and cause offsets in the channel transfer function. Frankly, the wideband signals suffer more from the frequency selective fading than narrowband signals because the wideband signals will have more frequency offsets across the bandwidth, while the narrowband signals can be considered flat because the bandwidth may locate in between the frequency offsets (\aka coherent bandwidth). The OFDM system is wideband but it is robust to frequency-selective fading because the subcarriers are spaced at $\triangle f=\frac{1}{T}$ Hz. This spacing is usually much smaller than the coherence bandwidth of the channel. Therefore, the channel can be considered flat over each subcarrier. This allows the OFDM system to use a simple equalizer (\ie zero-forcing) to combat the frequency-selective fading.
+If $\abs{f\tau_{l_i}-f\tau_{l_j}}=\frac{4k-1}{2}$ for some integer $k$, then $\sgn(e^{j2\pi f\tau_{l_i}})=-\sgn(e^{j2\pi f\tau_{l_j}})$ and cause offsets in the channel transfer function~\cref{fig:ffading}. Frankly, the wideband signals suffer more from the frequency selective fading than narrowband signals because the wideband signals will have more frequency offsets across the bandwidth, while the narrowband signals can be considered flat because the bandwidth may locate in between the frequency offsets (\aka coherent bandwidth). The OFDM system is wideband but it is robust to frequency-selective fading because the subcarriers are spaced at $\triangle f=\frac{1}{T}$ Hz. This spacing is usually much smaller than the coherence bandwidth of the channel. Therefore, the channel can be considered flat over each subcarrier. This allows the OFDM system to use a simple equalizer (\ie zero-forcing) to combat the frequency-selective fading.
+
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=\linewidth]{ffading.eps}
+    \caption{Two paths with different delays and amplitudes.}
+    \label{fig:ffading}
+\end{figure}
 
 \subsection{Peak to Average Power Ratio, Doppler Shift and Intercarrier Interference (ICI)}
 We have explored many advantages of the OFDM system above and need to cover its weakness. Historically, the computation overhead of Discrete Fourier Transform (DFT) could be one but has been perfectly solved by Fast Fourier Transform (FFT). The high Peak to Average Power Ratio (PAPR) and sensitivity to Doppler Shift are two remaining issues.
@@ -160,7 +176,7 @@ Since the subcarriers are orthogonal (independent), the central limit theorem ca
     \max\abs{x_n}^2
     &= \sum_{i=0}^{N-1} \sigma^2 = N\sigma^2 \\
     \E{\abs{x_n}^2}
-    &= \sum_{i=0}^{N-1} \frac{\sigma}{\sqrt{N}}^2 = \sigma^2 \\
+    &= \sum_{i=0}^{N-1} \bracks*{\frac{\sigma}{\sqrt{N}}}^2 = \sigma^2 \\
     \max\text{PAPR}
     &= N. \label{eq:papr}
 \end{align}
@@ -169,8 +185,14 @@ The probability of PAPR exceeding certain threshold $P_0$ is
     \label{eq:papr_prob}
     \P{\text{PAPR}>P_0} = 1 - (1-e^{-P_0})^N.
 \end{equation}
-The~\cref{eq:papr_prob} states the PAPR will exceed certain threshold with high probability when $N$ is large. And the~\cref{eq:papr} states the PAPR can be as large as $N$. The high PAPR can be compensated by clipping the OFDM signal above some threshold, using spread spectrum to reduce the peak power, \etc.
+The~\cref{eq:papr_prob} states the PAPR will exceed certain threshold with high probability when $N$ is large. And the~\cref{eq:papr} states the PAPR can be as large as $N$. The high PAPR can be compensated by clipping the OFDM signal above some threshold, using spread spectrum to reduce the peak power, \etc. The~\cref{fig:PAPR} shows the PAPR of the OFDM system with different number of subcarriers.
 
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=\linewidth]{PAPR.eps}
+    \caption{BPSK, $1000$ OFDM symbols.}
+    \label{fig:PAPR}
+\end{figure}
 
 Another issue is that OFDM is sensitive to Doppler Shift. The Doppler Shift in the channel will cause frequency shift in the received signal. This will reduce the SNR because the matched filter is designed to match the carrier frequency. The OFDM suffers more from the Doppler Shift because the OFDM system has a large bandwidth and the Doppler Shift can cause the subcarriers to shift out of the subcarrier spacing. This will cause the orthogonality of the subcarriers to be violated and the intercarrier interference (ICI) to be introduced. From the matrix analysis perspective, the $\Lambda$ in~\cref{eq:demod} will not be diagonal under the Doppler Shift. The Doppler Shift can be compensated in many ways.
 \begin{enumerate}[(i)]
