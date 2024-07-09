@@ -30,7 +30,7 @@ The longer duration $T$ gives OFDM rooms to add the guard interval in between ea
 \end{figure}
 
 \subsection{Circular Convolution, Circulant Matrices and Intersymbol Interference (ISI)}
-The cyclic prefix leads to circular convolution between the channel impulse response and the transmitted signal. We show this mathematical fact and its properties as follows. The content is based on~\cite{91291216} and the proof is modified with the content in~\cite{2024Apr}.
+The cyclic prefix leads to circular convolution between the channel impulse response and the transmitted signal. We show this mathematical fact and its properties as follows. The content is based on~\cite{91291216} and is modified with the content in~\cite{2024Apr}.
 
 We use the same notation as defined above. We first show that the cyclic prefix of $y[n]$ can be safely discard. Suppose the channel delay spread is the same as the length of the cyclic prefix $L$. Then the received signal $y[n]$ can be written as
 \begin{equation}
@@ -47,7 +47,7 @@ We use the same notation as defined above. We first show that the cyclic prefix 
         0 & 0 & \cdots & 0 & 0 & \cdots & 0 & h_0 & \cdots & h_{L}
     \end{bmatrix}
     \begin{bmatrix}
-        x_{N-1} \\ x_{N-2} \\ \vdots \\ x_1 \\ x_0 \\ x_{-1} \\ \vdots \\ x_{-L}
+        x_{N-1} \\ x_{N-2} \\ \vdots \\ x_1 \\ x_0 \\ x_{N-1} \\ \vdots \\ x_{N-L}
     \end{bmatrix}
     +
     \begin{bmatrix}

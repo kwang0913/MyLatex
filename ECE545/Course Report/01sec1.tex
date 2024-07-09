@@ -19,7 +19,7 @@ The signal $x(t)$ is upconverted to the carrier frequency $f_c$ and transmitted 
 The Demodulation of the OFDM system can be summarized as follows:
 \begin{enumerate}[(i)]
     \item The digital samples $y[n]$ contains $N+L$ elements. The cyclic prefix is removed by discarding the first $L$ elements. After a serial-to-parallel converter, the resulting block is $y = [[y_0], [y_1], \ldots, [y_{N-1}]]$.
-    \item Using the Fast Fourier Transform (FFT), the block $y$ is converted into frequency domain $Y = [[Y_{0}], [Y_{1}], \ldots, [Y_{N-1}]]$, where
+    \item Using the FFT, the block $y$ is converted into frequency domain $Y = [[Y_{0}], [Y_{1}], \ldots, [Y_{N-1}]]$, where
     \begin{equation}
         Y_i = \sum_{n=0}^{N-1}y_n e^{-j2\pi i\frac{n}{N}} \qquad i=0,1,\ldots,N-1.
     \end{equation}
