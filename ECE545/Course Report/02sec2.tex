@@ -36,22 +36,22 @@ We use the same notation as defined above. We first show that the cyclic prefix 
 \begin{equation}
     \label{eq:circ_conv}
     \begin{bmatrix}
-        y_{N-1} \\ y_{N-2} \\ \vdots \\ y_1 \\ y_0
+        y_{N} \\ y_{N-1} \\ \vdots \\ y_2 \\ y_1
     \end{bmatrix}
     =
     \begin{bmatrix}
-        h_0 & h_1 & \cdots & h_{L} & 0 & \cdots & 0 & 0 & \cdots & 0 \\
-        0 & h_0 & \cdots & h_{L-1} & h_{L} & \cdots & 0 & 0 & \cdots & 0 \\
+        h_0 & h_1 & \cdots & h_{L-1} & 0 & \cdots & 0 & 0 & \cdots & 0 \\
+        0 & h_0 & \cdots & h_{L-2} & h_{L-1} & \cdots & 0 & 0 & \cdots & 0 \\
         \vdots & \vdots & \ddots & \vdots & \vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
         0 & 0 & \cdots & 0 & 0 & \cdots & h_0 & h_1 & \cdots & 0 \\
-        0 & 0 & \cdots & 0 & 0 & \cdots & 0 & h_0 & \cdots & h_{L}
+        0 & 0 & \cdots & 0 & 0 & \cdots & 0 & h_0 & \cdots & h_{L-1}
     \end{bmatrix}
     \begin{bmatrix}
-        x_{N-1} \\ x_{N-2} \\ \vdots \\ x_1 \\ x_0 \\ x_{N-1} \\ \vdots \\ x_{N-L}
+        x_{N} \\ x_{N-1} \\ \vdots \\ x_2 \\ x_1 \\ x_{N} \\ \vdots \\ x_{N-(L-1)}
     \end{bmatrix}
     +
     \begin{bmatrix}
-        w_{N-1} \\ w_{N-2} \\ \vdots \\ w_1 \\ w_0
+        w_{N} \\ w_{N-1} \\ \vdots \\ w_2 \\ w_1
     \end{bmatrix}
 \end{equation}
 where $h_l$ is the channel impulse response of the $l$-th channel. The above matrices show that discarding the cyclic prefix at the receiver does not affect the received signal $y[n]$. It is also clear that the above representation will remain valid as long as the channel delay spread is less than the length of the cyclic prefix, since setting the $h_l$ to be zero will not affect the above representation. But longer delay spread will violate that. This mathematical fact also tells that the ISI of OFDM symbols is eliminated by discarding the cyclic prefix in the OFDM system.
@@ -60,22 +60,22 @@ With some algebra, the above representation can be written as
 \begin{equation}
     \label{eq:circ_conv2}
     \begin{bmatrix}
-        y_{N-1} \\ y_{N-2} \\ \vdots \\ y_1 \\ y_0
+        y_{N} \\ y_{N-1} \\ \vdots \\ y_2 \\ y_1
     \end{bmatrix}
     =
     \begin{bmatrix}
-        h_0 & h_1 & \cdots & h_{L-2} & h_{L-1} & h_{L} & 0 & \cdots & 0 & 0 \\
-        0 & h_0 & \cdots & h_{L-3} & h_{L-2} & h_{L-1} & h_{L} & \cdots & 0 & 0 \\
+        h_0 & h_1 & \cdots & h_{L-3} & h_{L-2} & h_{L-1} & 0 & \cdots & 0 & 0 \\
+        0 & h_0 & \cdots & h_{L-4} & h_{L-3} & h_{L-2} & h_{L-1} & \cdots & 0 & 0 \\
         \vdots & \vdots & \ddots & \vdots & \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\
-        h_2 & h_3 & \cdots & h_{L} & 0 & 0 & 0 & \cdots & h_0 & h_1 \\
-        h_1 & h_2 & \cdots & h_{L-1} & h_{L} & 0 & 0 & \cdots & 0 & h_0
+        h_2 & h_3 & \cdots & h_{L-1} & 0 & 0 & 0 & \cdots & h_0 & h_1 \\
+        h_1 & h_2 & \cdots & h_{L-2} & h_{L-1} & 0 & 0 & \cdots & 0 & h_0
     \end{bmatrix}
     \begin{bmatrix}
-        x_{N-1} \\ x_{N-2} \\ \vdots \\ x_1 \\ x_0
+        x_{N} \\ x_{N-1} \\ \vdots \\ x_2 \\ x_1
     \end{bmatrix}
     +
     \begin{bmatrix}
-        w_{N-1} \\ w_{N-2} \\ \vdots \\ w_1 \\ w_0
+        w_{N} \\ w_{N-1} \\ \vdots \\ w_2 \\ w_1
     \end{bmatrix}
 \end{equation}
 \begin{equation}
@@ -84,7 +84,7 @@ With some algebra, the above representation can be written as
 The~\cref{eq:circ_conv} is the actual signal at the receiver while the~\cref{eq:circ_conv2} is an analytical equivalent, which is circular convolution. The matrix $\mtx{H}$ is an $N\times N$ matrix induced from an $N\times(N+L)$ matrix and is a special type of matrix called circulant matrix. Hence, the $\mtx{H}$ can be expressed as
 \begin{equation}
     \label{eq:circ_mat}
-    \mtx{H} = h_0\mtx{I}+h_1\mtx{P}+h_2\mtx{P}^2+\cdots+h_L\mtx{P}^L,
+    \mtx{H} = h_0\mtx{P}^0+h_1\mtx{P}^1+h_2\mtx{P}^2+\cdots+h_{L-1}\mtx{P}^{L-1},
 \end{equation}
 where $\mtx{P}$ is an $N\times N$ permutation matrix
 \begin{equation}
@@ -112,11 +112,11 @@ The~\cref{eq:circ_mat} tells us the eigenvectors of $\mtx{P}$ is the eigenvector
     \omega = e^{-j2\pi\frac{1}{N}}.
 \end{equation}
 
-The matrix $\mtx{F}$ is the same as the discrete Fourier transform matrix. It provides the following properties:
+The matrix $\mtx{F}$ is the same as the discrete Fourier transform matrix. It has the following properties:
 \begin{enumerate*}[(i)]
-    \item $\mtx{F}^{-1} = \mtx{F}\coj$;
-    \item $\mtx{F}\coj\mtx{F}=\mtx{F}\mtx{F}\coj=\mtx{I}$;
-    \item $\mtx{H}=\mtx{F}\Lambda\mtx{F}\coj=\mtx{F}\coj\Lambda\mtx{F}$ where $\Lambda$ is a diagonal matrix with the eigenvalues of $\mtx{H}$, \ie the frequency domain samples of the channel transfer function.
+    \item $\mtx{F}\inv = \mtx{F}\hmt$;
+    \item $\mtx{F}\hmt\mtx{F}=\mtx{F}\mtx{F}\hmt=\mtx{I}$;
+    \item $\mtx{H}=\mtx{F}\Lambda\mtx{F}\hmt=\mtx{F}\hmt\Lambda\mtx{F}$ where $\Lambda$ is a diagonal matrix with the eigenvalues of $\mtx{H}$, \ie the frequency domain samples of the channel transfer function.
 \end{enumerate*}
 And leads to the following result of the demodulated OFDM symbol
 \begin{equation}
@@ -125,7 +125,7 @@ And leads to the following result of the demodulated OFDM symbol
         \mtx{Y}
         &= \mtx{F}\mtx{y} \\
         &= \mtx{F}(\mtx{H}\mtx{x}+\mtx{w}) \\
-        &= \mtx{F}(\mtx{F}\coj\Lambda\mtx{F}\mtx{F}\coj\mtx{X}+\mtx{w}) \\
+        &= \mtx{F}(\mtx{F}\hmt\Lambda\mtx{F}\mtx{F}\inv\mtx{X}+\mtx{w}) \\
         &= \Lambda\mtx{X} + \mtx{F}\mtx{w}.
     \end{aligned}
 \end{equation}
@@ -144,7 +144,7 @@ The existence of offsets in the channel transfer function is referred to frequen
 \end{equation}
 When $L=0$, the channel transfer function (the Fourier transform of $h_0$) is flat across whole bandwidth and the channel is said to be flat fading.
 \begin{equation}
-    \mtx{F}h_0(t-\tau_0) = h_0\cdot\mtx{F}\delta(t-\tau_0) = h_0\cdot e^{j2\pi f\tau_0}.
+    \mtx{F}h_0\delta(t-\tau_0) = h_0\cdot\mtx{F}\delta(t-\tau_0) = h_0 e^{j2\pi f\tau_0}.
 \end{equation}
 When $L>0$, \aka multipath propagation, the channel transfer function becomes
 \begin{equation}
