@@ -8,9 +8,6 @@
 !*.cls
 !*.ipynb
 **/Formats/
-**/Temp/
-**/OTFS/
-**/NTK/
-**/RIS/
-**/OFDM/codes
+**/Others/
+**/Simulation/
 **/Scholarship/
