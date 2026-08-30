@@ -1,12 +1,23 @@
-\documentclass[11pt]{../Formats/RU}
-\input{../Formats/Macro.tex}
-\graphicspath{{../Formats}}
+\makeatletter
+\def\input@path{{../../Template/}}
+\makeatother
+\documentclass[11pt]{RU}
+\input{Macro.tex}
+\graphicspath{{../../Template/}}
 
 %Theorem style
-\declaretheorem[numbered=no, style=definition]{axiom}
-\declaretheorem[numberwithin=section,style=definition]{definition}
-\declaretheorem[sibling=definition]{theorem, lemma, corollary, proposition, conjecture}
-\declaretheorem[numbered=no,style=remark]{remark, claim}
+\theoremstyle{definition}
+\newtheorem*{axiom}{Axiom}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{corollary}[definition]{Corollary}
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{conjecture}[definition]{Conjecture}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newtheorem*{claim}{Claim}
 
 %Information to be included in the title page:
 \title[14:332:226]{Course Introduction}

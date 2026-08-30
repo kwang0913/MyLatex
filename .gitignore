@@ -7,7 +7,7 @@
 !*.md
 !*.cls
 !*.ipynb
-**/Formats/
+**/Template/
 **/Others/
 **/Simulation/
 **/Scholarship/

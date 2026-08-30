@@ -19,8 +19,11 @@
 \pagestyle{plain}
 
 %%%% Load Format %%%%
-\input{../../Formats/format.tex}
-\input{../../Formats/Macro.tex}
+\makeatletter
+\def\input@path{{../../Template/}}
+\makeatother
+\input{../../Template/Format.tex}
+\input{../../Template/Macro.tex}
 % \allowpagebreaks
 %%%% Document Information %%%%
 \title{Project Report}

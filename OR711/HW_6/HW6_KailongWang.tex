@@ -22,15 +22,28 @@
 \pagestyle{plain}
 
 %%%% Load Format %%%%
-\input{../../Formats/Format.tex}
-\input{../../Formats/Macro.tex}
+\makeatletter
+\def\input@path{{../../Template/}}
+\makeatother
+\input{../../Template/Format.tex}
+\input{../../Template/Macro.tex}
 \allowdisplaybreaks
 
 %%%% Theorem Style %%%%
-\declaretheorem[numbered=no, style=plain]{axiom, lemma}
-\declaretheorem[numberwithin=section,style=definition]{definition}
-\declaretheorem[sibling=definition]{theorem, corollary, proposition, conjecture}
-\declaretheorem[numbered=no,style=remark]{remark, claim}
+\theoremstyle{plain}
+\newtheorem*{axiom}{Axiom}
+\newtheorem*{lemma}{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{corollary}[definition]{Corollary}
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{conjecture}[definition]{Conjecture}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newtheorem*{claim}{Claim}
 
 %%%% Document Information %%%%
 \title{HW $6$}
@@ -107,7 +120,7 @@
     \end{align*}
     (Note that some definitions omit the condition $f(0) = 0$, which we include here to accord with our notion of a cone as always containing the point $0$.)
     \begin{enumerate}[(a)]
-        \item For any proper function $f:\R^n\rightarrow\R\cup\set{+\infty}$, show that $\epi f$ is a cone in $\R^{n+1}$ \iff $f$ is positively homogeneous.
+        \item For any proper function $f:\R^n\rightarrow\R\cup\set{+\infty}$, show that $\epi f$ is a cone in $\R^{n+1}$ if and only if $f$ is positively homogeneous.
         \item Consider any nonempty set $X\subseteq\R^n$. The \textit{support function} of $X$ is the convex conjugate ($\delta_X^*$) of the indicator function \[\delta_X = \begin{cases}
             0 & x\in X,\\
             +\infty & \text{otherwise}.

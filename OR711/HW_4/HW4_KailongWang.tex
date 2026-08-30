@@ -22,15 +22,28 @@
 \pagestyle{plain}
 
 %%%% Load Format %%%%
-\input{../../Formats/Format.tex}
-\input{../../Formats/Macro.tex}
+\makeatletter
+\def\input@path{{../../Template/}}
+\makeatother
+\input{../../Template/Format.tex}
+\input{../../Template/Macro.tex}
 \allowdisplaybreaks
 
 %%%% Theorem Style %%%%
-\declaretheorem[numbered=no, style=plain]{axiom, lemma}
-\declaretheorem[numberwithin=section,style=definition]{definition}
-\declaretheorem[sibling=definition]{theorem, corollary, proposition, conjecture}
-\declaretheorem[numbered=no,style=remark]{remark, claim}
+\theoremstyle{plain}
+\newtheorem*{axiom}{Axiom}
+\newtheorem*{lemma}{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{corollary}[definition]{Corollary}
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{conjecture}[definition]{Conjecture}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newtheorem*{claim}{Claim}
 
 %%%% Document Information %%%%
 \title{Homework 4}
